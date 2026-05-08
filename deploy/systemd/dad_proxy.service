@@ -1,0 +1,23 @@
+[Unit]
+Description=dad_proxy service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dad_proxy
+Group=dad_proxy
+WorkingDirectory=/opt/dad_proxy
+EnvironmentFile=-/etc/dad_proxy/dad_proxy.env
+PermissionsStartOnly=true
+ExecStart=/opt/dad_proxy/dad_proxy
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+LimitNOFILE=65535
+StandardOutput=append:/var/log/dad_proxy/service.log
+StandardError=append:/var/log/dad_proxy/error.log
+
+[Install]
+WantedBy=multi-user.target
