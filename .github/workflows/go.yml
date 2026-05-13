@@ -21,4 +21,4 @@ jobs:
       run: go mod download
 
     - name: Build
-      run: go build -o dad_proxy ./cmd/main.go
+      run: go build -o dad_proxy ./cmd/dad_proxy
