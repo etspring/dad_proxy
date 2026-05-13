@@ -30,10 +30,12 @@ type rootResponse struct {
 }
 
 type tunnelsResponse struct {
-	App     string               `json:"app"`
-	Version string               `json:"version"`
-	Count   int                  `json:"count"`
-	Tunnels []tunnels.TunnelInfo `json:"tunnels"`
+	App            string                   `json:"app"`
+	Version        string                   `json:"version"`
+	Count          int                      `json:"count"`
+	Tunnels        []tunnels.TunnelInfo     `json:"tunnels"`
+	UDPTunnelCount int                      `json:"udpTunnelCount"`
+	UDPTunnels     []tunnels.UDPTunnelStats `json:"udpTunnels"`
 }
 
 func NewProxyHandler(cfg *config.Config, logger *slog.Logger) *ProxyHandler {
@@ -209,7 +211,11 @@ func (h *ProxyHandler) HandleProxy(w http.ResponseWriter, r *http.Request) {
 	}
 
 	apiResp.IPAddress = h.config.ProxyIP
-	apiResp.Port = tunnelInfo.LocalPort
+	if tunnelInfo.UDPClientPort > 0 {
+		apiResp.Port = tunnelInfo.UDPClientPort
+	} else {
+		apiResp.Port = tunnelInfo.LocalPort
+	}
 	apiResp.Remote = userIP
 
 	h.logger.Info("Modified API response",
@@ -278,11 +284,25 @@ func (h *ProxyHandler) HandleTunnels(w http.ResponseWriter, r *http.Request) {
 	}
 
 	infos := h.tunnelManager.ListTunnels()
+
+	tcpTunnels := make([]tunnels.TunnelInfo, 0, len(infos))
+	udpInfos := make([]tunnels.UDPTunnelStats, 0, len(infos))
+	for _, ti := range infos {
+		if ti.LocalPort > 0 {
+			tcpTunnels = append(tcpTunnels, ti)
+		}
+		if ti.UDPClientPort > 0 {
+			udpInfos = append(udpInfos, tunnels.UDPTunnelStatsFromInfo(ti))
+		}
+	}
+
 	resp := tunnelsResponse{
-		App:     "Progulka`s Dark and Darker game proxy",
-		Version: version.AppVersion,
-		Count:   len(infos),
-		Tunnels: infos,
+		App:            "Progulka`s Dark and Darker game proxy",
+		Version:        version.AppVersion,
+		Count:          len(tcpTunnels),
+		Tunnels:        tcpTunnels,
+		UDPTunnelCount: len(udpInfos),
+		UDPTunnels:     udpInfos,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

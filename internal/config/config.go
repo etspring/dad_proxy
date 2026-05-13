@@ -8,13 +8,16 @@ import (
 )
 
 type Config struct {
-	ProxyPort       string
-	APIURL          string
-	ProxyIP         string
-	Environment     string
-	ProxyShare      bool
-	PortsRangeStart int
-	PortsRangeEnd   int
+	ProxyPort          string
+	APIURL             string
+	ProxyIP            string
+	Environment        string
+	ProxyShare         bool
+	PortsRangeStart    int
+	PortsRangeEnd      int
+	UDPPortsRangeStart int
+	UDPPortsRangeEnd   int
+	TCPPayloadRewrite  bool
 }
 
 func Load() (*Config, error) {
@@ -47,20 +50,90 @@ func Load() (*Config, error) {
 		env = "development"
 	}
 
-	rangeStart, rangeEnd, err := parsePortsRange(os.Getenv("DAD_PROXY_PORTS_RANGE"))
+	rangeStart, rangeEnd, err := parsePortsRangeFromEnv()
 	if err != nil {
 		return nil, err
 	}
 
+	udpRangeStart, udpRangeEnd, err := parseUDPPortsRangeFromEnv()
+	if err != nil {
+		return nil, err
+	}
+
+	tcpRewrite := true
+	if v := os.Getenv("DAD_PROXY_TCP_PAYLOAD_REWRITE"); v != "" {
+		if parsed, err := strconv.ParseBool(v); err == nil {
+			tcpRewrite = parsed
+		}
+	}
+
 	return &Config{
-		ProxyPort:       port,
-		APIURL:          apiURL,
-		ProxyIP:         proxyIP,
-		Environment:     env,
-		ProxyShare:      proxyShare,
-		PortsRangeStart: rangeStart,
-		PortsRangeEnd:   rangeEnd,
+		ProxyPort:          port,
+		APIURL:             apiURL,
+		ProxyIP:            proxyIP,
+		Environment:        env,
+		ProxyShare:         proxyShare,
+		PortsRangeStart:    rangeStart,
+		PortsRangeEnd:      rangeEnd,
+		UDPPortsRangeStart: udpRangeStart,
+		UDPPortsRangeEnd:   udpRangeEnd,
+		TCPPayloadRewrite:  tcpRewrite,
 	}, nil
+}
+
+func parsePortsRangeFromEnv() (int, int, error) {
+	startRaw := strings.TrimSpace(os.Getenv("DAD_PROXY_PORTS_RANGE_START"))
+	endRaw := strings.TrimSpace(os.Getenv("DAD_PROXY_PORTS_RANGE_END"))
+	if startRaw != "" || endRaw != "" {
+		if startRaw == "" || endRaw == "" {
+			return 0, 0, fmt.Errorf("set both DAD_PROXY_PORTS_RANGE_START and DAD_PROXY_PORTS_RANGE_END, or use DAD_PROXY_PORTS_RANGE only")
+		}
+		start, err := strconv.Atoi(startRaw)
+		if err != nil {
+			return 0, 0, fmt.Errorf("invalid DAD_PROXY_PORTS_RANGE_START: %w", err)
+		}
+		end, err := strconv.Atoi(endRaw)
+		if err != nil {
+			return 0, 0, fmt.Errorf("invalid DAD_PROXY_PORTS_RANGE_END: %w", err)
+		}
+		if start < 1 || start > 65535 || end < 1 || end > 65535 || start > end {
+			return 0, 0, fmt.Errorf("DAD_PROXY_PORTS_RANGE_START/END must be within 1..65535 and start<=end")
+		}
+		return start, end, nil
+	}
+
+	return parsePortsRange(os.Getenv("DAD_PROXY_PORTS_RANGE"))
+}
+
+func parseUDPPortsRangeFromEnv() (int, int, error) {
+	raw := strings.TrimSpace(os.Getenv("DAD_PROXY_UDP_PORTS_RANGE"))
+	if raw == "" {
+		return 7700, 7900, nil
+	}
+	return parsePortsRangeWithLabel(raw, "DAD_PROXY_UDP_PORTS_RANGE")
+}
+
+func parsePortsRangeWithLabel(raw string, label string) (int, int, error) {
+	parts := strings.Split(raw, ",")
+	if len(parts) != 2 {
+		return 0, 0, fmt.Errorf("%s must be in format start,end", label)
+	}
+
+	start, err := strconv.Atoi(strings.TrimSpace(parts[0]))
+	if err != nil {
+		return 0, 0, fmt.Errorf("invalid %s start: %w", label, err)
+	}
+
+	end, err := strconv.Atoi(strings.TrimSpace(parts[1]))
+	if err != nil {
+		return 0, 0, fmt.Errorf("invalid %s end: %w", label, err)
+	}
+
+	if start < 1 || start > 65535 || end < 1 || end > 65535 || start > end {
+		return 0, 0, fmt.Errorf("%s must be within 1..65535 and start<=end", label)
+	}
+
+	return start, end, nil
 }
 
 func ValidatePort(port string) error {
