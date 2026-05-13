@@ -35,6 +35,7 @@ func main() {
 		"DAD_PROXY_SHARE", cfg.ProxyShare,
 		"DAD_PROXY_PORTS_RANGE_START", cfg.PortsRangeStart,
 		"DAD_PROXY_PORTS_RANGE_END", cfg.PortsRangeEnd,
+		"DAD_PROXY_TCP_PAYLOAD_REWRITE", cfg.TCPPayloadRewrite,
 	)
 
 	// Share proxy
