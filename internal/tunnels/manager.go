@@ -20,14 +20,13 @@ import (
 	"dad_proxy/internal/config"
 )
 
-// upstreamHTTPURLPattern matches http://IPv4:port with optional path (same as legacy payload rewrite).
 var upstreamHTTPURLPattern = regexp.MustCompile(`http://((?:\d{1,3}\.){3}\d{1,3}):(\d{1,5})(/[A-Za-z0-9._~:/?#\[\]@!$&'()*+,;=%-]*)?`)
 
 type TunnelInfo struct {
 	RemoteIP                 string    `json:"remoteIp"`
 	RemotePort               int       `json:"remotePort"`
 	LocalPort                int       `json:"localPort"`
-	UDPClientPort            int       `json:"udpClientPort,omitempty"` // clients send UDP here when set (same as RemotePort in split game-UDP mode)
+	UDPClientPort            int       `json:"udpClientPort,omitempty"`
 	CreatedAt                time.Time `json:"createdAt"`
 	LastActivityAt           time.Time `json:"lastActivityAt"`
 	ActiveTCPConnections     int64     `json:"activeTcpConnections"`
@@ -38,8 +37,7 @@ type TunnelInfo struct {
 	BytesFromRemoteToClients int64     `json:"bytesFromRemoteToClients"`
 	UDPDatagramsFromClients  int64     `json:"udpDatagramsFromClients"`
 	UDPDatagramsToClients    int64     `json:"udpDatagramsToClients"`
-	// UDPLocalListenAddr is the UDP socket address clients use (proxy:RemotePort when UDP relay is active).
-	UDPLocalListenAddr string `json:"udpLocalListenAddr,omitempty"`
+	UDPLocalListenAddr       string    `json:"udpLocalListenAddr,omitempty"`
 }
 
 // ClientAdvertisedPort is the TCP port when the tunnel has TCP (payload rewrites, HTTP); otherwise the UDP client port.
@@ -57,7 +55,7 @@ func (ti TunnelInfo) ClientAdvertisedPort() int {
 type UDPTunnelStats struct {
 	RemoteIP             string `json:"remoteIp"`
 	RemotePort           int    `json:"remotePort"`
-	LocalPort            int    `json:"localPort"` // TCP listen port from DAD_PROXY_PORTS_RANGE, or 0 if UDP-only
+	LocalPort            int    `json:"localPort"`
 	UDPClientPort        int    `json:"udpClientPort,omitempty"`
 	LocalListenAddr      string `json:"localListenAddr,omitempty"`
 	UpstreamAddr         string `json:"upstreamAddr"`
@@ -86,10 +84,10 @@ func UDPTunnelStatsFromInfo(ti TunnelInfo) UDPTunnelStats {
 type tunnel struct {
 	info TunnelInfo
 
-	splitUDP    bool // UDP relay uses proxy:RemotePort for clients; optional TCP on LocalPort (main pool)
+	splitUDP    bool
 	tcpListener net.Listener
-	udpClient   *net.UDPConn // clients → proxy:RemotePort
-	udpUpstream *net.UDPConn // ephemeral local → server (ReadFromUDP; replies may land here or on udpClient)
+	udpClient   *net.UDPConn
+	udpUpstream *net.UDPConn
 	closeOnce   sync.Once
 
 	lastActivityUnixNano     atomic.Int64
@@ -219,7 +217,7 @@ func (m *Manager) isRemoteGameUDPPort(port int) bool {
 	if port < m.config.UDPPortsRangeStart || port > m.config.UDPPortsRangeEnd {
 		return false
 	}
-	// If DAD_PROXY_UDP_PORTS_RANGE overlaps DAD_PROXY_PORTS_RANGE, never treat pool ports as voice-only UDP.
+	// If DAD_PROXY_UDP_PORTS_RANGE overlaps DAD_PROXY_PORTS_RANGE, never treat pool ports UDP.
 	if port >= m.config.PortsRangeStart && port <= m.config.PortsRangeEnd {
 		return false
 	}
@@ -261,10 +259,11 @@ func (m *Manager) createTunnel(remoteIP string, remotePort int) (*tunnel, error)
 	}
 
 	if m.isRemoteGameUDPPort(remotePort) {
-		// Game voice / sync UDP only — no TCP listener on the proxy for this upstream port.
-		udpClient, err := net.ListenUDP("udp4", &net.UDPAddr{IP: bindIP, Port: remotePort})
+		// sync UDP only — no TCP listener on the proxy for this upstream port.
+		udpClient, clientUDPPort, err := m.listenUDPInPortRange(
+			m.config.UDPClientBindRangeStart, m.config.UDPClientBindRangeEnd, "DAD_PROXY_UDP_CLIENT_BIND_RANGE")
 		if err != nil {
-			return nil, fmt.Errorf("udp listen for clients on %s:%d: %w", bindIP, remotePort, err)
+			return nil, err
 		}
 		udpUpstream, err := m.listenUDPEphemeral(bindIP)
 		if err != nil {
@@ -276,7 +275,7 @@ func (m *Manager) createTunnel(remoteIP string, remotePort int) (*tunnel, error)
 			info: TunnelInfo{
 				RemoteIP:      remoteIP,
 				RemotePort:    remotePort,
-				UDPClientPort: remotePort,
+				UDPClientPort: clientUDPPort,
 				CreatedAt:     time.Now().UTC(),
 			},
 			splitUDP:    true,
@@ -295,7 +294,7 @@ func (m *Manager) createTunnel(remoteIP string, remotePort int) (*tunnel, error)
 	}
 
 	// Upstream ports inside the TCP pool range are almost always TCP-only (API, control plane).
-	// Do not bind a UDP listener on those port numbers — it duplicates pool ports and confuses clients.
+	// Do not bind a UDP listener on those port numbers — it duplicates pool ports and jerk clients.
 	if m.isRemotePortInTunnelTCPPool(remotePort) {
 		m.logger.Info("UDP relay skipped: upstream port in DAD_PROXY_PORTS_RANGE (TCP-only tunnel)",
 			"remote_ip", remoteIP,
@@ -317,7 +316,8 @@ func (m *Manager) createTunnel(remoteIP string, remotePort int) (*tunnel, error)
 		return tun, nil
 	}
 
-	udpClient, err := net.ListenUDP("udp4", &net.UDPAddr{IP: bindIP, Port: remotePort})
+	udpClient, clientUDPPort, err := m.listenUDPInPortRange(
+		m.config.UDPClientBindRangeStart, m.config.UDPClientBindRangeEnd, "DAD_PROXY_UDP_CLIENT_BIND_RANGE")
 	if err != nil {
 		_ = tcpListener.Close()
 		m.logger.Info("UDP side disabled for tunnel (TCP only)",
@@ -353,7 +353,7 @@ func (m *Manager) createTunnel(remoteIP string, remotePort int) (*tunnel, error)
 			RemoteIP:      remoteIP,
 			RemotePort:    remotePort,
 			LocalPort:     tcpPort,
-			UDPClientPort: remotePort,
+			UDPClientPort: clientUDPPort,
 			CreatedAt:     time.Now().UTC(),
 		},
 		splitUDP:    true,
@@ -379,6 +379,23 @@ func (m *Manager) listenTCPInPortRange(rangeStart, rangeEnd int, rangeLabel stri
 	}
 	return nil, 0, fmt.Errorf(
 		"no free TCP ports in %s %d,%d",
+		rangeLabel,
+		rangeStart,
+		rangeEnd,
+	)
+}
+
+func (m *Manager) listenUDPInPortRange(rangeStart, rangeEnd int, rangeLabel string) (*net.UDPConn, int, error) {
+	bindIP := m.tunnelBindIPv4()
+	for port := rangeStart; port <= rangeEnd; port++ {
+		c, err := net.ListenUDP("udp4", &net.UDPAddr{IP: bindIP, Port: port})
+		if err != nil {
+			continue
+		}
+		return c, port, nil
+	}
+	return nil, 0, fmt.Errorf(
+		"no free UDP ports in %s %d,%d",
 		rangeLabel,
 		rangeStart,
 		rangeEnd,
@@ -512,7 +529,7 @@ func (m *Manager) copyTCPRemoteToClientFramed(tun *tunnel, clientConn net.Conn, 
 	}
 }
 
-// rewriteTunnelPayload applies game payload rewriting, then http://IPv4:port regexp.
+// rewriteTunnelPayload applies game payload rewriting
 func (m *Manager) rewriteTunnelPayload(payload []byte, baseLocalPort int, direction string) []byte {
 	if !m.config.TCPPayloadRewrite {
 		return payload
@@ -535,6 +552,7 @@ func (m *Manager) rewriteTunnelPayload(payload []byte, baseLocalPort int, direct
 	return m.rewriteHTTPURLBytes(out, baseLocalPort)
 }
 
+// tryRewriteProtobuf rewrites messages (length-delimited UTF-8 strings with IPv4:port, nested messages, etc.).
 func (m *Manager) tryRewriteProtobuf(body []byte, baseLocalPort int, direction string, depth int) ([]byte, bool) {
 	if depth > 12 || len(body) == 0 {
 		return body, true
@@ -608,13 +626,10 @@ func (m *Manager) rewriteProtobufLenDelim(chunk []byte, baseLocalPort int, direc
 	}
 	s := strings.TrimSpace(string(bytes.TrimRight(chunk, "\x00")))
 	if m.isIPPort(s) {
-		return m.rewriteIPAddress(chunk, baseLocalPort, direction, 0x12)
+		return m.rewriteIPAddress(chunk, direction, 0x12)
 	}
 	if strings.HasPrefix(s, "http://") {
 		return m.rewriteHTTPURL(chunk, baseLocalPort, direction)
-	}
-	if ip := net.ParseIP(s); ip != nil && ip.To4() != nil && direction == "remote->client" && !strings.Contains(s, ":") && s != m.config.ProxyIP {
-		return m.rewriteIPAddress(chunk, baseLocalPort, direction, 0x12)
 	}
 	return chunk
 }
@@ -699,6 +714,7 @@ func (m *Manager) rewriteTLVPayload(payload []byte, baseLocalPort int, direction
 	return out8
 }
 
+// rewriteTLVPayloadWithWidth parses TLV
 func (m *Manager) rewriteTLVPayloadWithWidth(payload []byte, baseLocalPort int, direction string, lenWidth int) ([]byte, bool) {
 	const msgHeader = 8
 	if len(payload) < msgHeader {
@@ -767,18 +783,20 @@ func (m *Manager) processTLVValue(tag byte, value []byte, baseLocalPort int, dir
 
 	switch tag {
 	case 0x0c, 0x12: // IP or IP:port
-		return m.rewriteIPAddress(value, baseLocalPort, direction, tag)
+		return m.rewriteIPAddress(value, direction, tag)
 	case 0x1b: // HTTP URL
 		return m.rewriteHTTPURL(value, baseLocalPort, direction)
 	default:
+		// is this substring?
 		if strings.Contains(valueStr, ":") && m.isIPPort(valueStr) {
-			return m.rewriteIPAddress(value, baseLocalPort, direction, tag)
+			return m.rewriteIPAddress(value, direction, tag)
 		}
 		return value
 	}
 }
 
-func (m *Manager) rewriteIPAddress(value []byte, baseLocalPort int, direction string, tag byte) []byte {
+// rewriteIPAddress or IP:Port
+func (m *Manager) rewriteIPAddress(value []byte, direction string, tag byte) []byte {
 	valueStr := strings.TrimSpace(string(bytes.TrimRight(value, "\x00")))
 
 	if strings.Contains(valueStr, ":") {
@@ -811,19 +829,6 @@ func (m *Manager) rewriteIPAddress(value []byte, baseLocalPort int, direction st
 		}
 	}
 
-	if ip := net.ParseIP(valueStr); ip != nil && ip.To4() != nil && valueStr != m.config.ProxyIP {
-		if direction == "remote->client" {
-			newValue := fmt.Sprintf("%s:%d", m.config.ProxyIP, baseLocalPort)
-			m.logger.Info("Rewrote plain IP in TLV to proxy:localPort",
-				"tag", fmt.Sprintf("0x%02x", tag),
-				"from", valueStr,
-				"to", newValue,
-			)
-			return []byte(newValue)
-		}
-		return value
-	}
-
 	return value
 }
 
@@ -833,7 +838,6 @@ func (m *Manager) rewriteHTTPURL(value []byte, baseLocalPort int, direction stri
 	if strings.HasPrefix(valueStr, "http://") {
 		remaining := strings.TrimPrefix(valueStr, "http://")
 
-		// Ищем первый слэш после порта
 		pathStart := strings.Index(remaining, "/")
 		var hostPart, pathPart string
 
@@ -953,6 +957,7 @@ func (m *Manager) rewriteUDPFramedIfPresent(payload []byte, _ int, _ string) []b
 	return payload
 }
 
+// udpSplitFromServer is true when addr is the game server host (same IP as upstream). Server replies can arrive on the ephemeral relay socket or on the client-facing port.
 func udpSplitFromServer(addr *net.UDPAddr, server *net.UDPAddr) bool {
 	if addr == nil || server == nil || server.IP == nil || addr.IP == nil {
 		return false
@@ -964,6 +969,7 @@ func udpSplitFromServer(addr *net.UDPAddr, server *net.UDPAddr) bool {
 	return addr.IP.Equal(server.IP)
 }
 
+// serveUDPSplit handles split UDP relays: clients use proxy:UDPClientPort upstream uses a separate UDP socket on an ephemeral local port bound to DAD_PROXY_IP.
 func (m *Manager) serveUDPSplit(tun *tunnel) {
 	up := tun.udpUpstream
 	cl := tun.udpClient
@@ -1037,7 +1043,7 @@ func (m *Manager) serveUDPSplit(tun *tunnel) {
 		}
 		pkt := append([]byte(nil), buf[:n]...)
 
-		// Game server sometimes sends replies to the advertised client port (proxy:RemotePort) instead of
+		// Game server sometimes sends replies to the advertised client port (proxy:UDPClientPort) instead of
 		// the ephemeral relay port — they then appear on cl. They must go to real clients only, not back upstream.
 		if udpSplitFromServer(peer, remoteAddr) {
 			clientsMu.Lock()
@@ -1103,13 +1109,3 @@ func tunnelKey(remoteIP string, remotePort int) string {
 func MarshalTunnelInfos(infos []TunnelInfo) ([]byte, error) {
 	return json.Marshal(infos)
 }
-
-// func hexPreview(data []byte, maxBytes int) string {
-// 	if maxBytes <= 0 || len(data) == 0 {
-// 		return ""
-// 	}
-// 	if len(data) <= maxBytes {
-// 		return hex.EncodeToString(data)
-// 	}
-// 	return hex.EncodeToString(data[:maxBytes]) + "..."
-// }
