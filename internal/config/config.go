@@ -8,16 +8,18 @@ import (
 )
 
 type Config struct {
-	ProxyPort          string
-	APIURL             string
-	ProxyIP            string
-	Environment        string
-	ProxyShare         bool
-	PortsRangeStart    int
-	PortsRangeEnd      int
-	UDPPortsRangeStart int
-	UDPPortsRangeEnd   int
-	TCPPayloadRewrite  bool
+	ProxyPort               string
+	APIURL                  string
+	ProxyIP                 string
+	Environment             string
+	ProxyShare              bool
+	PortsRangeStart         int
+	PortsRangeEnd           int
+	UDPPortsRangeStart      int
+	UDPPortsRangeEnd        int
+	UDPClientBindRangeStart int
+	UDPClientBindRangeEnd   int
+	TCPPayloadRewrite       bool
 }
 
 func Load() (*Config, error) {
@@ -60,6 +62,11 @@ func Load() (*Config, error) {
 		return nil, err
 	}
 
+	udpClientBindStart, udpClientBindEnd, err := parseUDPClientBindRangeFromEnv()
+	if err != nil {
+		return nil, err
+	}
+
 	tcpRewrite := true
 	if v := os.Getenv("DAD_PROXY_TCP_PAYLOAD_REWRITE"); v != "" {
 		if parsed, err := strconv.ParseBool(v); err == nil {
@@ -68,16 +75,18 @@ func Load() (*Config, error) {
 	}
 
 	return &Config{
-		ProxyPort:          port,
-		APIURL:             apiURL,
-		ProxyIP:            proxyIP,
-		Environment:        env,
-		ProxyShare:         proxyShare,
-		PortsRangeStart:    rangeStart,
-		PortsRangeEnd:      rangeEnd,
-		UDPPortsRangeStart: udpRangeStart,
-		UDPPortsRangeEnd:   udpRangeEnd,
-		TCPPayloadRewrite:  tcpRewrite,
+		ProxyPort:               port,
+		APIURL:                  apiURL,
+		ProxyIP:                 proxyIP,
+		Environment:             env,
+		ProxyShare:              proxyShare,
+		PortsRangeStart:         rangeStart,
+		PortsRangeEnd:           rangeEnd,
+		UDPPortsRangeStart:      udpRangeStart,
+		UDPPortsRangeEnd:        udpRangeEnd,
+		UDPClientBindRangeStart: udpClientBindStart,
+		UDPClientBindRangeEnd:   udpClientBindEnd,
+		TCPPayloadRewrite:       tcpRewrite,
 	}, nil
 }
 
@@ -108,9 +117,17 @@ func parsePortsRangeFromEnv() (int, int, error) {
 func parseUDPPortsRangeFromEnv() (int, int, error) {
 	raw := strings.TrimSpace(os.Getenv("DAD_PROXY_UDP_PORTS_RANGE"))
 	if raw == "" {
-		return 7700, 7900, nil
+		return 7700, 8000, nil
 	}
 	return parsePortsRangeWithLabel(raw, "DAD_PROXY_UDP_PORTS_RANGE")
+}
+
+func parseUDPClientBindRangeFromEnv() (int, int, error) {
+	raw := strings.TrimSpace(os.Getenv("DAD_PROXY_UDP_CLIENT_BIND_RANGE"))
+	if raw == "" {
+		return 7700, 8000, nil
+	}
+	return parsePortsRangeWithLabel(raw, "DAD_PROXY_UDP_CLIENT_BIND_RANGE")
 }
 
 func parsePortsRangeWithLabel(raw string, label string) (int, int, error) {

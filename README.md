@@ -68,10 +68,12 @@
 ## Переменные среды
 
 - `DAD_PROXY_API_PORT` - порт HTTP API прокси (по умолчанию `80`).
-- `DAD_PROXY_PORTS_RANGE` - диапазон локальных портов для туннелей в формате `start,end` (по умолчанию `20200,20300`).
+- `DAD_PROXY_PORTS_RANGE` - диапазон локальных портов для TCP-туннелей в формате `start,end` (по умолчанию `20200,20300`).
 - `DAD_API_URL` - upstream URL `helloWorld` (по умолчанию `http://live-gateway.lunatichigh.net/dc/helloWorld`).
 - `DAD_PROXY_IP` - публичный IP прокси, который отдается клиенту в `ipAddress` (по умолчанию `127.0.0.1`).
 - `DAD_PROXY_SHARE` - отправлять ли информацию о прокси во внешний share endpoint при старте (`true` по умолчанию).
 - `DAD_PROXY_ENVIRONMENT` - окружение логирования (`development` по умолчанию).
+- `DAD_PROXY_UDP_PORTS_RANGE` - диапазон UDP-портов игровых верверов в формате `start,end` (по умолчанию `7700,8000`).
+- `DAD_PROXY_UDP_CLIENT_BIND_RANGE` - диапазон локальных портов для UDP-туннелей в формате `start,end` (по умолчанию `7700,8000`).
 
 В этом варианте шаг с созданием пользователя `dad_proxy` можно пропустить.
