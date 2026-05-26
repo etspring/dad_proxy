@@ -36,6 +36,7 @@ func main() {
 		"DAD_PROXY_PORTS_RANGE_START", cfg.PortsRangeStart,
 		"DAD_PROXY_PORTS_RANGE_END", cfg.PortsRangeEnd,
 		"DAD_PROXY_TCP_PAYLOAD_REWRITE", cfg.TCPPayloadRewrite,
+		"DAD_PROXY_UDP_IDLE_TIMEOUT", cfg.UDPIdleTimeout,
 	)
 
 	// Share proxy

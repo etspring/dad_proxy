@@ -103,16 +103,37 @@ type tunnel struct {
 
 func (t *tunnel) close() {
 	t.closeOnce.Do(func() {
+		t.closeUDPLeg()
 		if t.tcpListener != nil {
 			_ = t.tcpListener.Close()
 		}
-		if t.udpClient != nil {
-			_ = t.udpClient.Close()
-		}
-		if t.udpUpstream != nil {
-			_ = t.udpUpstream.Close()
-		}
 	})
+}
+
+func (t *tunnel) closeUDPLeg() {
+	if t.udpClient != nil {
+		_ = t.udpClient.Close()
+		t.udpClient = nil
+	}
+	if t.udpUpstream != nil {
+		_ = t.udpUpstream.Close()
+		t.udpUpstream = nil
+	}
+	t.splitUDP = false
+	t.info.UDPClientPort = 0
+	t.activeUDPSessions.Store(0)
+}
+
+func (t *tunnel) hasUDP() bool {
+	return t.udpClient != nil
+}
+
+func (t *tunnel) idleSince() (time.Time, bool) {
+	unixNano := t.lastActivityUnixNano.Load()
+	if unixNano <= 0 {
+		return time.Time{}, false
+	}
+	return time.Unix(0, unixNano).UTC(), true
 }
 
 func (t *tunnel) markActivity() {
@@ -144,16 +165,23 @@ type Manager struct {
 	logger *slog.Logger
 	config *config.Config
 
-	mu      sync.RWMutex
-	tunnels map[string]*tunnel
+	mu           sync.RWMutex
+	tunnels      map[string]*tunnel
+	idleStop     chan struct{}
+	idleStopOnce sync.Once
 }
 
 func NewManager(cfg *config.Config, logger *slog.Logger) *Manager {
-	return &Manager{
-		logger:  logger,
-		config:  cfg,
-		tunnels: make(map[string]*tunnel),
+	m := &Manager{
+		logger:   logger,
+		config:   cfg,
+		tunnels:  make(map[string]*tunnel),
+		idleStop: make(chan struct{}),
 	}
+	if cfg.UDPIdleTimeout > 0 {
+		go m.runUDPIdleReaper()
+	}
+	return m
 }
 
 func (m *Manager) EnsureTunnel(remoteIP string, remotePort int) (TunnelInfo, error) {
@@ -204,11 +232,90 @@ func (m *Manager) ListTunnels() []TunnelInfo {
 }
 
 func (m *Manager) Close() {
+	m.idleStopOnce.Do(func() { close(m.idleStop) })
+
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
 	for key, tun := range m.tunnels {
 		tun.close()
+		delete(m.tunnels, key)
+	}
+}
+
+func (m *Manager) runUDPIdleReaper() {
+	timeout := m.config.UDPIdleTimeout
+	interval := timeout / 6
+	if interval < 30*time.Second {
+		interval = 30 * time.Second
+	}
+	if interval > time.Minute {
+		interval = time.Minute
+	}
+
+	ticker := time.NewTicker(interval)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-m.idleStop:
+			return
+		case <-ticker.C:
+			m.evictIdleUDPTunnels()
+		}
+	}
+}
+
+func (m *Manager) evictIdleUDPTunnels() {
+	timeout := m.config.UDPIdleTimeout
+	if timeout <= 0 {
+		return
+	}
+
+	now := time.Now().UTC()
+
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	var removeKeys []string
+	for key, tun := range m.tunnels {
+		if !tun.hasUDP() {
+			continue
+		}
+		if tun.activeTCPConnections.Load() > 0 {
+			continue
+		}
+		last, ok := tun.idleSince()
+		if !ok || now.Sub(last) < timeout {
+			continue
+		}
+
+		idleFor := now.Sub(last)
+		if tun.tcpListener != nil {
+			tun.closeUDPLeg()
+			m.logger.Info("UDP tunnel leg closed due to idle timeout",
+				"remote_ip", tun.info.RemoteIP,
+				"remote_port", tun.info.RemotePort,
+				"tcp_local_port", tun.info.LocalPort,
+				"idle_for", idleFor,
+				"idle_timeout", timeout,
+			)
+			continue
+		}
+
+		udpClientPort := tun.info.UDPClientPort
+		tun.close()
+		removeKeys = append(removeKeys, key)
+		m.logger.Info("UDP tunnel closed due to idle timeout",
+			"remote_ip", tun.info.RemoteIP,
+			"remote_port", tun.info.RemotePort,
+			"udp_client_port", udpClientPort,
+			"idle_for", idleFor,
+			"idle_timeout", timeout,
+		)
+	}
+
+	for _, key := range removeKeys {
 		delete(m.tunnels, key)
 	}
 }

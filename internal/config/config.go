@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type Config struct {
@@ -19,6 +20,7 @@ type Config struct {
 	UDPPortsRangeEnd        int
 	UDPClientBindRangeStart int
 	UDPClientBindRangeEnd   int
+	UDPIdleTimeout          time.Duration
 	TCPPayloadRewrite       bool
 }
 
@@ -67,6 +69,11 @@ func Load() (*Config, error) {
 		return nil, err
 	}
 
+	udpIdleTimeout, err := parseUDPIdleTimeoutFromEnv()
+	if err != nil {
+		return nil, err
+	}
+
 	tcpRewrite := true
 	if v := os.Getenv("DAD_PROXY_TCP_PAYLOAD_REWRITE"); v != "" {
 		if parsed, err := strconv.ParseBool(v); err == nil {
@@ -86,8 +93,24 @@ func Load() (*Config, error) {
 		UDPPortsRangeEnd:        udpRangeEnd,
 		UDPClientBindRangeStart: udpClientBindStart,
 		UDPClientBindRangeEnd:   udpClientBindEnd,
+		UDPIdleTimeout:          udpIdleTimeout,
 		TCPPayloadRewrite:       tcpRewrite,
 	}, nil
+}
+
+func parseUDPIdleTimeoutFromEnv() (time.Duration, error) {
+	raw := strings.TrimSpace(os.Getenv("DAD_PROXY_UDP_IDLE_TIMEOUT"))
+	if raw == "" {
+		return 10 * time.Minute, nil
+	}
+	d, err := time.ParseDuration(raw)
+	if err != nil {
+		return 0, fmt.Errorf("invalid DAD_PROXY_UDP_IDLE_TIMEOUT: %w", err)
+	}
+	if d < 0 {
+		return 0, fmt.Errorf("DAD_PROXY_UDP_IDLE_TIMEOUT must be >= 0 (use 0 to disable)")
+	}
+	return d, nil
 }
 
 func parsePortsRangeFromEnv() (int, int, error) {
