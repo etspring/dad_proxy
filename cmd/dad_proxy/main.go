@@ -30,6 +30,7 @@ func main() {
 		"app", "dad_proxy",
 		"version", version.AppVersion,
 		"DAD_PROXY_API_PORT", cfg.ProxyPort,
+		"DAD_PROXY_API_HELLO", cfg.APIHelloPath,
 		"DAD_API_URL", cfg.APIURL,
 		"DAD_PROXY_IP", cfg.ProxyIP,
 		"DAD_PROXY_SHARE", cfg.ProxyShare,

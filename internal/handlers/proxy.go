@@ -55,7 +55,7 @@ func (h *ProxyHandler) HandleProxy(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if r.URL.Path != "/dc/helloWorld" {
+	if r.URL.Path != h.config.APIHelloPath {
 		http.NotFound(w, r)
 		return
 	}

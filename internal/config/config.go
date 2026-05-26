@@ -10,6 +10,7 @@ import (
 
 type Config struct {
 	ProxyPort               string
+	APIHelloPath            string
 	APIURL                  string
 	ProxyIP                 string
 	Environment             string
@@ -28,6 +29,13 @@ func Load() (*Config, error) {
 	port := os.Getenv("DAD_PROXY_API_PORT")
 	if port == "" {
 		port = "80"
+	}
+
+	apiHello := strings.TrimSpace(os.Getenv("DAD_PROXY_API_HELLO"))
+	if apiHello == "" {
+		apiHello = "/dc/helloWorld"
+	} else if !strings.HasPrefix(apiHello, "/") {
+		apiHello = "/" + apiHello
 	}
 
 	apiURL := os.Getenv("DAD_API_URL")
@@ -83,6 +91,7 @@ func Load() (*Config, error) {
 
 	return &Config{
 		ProxyPort:               port,
+		APIHelloPath:            apiHello,
 		APIURL:                  apiURL,
 		ProxyIP:                 proxyIP,
 		Environment:             env,

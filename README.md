@@ -2,6 +2,15 @@
 
 Прокси-сервер для игры Dark and Darker.
 
+## Установка (Linux)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh | sh
+```
+
+Конкретная версия: `VERSION=v1.1.2 curl -fsSL ... | sh`. Удаление: `curl -fsSL ... | sh -s -- uninstall`.
+После установки отредактируйте `/etc/dad_proxy/dad_proxy.env` (в первую очередь `DAD_PROXY_IP`).
+
 Тестовый proxy поднят на 144.124.242.135
 
 Для работы с ним необходимо изменить файл hosts
@@ -14,7 +23,7 @@
 - `GET /`
   - Информация о сервисе:
   - `{"app":"Progulka`s Dark and Darker game proxy","version":"1.1.0","details":"https://cadiastands.ru"}`
-- `GET /dc/helloWorld`
+- `GET` на путь из `DAD_PROXY_API_HELLO` (по умолчанию `/dc/helloWorld`)
   - Единственный endpoint, который обращается к внешнему DaD API и поднимает/переиспользует туннель.
 - `GET /api/tunnels`
   - Возвращает список активных туннелей и метрики.
@@ -75,6 +84,7 @@
 ## Переменные среды
 
 - `DAD_PROXY_API_PORT` - порт HTTP API прокси (по умолчанию `80`).
+- `DAD_PROXY_API_HELLO` - путь на прокси для helloWorld (по умолчанию `/dc/helloWorld`).
 - `DAD_PROXY_PORTS_RANGE` - диапазон локальных портов для TCP-туннелей в формате `start,end` (по умолчанию `20200,20300`).
 - `DAD_API_URL` - upstream URL `helloWorld` (по умолчанию `http://live-gateway.lunatichigh.net/dc/helloWorld`).
 - `DAD_PROXY_IP` - публичный IP прокси, который отдается клиенту в `ipAddress` (по умолчанию `127.0.0.1`).
