@@ -61,6 +61,7 @@ curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh 
   "app": "Progulka`s Dark and Darker game proxy",
   "version": "1.1.2",
   "count": 1,
+  "totalUdpSessions": 2,
   "tunnels": [
     {
       "remoteIp": "35.71.175.214",
@@ -70,10 +71,6 @@ curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh 
       "lastActivityAt": "2026-05-08T08:53:20Z",
       "activeTcpConnections": 1,
       "totalTcpConnections": 4,
-      "activeUdpSessions": 0,
-      "totalUdpSessions": 2,
-      "udpDatagramsFromClients": 50,
-      "udpDatagramsToClients": 49,
       "bytesFromClientsToRemote": 1048576,
       "bytesFromRemoteToClients": 983040
     }
