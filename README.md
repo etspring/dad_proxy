@@ -2,12 +2,28 @@
 
 Прокси-сервер для игры Dark and Darker.
 
+## Установка (Linux)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh | sh
+```
+
+Конкретная версия: `VERSION=v1.1.2 curl -fsSL ... | sh`. Удаление: `curl -fsSL ... | sh -s -- uninstall`.
+После установки отредактируйте `/etc/dad_proxy/dad_proxy.env` (в первую очередь `DAD_PROXY_IP`).
+
+Тестовый proxy поднят на 144.124.242.135
+
+Для работы с ним необходимо изменить файл hosts
+```
+144.124.242.135 live-gateway.lunatichigh.net
+```
+
 ## Эндпоинты
 
 - `GET /`
   - Информация о сервисе:
   - `{"app":"Progulka`s Dark and Darker game proxy","version":"1.1.0","details":"https://cadiastands.ru"}`
-- `GET /dc/helloWorld`
+- `GET` на путь из `DAD_PROXY_API_HELLO` (по умолчанию `/dc/helloWorld`)
   - Единственный endpoint, который обращается к внешнему DaD API и поднимает/переиспользует туннель.
 - `GET /api/tunnels`
   - Возвращает список активных туннелей и метрики.
@@ -52,6 +68,7 @@
   "app": "Progulka`s Dark and Darker game proxy",
   "version": "1.1.2",
   "count": 1,
+  "totalUdpSessions": 2,
   "tunnels": [
     {
       "remoteIp": "35.71.175.214",
@@ -63,10 +80,6 @@
       "lastActivityAt": "2026-05-08T08:53:20Z",
       "activeTcpConnections": 1,
       "totalTcpConnections": 4,
-      "activeUdpSessions": 2,
-      "totalUdpSessions": 5,
-      "udpDatagramsFromClients": 50,
-      "udpDatagramsToClients": 49,
       "bytesFromClientsToRemote": 1048576,
       "bytesFromRemoteToClients": 983040
     }
@@ -105,26 +118,13 @@
 
 ## Переменные среды
 
-Настройки читаются при старте из окружения процесса (например `deploy/systemd/dad_proxy.env.example`). Диапазоны портов задаются как `start,end` (оба конца включительно, `1..65535`, `start <= end`).
-
-**HTTP и helloWorld**
-
-- `DAD_PROXY_API_PORT` - порт HTTP API прокси (`/`, `/dc/helloWorld`, `/api/tunnels`; по умолчанию `80`).
-- `DAD_API_URL` - полный URL upstream для проксирования `helloWorld` (по умолчанию `http://live-gateway.lunatichigh.net/dc/helloWorld`).
-- `DAD_PROXY_IP` - IP, который прокси подставляет клиенту в `ipAddress` и в игровые payload; также IPv4 для bind туннелей, если задан не `0.0.0.0` / не unspecified (по умолчанию `127.0.0.1`).
-
-**TCP-туннели (Таверна и прочий TCP)**
-
-- `DAD_PROXY_PORTS_RANGE` - диапазон локальных портов для входящих TCP-соединений клиента (по умолчанию `20200,20300`). Для upstream-порта из этого же диапазона UDP-релей на том же номере порта не поднимается (только TCP).
-- `DAD_PROXY_PORTS_RANGE_START` / `DAD_PROXY_PORTS_RANGE_END` - альтернатива `DAD_PROXY_PORTS_RANGE`: задать границы двумя переменными (нужны обе; если задана любая из пары, `DAD_PROXY_PORTS_RANGE` не используется).
-
-**UDP и изменение TCP-payload**
-
-- `DAD_PROXY_UDP_PORTS_RANGE` - диапазон **upstream**-портов игровых серверов, которые считаются игровым UDP: для них создаются split UDP-туннели и переписываются адреса в TCP-трафике туннеля (по умолчанию `7700,8000`). Порты, попадающие и в этот диапазон, и в `DAD_PROXY_PORTS_RANGE`, UDP не получают.
-- `DAD_PROXY_UDP_CLIENT_BIND_RANGE` - диапазон **локальных** UDP-портов на прокси, на которые клиент шлёт игровой UDP (`udpClientPort` в `/api/tunnels` и в payload; по умолчанию `7700,8000`).
-- `DAD_PROXY_TCP_PAYLOAD_REWRITE` - включить перепись адресов внутри TCP-кадров туннеля (TLV/protobuf, URL; по умолчанию `true`). `false` отключает подмену, туннели остаются прозрачными по байтам.
-
-**Логи и регистрация**
-
-- `DAD_PROXY_ENVIRONMENT` - `production`: JSON-логи в stdout; иначе (в т.ч. `development` по умолчанию): текстовые логи и `AddSource` в записях.
-- `DAD_PROXY_SHARE` - при `true` (по умолчанию) асинхронно отправить конфиг на `https://cadiastands.ru/dad_proxy/share` при старте; `false` отключает.
+- `DAD_PROXY_API_PORT` - порт HTTP API прокси (по умолчанию `80`).
+- `DAD_PROXY_API_HELLO` - путь на прокси для helloWorld (по умолчанию `/dc/helloWorld`).
+- `DAD_PROXY_PORTS_RANGE` - диапазон локальных портов для TCP-туннелей в формате `start,end` (по умолчанию `20200,20300`).
+- `DAD_API_URL` - upstream URL `helloWorld` (по умолчанию `http://live-gateway.lunatichigh.net/dc/helloWorld`).
+- `DAD_PROXY_IP` - публичный IP прокси, который отдается клиенту в `ipAddress` (по умолчанию `127.0.0.1`).
+- `DAD_PROXY_SHARE` - отправлять ли информацию о прокси во внешний share endpoint при старте (`true` по умолчанию).
+- `DAD_PROXY_ENVIRONMENT` - окружение логирования (`development` по умолчанию).
+- `DAD_PROXY_UDP_PORTS_RANGE` - диапазон UDP-портов игровых верверов в формате `start,end` (по умолчанию `7700,8000`).
+- `DAD_PROXY_UDP_CLIENT_BIND_RANGE` - диапазон локальных портов для UDP-туннелей в формате `start,end` (по умолчанию `7700,8000`).
+- `DAD_PROXY_UDP_IDLE_TIMEOUT` - закрывать UDP-туннель (или только UDP-ногу гибридного туннеля), если нет трафика дольше этого интервала; формат Go `time.ParseDuration` (например `10m`, `90s`). По умолчанию `10m`. Значение `0` отключает idle-закрытие.

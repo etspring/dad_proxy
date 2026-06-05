@@ -1,11 +1,11 @@
 package share
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 	"log/slog"
 	"net/http"
+	"net/url"
+	"strconv"
 	"time"
 
 	"dad_proxy/internal/config"
@@ -16,15 +16,6 @@ type ProxyShare struct {
 	config *config.Config
 	logger *slog.Logger
 	client *http.Client
-}
-
-type ShareData struct {
-	ProxyIP     string `json:"proxy_ip"`
-	APIURL      string `json:"api_url"`
-	ProxyPort   string `json:"proxy_port"`
-	Environment string `json:"environment"`
-	ProxyShare  bool   `json:"proxy_share"`
-	Timestamp   int64  `json:"timestamp"`
 }
 
 func NewProxyShare(cfg *config.Config, logger *slog.Logger) *ProxyShare {
@@ -38,33 +29,27 @@ func NewProxyShare(cfg *config.Config, logger *slog.Logger) *ProxyShare {
 }
 
 func (ps *ProxyShare) SendConfig() error {
-	shareData := ShareData{
-		ProxyIP:     ps.config.ProxyIP,
-		APIURL:      ps.config.APIURL,
-		ProxyPort:   ps.config.ProxyPort,
-		Environment: ps.config.Environment,
-		ProxyShare:  ps.config.ProxyShare,
-		Timestamp:   time.Now().Unix(),
-	}
+	params := url.Values{}
+	params.Set("proxy_ip", ps.config.ProxyIP)
+	params.Set("api_url", ps.config.APIURL)
+	params.Set("proxy_port", ps.config.ProxyPort)
+	params.Set("environment", ps.config.Environment)
+	params.Set("proxy_share", strconv.FormatBool(ps.config.ProxyShare))
+	params.Set("timestamp", strconv.FormatInt(time.Now().Unix(), 10))
 
-	jsonData, err := json.Marshal(shareData)
-	if err != nil {
-		ps.logger.Error("Failed to marshal share data", "error", err)
-		return fmt.Errorf("marshal error: %w", err)
-	}
+	shareURL := "https://cadiastands.ru/dad_proxy/share?" + params.Encode()
 
-	req, err := http.NewRequest(http.MethodPost, "https://cadiastands.ru/dad_proxy/share", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest(http.MethodGet, shareURL, nil)
 	if err != nil {
-		ps.logger.Error("Failed to create POST request", "error", err)
+		ps.logger.Error("Failed to create GET request", "error", err)
 		return fmt.Errorf("request creation error: %w", err)
 	}
 
-	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("User-Agent", "dad_proxy/"+version.AppVersion)
 
 	resp, err := ps.client.Do(req)
 	if err != nil {
-		ps.logger.Error("Failed to send POST request", "error", err)
+		ps.logger.Error("Failed to send GET request", "error", err)
 		return fmt.Errorf("request error: %w", err)
 	}
 	defer resp.Body.Close()

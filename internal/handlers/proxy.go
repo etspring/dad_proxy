@@ -30,12 +30,43 @@ type rootResponse struct {
 }
 
 type tunnelsResponse struct {
-	App            string                   `json:"app"`
-	Version        string                   `json:"version"`
-	Count          int                      `json:"count"`
-	Tunnels        []tunnels.TunnelInfo     `json:"tunnels"`
-	UDPTunnelCount int                      `json:"udpTunnelCount"`
-	UDPTunnels     []tunnels.UDPTunnelStats `json:"udpTunnels"`
+	App              string                   `json:"app"`
+	Version          string                   `json:"version"`
+	Count            int                      `json:"count"`
+	Tunnels          []tunnelPublicInfo       `json:"tunnels"`
+	UDPTunnelCount   int                      `json:"udpTunnelCount"`
+	TotalUDPSessions int64                    `json:"totalUdpSessions"`
+	UDPTunnels       []tunnels.UDPTunnelStats `json:"udpTunnels"`
+}
+
+type tunnelPublicInfo struct {
+	RemoteIP                 string    `json:"remoteIp"`
+	RemotePort               int       `json:"remotePort"`
+	LocalPort                int       `json:"localPort"`
+	UDPClientPort            int       `json:"udpClientPort,omitempty"`
+	CreatedAt                time.Time `json:"createdAt"`
+	LastActivityAt           time.Time `json:"lastActivityAt"`
+	ActiveTCPConnections     int64     `json:"activeTcpConnections"`
+	TotalTCPConnections      int64     `json:"totalTcpConnections"`
+	BytesFromClientsToRemote int64     `json:"bytesFromClientsToRemote"`
+	BytesFromRemoteToClients int64     `json:"bytesFromRemoteToClients"`
+	UDPLocalListenAddr       string    `json:"udpLocalListenAddr,omitempty"`
+}
+
+func toTunnelPublicInfo(ti tunnels.TunnelInfo) tunnelPublicInfo {
+	return tunnelPublicInfo{
+		RemoteIP:                 ti.RemoteIP,
+		RemotePort:               ti.RemotePort,
+		LocalPort:                ti.LocalPort,
+		UDPClientPort:            ti.UDPClientPort,
+		CreatedAt:                ti.CreatedAt,
+		LastActivityAt:           ti.LastActivityAt,
+		ActiveTCPConnections:     ti.ActiveTCPConnections,
+		TotalTCPConnections:      ti.TotalTCPConnections,
+		BytesFromClientsToRemote: ti.BytesFromClientsToRemote,
+		BytesFromRemoteToClients: ti.BytesFromRemoteToClients,
+		UDPLocalListenAddr:       ti.UDPLocalListenAddr,
+	}
 }
 
 func NewProxyHandler(cfg *config.Config, logger *slog.Logger) *ProxyHandler {
@@ -55,7 +86,7 @@ func (h *ProxyHandler) HandleProxy(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if r.URL.Path != "/dc/helloWorld" {
+	if r.URL.Path != h.config.APIHelloPath {
 		http.NotFound(w, r)
 		return
 	}
@@ -285,11 +316,13 @@ func (h *ProxyHandler) HandleTunnels(w http.ResponseWriter, r *http.Request) {
 
 	infos := h.tunnelManager.ListTunnels()
 
-	tcpTunnels := make([]tunnels.TunnelInfo, 0, len(infos))
+	tcpTunnels := make([]tunnelPublicInfo, 0, len(infos))
 	udpInfos := make([]tunnels.UDPTunnelStats, 0, len(infos))
+	var totalUDPSessions int64
 	for _, ti := range infos {
+		totalUDPSessions += ti.TotalUDPSessions
 		if ti.LocalPort > 0 {
-			tcpTunnels = append(tcpTunnels, ti)
+			tcpTunnels = append(tcpTunnels, toTunnelPublicInfo(ti))
 		}
 		if ti.UDPClientPort > 0 {
 			udpInfos = append(udpInfos, tunnels.UDPTunnelStatsFromInfo(ti))
@@ -297,12 +330,13 @@ func (h *ProxyHandler) HandleTunnels(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := tunnelsResponse{
-		App:            "Progulka`s Dark and Darker game proxy",
-		Version:        version.AppVersion,
-		Count:          len(tcpTunnels),
-		Tunnels:        tcpTunnels,
-		UDPTunnelCount: len(udpInfos),
-		UDPTunnels:     udpInfos,
+		App:              "Progulka`s Dark and Darker game proxy",
+		Version:          version.AppVersion,
+		Count:            len(tcpTunnels),
+		Tunnels:          tcpTunnels,
+		UDPTunnelCount:   len(udpInfos),
+		TotalUDPSessions: totalUDPSessions,
+		UDPTunnels:       udpInfos,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

@@ -5,10 +5,12 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type Config struct {
 	ProxyPort               string
+	APIHelloPath            string
 	APIURL                  string
 	ProxyIP                 string
 	Environment             string
@@ -19,6 +21,7 @@ type Config struct {
 	UDPPortsRangeEnd        int
 	UDPClientBindRangeStart int
 	UDPClientBindRangeEnd   int
+	UDPIdleTimeout          time.Duration
 	TCPPayloadRewrite       bool
 }
 
@@ -26,6 +29,13 @@ func Load() (*Config, error) {
 	port := os.Getenv("DAD_PROXY_API_PORT")
 	if port == "" {
 		port = "80"
+	}
+
+	apiHello := strings.TrimSpace(os.Getenv("DAD_PROXY_API_HELLO"))
+	if apiHello == "" {
+		apiHello = "/dc/helloWorld"
+	} else if !strings.HasPrefix(apiHello, "/") {
+		apiHello = "/" + apiHello
 	}
 
 	apiURL := os.Getenv("DAD_API_URL")
@@ -67,6 +77,11 @@ func Load() (*Config, error) {
 		return nil, err
 	}
 
+	udpIdleTimeout, err := parseUDPIdleTimeoutFromEnv()
+	if err != nil {
+		return nil, err
+	}
+
 	tcpRewrite := true
 	if v := os.Getenv("DAD_PROXY_TCP_PAYLOAD_REWRITE"); v != "" {
 		if parsed, err := strconv.ParseBool(v); err == nil {
@@ -76,6 +91,7 @@ func Load() (*Config, error) {
 
 	return &Config{
 		ProxyPort:               port,
+		APIHelloPath:            apiHello,
 		APIURL:                  apiURL,
 		ProxyIP:                 proxyIP,
 		Environment:             env,
@@ -86,8 +102,24 @@ func Load() (*Config, error) {
 		UDPPortsRangeEnd:        udpRangeEnd,
 		UDPClientBindRangeStart: udpClientBindStart,
 		UDPClientBindRangeEnd:   udpClientBindEnd,
+		UDPIdleTimeout:          udpIdleTimeout,
 		TCPPayloadRewrite:       tcpRewrite,
 	}, nil
+}
+
+func parseUDPIdleTimeoutFromEnv() (time.Duration, error) {
+	raw := strings.TrimSpace(os.Getenv("DAD_PROXY_UDP_IDLE_TIMEOUT"))
+	if raw == "" {
+		return 10 * time.Minute, nil
+	}
+	d, err := time.ParseDuration(raw)
+	if err != nil {
+		return 0, fmt.Errorf("invalid DAD_PROXY_UDP_IDLE_TIMEOUT: %w", err)
+	}
+	if d < 0 {
+		return 0, fmt.Errorf("DAD_PROXY_UDP_IDLE_TIMEOUT must be >= 0 (use 0 to disable)")
+	}
+	return d, nil
 }
 
 func parsePortsRangeFromEnv() (int, int, error) {

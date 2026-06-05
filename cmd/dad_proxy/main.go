@@ -30,12 +30,14 @@ func main() {
 		"app", "dad_proxy",
 		"version", version.AppVersion,
 		"DAD_PROXY_API_PORT", cfg.ProxyPort,
+		"DAD_PROXY_API_HELLO", cfg.APIHelloPath,
 		"DAD_API_URL", cfg.APIURL,
 		"DAD_PROXY_IP", cfg.ProxyIP,
 		"DAD_PROXY_SHARE", cfg.ProxyShare,
 		"DAD_PROXY_PORTS_RANGE_START", cfg.PortsRangeStart,
 		"DAD_PROXY_PORTS_RANGE_END", cfg.PortsRangeEnd,
 		"DAD_PROXY_TCP_PAYLOAD_REWRITE", cfg.TCPPayloadRewrite,
+		"DAD_PROXY_UDP_IDLE_TIMEOUT", cfg.UDPIdleTimeout,
 	)
 
 	// Share proxy

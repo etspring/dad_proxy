@@ -1,5 +1,5 @@
 #!/bin/sh
-# dad_proxy installer - usage:
+# dad_proxy installer — usage:
 #   curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh | sh
 #   curl -fsSL ... | sh -s -- --version v1.1.2
 #   curl -fsSL ... | sh -s -- uninstall
