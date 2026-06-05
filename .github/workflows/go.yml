@@ -21,4 +21,11 @@ jobs:
       run: go mod download
 
     - name: Build
-      run: go build -o dad_proxy ./cmd/dad_proxy
+      env:
+        CGO_ENABLED: 0
+      run: go build -ldflags="-s -w" -o dad_proxy ./cmd/dad_proxy
+
+    - name: Verify static Linux binary
+      run: |
+        file dad_proxy
+        ldd dad_proxy 2>&1 | grep -q 'not a dynamic executable'

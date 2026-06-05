@@ -34,5 +34,6 @@ jobs:
           goversion: "1.22"
           project_path: "./cmd/dad_proxy"
           binary_name: "dad_proxy"
+          pre_command: export CGO_ENABLED=0
           ldflags: "-s -w"
           extra_files: README.md

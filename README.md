@@ -54,6 +54,13 @@ curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh 
 
 ## Формат `/api/tunnels`
 
+`GET` возвращает JSON со сводкой по активным туннелям:
+
+- `count` - число записей в `tunnels` (только TCP: у туннеля есть `localPort`);
+- `tunnels` - снимки TCP-туннелей (метрики TCP и, если есть UDP-нога, поля `udpClientPort`, `udpLocalListenAddr`, счётчики UDP/байтов);
+- `udpTunnelCount` - число записей в `udpTunnels`;
+- `udpTunnels` - отдельная сводка по UDP (включая чисто UDP-туннели к игровым портам из `DAD_PROXY_UDP_PORTS_RANGE`, которые в `tunnels` не попадают).
+
 Пример ответа:
 
 ```json
@@ -67,6 +74,8 @@ curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh 
       "remoteIp": "35.71.175.214",
       "remotePort": 20202,
       "localPort": 20200,
+      "udpClientPort": 7701,
+      "udpLocalListenAddr": "0.0.0.0:7701",
       "createdAt": "2026-05-08T08:53:06Z",
       "lastActivityAt": "2026-05-08T08:53:20Z",
       "activeTcpConnections": 1,
@@ -74,9 +83,38 @@ curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh 
       "bytesFromClientsToRemote": 1048576,
       "bytesFromRemoteToClients": 983040
     }
+  ],
+  "udpTunnelCount": 2,
+  "udpTunnels": [
+    {
+      "remoteIp": "35.71.175.214",
+      "remotePort": 20202,
+      "localPort": 20200,
+      "udpClientPort": 7701,
+      "localListenAddr": "0.0.0.0:7701",
+      "upstreamAddr": "35.71.175.214:20202",
+      "activeSessions": 2,
+      "totalSessions": 5,
+      "datagramsFromClients": 50,
+      "datagramsToClients": 49
+    },
+    {
+      "remoteIp": "10.0.0.5",
+      "remotePort": 7777,
+      "localPort": 0,
+      "udpClientPort": 7702,
+      "localListenAddr": "0.0.0.0:7702",
+      "upstreamAddr": "10.0.0.5:7777",
+      "activeSessions": 1,
+      "totalSessions": 1,
+      "datagramsFromClients": 12,
+      "datagramsToClients": 11
+    }
   ]
 }
 ```
+
+Поля `udpClientPort`, `udpLocalListenAddr` / `localListenAddr` и блок `udpTunnels` присутствуют только если у туннеля поднята UDP-нога. `version` совпадает с `internal/version` и заголовком `X-Proxy-Version`.
 
 ## Переменные среды
 
