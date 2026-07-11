@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+import "_Character.proto";
+import "_Item.proto";
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message SGATHERING_HALL_INIT_INFO {
+  optional string restUrl = 1;
+}
+
+message SS2D_GATHERING_HALL_INIT_NOT {
+  optional .DC.Packet.SGATHERING_HALL_INIT_INFO info = 1;
+}
+
+message SGATHERING_HALL_JOIN_PARTY_INFO {
+  optional string accountId = 1;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickname = 2;
+  optional int32 karmaRating = 3;
+  optional string characterClass = 4;
+}
+
+message SGATHERING_HALL_JOIN_USER_INFO {
+  optional string restUrl = 1;
+  optional string accountId = 2;
+  optional string characterId = 3;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickname = 4;
+  optional string characterClass = 5;
+  optional uint32 gender = 6;
+  optional uint32 level = 7;
+  optional string partyId = 8;
+  optional int32 karmaRating = 9;
+  repeated .DC.Packet.SGATHERING_HALL_JOIN_PARTY_INFO reservedPartyMember = 10;
+}
+
+message SD2S_GATHERING_HALL_ACTIVE_REQ {
+  optional uint64 sessionId = 1;
+}
+
+message SS2D_GATHERING_HALL_ACTIVE_RES {
+  optional int32 result = 1;
+}
+
+message SD2S_GATHERING_HALL_USER_JOIN_REQ {
+  optional string userTempSession = 1;
+}
+
+message SS2D_GATHERING_HALL_USER_JOIN_RES {
+  optional int32 result = 1;
+  optional .DC.Packet.SGATHERING_HALL_JOIN_USER_INFO userInfo = 2;
+}
+
+message SD2S_GATHERING_HALL_ITEM_SYNC_REQ {
+  repeated .DC.Packet.SGatheringHallItem installedItems = 1;
+  repeated int64 removedInstalledIds = 3;
+  repeated .DC.Packet.SGatheringHallItem droppedItems = 4;
+  repeated int64 removedDroppedIds = 5;
+}
+
+message SS2D_GATHERING_HALL_ITEM_SYNC_RES {
+  optional int32 result = 1;
+}

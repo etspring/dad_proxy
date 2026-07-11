@@ -1,0 +1,368 @@
+syntax = "proto2";
+
+import "_Character.proto";
+import "_Chat.proto";
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message SC2S_META_LOCATION_REQ {
+  optional uint32 location = 1;
+}
+
+message SS2C_META_LOCATION_RES {
+  optional uint32 location = 1;
+}
+
+message SC2S_BLOCK_CHARACTER_REQ {
+  optional string targetAccountId = 1;
+  optional string targetCharacterId = 2;
+}
+
+message SS2C_BLOCK_CHARACTER_RES {
+  optional uint32 result = 1;
+  optional .DC.Packet.SBLOCK_CHARACTER targetCharacterInfo = 2;
+}
+
+message SC2S_UNBLOCK_CHARACTER_REQ {
+  optional string targetAccountId = 1;
+  optional string targetCharacterId = 2;
+}
+
+message SS2C_UNBLOCK_CHARACTER_RES {
+  optional uint32 result = 1;
+  optional string targetCharacterId = 2;
+}
+
+message SC2S_BLOCK_CHARACTER_LIST_REQ {
+}
+
+message SS2C_BLOCK_CHARACTER_LIST_RES {
+  repeated .DC.Packet.SBLOCK_CHARACTER blockCharacters = 1;
+}
+
+message SC2S_HACK_LOG_REQ {
+  optional string logMessage = 1;
+}
+
+message SS2C_HACK_LOG_RES {
+}
+
+message SANNOUNCE_MESSAGE {
+  optional string designDataId = 1;
+  repeated string params = 2;
+  optional string announceMessage = 3;
+}
+
+message SS2C_OPERATE_ANNOUNCE_NOT {
+  repeated .DC.Packet.SANNOUNCE_MESSAGE announceList = 1;
+}
+
+message FSERVICE_POLICY {
+  optional int32 policyType = 1;
+  optional int32 policyValue = 2;
+}
+
+message SS2C_SERVICE_POLICY_NOT {
+  repeated .DC.Packet.FSERVICE_POLICY policyList = 1;
+}
+
+message SC2S_RE_LOGIN_REQ {
+  optional string eulaHash = 1;
+}
+
+message SS2C_RE_LOGIN_RES {
+  optional uint32 isReconnect = 1;
+  optional string address = 2;
+  optional string sessionId = 3;
+  optional string accountId = 4;
+  optional int32 gameType = 5;
+  optional int32 eulaAgreementStatus = 6;
+}
+
+message SS2C_CLOSED_GAME_NOT {
+  optional uint32 cyzz = 1;
+}
+
+message SC2S_USER_CHARACTER_INFO_REQ {
+  optional uint32 callbackType = 1;
+  optional string reportId = 2;
+  repeated string hIds = 3;
+  repeated uint32 blob = 4;
+  optional string accountId = 5;
+  optional string characterId = 6;
+  optional string originNickname = 7;
+  optional string blobTagName = 8;
+}
+
+message SS2C_USER_CHARACTER_INFO_RES {
+}
+
+message SC2S_GM_ENTER_GAME_SPECTATOR_REQ {
+  optional string nickname = 1;
+  optional string accountId = 2;
+}
+
+message SS2C_GM_ENTER_GAME_SPECTATOR_RES {
+  optional uint32 result = 1;
+  optional string ip = 2;
+  optional uint32 port = 3;
+  optional string token = 4;
+  optional string serviceUrl = 5;
+}
+
+message SALLMAP_ROTATION_INFO {
+  optional uint32 gameType = 1;
+  optional string mapTag = 2;
+}
+
+message SS2C_ALL_MAP_MATCHMAKING_NOT {
+  repeated .DC.Packet.SALLMAP_ROTATION_INFO infos = 1;
+  optional string nextRotationDate = 3;
+  optional string nextRotationTime = 4;
+}
+
+message SLATENCY_CHECK_INFO {
+  optional string path = 1;
+}
+
+message SS2C_LATENCY_CHECK_NOT {
+  optional int32 checkCount = 1;
+  optional int32 checkTermMS = 2;
+  repeated .DC.Packet.SLATENCY_CHECK_INFO latencyInfos = 3;
+}
+
+message SS2C_LOBBY_COMPLETE_NOT {
+  optional int32 type = 1;
+}
+
+message SC2S_CHAT_HACK_REPORT_REQ {
+  optional uint32 reportIndex = 1;
+  optional uint64 chatIndex = 2;
+  optional uint32 chatType = 3;
+  optional uint32 reportType = 4;
+}
+
+message SS2C_CHAT_HACK_REPORT_RES {
+  optional int32 result = 1;
+}
+
+message SC2S_JOIN_LAST_GAME_REQ {
+}
+
+message SS2C_JOIN_LAST_GAME_RES {
+  optional uint32 canJoin = 1;
+  optional string address = 2;
+  optional string sessionId = 3;
+  optional string accountId = 4;
+  optional string serviceUrl = 5;
+  optional uint32 canResult = 6;
+}
+
+message SC2S_WHISPER_CHAT_REQ {
+  optional .DC.Packet.SCHATDATA chatData = 1;
+  optional string targetNickname = 2;
+}
+
+message SS2C_WHISPER_CHAT_RES {
+  optional uint32 result = 1;
+  optional uint64 chatIdx = 2;
+  optional int32 banDurationMin = 3;
+}
+
+message SS2C_WHISPER_CHAT_NOT {
+  optional .DC.Packet.SCHATDATA chatData = 1;
+  optional uint64 time = 2;
+  optional uint64 chatIdx = 3;
+}
+
+message SACCOUNT_OWNED_DLC_INFO {
+  optional string dlcId = 1;
+  optional int64 expireSec = 2;
+}
+
+message SS2C_ACCOUNT_STATUS_NOT {
+  optional uint32 accountStatus = 1;
+  repeated .DC.Packet.SACCOUNT_OWNED_DLC_INFO ownedDlcInfos = 2;
+}
+
+message SDLC_INFO {
+  optional string dlcId = 1;
+  optional int32 saleStatus = 2;
+  optional int64 beginDateMS = 3;
+  optional int64 endDateMS = 4;
+  optional int64 expireDateMs = 5;
+}
+
+message SS2C_DLC_INFO_NOT {
+  repeated .DC.Packet.SDLC_INFO dlcInfos = 1;
+  optional int64 currentDateMS = 2;
+}
+
+message SC2S_PLATFORM_LINK_CODE_GEN_REQ {
+}
+
+message SS2C_PLATFORM_LINK_CODE_GEN_RES {
+  optional uint32 result = 1;
+  optional string genCode = 2;
+  optional int64 remainTimeMS = 3;
+}
+
+message SC2S_PLATFORM_LINK_CODE_ACTIVE_REQ {
+  optional string code = 1;
+}
+
+message SS2C_PLATFORM_LINK_CODE_ACTIVE_RES {
+  optional uint32 result = 1;
+}
+
+message SPLATFORM_LINK_INFO {
+  optional uint32 loginType = 1;
+  optional string platformId = 2;
+}
+
+message SC2S_PLATFORM_LINK_INFO_LIST_REQ {
+}
+
+message SS2C_PLATFORM_LINK_INFO_LIST_RES {
+  repeated .DC.Packet.SPLATFORM_LINK_INFO infos = 1;
+}
+
+message SC2S_PLATFORM_LINK_FAQ_URL_REQ {
+}
+
+message SS2C_PLATFORM_LINK_FAQ_URL_RES {
+  optional string faqUrl = 1;
+}
+
+message SC2S_PLATFORM_LINK_SELECT_FAQ_URL_REQ {
+}
+
+message SS2C_PLATFORM_LINK_SELECT_FAQ_URL_RES {
+  optional string faqUrl = 1;
+}
+
+message SS2C_CLIENT_POPUP_MESSAGE_NOT {
+  optional string message = 1;
+}
+
+message SC2S_TWITCH_DROPS_CONNECT_REQ {
+  optional uint32 status = 1;
+}
+
+message SS2C_TWITCH_DROPS_CONNECT_RES {
+  optional uint32 result = 1;
+  optional string clientLink = 2;
+}
+
+message SS2C_TWITCH_DROPS_CONNECT_NOT {
+  optional uint32 result = 1;
+  optional uint32 isChanged = 2;
+  optional uint32 isLinked = 3;
+}
+
+message SS2C_TWITCH_DROPS_LINKED_NOT {
+  optional uint32 result = 1;
+}
+
+message SS2C_TERMINATE_NOT {
+}
+
+message ArenaSchedule {
+  optional uint32 gameType = 1;
+  optional int64 beginUnixTime = 2;
+  optional int64 endUnixTime = 3;
+}
+
+message SS2C_ARENA_SCHEDULE_NOT {
+  repeated .DC.Packet.ArenaSchedule schedules = 1;
+}
+
+message SC2S_DLC_INSTALLED_CHECK_REQ {
+  optional int32 dlcType = 1;
+}
+
+message SS2C_DLC_INSTALLED_CHECK_RES {
+  optional int32 result = 1;
+  optional int32 dlcType = 2;
+  repeated .DC.Packet.SACCOUNT_DLC_INSTALL_INFO dlcInstallInfos = 3;
+}
+
+message SC2S_REPORT_CHAT_REQ {
+  optional uint32 chatType = 1;
+  optional uint64 chatIdx = 2;
+  optional uint32 hackType = 3;
+  optional string targetAccountId = 4;
+  optional string message = 5;
+  optional string targetNickname = 6;
+}
+
+message SS2C_REPORT_CHAT_RES {
+  optional uint32 result = 1;
+}
+
+message SDUNGEON_GEAR_POOL_INFO {
+  optional uint32 gearPoolIndex = 1;
+  optional int32 minIncludingValue = 2;
+  optional int32 maxIncludingValue = 3;
+}
+
+message SOPEN_DUNGEON_POOL_INFO {
+  optional uint32 gearPoolIndex = 1;
+  optional uint32 maxIncludingRarity = 2;
+  optional uint32 isLegendaryStatusOnly = 3;
+  optional uint32 entranceGoldFee = 4;
+  optional uint32 entranceLevel = 5;
+  optional uint32 isRequireFullParty = 6;
+}
+
+message SOPEN_DUNGEON_INFO {
+  optional uint32 dungeonIndex = 1;
+  optional uint32 gameType = 2;
+  repeated .DC.Packet.SDUNGEON_GEAR_POOL_INFO gearPoolInfos = 3;
+  repeated .DC.Packet.SOPEN_DUNGEON_POOL_INFO dungeonPoolInfos = 4;
+  optional string dungeonIdTag = 5;
+  optional string rankLimit = 6;
+  optional uint32 rankPointRatio = 7;
+}
+
+message SS2C_OPEN_DUNGEON_INFO_NOT {
+  repeated .DC.Packet.SOPEN_DUNGEON_INFO infos = 1;
+}
+
+message GameExitAdvPoint {
+  optional int32 advPointType = 1;
+  optional int32 advPoint = 2;
+  optional int32 advCount = 3;
+}
+
+message AttackInfo {
+  optional string dungeon = 1;
+  optional string accountId = 2;
+  optional string characterClass = 3;
+  optional uint32 gender = 4;
+  repeated string equipItems = 5;
+  optional string characterSkin = 6;
+  repeated string itemSkins = 7;
+  repeated string armorSkins = 8;
+  optional uint32 hotBox = 9;
+  optional uint32 isKill = 10;
+  optional string partyId = 11;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickname = 12;
+  optional string reason = 13;
+  optional uint64 worldTime = 14;
+}
+
+message SRankGameUserInfo {
+  optional string rankId = 1;
+  optional uint32 currentPoint = 2;
+  optional uint32 needPoint = 3;
+  optional uint32 currentTotalPoint = 4;
+}
+
+message SACCOUNT_DLC_INSTALL_INFO {
+  optional uint32 dlcType = 1;
+  optional uint64 dlcPurchasedElapsedTimeMs = 2;
+}
+
+message SS2C_REPORT_TARGET_NOT {
+}

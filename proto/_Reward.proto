@@ -1,0 +1,4 @@
+syntax = "proto2";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";

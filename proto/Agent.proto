@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message Agent_ServiceList {
+  optional string ipAddress = 1;
+  optional uint32 port = 2;
+  optional uint32 processId = 3;
+  optional uint32 userCount = 4;
+}

@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+package google.protobuf;
+
+message SourceContext {
+  optional string file_name = 1;
+}

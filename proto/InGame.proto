@@ -1,0 +1,289 @@
+syntax = "proto2";
+
+import "_Character.proto";
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message SS2C_ENTER_GAME_SERVER_NOT {
+  optional uint32 port = 1;
+  optional string ip = 2;
+  optional string sessionId = 3;
+  optional string accountId = 4;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 5;
+  optional string serviceUrl = 6;
+  optional int32 perfReportStartDelaySec = 7;
+  optional uint32 perfReportEnabled = 8;
+}
+
+message SC2S_AUTO_MATCH_REG_REQ {
+  enum MODE {
+    NONE = 0;
+    REGISTER = 1;
+    CANCEL = 2;
+  }
+  optional uint32 mode = 1;
+  optional uint32 region = 2;
+  optional uint32 gameType = 3;
+  optional int32 isRandomMatchmaking = 4;
+  optional string dungeonIdTag = 5;
+  optional uint32 gearPoolIndex = 6;
+}
+
+message SS2C_AUTO_MATCH_REG_RES {
+  enum RESULT {
+    NONE = 0;
+    SUCCESS = 1;
+    FAIL = 2;
+    FAIL_ALREADY_TRYING = 3;
+    FAIL_NO_READY_PARTY_MEMBER = 4;
+    FAIL_REGION_SELECT = 5;
+    FAIL_SERVER_DISABLE = 6;
+    FAIL_SHORTAGE_ENTRANCE_FEE = 7;
+    FAIL_SOLO_ONLY = 8;
+    FAIL_SHORTAGE_LEVEL = 9;
+    FAIL_MEMBER_EXCEEDED = 10;
+    FAIL_PLAY_TIME_SHORTAGE = 11;
+    FAIL_RARITY_ITEM_TOO_HIGH = 12;
+    FAIL_REGION_LATENCY_LIMIT = 13;
+    FAIL_MATCH_RESTRICTION_BASECAMP_ESCAPE = 14;
+    FAIL_CAN_NOT_SQUIRE = 15;
+    FAIL_INSUFFICIENT_GEAR_SCORE = 16;
+    FAIL_PARTY_SIZE_MISMATCH = 17;
+    FAIL_DUNGEON_LOADING = 18;
+    FAIL_MATCH_RESTRICTION_TEAM_KILLER = 19;
+    FAIL_ON_EQUIPMENT_ITEM_IN_INVENTORY = 20;
+    FAIL_NO_DUPLICATE_CLASS_ACCESS = 21;
+    FAIL_ARENA_SCHEDULE_CLOSED = 22;
+    FAIL_MATCH_RESTRICTION_ARENA_SURRENDER = 23;
+    FAIL_FAIL_MAX_GEAR_SCORE_LIMIT = 24;
+    FAIL_NOT_ALLOWED_PICKPOCKET_IN_ARENA = 25;
+    FAIL_MATCH_RESTRICTION_DUNGEON_LIVE_EXIT = 26;
+    FAIL_PARTY_MMR_GAP_EXCEEDED = 27;
+    FAIL_LATENCY_CHECK_REQUIRED = 28;
+    FAIL_LATENCY_SYSTEM_SICK = 30;
+    FAIL_INVALID_ITEM_FOR_DUNGEON = 31;
+    FAIL_CONTENT_NOT_ALLOWED_FOR_MATCHING = 32;
+    FAIL_TA_OUTLAW_LIMIT = 33;
+    FAIL_ARENA_SOLO_THRESHOLD_REACHED = 34;
+    FAIL_SECURITY_SETTING_REQUIRED = 35;
+    FAIL_INVENTORY_FULL = 36;
+  }
+  optional uint32 result = 1;
+  optional uint32 restrictionMS = 2;
+  optional string contentId = 3;
+}
+
+message SC2S_GAME_ENTER_COMPLETE_NOT {
+  optional uint32 isSuccess = 1;
+}
+
+message SS2C_AUTO_MATCH_REG_TEAM_NOT {
+  optional uint32 result = 1;
+  optional uint32 mode = 2;
+}
+
+message SC2S_RECONNECT_INGAME_REQ {
+  optional uint32 isRefusal = 1;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
+}
+
+message SS2C_RECONNECT_INGAME_RES {
+  optional uint32 result = 1;
+  optional string serviceUrl = 2;
+}
+
+message SGEAR_BASE_SCORE_INFO {
+  optional int32 gameType = 1;
+  optional int32 gearBaseIndex = 2;
+  optional int32 beginScore = 3;
+  optional int32 endScore = 4;
+}
+
+message SS2C_GEAR_BASE_SCORE_LIST_NOT {
+  repeated .DC.Packet.SGEAR_BASE_SCORE_INFO infos = 1;
+}
+
+message SS2C_MATCH_POOL_REGISTERED_NOT {
+  optional uint32 matchRemainTimeSec = 1;
+}
+
+message SS2C_MATCHMAKING_FAIL_NOT {
+  optional uint32 result = 1;
+}
+
+message SC2S_INGAME_REPORT_REQ {
+  optional string accountId = 1;
+  optional uint32 category = 2;
+  optional string targetAccountId = 3;
+  optional string targetCharacterId = 4;
+  optional .DC.Packet.SACCOUNT_NICKNAME targetNickname = 5;
+}
+
+message SS2C_INGAME_REPORT_RES {
+  optional uint32 result = 1;
+}
+
+message SPERF_HARDWARE_INFO {
+  optional string gpu = 1;
+  optional string gpuDriver = 2;
+  optional int32 cpuCores = 3;
+  optional int32 ramMB = 4;
+  optional string osVersion = 5;
+  optional int32 hvciState = 6;
+  optional int32 secureBootState = 7;
+  optional int32 tpmState = 8;
+}
+
+message SPERF_GRAPHICS_SETTINGS {
+  optional string resolution = 1;
+  optional int32 preset = 2;
+  optional uint32 vsync = 3;
+  optional string upscaler = 4;
+  optional int32 renderScale = 5;
+}
+
+message SPERF_LOADING_INFO {
+  optional float mapLoadSec = 1;
+  optional int32 streamLevels = 2;
+  optional int32 flushCount = 3;
+}
+
+message SPERF_NET {
+  optional uint64 inPackets = 1;
+  optional uint64 outPackets = 2;
+  optional uint64 inBytes = 3;
+  optional uint64 outBytes = 4;
+  optional uint32 inPacketsLost = 5;
+  optional uint32 outPacketsLost = 6;
+  optional uint32 inBunches = 7;
+  optional uint32 outBunches = 8;
+}
+
+message SPERF_SUMMARY {
+  optional int32 durationSec = 1;
+  optional int32 totalFrames = 2;
+  repeated int32 ftHist = 3;
+  repeated int32 gtHist = 4;
+  repeated int32 rtHist = 5;
+  repeated int32 gpuHist = 6;
+  repeated int32 hitch = 7;
+  repeated int32 hitchCause = 8;
+  optional int32 gcCount = 10;
+  optional float gcMaxMS = 11;
+  optional int32 psoMiss = 12;
+  optional float ftVariance = 13;
+  optional float inputAvgMS = 14;
+  optional float inputMaxMS = 15;
+  optional float memPeakMB = 20;
+  optional float memFreeMinMB = 21;
+  optional float vramUsedMB = 22;
+  optional float vramBudgetMB = 23;
+  optional int32 texOverCount = 24;
+  optional int32 drawMax = 30;
+  optional int32 actorMax = 31;
+  optional float pingAvgMS = 40;
+  optional float pingP95MS = 41;
+  optional float pingMaxMS = 42;
+  optional float jitterMS = 43;
+  optional int32 pktLoss = 44;
+  optional int32 svGap100 = 50;
+  optional int32 svGap200 = 51;
+  optional int32 svGap500 = 52;
+  optional int32 svGapMaxMS = 53;
+  optional int32 svBurstMax = 54;
+  optional int32 svHitchCorr = 55;
+  optional float gtTickAvgMS = 60;
+  optional float gtPhysicsAvgMS = 61;
+  optional float gtNetAvgMS = 62;
+  optional float gtUIAvgMS = 63;
+  optional float gtTickP95MS = 64;
+  optional float gtPhysicsP95MS = 65;
+  optional float gtNetP95MS = 66;
+  optional float gtUIP95MS = 67;
+  optional .DC.Packet.SPERF_NET net = 70;
+  optional int32 psoPrecompiled = 81;
+  optional int32 skelMeshAvg = 82;
+  optional int32 skelMeshMax = 83;
+  optional int32 skelBonesAvg = 84;
+  optional int32 skelBonesMax = 85;
+}
+
+message SPERF_SLOT {
+  optional int32 startSec = 1;
+  repeated int32 ft = 2;
+  repeated int32 gt = 3;
+  repeated int32 hitch = 4;
+  repeated int32 hc = 5;
+  optional float varianceMS = 6;
+  optional float pingAvgMS = 7;
+  optional int32 actorAvg = 8;
+  optional int32 drawAvg = 9;
+  optional float memMB = 10;
+  optional int32 svGap100 = 11;
+  repeated int32 rtHist = 12;
+  repeated int32 gpuHist = 13;
+  optional float gtTickAvgMS = 14;
+  optional float gtPhysicsAvgMS = 15;
+  optional float gtNetAvgMS = 16;
+  optional float gtUIAvgMS = 17;
+}
+
+message SPERF_HITCH_SAMPLE {
+  enum HitchCause {
+    HC_SPAWN = 0;
+    HC_NET = 1;
+    HC_GC = 2;
+    HC_STREAM = 3;
+    HC_PSO = 4;
+    HC_GPU_BOUND = 5;
+    HC_DRIVER_PRESENT = 6;
+    HC_RT_BOUND = 7;
+    HC_OTHER = 8;
+    HC_GT_TICK = 9;
+    HC_GT_PHYSICS = 10;
+    HC_GT_UI = 11;
+  }
+  enum Flags {
+    FLAG_NONE = 0;
+    FLAG_FOCUS_LOST = 1;
+    FLAG_FULLSCREEN_TRANSITION = 2;
+    FLAG_FIRST_LOAD_PHASE = 4;
+  }
+  optional float tSec = 1;
+  optional float ftMS = 2;
+  optional float gtMS = 3;
+  optional float rtMS = 4;
+  optional float gpuMS = 5;
+  optional float presentMS = 6;
+  optional uint32 cause = 7;
+  optional int32 actorCount = 8;
+  optional int32 drawCalls = 9;
+  optional int32 memMB = 10;
+  optional int32 pingMS = 11;
+  optional float ftPrevMS = 12;
+  optional int32 actorDelta = 13;
+  optional float memDeltaMB = 14;
+  optional uint32 flags = 15;
+  optional float gtTickMS = 16;
+  optional float gtPhysicsMS = 17;
+  optional float gtNetMS = 18;
+  optional float gtUIMS = 19;
+}
+
+message SC2S_CLIENT_PERF_REPORT_REQ {
+  optional string buildVersion = 3;
+  optional int64 clientTimeMS = 4;
+  optional .DC.Packet.SPERF_HARDWARE_INFO hw = 10;
+  optional .DC.Packet.SPERF_GRAPHICS_SETTINGS gfx = 11;
+  optional .DC.Packet.SPERF_LOADING_INFO load = 12;
+  optional .DC.Packet.SPERF_SUMMARY summary = 20;
+  repeated .DC.Packet.SPERF_SLOT timeline = 21;
+  repeated .DC.Packet.SPERF_HITCH_SAMPLE hitchSamples = 22;
+}
+
+message SS2C_CLIENT_PERF_REPORT_RES {
+  optional uint32 result = 1;
+}
+
+message SS2C_CLIENT_PERF_REPORT_REQUEST_NOT {
+}

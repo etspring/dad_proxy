@@ -1,6 +1,6 @@
 # dad_proxy
 
-Прокси-сервер для игры Dark and Darker.
+Прокси-сервер для игры Dark and Darker: подмена `helloWorld`, TCP/UDP-туннели к игровым серверам, мониторинг сессий и инъекция объявлений через protobuf.
 
 ## Установка (Linux)
 
@@ -8,65 +8,115 @@
 curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh | sh
 ```
 
-Конкретная версия: `VERSION=v1.1.2 curl -fsSL ... | sh`. Удаление: `curl -fsSL ... | sh -s -- uninstall`.
+Конкретная версия: `VERSION=v1.1.3 curl -fsSL ... | sh`. Удаление: `curl -fsSL ... | sh -s -- uninstall`.
+
 После установки отредактируйте `/etc/dad_proxy/dad_proxy.env` (в первую очередь `DAD_PROXY_IP`).
 
-Тестовый proxy поднят на 144.124.242.135
+Тестовый proxy: `144.124.242.135`
 
-Для работы с ним необходимо изменить файл hosts
+Для работы с ним измените файл hosts:
+
 ```
 144.124.242.135 live-gateway.lunatichigh.net
 ```
 
+Сборка и запуск: [BUILD.md](BUILD.md), [RUN.md](RUN.md).
+
 ## Эндпоинты
 
-- `GET /`
-  - Информация о сервисе:
-  - `{"app":"Progulka`s Dark and Darker game proxy","version":"1.1.0","details":"https://cadiastands.ru"}`
-- `GET` на путь из `DAD_PROXY_API_HELLO` (по умолчанию `/dc/helloWorld`)
-  - Единственный endpoint, который обращается к внешнему DaD API и поднимает/переиспользует туннель.
-- `GET /api/tunnels`
-  - Возвращает список активных туннелей и метрики.
+| Метод | Путь | Назначение |
+|-------|------|------------|
+| `GET` | `/` | Информация о сервисе и версии |
+| `GET` | `DAD_PROXY_API_HELLO` (по умолчанию `/dc/helloWorld`) | Прокси к DaD API, поднятие/переиспользование туннеля |
+| `GET` | `/api/tunnels` | Активные туннели, UDP-ноги, игроки в матче |
+| `GET` | `/api/sessions` | Активные TCP-сессии лобби (ник, accountId, туннель) |
+| `POST` | `/api/announce` | Рассылка `S2C_OPERATE_ANNOUNCE_NOT` клиентам в лобби/игре |
 
-## Общая схема работы
+Заголовок ответа: `X-Proxy-Version: dad_proxy/<version>`.
 
-Пользователь через файл hosts подменяет ip для live-gateway.lunatichigh.net, указывая IP proxy-сервера.
-
-1. Клиент игры отправляет запрос на `http://live-gateway.lunatichigh.net/dc/helloWorld`.
-2. Proxy копирует заголовки запроса и определяет реальный IP пользователя.
-3. Proxy делает `GET` в `DAD_API_URL`.
-4. Из ответа DaD API берутся `ipAddress` и `port`.
-5. Proxy поднимает TCP-туннель на локальном порту из `DAD_PROXY_PORTS_RANGE`:
-   - если туннель к `ipAddress:port` уже существует, новый не создается;
-   - если нет, создается новый.
-   - если `underMaintenance != 0`, туннель не поднимается и не переиспользуется.
-6. Proxy возвращает клиенту модифицированный JSON:
-   - `ipAddress` -> `DAD_PROXY_IP`;
-   - `port` -> локальный порт поднятого туннеля;
-   - `remote` -> IP пользователя.
-7. Трафик от пользователя до игровых серверов ( Таверны ) идет через поднятый туннель.
-8. При запуске игры из Таверны происходит перехват трафика и подмена адресов игровых серверов
-9. Начинается обмен данными клиент <- UDP -> Прокси <- UDP -> сервер игры
-
-Примечание: при `underMaintenance != 0` поле `port` остается из ответа DaD API, так как туннель в этом режиме отключен
-  ибо корейцы катят обновку.
-
-
-## Формат `/api/tunnels`
-
-`GET` возвращает JSON со сводкой по активным туннелям:
-
-- `count` - число записей в `tunnels` (только TCP: у туннеля есть `localPort`);
-- `tunnels` - снимки TCP-туннелей (метрики TCP и, если есть UDP-нога, поля `udpClientPort`, `udpLocalListenAddr`, счётчики UDP/байтов);
-- `udpTunnelCount` - число записей в `udpTunnels`;
-- `udpTunnels` - отдельная сводка по UDP (включая чисто UDP-туннели к игровым портам из `DAD_PROXY_UDP_PORTS_RANGE`, которые в `tunnels` не попадают).
-
-Пример ответа:
+### `GET /`
 
 ```json
 {
   "app": "Progulka`s Dark and Darker game proxy",
-  "version": "1.1.2",
+  "version": "1.1.3",
+  "details": "https://cadiastands.ru"
+}
+```
+
+### `GET /api/sessions`
+
+Список игроков на **TCP**-туннелях лобби (логин, выбор персонажа, матчмейкинг). Данные из protobuf-пакетов (`ACCOUNT_LOGIN`, `CHARACTER_LIST`, `LOBBY_ENTER`, `LOBBY_CHARACTER_INFO`).
+
+```json
+{
+  "count": 1,
+  "sessions": [
+    {
+      "peer": "95.24.181.120:5808",
+      "tunnelPort": 20201,
+      "accountId": "4048673",
+      "characterId": "17959245",
+      "nickName": "BogKuzya",
+      "connectedAt": "2026-07-10T18:29:38Z",
+      "updatedAt": "2026-07-10T18:34:05Z"
+    }
+  ]
+}
+```
+
+### `POST /api/announce`
+
+Тело запроса:
+
+```json
+{
+  "message": "Текст объявления",
+  "designDataId": "",
+  "params": [],
+  "tunnelPort": 0
+}
+```
+
+- `tunnelPort: 0` - все TCP-туннели; иначе только указанный `localPort`.
+- Если задан `DAD_PROXY_ANNOUNCE_TOKEN`, нужен заголовок `X-Announce-Token`.
+
+Ответ: `{"sent": 3, "tunnelPort": 0}` - число клиентов, в очередь которых поставлен кадр.
+
+## Общая схема работы
+
+Пользователь через hosts подменяет IP для `live-gateway.lunatichigh.net` на IP прокси.
+
+1. Клиент шлёт `GET http://live-gateway.lunatichigh.net/dc/helloWorld`.
+2. Прокси копирует заголовки и определяет IP пользователя.
+3. Прокси делает `GET` в `DAD_API_URL`.
+4. Из ответа берутся `ipAddress` и `port`.
+5. Прокси поднимает TCP-туннель на порту из `DAD_PROXY_PORTS_RANGE` (или переиспользует существующий).
+   - При `underMaintenance != 0` туннель не создаётся.
+6. Клиенту возвращается JSON: `ipAddress` -> `DAD_PROXY_IP`, `port` -> локальный порт туннеля, `remote` -> IP пользователя.
+7. Трафик лобби идёт через TCP-туннель; при входе в матч - через UDP-ногу (split: клиент -> `udpClientPort`, upstream - ephemeral сокет на `DAD_PROXY_IP`).
+8. При `DAD_PROXY_TCP_PAYLOAD_REWRITE=true` (по умолчанию) в TCP-потоке подменяются адреса игровых серверов и парсятся protobuf-кадры (ник, карта, announce).
+
+## Формат `/api/tunnels`
+
+`GET` возвращает JSON:
+
+- `count` - число TCP-туннелей (`localPort > 0`);
+- `tunnels` - метрики TCP и при наличии UDP-ноги поля `udpClientPort`, счётчики;
+- `udpTunnelCount`, `udpTunnels` - сводка по UDP (включая чисто UDP-туннели к портам из `DAD_PROXY_UDP_PORTS_RANGE`);
+- `totalUdpSessions` - суммарное число UDP-сессий.
+
+В `udpTunnels[]` для игроков в матче:
+
+- `createdAt`, `lastActivityAt` - время создания UDP-ноги и последней UDP-активности;
+- `players` - ник и выбранная карта (`dungeonIdTag` из лобби до `ENTER_GAME`).
+
+Пример:
+
+```json
+{
+  "app": "Progulka`s Dark and Darker game proxy",
+  "version": "1.1.3",
   "count": 1,
   "totalUdpSessions": 2,
   "tunnels": [
@@ -75,56 +125,76 @@ curl -fsSL https://raw.githubusercontent.com/etspring/dad_proxy/main/install.sh 
       "remotePort": 20202,
       "localPort": 20200,
       "udpClientPort": 7701,
-      "udpLocalListenAddr": "0.0.0.0:7701",
-      "createdAt": "2026-05-08T08:53:06Z",
-      "lastActivityAt": "2026-05-08T08:53:20Z",
+      "createdAt": "2026-07-10T18:29:00Z",
+      "lastActivityAt": "2026-07-10T18:35:00Z",
       "activeTcpConnections": 1,
       "totalTcpConnections": 4,
       "bytesFromClientsToRemote": 1048576,
       "bytesFromRemoteToClients": 983040
     }
   ],
-  "udpTunnelCount": 2,
+  "udpTunnelCount": 1,
   "udpTunnels": [
     {
-      "remoteIp": "35.71.175.214",
-      "remotePort": 20202,
+      "remoteIp": "52.1.2.3",
+      "remotePort": 7777,
       "localPort": 20200,
       "udpClientPort": 7701,
-      "localListenAddr": "0.0.0.0:7701",
-      "upstreamAddr": "35.71.175.214:20202",
-      "activeSessions": 2,
-      "totalSessions": 5,
-      "datagramsFromClients": 50,
-      "datagramsToClients": 49
-    },
-    {
-      "remoteIp": "10.0.0.5",
-      "remotePort": 7777,
-      "localPort": 0,
-      "udpClientPort": 7702,
-      "localListenAddr": "0.0.0.0:7702",
-      "upstreamAddr": "10.0.0.5:7777",
+      "createdAt": "2026-07-10T18:35:00Z",
+      "lastActivityAt": "2026-07-10T18:40:00Z",
+      "upstreamAddr": "52.1.2.3:7777",
       "activeSessions": 1,
       "totalSessions": 1,
-      "datagramsFromClients": 12,
-      "datagramsToClients": 11
+      "datagramsFromClients": 50,
+      "datagramsToClients": 49,
+      "players": [
+        {
+          "nickName": "BogKuzya",
+          "currentMap": "IceCavern"
+        }
+      ]
     }
   ]
 }
 ```
 
-Поля `udpClientPort`, `udpLocalListenAddr` / `localListenAddr` и блок `udpTunnels` присутствуют только если у туннеля поднята UDP-нога. `version` совпадает с `internal/version` и заголовком `X-Proxy-Version`.
+`currentMap` - сырой `dungeonIdTag` из лобби (например `GoblinCave`, `Ruins`, `Inferno`). Появляется после выбора карты и входа в матч; при random matchmaking может отсутствовать.
+
+### UDP idle timeout
+
+`DAD_PROXY_UDP_IDLE_TIMEOUT` (по умолчанию `10m`) закрывает UDP-ногу, если **нет UDP-датаграмм** дольше интервала. TCP-активность лобби таймер не продлевает. Значение `0` отключает закрытие.
+
+## Protobuf
+
+Схемы в `proto/` (из `DungeonCrawler.exe`), Go-код в `internal/pb/`. Генерация: `./scripts/genproto.sh` (см. [BUILD.md](BUILD.md)).
+
+Используется для:
+
+- парсинга identity на TCP (ник, accountId, выбор карты);
+- привязки игрока к UDP-туннелю на `S2C_ENTER_GAME_SERVER_NOT`;
+- инъекции `S2C_OPERATE_ANNOUNCE_NOT` в TCP-поток клиента.
+
+Формат игрового TCP-кадра: `[u32 total_len][u16 packet_id][u16 0][protobuf...]`.
 
 ## Переменные среды
 
-- `DAD_PROXY_API_PORT` - порт HTTP API прокси (по умолчанию `80`).
-- `DAD_PROXY_API_HELLO` - путь на прокси для helloWorld (по умолчанию `/dc/helloWorld`).
-- `DAD_PROXY_PORTS_RANGE` - диапазон локальных портов для TCP-туннелей в формате `start,end` (по умолчанию `20200,20300`).
-- `DAD_API_URL` - upstream URL `helloWorld` (по умолчанию `http://live-gateway.lunatichigh.net/dc/helloWorld`).
-- `DAD_PROXY_IP` - публичный IP прокси, который отдается клиенту в `ipAddress` (по умолчанию `127.0.0.1`).
-- `DAD_PROXY_SHARE` - отправлять ли информацию о прокси во внешний share endpoint при старте (`true` по умолчанию).
-- `DAD_PROXY_ENVIRONMENT` - окружение логирования (`development` по умолчанию).
-- `DAD_PROXY_UDP_PORTS_RANGE` - диапазон UDP-портов игровых верверов в формате `start,end` (по умолчанию `7700,8000`).
-- `DAD_PROXY_UDP_CLIENT_BIND_RANGE` - диапазон локальных портов для UDP-туннелей в формате `start,end` (по умолчанию `7700,8000`).
-- `DAD_PROXY_UDP_IDLE_TIMEOUT` - закрывать UDP-туннель (или только UDP-ногу гибридного туннеля), если нет трафика дольше этого интервала; формат Go `time.ParseDuration` (например `10m`, `90s`). По умолчанию `10m`. Значение `0` отключает idle-закрытие.
+| Переменная | По умолчанию | Описание |
+|------------|--------------|----------|
+| `DAD_PROXY_API_PORT` | `80` | Порт HTTP API |
+| `DAD_PROXY_API_HELLO` | `/dc/helloWorld` | Путь helloWorld на прокси |
+| `DAD_PROXY_PORTS_RANGE` | `20200,20300` | Локальные TCP-порты туннелей |
+| `DAD_API_URL` | `http://live-gateway.lunatichigh.net/dc/helloWorld` | Upstream helloWorld |
+| `DAD_PROXY_IP` | `127.0.0.1` | IP, отдаваемый клиенту в `ipAddress` |
+| `DAD_PROXY_SHARE` | `true` | Отправка конфига на share endpoint при старте |
+| `DAD_PROXY_ENVIRONMENT` | `development` | Окружение логирования |
+| `DAD_PROXY_UDP_PORTS_RANGE` | `7700,8000` | Диапазон UDP-портов игровых серверов |
+| `DAD_PROXY_UDP_CLIENT_BIND_RANGE` | `7700,8000` | Локальные UDP-порты для клиентов |
+| `DAD_PROXY_UDP_IDLE_TIMEOUT` | `10m` | Idle-закрытие UDP-ноги (`0` - выкл.) |
+| `DAD_PROXY_TCP_PAYLOAD_REWRITE` | `true` | Подмена адресов и парсинг protobuf в TCP |
+| `DAD_PROXY_ANNOUNCE_TOKEN` | *(пусто)* | Токен для `POST /api/announce` |
+
+Пример env: `deploy/systemd/dad_proxy.env.example`.
+
+## История версий
+
+См. [CHANGELOG.md](CHANGELOG.md).

@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message SC2S_GM_PARTY_ALL_RANDOM_REQ {
+}
+
+message SS2C_GM_PARTY_ALL_RANDOM_RES {
+}

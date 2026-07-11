@@ -23,6 +23,7 @@ type Config struct {
 	UDPClientBindRangeEnd   int
 	UDPIdleTimeout          time.Duration
 	TCPPayloadRewrite       bool
+	AnnounceToken           string
 }
 
 func Load() (*Config, error) {
@@ -89,6 +90,8 @@ func Load() (*Config, error) {
 		}
 	}
 
+	announceToken := strings.TrimSpace(os.Getenv("DAD_PROXY_ANNOUNCE_TOKEN"))
+
 	return &Config{
 		ProxyPort:               port,
 		APIHelloPath:            apiHello,
@@ -104,6 +107,7 @@ func Load() (*Config, error) {
 		UDPClientBindRangeEnd:   udpClientBindEnd,
 		UDPIdleTimeout:          udpIdleTimeout,
 		TCPPayloadRewrite:       tcpRewrite,
+		AnnounceToken:           announceToken,
 	}, nil
 }
 
