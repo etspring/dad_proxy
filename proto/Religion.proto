@@ -1,0 +1,180 @@
+syntax = "proto2";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message SCHARACTER_RELIGION_BASE_INFO {
+  optional uint64 characterId = 1;
+  optional uint64 offeringCount = 2;
+}
+
+message SUSER_RELIGION_BASE_INFO {
+  optional string seaseonId = 1;
+  optional string religionId = 2;
+  repeated .DC.Packet.SCHARACTER_RELIGION_BASE_INFO characterInfo = 3;
+}
+
+message SRELIGION_BASE_INFO {
+  repeated .DC.Packet.SUSER_RELIGION_BASE_INFO info = 1;
+}
+
+message SRELIGION_RANK_INFO {
+  optional uint32 pageIndex = 1;
+  optional uint64 rankNo = 2;
+  optional string nickName = 3;
+  optional string characterClass = 4;
+  optional uint64 offeringCount = 5;
+}
+
+message SRELIGION_INFO {
+  optional string religionId = 1;
+  optional uint64 seasonOffering = 2;
+  optional uint64 weeklyOffering = 3;
+  optional uint64 overallTime = 4;
+  optional uint32 currentBlessingLevel = 5;
+}
+
+message SRELIGION_KILL_INFO {
+  optional string religionId = 1;
+  optional string targetReligionId = 2;
+  optional uint64 killCount = 3;
+}
+
+message SC2S_RELIGION_LIST_REQ {
+  optional string seasonId = 1;
+}
+
+message SS2C_RELIGION_LIST_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  repeated .DC.Packet.SRELIGION_INFO religionInfo = 3;
+}
+
+message SC2S_RELIGION_RANKING_LIST_REQ {
+  optional string seasonId = 1;
+  optional string religionId = 2;
+  optional uint32 startIndex = 3;
+  optional uint32 endIndex = 4;
+  optional string characterClass = 5;
+}
+
+message SS2C_RELIGION_RANKING_LIST_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  optional string religionId = 3;
+  repeated .DC.Packet.SRELIGION_RANK_INFO list = 4;
+}
+
+message SC2S_RELIGION_PERSONAL_RANKING_REQ {
+  optional string seasonId = 1;
+  optional string religionId = 2;
+}
+
+message SS2C_RELIGION_PERSONAL_RANKING_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  optional .DC.Packet.SRELIGION_RANK_INFO myRecord = 3;
+}
+
+message SC2S_RELIGION_UPDATE_OFFERING_REQ {
+  optional string seasonId = 1;
+  optional uint32 offeringCount = 2;
+}
+
+message SS2C_RELIGION_UPDATE_OFFERING_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  optional string religionId = 3;
+  optional uint64 offering = 4;
+  optional uint64 totalOffering = 5;
+  optional uint64 accountSeasonTotalOffering = 6;
+}
+
+message SC2S_RELIGION_KILL_COUNT_LIST_REQ {
+  optional string seasonId = 1;
+}
+
+message SS2C_RELIGION_KILL_COUNT_LIST_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  repeated .DC.Packet.SRELIGION_KILL_INFO religionKillData = 3;
+}
+
+message SC2S_RELIGION_REGISTER_REQ {
+  optional string seasonId = 1;
+  optional string religionId = 2;
+}
+
+message SS2C_RELIGION_REGISTER_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  optional string religionId = 3;
+}
+
+message SC2S_RELIGION_GET_SEASON_INFO_REQ {
+}
+
+message SRELIGION_SEASON_INFO {
+  optional string seasonId = 1;
+  optional string religionId = 2;
+  optional uint32 blessingLevel = 3;
+  optional uint64 seasonStartRemainingTime = 4;
+  optional uint64 religionResetRemainingTime = 5;
+  optional uint32 isOverAllTime = 6;
+}
+
+message SS2C_RELIGION_GET_SEASON_INFO_RES {
+  optional uint32 result = 1;
+  repeated .DC.Packet.SRELIGION_SEASON_INFO data = 2;
+  repeated string currentSeasonIds = 3;
+}
+
+message SRELIGION_REWARD_INFO {
+  optional string rewardId = 1;
+  optional string rewardType = 2;
+  optional uint32 rewardCount = 3;
+}
+
+message SRELIGION_OFFERING_REWARD_INFO {
+  optional string offeringRewardId = 1;
+  optional uint32 offeringCount = 2;
+  optional uint32 hasReceivedReward = 3;
+  optional uint64 rewardClaimRemainingTime = 4;
+  repeated .DC.Packet.SRELIGION_REWARD_INFO rewards = 5;
+}
+
+message SRELIGION_REWARD_ID_INFO {
+  optional string offeringRewardId = 1;
+}
+
+message SC2S_RELIGION_REWARD_LIST_REQ {
+  optional string seasonId = 1;
+}
+
+message SS2C_RELIGION_REWARD_LIST_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  optional uint64 accountSeasonTotalOffering = 3;
+  repeated .DC.Packet.SRELIGION_OFFERING_REWARD_INFO data = 4;
+}
+
+message SC2S_RELIGION_REWARD_GET_REQ {
+  optional string seasonId = 1;
+  optional string offeringRewardId = 2;
+}
+
+message SS2C_RELIGION_REWARD_GET_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  optional string offeringRewardId = 3;
+}
+
+message SC2S_RELIGION_REWARD_CHECK_REQ {
+  optional string seasonId = 1;
+}
+
+message SS2C_RELIGION_REWARD_CHECK_RES {
+  optional uint32 result = 1;
+  optional string seasonId = 2;
+  repeated .DC.Packet.SRELIGION_REWARD_ID_INFO data = 3;
+}

@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message IronMace_Login {
+  optional string loginId = 1;
+  optional string password = 2;
+}
+
+message IronMace_Login_Res {
+  enum IronMace_Login_Result {
+    NONE = 0;
+    SUCCESS = 1;
+    FAIL_NOT_FOUND_ACCOUNT = 100;
+    FAIL_WRONG_PASSWORD = 101;
+  }
+  optional uint32 result = 1;
+  optional string errorMessage = 2;
+}
+
+message IronMace_Token {
+  optional string loginId = 1;
+  optional string password = 2;
+}
+
+message IronMace_Token_Res {
+  optional string token = 2;
+}

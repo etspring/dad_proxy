@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package google.protobuf;
+option go_package = "dad_proxy/internal/pb";
+
+message SourceContext {
+  optional string file_name = 1;
+}

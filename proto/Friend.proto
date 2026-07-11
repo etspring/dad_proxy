@@ -1,0 +1,197 @@
+syntax = "proto2";
+
+import "_Character.proto";
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message SC2S_FRIEND_CHECK_ACCOUNTNICKNAME_REQ {
+  optional string accountNickname = 1;
+}
+
+message SS2C_FRIEND_CHECK_ACCOUNTNICKNAME_RES {
+  optional uint32 result = 1;
+}
+
+message SC2S_FRIEND_CREATE_ACCOUNTNICKNAME_REQ {
+  optional string accountNickname = 1;
+}
+
+message SS2C_FRIEND_CREATE_ACCOUNTNICKNAME_RES {
+  optional uint32 result = 1;
+  optional string accountNickname = 2;
+}
+
+message SC2S_FRIEND_SET_STATUS_REQ {
+  optional uint32 status = 1;
+  optional uint32 temporary = 2;
+}
+
+message SS2C_FRIEND_SET_STATUS_RES {
+  optional uint32 result = 1;
+  optional uint32 status = 2;
+}
+
+message SC2S_FRIEND_SET_PRIVACY_REQ {
+  optional uint32 privacy = 1;
+}
+
+message SS2C_FRIEND_SET_PRIVACY_RES {
+  optional uint32 result = 1;
+  optional uint32 privacy = 2;
+}
+
+message SC2S_FRIEND_INVITE_REQ {
+  optional string accountId = 1;
+  optional string characterNickName = 2;
+}
+
+message SS2C_FRIEND_INVITE_RES {
+  optional uint32 result = 1;
+}
+
+message SC2S_FRIEND_INVITE_BY_ACCOUNTNICKNAME_REQ {
+  optional string characterNickName = 1;
+}
+
+message SS2C_FRIEND_INVITE_BY_ACCOUNTNICKNAME_RES {
+  optional uint32 result = 1;
+}
+
+message SC2S_FRIEND_INVITE_ACCEPT_REQ {
+  repeated string accountIds = 1;
+}
+
+message SS2C_FRIEND_INVITE_ACCEPT_RES {
+  optional uint32 result = 1;
+}
+
+message SC2S_FRIEND_INVITE_DECLINE_REQ {
+  repeated string accountIds = 1;
+}
+
+message SS2C_FRIEND_INVITE_DECLINE_RES {
+  optional uint32 result = 1;
+}
+
+message SC2S_FRIEND_INVITE_CANCEL_REQ {
+  repeated string accountIds = 1;
+}
+
+message SS2C_FRIEND_INVITE_CANCEL_RES {
+  optional uint32 result = 1;
+}
+
+message SC2S_FRIEND_DEL_FRIEND_REQ {
+  optional string accountId = 1;
+}
+
+message SS2C_FRIEND_DEL_FRIEND_RES {
+  optional uint32 result = 1;
+}
+
+message SFRIEND_ACCOUNT_INFO {
+  optional string accountId = 1;
+  optional string accountNickname = 2;
+}
+
+message SFRIEND_INFO {
+  optional .DC.Packet.SFRIEND_ACCOUNT_INFO accountInfo = 1;
+  optional string characterId = 2;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 3;
+  optional string characterClass = 4;
+  optional uint32 gender = 5;
+  optional uint32 level = 6;
+  optional uint32 status = 7;
+  optional uint32 locationStatus = 8;
+  optional uint32 PartyMemeberCount = 9;
+  optional uint32 PartyMaxMemeberCount = 10;
+}
+
+message SFRIEND_ACCEPT_INFO {
+  optional string accountId = 1;
+  optional string characterId = 2;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 3;
+  optional string characterClass = 4;
+  optional uint32 gender = 5;
+  optional uint32 level = 6;
+  optional uint32 status = 7;
+}
+
+message SFRIEND_REQUEST_INFO {
+  optional string accountId = 1;
+  optional string characterId = 2;
+  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 3;
+  optional string characterClass = 4;
+  optional uint32 gender = 5;
+  optional uint32 level = 6;
+  optional uint32 status = 7;
+}
+
+message SS2C_FRIEND_INFO_NOT {
+  optional string accountNickname = 1;
+  optional uint32 status = 2;
+  optional uint32 privacy = 3;
+}
+
+message SS2C_FRIEND_SET_FRIEND_INFOS_NOT {
+  repeated .DC.Packet.SFRIEND_INFO infos = 1;
+}
+
+message SS2C_FRIEND_DEL_FRIEND_INFOS_NOT {
+  repeated string accountIds = 1;
+}
+
+message SS2C_FRIEND_SET_ACCEPT_INFOS_NOT {
+  repeated .DC.Packet.SFRIEND_ACCEPT_INFO infos = 1;
+}
+
+message SS2C_FRIEND_DEL_ACCEPT_INFOS_NOT {
+  repeated string accountIds = 1;
+}
+
+message SS2C_FRIEND_SET_INVITE_INFOS_NOT {
+  repeated .DC.Packet.SFRIEND_REQUEST_INFO infos = 1;
+}
+
+message SS2C_FRIEND_DEL_INVITE_INFOS_NOT {
+  repeated string accountIds = 1;
+}
+
+message SS2C_FRIEND_SET_STATUS_NOT {
+  optional string accountId = 1;
+  optional uint32 status = 2;
+}
+
+message SC2S_FRIEND_LIST_REQ {
+  optional uint32 pageIndex = 1;
+  optional uint32 pageCapacity = 2;
+}
+
+message SS2C_FRIEND_LIST_RES {
+  repeated .DC.Packet.SCHARACTER_FRIEND_INFO friendInfoList = 1;
+  optional uint32 pageIndex = 2;
+  optional uint32 totalFriendCount = 3;
+  optional uint32 lobbyLocateCount = 4;
+  optional uint32 dungeonLocateCount = 5;
+}
+
+message SC2S_FRIEND_LIST_ALL_REQ {
+}
+
+message SS2C_FRIEND_LIST_ALL_RES {
+  repeated .DC.Packet.SCHARACTER_FRIEND_INFO friendInfoList = 1;
+  optional uint32 loopFlag = 2;
+  optional uint32 totalUserCount = 3;
+  optional uint32 lobbyLocateCount = 4;
+  optional uint32 dungeonLocateCount = 5;
+}
+
+message SC2S_FRIEND_FIND_REQ {
+  optional string originalNickName = 1;
+  optional string streamingModeNickName = 2;
+}
+
+message SS2C_FRIEND_FIND_RES {
+  optional uint32 result = 1;
+  optional .DC.Packet.SCHARACTER_FRIEND_INFO friendInfo = 2;
+}

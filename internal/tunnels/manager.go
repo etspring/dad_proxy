@@ -18,6 +18,8 @@ import (
 	"time"
 
 	"dad_proxy/internal/config"
+	"dad_proxy/internal/pb"
+	"dad_proxy/internal/protocol"
 )
 
 var upstreamHTTPURLPattern = regexp.MustCompile(`http://((?:\d{1,3}\.){3}\d{1,3}):(\d{1,5})(/[A-Za-z0-9._~:/?#\[\]@!$&'()*+,;=%-]*)?`)
@@ -38,6 +40,23 @@ type TunnelInfo struct {
 	UDPDatagramsFromClients  int64     `json:"udpDatagramsFromClients"`
 	UDPDatagramsToClients    int64     `json:"udpDatagramsToClients"`
 	UDPLocalListenAddr       string    `json:"udpLocalListenAddr,omitempty"`
+	UDPCreatedAt             time.Time `json:"udpCreatedAt,omitempty"`
+	UDPLastActivityAt        time.Time `json:"udpLastActivityAt,omitempty"`
+	UDPPlayers               []UDPTunnelPlayer `json:"udpPlayers,omitempty"`
+}
+
+// UDPTunnelPlayer - игрок в UDP-туннеле для API.
+type UDPTunnelPlayer struct {
+	NickName   string `json:"nickName"`
+	CurrentMap string `json:"currentMap,omitempty"`
+}
+
+// udpPlayerBinding - внутренняя привязка для дедупликации при upsert.
+type udpPlayerBinding struct {
+	nickName    string
+	currentMap  string
+	accountID   string
+	peer        string
 }
 
 // ClientAdvertisedPort is the TCP port when the tunnel has TCP (payload rewrites, HTTP); otherwise the UDP client port.
@@ -53,25 +72,30 @@ func (ti TunnelInfo) ClientAdvertisedPort() int {
 
 // UDPTunnelStats describes the UDP leg of one tunnel for API consumers.
 type UDPTunnelStats struct {
-	RemoteIP             string `json:"remoteIp"`
-	RemotePort           int    `json:"remotePort"`
-	LocalPort            int    `json:"localPort"`
-	UDPClientPort        int    `json:"udpClientPort,omitempty"`
-	LocalListenAddr      string `json:"localListenAddr,omitempty"`
-	UpstreamAddr         string `json:"upstreamAddr"`
-	ActiveSessions       int64  `json:"activeSessions"`
-	TotalSessions        int64  `json:"totalSessions"`
-	DatagramsFromClients int64  `json:"datagramsFromClients"`
-	DatagramsToClients   int64  `json:"datagramsToClients"`
+	RemoteIP             string    `json:"remoteIp"`
+	RemotePort           int       `json:"remotePort"`
+	LocalPort            int       `json:"localPort"`
+	UDPClientPort        int       `json:"udpClientPort,omitempty"`
+	CreatedAt            time.Time `json:"createdAt"`
+	LastActivityAt       time.Time `json:"lastActivityAt,omitempty"`
+	LocalListenAddr      string    `json:"localListenAddr,omitempty"`
+	UpstreamAddr         string    `json:"upstreamAddr"`
+	ActiveSessions       int64     `json:"activeSessions"`
+	TotalSessions        int64     `json:"totalSessions"`
+	DatagramsFromClients int64             `json:"datagramsFromClients"`
+	DatagramsToClients   int64             `json:"datagramsToClients"`
+	Players              []UDPTunnelPlayer `json:"players,omitempty"`
 }
 
 // UDPTunnelStatsFromInfo builds a UDP summary from a tunnel snapshot.
 func UDPTunnelStatsFromInfo(ti TunnelInfo) UDPTunnelStats {
-	return UDPTunnelStats{
+	stats := UDPTunnelStats{
 		RemoteIP:             ti.RemoteIP,
 		RemotePort:           ti.RemotePort,
 		LocalPort:            ti.LocalPort,
 		UDPClientPort:        ti.UDPClientPort,
+		CreatedAt:            ti.UDPCreatedAt,
+		LastActivityAt:       ti.UDPLastActivityAt,
 		LocalListenAddr:      ti.UDPLocalListenAddr,
 		UpstreamAddr:         net.JoinHostPort(ti.RemoteIP, fmt.Sprintf("%d", ti.RemotePort)),
 		ActiveSessions:       ti.ActiveUDPSessions,
@@ -79,6 +103,10 @@ func UDPTunnelStatsFromInfo(ti TunnelInfo) UDPTunnelStats {
 		DatagramsFromClients: ti.UDPDatagramsFromClients,
 		DatagramsToClients:   ti.UDPDatagramsToClients,
 	}
+	if len(ti.UDPPlayers) > 0 {
+		stats.Players = append([]UDPTunnelPlayer(nil), ti.UDPPlayers...)
+	}
+	return stats
 }
 
 type tunnel struct {
@@ -90,7 +118,11 @@ type tunnel struct {
 	udpUpstream *net.UDPConn
 	closeOnce   sync.Once
 
+	tcpClientsMu sync.Mutex
+	tcpClients   map[net.Conn]*tcpClientSession
+
 	lastActivityUnixNano     atomic.Int64
+	lastUDPActivityUnixNano  atomic.Int64
 	activeTCPConnections     atomic.Int64
 	totalTCPConnections      atomic.Int64
 	activeUDPSessions        atomic.Int64
@@ -99,6 +131,9 @@ type tunnel struct {
 	bytesFromRemoteToClients atomic.Int64
 	udpDatagramsFromClients  atomic.Int64
 	udpDatagramsToClients    atomic.Int64
+
+	udpPlayersMu sync.Mutex
+	udpPlayers   []udpPlayerBinding
 }
 
 func (t *tunnel) close() {
@@ -121,6 +156,10 @@ func (t *tunnel) closeUDPLeg() {
 	}
 	t.splitUDP = false
 	t.info.UDPClientPort = 0
+	t.info.UDPCreatedAt = time.Time{}
+	t.info.UDPLastActivityAt = time.Time{}
+	t.lastUDPActivityUnixNano.Store(0)
+	t.clearUDPPlayers()
 	t.activeUDPSessions.Store(0)
 }
 
@@ -136,8 +175,29 @@ func (t *tunnel) idleSince() (time.Time, bool) {
 	return time.Unix(0, unixNano).UTC(), true
 }
 
+func (t *tunnel) udpIdleSince() (time.Time, bool) {
+	unixNano := t.lastUDPActivityUnixNano.Load()
+	if unixNano <= 0 {
+		return time.Time{}, false
+	}
+	return time.Unix(0, unixNano).UTC(), true
+}
+
 func (t *tunnel) markActivity() {
 	t.lastActivityUnixNano.Store(time.Now().UTC().UnixNano())
+}
+
+func (t *tunnel) markUDPActivity() {
+	now := time.Now().UTC()
+	unixNano := now.UnixNano()
+	t.lastUDPActivityUnixNano.Store(unixNano)
+	t.info.UDPLastActivityAt = now
+}
+
+func (t *tunnel) markUDPCreated() {
+	now := time.Now().UTC()
+	t.info.UDPCreatedAt = now
+	t.markUDPActivity()
 }
 
 func (t *tunnel) snapshot() TunnelInfo {
@@ -158,6 +218,17 @@ func (t *tunnel) snapshot() TunnelInfo {
 	if unixNano := t.lastActivityUnixNano.Load(); unixNano > 0 {
 		info.LastActivityAt = time.Unix(0, unixNano).UTC()
 	}
+	if unixNano := t.lastUDPActivityUnixNano.Load(); unixNano > 0 {
+		info.UDPLastActivityAt = time.Unix(0, unixNano).UTC()
+	}
+	t.udpPlayersMu.Lock()
+	if len(t.udpPlayers) > 0 {
+		info.UDPPlayers = make([]UDPTunnelPlayer, len(t.udpPlayers))
+		for i, p := range t.udpPlayers {
+			info.UDPPlayers[i] = UDPTunnelPlayer{NickName: p.nickName, CurrentMap: p.currentMap}
+		}
+	}
+	t.udpPlayersMu.Unlock()
 	return info
 }
 
@@ -282,10 +353,7 @@ func (m *Manager) evictIdleUDPTunnels() {
 		if !tun.hasUDP() {
 			continue
 		}
-		if tun.activeTCPConnections.Load() > 0 {
-			continue
-		}
-		last, ok := tun.idleSince()
+		last, ok := tun.udpIdleSince()
 		if !ok || now.Sub(last) < timeout {
 			continue
 		}
@@ -389,7 +457,7 @@ func (m *Manager) createTunnel(remoteIP string, remotePort int) (*tunnel, error)
 			udpClient:   udpClient,
 			udpUpstream: udpUpstream,
 		}
-		tun.markActivity()
+		tun.markUDPCreated()
 		go m.serveUDPSplit(tun)
 		return tun, nil
 	}
@@ -470,6 +538,7 @@ func (m *Manager) createTunnel(remoteIP string, remotePort int) (*tunnel, error)
 		udpUpstream: udpUpstream,
 	}
 	tun.markActivity()
+	tun.markUDPCreated()
 	go m.serveTCP(tun)
 	go m.serveUDPSplit(tun)
 	return tun, nil
@@ -546,6 +615,11 @@ func (m *Manager) serveTCP(tun *tunnel) {
 			tun.markActivity()
 			defer tun.activeTCPConnections.Add(-1)
 
+			sess := newTCPClientSession(clientConn)
+			sess.initIdentity(clientConn.RemoteAddr().String(), tun.info.LocalPort)
+			tun.registerTCPClient(sess)
+			defer tun.unregisterTCPClient(clientConn)
+
 			upstreamConn, err := net.DialTimeout("tcp4", remoteAddr, 10*time.Second)
 			if err != nil {
 				m.logger.Warn("TCP upstream dial failed",
@@ -569,7 +643,12 @@ func (m *Manager) serveTCP(tun *tunnel) {
 
 			go func() {
 				defer wg.Done()
-				n, _ := io.Copy(upstreamConn, clientConn)
+				var n int64
+				if m.config.TCPPayloadRewrite {
+					n, _ = m.copyTCPClientToRemoteFramed(tun, sess, clientConn, upstreamConn)
+				} else {
+					n, _ = io.Copy(upstreamConn, clientConn)
+				}
 				if n > 0 {
 					tun.bytesFromClientsToRemote.Add(n)
 					tun.markActivity()
@@ -580,7 +659,7 @@ func (m *Manager) serveTCP(tun *tunnel) {
 				defer wg.Done()
 				var n int64
 				if m.config.TCPPayloadRewrite {
-					n, _ = m.copyTCPRemoteToClientFramed(tun, clientConn, upstreamConn)
+					n, _ = m.copyTCPRemoteToClientFramed(tun, sess, clientConn, upstreamConn)
 				} else {
 					n, _ = io.Copy(clientConn, upstreamConn)
 				}
@@ -602,11 +681,15 @@ func (m *Manager) serveTCP(tun *tunnel) {
 
 // copyTCPRemoteToClientFramed reads framed messages from upstream, rewrites payloads for the client, and writes framed messages to the client.
 // The first u32 is the total byte length of the frame including those 4 bytes (matches Wireshark "Data: 86 bytes" with payload starting 56 00 00 00).
-func (m *Manager) copyTCPRemoteToClientFramed(tun *tunnel, clientConn net.Conn, upstreamConn net.Conn) (int64, error) {
+func (m *Manager) copyTCPRemoteToClientFramed(tun *tunnel, sess *tcpClientSession, clientConn net.Conn, upstreamConn net.Conn) (int64, error) {
 	reader := bufio.NewReader(upstreamConn)
 	var totalWritten int64
 
 	for {
+		if n := tun.drainInjectedFrames(m.logger, clientConn, sess); n > 0 {
+			totalWritten += int64(n)
+		}
+
 		lenPrefix := make([]byte, 4)
 		if _, err := io.ReadFull(reader, lenPrefix); err != nil {
 			if err == io.EOF || err == io.ErrUnexpectedEOF {
@@ -643,9 +726,60 @@ func (m *Manager) copyTCPRemoteToClientFramed(tun *tunnel, clientConn net.Conn, 
 		}
 
 		payload := append(append([]byte(nil), lenPrefix...), rest...)
+		sess.rememberHeader(payload)
+		m.observeTCPFrameFromRemote(m.logger, tun, sess, payload)
+		if packetID, err := protocol.ParsePacketID(payload); err == nil && packetID == uint16(pb.PacketCommand_S2C_OPERATE_ANNOUNCE_NOT) {
+			m.logger.Info("upstream operate announce observed",
+				"local_port", tun.info.LocalPort,
+				"header_hex", protocol.HeaderHex(payload),
+				"frame_len", len(payload),
+			)
+		}
 		rewrittenPayload := m.rewriteTunnelPayload(payload, tun.info.LocalPort, "remote->client")
 
 		n, writeErr := clientConn.Write(rewrittenPayload)
+		totalWritten += int64(n)
+		if writeErr != nil {
+			return totalWritten, writeErr
+		}
+	}
+}
+
+// copyTCPClientToRemoteFramed читает кадры от клиента, обновляет идентификацию и пересылает upstream.
+func (m *Manager) copyTCPClientToRemoteFramed(tun *tunnel, sess *tcpClientSession, clientConn net.Conn, upstreamConn net.Conn) (int64, error) {
+	reader := bufio.NewReader(clientConn)
+	var totalWritten int64
+
+	for {
+		lenPrefix := make([]byte, 4)
+		if _, err := io.ReadFull(reader, lenPrefix); err != nil {
+			if err == io.EOF || err == io.ErrUnexpectedEOF {
+				return totalWritten, nil
+			}
+			return totalWritten, err
+		}
+
+		totalSize := int(binary.LittleEndian.Uint32(lenPrefix))
+		if totalSize < 4 || totalSize > 2*1024*1024 {
+			n, writeErr := upstreamConn.Write(lenPrefix)
+			totalWritten += int64(n)
+			if writeErr != nil {
+				return totalWritten, writeErr
+			}
+			copied, copyErr := io.Copy(upstreamConn, reader)
+			totalWritten += copied
+			return totalWritten, copyErr
+		}
+
+		rest := make([]byte, totalSize-4)
+		if _, err := io.ReadFull(reader, rest); err != nil {
+			return totalWritten, err
+		}
+
+		payload := append(append([]byte(nil), lenPrefix...), rest...)
+		m.observeTCPFrameFromClient(m.logger, tun, sess, payload)
+
+		n, writeErr := upstreamConn.Write(payload)
 		totalWritten += int64(n)
 		if writeErr != nil {
 			return totalWritten, writeErr
@@ -1448,7 +1582,7 @@ func (m *Manager) serveUDPSplit(tun *tunnel) {
 				tun.udpDatagramsToClients.Add(1)
 				tun.bytesFromRemoteToClients.Add(int64(len(pkt)))
 			}
-			tun.markActivity()
+			tun.markUDPActivity()
 		}
 	}()
 
@@ -1495,7 +1629,7 @@ func (m *Manager) serveUDPSplit(tun *tunnel) {
 					"bytes", len(pkt),
 				)
 			}
-			tun.markActivity()
+			tun.markUDPActivity()
 			continue
 		}
 
@@ -1529,7 +1663,7 @@ func (m *Manager) serveUDPSplit(tun *tunnel) {
 		}
 		tun.udpDatagramsFromClients.Add(1)
 		tun.bytesFromClientsToRemote.Add(int64(len(pkt)))
-		tun.markActivity()
+		tun.markUDPActivity()
 	}
 }
 

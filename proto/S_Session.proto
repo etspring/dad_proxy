@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+message SD2S_SESSION_HELLO_REQ {
+  optional int32 processId = 1;
+  optional int32 port = 2;
+}
+
+message SS2D_SESSION_HELLO_RES {
+  optional int32 result = 1;
+  optional int64 sessionId = 2;
+}
+
+message SD2S_SESSION_RECONNECT_REQ {
+  optional int64 sessionId = 1;
+}
+
+message SS2D_SESSION_RECONNECT_RES {
+  optional uint32 result = 1;
+}
+
+message SS2D_SESSION_DIE_NOT {
+}

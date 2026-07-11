@@ -48,10 +48,13 @@ func main() {
 
 	// Handler
 	proxyHandler := handlers.NewProxyHandler(cfg, log)
+	announceHandler := handlers.NewAnnounceHandler(log, proxyHandler.TunnelManager(), cfg.AnnounceToken)
 
 	// HTTP API Server
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/tunnels", proxyHandler.HandleTunnels)
+	mux.HandleFunc("/api/sessions", proxyHandler.HandleSessions)
+	mux.HandleFunc("/api/announce", announceHandler.HandleAnnounce)
 	mux.HandleFunc("/", proxyHandler.HandleProxy)
 
 	server := &http.Server{

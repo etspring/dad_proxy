@@ -1,5 +1,6 @@
 # Binaries
 /build/
+/bin/
 /dad_proxy
 *.exe
 *.exe~

@@ -359,6 +359,11 @@ func (h *ProxyHandler) Close() {
 	h.tunnelManager.Close()
 }
 
+// TunnelManager возвращает менеджер туннелей для protobuf-инъекций.
+func (h *ProxyHandler) TunnelManager() *tunnels.Manager {
+	return h.tunnelManager
+}
+
 func (h *ProxyHandler) getClientIP(r *http.Request) string {
 	// Список заголовков в порядке приоритета
 	headers := []string{
