@@ -67,16 +67,6 @@ func (x Friend_Location) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Friend_Location) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Friend_Location(num)
-	return nil
-}
-
 // Deprecated: Use Friend_Location.Descriptor instead.
 func (Friend_Location) EnumDescriptor() ([]byte, []int) {
 	return file___Character_proto_rawDescGZIP(), []int{0}
@@ -87,8 +77,8 @@ type SCHARACTER_RANK_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	GameType *uint32 `protobuf:"varint,1,opt,name=gameType" json:"gameType,omitempty"`
-	RankId   *string `protobuf:"bytes,2,opt,name=rankId" json:"rankId,omitempty"`
+	GameType uint32 `protobuf:"varint,1,opt,name=gameType,proto3" json:"gameType,omitempty"`
+	RankId   string `protobuf:"bytes,2,opt,name=rankId,proto3" json:"rankId,omitempty"`
 }
 
 func (x *SCHARACTER_RANK_INFO) Reset() {
@@ -124,15 +114,15 @@ func (*SCHARACTER_RANK_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_RANK_INFO) GetGameType() uint32 {
-	if x != nil && x.GameType != nil {
-		return *x.GameType
+	if x != nil {
+		return x.GameType
 	}
 	return 0
 }
 
 func (x *SCHARACTER_RANK_INFO) GetRankId() string {
-	if x != nil && x.RankId != nil {
-		return *x.RankId
+	if x != nil {
+		return x.RankId
 	}
 	return ""
 }
@@ -142,9 +132,9 @@ type SSTORAGE_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InventoryId              *uint32  `protobuf:"varint,1,opt,name=inventoryId" json:"inventoryId,omitempty"`
-	CharacterStorageItemList []*SItem `protobuf:"bytes,2,rep,name=CharacterStorageItemList" json:"CharacterStorageItemList,omitempty"`
-	StorageStatus            *int32   `protobuf:"varint,3,opt,name=storageStatus" json:"storageStatus,omitempty"`
+	InventoryId              uint32   `protobuf:"varint,1,opt,name=inventoryId,proto3" json:"inventoryId,omitempty"`
+	CharacterStorageItemList []*SItem `protobuf:"bytes,2,rep,name=CharacterStorageItemList,proto3" json:"CharacterStorageItemList,omitempty"`
+	StorageStatus            int32    `protobuf:"varint,3,opt,name=storageStatus,proto3" json:"storageStatus,omitempty"`
 }
 
 func (x *SSTORAGE_INFO) Reset() {
@@ -180,8 +170,8 @@ func (*SSTORAGE_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SSTORAGE_INFO) GetInventoryId() uint32 {
-	if x != nil && x.InventoryId != nil {
-		return *x.InventoryId
+	if x != nil {
+		return x.InventoryId
 	}
 	return 0
 }
@@ -194,8 +184,8 @@ func (x *SSTORAGE_INFO) GetCharacterStorageItemList() []*SItem {
 }
 
 func (x *SSTORAGE_INFO) GetStorageStatus() int32 {
-	if x != nil && x.StorageStatus != nil {
-		return *x.StorageStatus
+	if x != nil {
+		return x.StorageStatus
 	}
 	return 0
 }
@@ -205,18 +195,18 @@ type SCHARACTER_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId                *string                 `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	AccountNickname          *string                 `protobuf:"bytes,2,opt,name=accountNickname" json:"accountNickname,omitempty"`
-	NickName                 *SACCOUNT_NICKNAME      `protobuf:"bytes,3,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass           *string                 `protobuf:"bytes,4,opt,name=characterClass" json:"characterClass,omitempty"`
-	CharacterId              *string                 `protobuf:"bytes,5,opt,name=characterId" json:"characterId,omitempty"`
-	Gender                   *uint32                 `protobuf:"varint,6,opt,name=gender" json:"gender,omitempty"`
-	Level                    *uint32                 `protobuf:"varint,7,opt,name=level" json:"level,omitempty"`
-	ServiceGrpc              *string                 `protobuf:"bytes,8,opt,name=serviceGrpc" json:"serviceGrpc,omitempty"`
-	CharacterItemList        []*SItem                `protobuf:"bytes,9,rep,name=CharacterItemList" json:"CharacterItemList,omitempty"`
-	CharacterStorageItemList []*SItem                `protobuf:"bytes,10,rep,name=CharacterStorageItemList" json:"CharacterStorageItemList,omitempty"`
-	CharacterStorageInfos    []*SSTORAGE_INFO        `protobuf:"bytes,11,rep,name=CharacterStorageInfos" json:"CharacterStorageInfos,omitempty"`
-	RankInfos                []*SCHARACTER_RANK_INFO `protobuf:"bytes,12,rep,name=rankInfos" json:"rankInfos,omitempty"`
+	AccountId                string                  `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	AccountNickname          string                  `protobuf:"bytes,2,opt,name=accountNickname,proto3" json:"accountNickname,omitempty"`
+	NickName                 *SACCOUNT_NICKNAME      `protobuf:"bytes,3,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass           string                  `protobuf:"bytes,4,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CharacterId              string                  `protobuf:"bytes,5,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Gender                   uint32                  `protobuf:"varint,6,opt,name=gender,proto3" json:"gender,omitempty"`
+	Level                    uint32                  `protobuf:"varint,7,opt,name=level,proto3" json:"level,omitempty"`
+	ServiceGrpc              string                  `protobuf:"bytes,8,opt,name=serviceGrpc,proto3" json:"serviceGrpc,omitempty"`
+	CharacterItemList        []*SItem                `protobuf:"bytes,9,rep,name=CharacterItemList,proto3" json:"CharacterItemList,omitempty"`
+	CharacterStorageItemList []*SItem                `protobuf:"bytes,10,rep,name=CharacterStorageItemList,proto3" json:"CharacterStorageItemList,omitempty"`
+	CharacterStorageInfos    []*SSTORAGE_INFO        `protobuf:"bytes,11,rep,name=CharacterStorageInfos,proto3" json:"CharacterStorageInfos,omitempty"`
+	RankInfos                []*SCHARACTER_RANK_INFO `protobuf:"bytes,12,rep,name=rankInfos,proto3" json:"rankInfos,omitempty"`
 }
 
 func (x *SCHARACTER_INFO) Reset() {
@@ -252,15 +242,15 @@ func (*SCHARACTER_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_INFO) GetAccountNickname() string {
-	if x != nil && x.AccountNickname != nil {
-		return *x.AccountNickname
+	if x != nil {
+		return x.AccountNickname
 	}
 	return ""
 }
@@ -273,36 +263,36 @@ func (x *SCHARACTER_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHARACTER_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SCHARACTER_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_INFO) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
 
 func (x *SCHARACTER_INFO) GetLevel() uint32 {
-	if x != nil && x.Level != nil {
-		return *x.Level
+	if x != nil {
+		return x.Level
 	}
 	return 0
 }
 
 func (x *SCHARACTER_INFO) GetServiceGrpc() string {
-	if x != nil && x.ServiceGrpc != nil {
-		return *x.ServiceGrpc
+	if x != nil {
+		return x.ServiceGrpc
 	}
 	return ""
 }
@@ -340,15 +330,15 @@ type SCHARACTER_FRIEND_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId            *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	NickName             *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass       *string            `protobuf:"bytes,3,opt,name=characterClass" json:"characterClass,omitempty"`
-	CharacterId          *string            `protobuf:"bytes,4,opt,name=characterId" json:"characterId,omitempty"`
-	Gender               *uint32            `protobuf:"varint,5,opt,name=gender" json:"gender,omitempty"`
-	Level                *uint32            `protobuf:"varint,6,opt,name=level" json:"level,omitempty"`
-	LocationStatus       *uint32            `protobuf:"varint,7,opt,name=locationStatus" json:"locationStatus,omitempty"`
-	PartyMemeberCount    *uint32            `protobuf:"varint,8,opt,name=PartyMemeberCount" json:"PartyMemeberCount,omitempty"`
-	PartyMaxMemeberCount *uint32            `protobuf:"varint,9,opt,name=PartyMaxMemeberCount" json:"PartyMaxMemeberCount,omitempty"`
+	AccountId            string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	NickName             *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass       string             `protobuf:"bytes,3,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CharacterId          string             `protobuf:"bytes,4,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Gender               uint32             `protobuf:"varint,5,opt,name=gender,proto3" json:"gender,omitempty"`
+	Level                uint32             `protobuf:"varint,6,opt,name=level,proto3" json:"level,omitempty"`
+	LocationStatus       uint32             `protobuf:"varint,7,opt,name=locationStatus,proto3" json:"locationStatus,omitempty"`
+	PartyMemeberCount    uint32             `protobuf:"varint,8,opt,name=PartyMemeberCount,proto3" json:"PartyMemeberCount,omitempty"`
+	PartyMaxMemeberCount uint32             `protobuf:"varint,9,opt,name=PartyMaxMemeberCount,proto3" json:"PartyMaxMemeberCount,omitempty"`
 }
 
 func (x *SCHARACTER_FRIEND_INFO) Reset() {
@@ -384,8 +374,8 @@ func (*SCHARACTER_FRIEND_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -398,50 +388,50 @@ func (x *SCHARACTER_FRIEND_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetLevel() uint32 {
-	if x != nil && x.Level != nil {
-		return *x.Level
+	if x != nil {
+		return x.Level
 	}
 	return 0
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetLocationStatus() uint32 {
-	if x != nil && x.LocationStatus != nil {
-		return *x.LocationStatus
+	if x != nil {
+		return x.LocationStatus
 	}
 	return 0
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetPartyMemeberCount() uint32 {
-	if x != nil && x.PartyMemeberCount != nil {
-		return *x.PartyMemeberCount
+	if x != nil {
+		return x.PartyMemeberCount
 	}
 	return 0
 }
 
 func (x *SCHARACTER_FRIEND_INFO) GetPartyMaxMemeberCount() uint32 {
-	if x != nil && x.PartyMaxMemeberCount != nil {
-		return *x.PartyMaxMemeberCount
+	if x != nil {
+		return x.PartyMaxMemeberCount
 	}
 	return 0
 }
@@ -451,25 +441,25 @@ type SCHARACTER_PARTY_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId            *string                 `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	AccountNickname      *string                 `protobuf:"bytes,2,opt,name=accountNickname" json:"accountNickname,omitempty"`
-	NickName             *SACCOUNT_NICKNAME      `protobuf:"bytes,3,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass       *string                 `protobuf:"bytes,4,opt,name=characterClass" json:"characterClass,omitempty"`
-	CharacterId          *string                 `protobuf:"bytes,5,opt,name=characterId" json:"characterId,omitempty"`
-	Gender               *uint32                 `protobuf:"varint,6,opt,name=gender" json:"gender,omitempty"`
-	Level                *uint32                 `protobuf:"varint,7,opt,name=level" json:"level,omitempty"`
-	IsPartyLeader        *uint32                 `protobuf:"varint,8,opt,name=isPartyLeader" json:"isPartyLeader,omitempty"`
-	IsReady              *uint32                 `protobuf:"varint,9,opt,name=isReady" json:"isReady,omitempty"`
-	IsInGame             *uint32                 `protobuf:"varint,10,opt,name=isInGame" json:"isInGame,omitempty"`
-	EquipItemList        []*SItem                `protobuf:"bytes,11,rep,name=equipItemList" json:"equipItemList,omitempty"`
-	PartyIdx             *uint32                 `protobuf:"varint,12,opt,name=partyIdx" json:"partyIdx,omitempty"`
-	Perks                []*SPerk                `protobuf:"bytes,13,rep,name=perks" json:"perks,omitempty"`
-	GearScore            *uint32                 `protobuf:"varint,14,opt,name=gearScore" json:"gearScore,omitempty"`
-	LobbySkinId          *string                 `protobuf:"bytes,15,opt,name=lobbySkinId" json:"lobbySkinId,omitempty"`
-	MmrRating            *uint32                 `protobuf:"varint,16,opt,name=mmrRating" json:"mmrRating,omitempty"`
-	RemainPlacementCount *uint32                 `protobuf:"varint,17,opt,name=remainPlacementCount" json:"remainPlacementCount,omitempty"`
-	RankInfos            []*SCHARACTER_RANK_INFO `protobuf:"bytes,18,rep,name=rankInfos" json:"rankInfos,omitempty"`
-	IsOutlaw             *uint32                 `protobuf:"varint,19,opt,name=isOutlaw" json:"isOutlaw,omitempty"`
+	AccountId            string                  `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	AccountNickname      string                  `protobuf:"bytes,2,opt,name=accountNickname,proto3" json:"accountNickname,omitempty"`
+	NickName             *SACCOUNT_NICKNAME      `protobuf:"bytes,3,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass       string                  `protobuf:"bytes,4,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CharacterId          string                  `protobuf:"bytes,5,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Gender               uint32                  `protobuf:"varint,6,opt,name=gender,proto3" json:"gender,omitempty"`
+	Level                uint32                  `protobuf:"varint,7,opt,name=level,proto3" json:"level,omitempty"`
+	IsPartyLeader        uint32                  `protobuf:"varint,8,opt,name=isPartyLeader,proto3" json:"isPartyLeader,omitempty"`
+	IsReady              uint32                  `protobuf:"varint,9,opt,name=isReady,proto3" json:"isReady,omitempty"`
+	IsInGame             uint32                  `protobuf:"varint,10,opt,name=isInGame,proto3" json:"isInGame,omitempty"`
+	EquipItemList        []*SItem                `protobuf:"bytes,11,rep,name=equipItemList,proto3" json:"equipItemList,omitempty"`
+	PartyIdx             uint32                  `protobuf:"varint,12,opt,name=partyIdx,proto3" json:"partyIdx,omitempty"`
+	Perks                []*SPerk                `protobuf:"bytes,13,rep,name=perks,proto3" json:"perks,omitempty"`
+	GearScore            uint32                  `protobuf:"varint,14,opt,name=gearScore,proto3" json:"gearScore,omitempty"`
+	LobbySkinId          string                  `protobuf:"bytes,15,opt,name=lobbySkinId,proto3" json:"lobbySkinId,omitempty"`
+	MmrRating            uint32                  `protobuf:"varint,16,opt,name=mmrRating,proto3" json:"mmrRating,omitempty"`
+	RemainPlacementCount uint32                  `protobuf:"varint,17,opt,name=remainPlacementCount,proto3" json:"remainPlacementCount,omitempty"`
+	RankInfos            []*SCHARACTER_RANK_INFO `protobuf:"bytes,18,rep,name=rankInfos,proto3" json:"rankInfos,omitempty"`
+	IsOutlaw             uint32                  `protobuf:"varint,19,opt,name=isOutlaw,proto3" json:"isOutlaw,omitempty"`
 }
 
 func (x *SCHARACTER_PARTY_INFO) Reset() {
@@ -505,15 +495,15 @@ func (*SCHARACTER_PARTY_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetAccountNickname() string {
-	if x != nil && x.AccountNickname != nil {
-		return *x.AccountNickname
+	if x != nil {
+		return x.AccountNickname
 	}
 	return ""
 }
@@ -526,50 +516,50 @@ func (x *SCHARACTER_PARTY_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetLevel() uint32 {
-	if x != nil && x.Level != nil {
-		return *x.Level
+	if x != nil {
+		return x.Level
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetIsPartyLeader() uint32 {
-	if x != nil && x.IsPartyLeader != nil {
-		return *x.IsPartyLeader
+	if x != nil {
+		return x.IsPartyLeader
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetIsReady() uint32 {
-	if x != nil && x.IsReady != nil {
-		return *x.IsReady
+	if x != nil {
+		return x.IsReady
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetIsInGame() uint32 {
-	if x != nil && x.IsInGame != nil {
-		return *x.IsInGame
+	if x != nil {
+		return x.IsInGame
 	}
 	return 0
 }
@@ -582,8 +572,8 @@ func (x *SCHARACTER_PARTY_INFO) GetEquipItemList() []*SItem {
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetPartyIdx() uint32 {
-	if x != nil && x.PartyIdx != nil {
-		return *x.PartyIdx
+	if x != nil {
+		return x.PartyIdx
 	}
 	return 0
 }
@@ -596,29 +586,29 @@ func (x *SCHARACTER_PARTY_INFO) GetPerks() []*SPerk {
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetGearScore() uint32 {
-	if x != nil && x.GearScore != nil {
-		return *x.GearScore
+	if x != nil {
+		return x.GearScore
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetLobbySkinId() string {
-	if x != nil && x.LobbySkinId != nil {
-		return *x.LobbySkinId
+	if x != nil {
+		return x.LobbySkinId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetMmrRating() uint32 {
-	if x != nil && x.MmrRating != nil {
-		return *x.MmrRating
+	if x != nil {
+		return x.MmrRating
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetRemainPlacementCount() uint32 {
-	if x != nil && x.RemainPlacementCount != nil {
-		return *x.RemainPlacementCount
+	if x != nil {
+		return x.RemainPlacementCount
 	}
 	return 0
 }
@@ -631,8 +621,8 @@ func (x *SCHARACTER_PARTY_INFO) GetRankInfos() []*SCHARACTER_RANK_INFO {
 }
 
 func (x *SCHARACTER_PARTY_INFO) GetIsOutlaw() uint32 {
-	if x != nil && x.IsOutlaw != nil {
-		return *x.IsOutlaw
+	if x != nil {
+		return x.IsOutlaw
 	}
 	return 0
 }
@@ -642,13 +632,13 @@ type SCHARACTER_TRADE_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId         *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	NickName          *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass    *string            `protobuf:"bytes,3,opt,name=characterClass" json:"characterClass,omitempty"`
-	CharacterId       *string            `protobuf:"bytes,4,opt,name=characterId" json:"characterId,omitempty"`
-	Gender            *uint32            `protobuf:"varint,5,opt,name=gender" json:"gender,omitempty"`
-	Level             *uint32            `protobuf:"varint,6,opt,name=level" json:"level,omitempty"`
-	CharacterLocation *uint32            `protobuf:"varint,7,opt,name=characterLocation" json:"characterLocation,omitempty"`
+	AccountId         string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	NickName          *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass    string             `protobuf:"bytes,3,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CharacterId       string             `protobuf:"bytes,4,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Gender            uint32             `protobuf:"varint,5,opt,name=gender,proto3" json:"gender,omitempty"`
+	Level             uint32             `protobuf:"varint,6,opt,name=level,proto3" json:"level,omitempty"`
+	CharacterLocation uint32             `protobuf:"varint,7,opt,name=characterLocation,proto3" json:"characterLocation,omitempty"`
 }
 
 func (x *SCHARACTER_TRADE_INFO) Reset() {
@@ -684,8 +674,8 @@ func (*SCHARACTER_TRADE_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_TRADE_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -698,36 +688,36 @@ func (x *SCHARACTER_TRADE_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHARACTER_TRADE_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SCHARACTER_TRADE_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_TRADE_INFO) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
 
 func (x *SCHARACTER_TRADE_INFO) GetLevel() uint32 {
-	if x != nil && x.Level != nil {
-		return *x.Level
+	if x != nil {
+		return x.Level
 	}
 	return 0
 }
 
 func (x *SCHARACTER_TRADE_INFO) GetCharacterLocation() uint32 {
-	if x != nil && x.CharacterLocation != nil {
-		return *x.CharacterLocation
+	if x != nil {
+		return x.CharacterLocation
 	}
 	return 0
 }
@@ -737,19 +727,19 @@ type SACCOUNT_NICKNAME struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OriginalNickName                 *string `protobuf:"bytes,1,opt,name=originalNickName" json:"originalNickName,omitempty"`
-	StreamingModeNickName            *string `protobuf:"bytes,2,opt,name=streamingModeNickName" json:"streamingModeNickName,omitempty"`
-	KarmaRating                      *int32  `protobuf:"varint,3,opt,name=karmaRating" json:"karmaRating,omitempty"`
-	RankId                           *string `protobuf:"bytes,4,opt,name=rankId" json:"rankId,omitempty"`
-	Fame                             *uint32 `protobuf:"varint,5,opt,name=fame" json:"fame,omitempty"`
-	NameplateSkinId                  *string `protobuf:"bytes,6,opt,name=nameplateSkinId" json:"nameplateSkinId,omitempty"`
-	RankIconType                     *uint32 `protobuf:"varint,7,opt,name=rankIconType" json:"rankIconType,omitempty"`
-	AdventureRankId                  *string `protobuf:"bytes,8,opt,name=adventureRankId" json:"adventureRankId,omitempty"`
-	ArenaRankId                      *string `protobuf:"bytes,9,opt,name=arenaRankId" json:"arenaRankId,omitempty"`
-	PreviousSeasonArenaRankId        *string `protobuf:"bytes,10,opt,name=previousSeasonArenaRankId" json:"previousSeasonArenaRankId,omitempty"`
-	NameplateFrameEnable             *uint32 `protobuf:"varint,11,opt,name=nameplateFrameEnable" json:"nameplateFrameEnable,omitempty"`
-	PortraitEnable                   *uint32 `protobuf:"varint,12,opt,name=portraitEnable" json:"portraitEnable,omitempty"`
-	PreviousSeasonSoloDuoArenaRankId *string `protobuf:"bytes,13,opt,name=previousSeasonSoloDuoArenaRankId" json:"previousSeasonSoloDuoArenaRankId,omitempty"`
+	OriginalNickName                 string `protobuf:"bytes,1,opt,name=originalNickName,proto3" json:"originalNickName,omitempty"`
+	StreamingModeNickName            string `protobuf:"bytes,2,opt,name=streamingModeNickName,proto3" json:"streamingModeNickName,omitempty"`
+	KarmaRating                      int32  `protobuf:"varint,3,opt,name=karmaRating,proto3" json:"karmaRating,omitempty"`
+	RankId                           string `protobuf:"bytes,4,opt,name=rankId,proto3" json:"rankId,omitempty"`
+	Fame                             uint32 `protobuf:"varint,5,opt,name=fame,proto3" json:"fame,omitempty"`
+	NameplateSkinId                  string `protobuf:"bytes,6,opt,name=nameplateSkinId,proto3" json:"nameplateSkinId,omitempty"`
+	RankIconType                     uint32 `protobuf:"varint,7,opt,name=rankIconType,proto3" json:"rankIconType,omitempty"`
+	AdventureRankId                  string `protobuf:"bytes,8,opt,name=adventureRankId,proto3" json:"adventureRankId,omitempty"`
+	ArenaRankId                      string `protobuf:"bytes,9,opt,name=arenaRankId,proto3" json:"arenaRankId,omitempty"`
+	PreviousSeasonArenaRankId        string `protobuf:"bytes,10,opt,name=previousSeasonArenaRankId,proto3" json:"previousSeasonArenaRankId,omitempty"`
+	NameplateFrameEnable             uint32 `protobuf:"varint,11,opt,name=nameplateFrameEnable,proto3" json:"nameplateFrameEnable,omitempty"`
+	PortraitEnable                   uint32 `protobuf:"varint,12,opt,name=portraitEnable,proto3" json:"portraitEnable,omitempty"`
+	PreviousSeasonSoloDuoArenaRankId string `protobuf:"bytes,13,opt,name=previousSeasonSoloDuoArenaRankId,proto3" json:"previousSeasonSoloDuoArenaRankId,omitempty"`
 }
 
 func (x *SACCOUNT_NICKNAME) Reset() {
@@ -785,92 +775,92 @@ func (*SACCOUNT_NICKNAME) Descriptor() ([]byte, []int) {
 }
 
 func (x *SACCOUNT_NICKNAME) GetOriginalNickName() string {
-	if x != nil && x.OriginalNickName != nil {
-		return *x.OriginalNickName
+	if x != nil {
+		return x.OriginalNickName
 	}
 	return ""
 }
 
 func (x *SACCOUNT_NICKNAME) GetStreamingModeNickName() string {
-	if x != nil && x.StreamingModeNickName != nil {
-		return *x.StreamingModeNickName
+	if x != nil {
+		return x.StreamingModeNickName
 	}
 	return ""
 }
 
 func (x *SACCOUNT_NICKNAME) GetKarmaRating() int32 {
-	if x != nil && x.KarmaRating != nil {
-		return *x.KarmaRating
+	if x != nil {
+		return x.KarmaRating
 	}
 	return 0
 }
 
 func (x *SACCOUNT_NICKNAME) GetRankId() string {
-	if x != nil && x.RankId != nil {
-		return *x.RankId
+	if x != nil {
+		return x.RankId
 	}
 	return ""
 }
 
 func (x *SACCOUNT_NICKNAME) GetFame() uint32 {
-	if x != nil && x.Fame != nil {
-		return *x.Fame
+	if x != nil {
+		return x.Fame
 	}
 	return 0
 }
 
 func (x *SACCOUNT_NICKNAME) GetNameplateSkinId() string {
-	if x != nil && x.NameplateSkinId != nil {
-		return *x.NameplateSkinId
+	if x != nil {
+		return x.NameplateSkinId
 	}
 	return ""
 }
 
 func (x *SACCOUNT_NICKNAME) GetRankIconType() uint32 {
-	if x != nil && x.RankIconType != nil {
-		return *x.RankIconType
+	if x != nil {
+		return x.RankIconType
 	}
 	return 0
 }
 
 func (x *SACCOUNT_NICKNAME) GetAdventureRankId() string {
-	if x != nil && x.AdventureRankId != nil {
-		return *x.AdventureRankId
+	if x != nil {
+		return x.AdventureRankId
 	}
 	return ""
 }
 
 func (x *SACCOUNT_NICKNAME) GetArenaRankId() string {
-	if x != nil && x.ArenaRankId != nil {
-		return *x.ArenaRankId
+	if x != nil {
+		return x.ArenaRankId
 	}
 	return ""
 }
 
 func (x *SACCOUNT_NICKNAME) GetPreviousSeasonArenaRankId() string {
-	if x != nil && x.PreviousSeasonArenaRankId != nil {
-		return *x.PreviousSeasonArenaRankId
+	if x != nil {
+		return x.PreviousSeasonArenaRankId
 	}
 	return ""
 }
 
 func (x *SACCOUNT_NICKNAME) GetNameplateFrameEnable() uint32 {
-	if x != nil && x.NameplateFrameEnable != nil {
-		return *x.NameplateFrameEnable
+	if x != nil {
+		return x.NameplateFrameEnable
 	}
 	return 0
 }
 
 func (x *SACCOUNT_NICKNAME) GetPortraitEnable() uint32 {
-	if x != nil && x.PortraitEnable != nil {
-		return *x.PortraitEnable
+	if x != nil {
+		return x.PortraitEnable
 	}
 	return 0
 }
 
 func (x *SACCOUNT_NICKNAME) GetPreviousSeasonSoloDuoArenaRankId() string {
-	if x != nil && x.PreviousSeasonSoloDuoArenaRankId != nil {
-		return *x.PreviousSeasonSoloDuoArenaRankId
+	if x != nil {
+		return x.PreviousSeasonSoloDuoArenaRankId
 	}
 	return ""
 }
@@ -880,11 +870,11 @@ type SBLOCK_CHARACTER struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId      *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId    *string            `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,3,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass *string            `protobuf:"bytes,4,opt,name=characterClass" json:"characterClass,omitempty"`
-	Gender         *uint32            `protobuf:"varint,5,opt,name=gender" json:"gender,omitempty"`
+	AccountId      string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId    string             `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,3,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass string             `protobuf:"bytes,4,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	Gender         uint32             `protobuf:"varint,5,opt,name=gender,proto3" json:"gender,omitempty"`
 }
 
 func (x *SBLOCK_CHARACTER) Reset() {
@@ -920,15 +910,15 @@ func (*SBLOCK_CHARACTER) Descriptor() ([]byte, []int) {
 }
 
 func (x *SBLOCK_CHARACTER) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SBLOCK_CHARACTER) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -941,15 +931,15 @@ func (x *SBLOCK_CHARACTER) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SBLOCK_CHARACTER) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SBLOCK_CHARACTER) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
@@ -959,12 +949,12 @@ type SCHARACTER_GATHERING_HALL_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId      *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass *string            `protobuf:"bytes,3,opt,name=characterClass" json:"characterClass,omitempty"`
-	CharacterId    *string            `protobuf:"bytes,4,opt,name=characterId" json:"characterId,omitempty"`
-	Gender         *uint32            `protobuf:"varint,5,opt,name=gender" json:"gender,omitempty"`
-	Level          *uint32            `protobuf:"varint,6,opt,name=level" json:"level,omitempty"`
+	AccountId      string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass string             `protobuf:"bytes,3,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CharacterId    string             `protobuf:"bytes,4,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Gender         uint32             `protobuf:"varint,5,opt,name=gender,proto3" json:"gender,omitempty"`
+	Level          uint32             `protobuf:"varint,6,opt,name=level,proto3" json:"level,omitempty"`
 }
 
 func (x *SCHARACTER_GATHERING_HALL_INFO) Reset() {
@@ -1000,8 +990,8 @@ func (*SCHARACTER_GATHERING_HALL_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_GATHERING_HALL_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -1014,29 +1004,29 @@ func (x *SCHARACTER_GATHERING_HALL_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHARACTER_GATHERING_HALL_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SCHARACTER_GATHERING_HALL_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_GATHERING_HALL_INFO) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
 
 func (x *SCHARACTER_GATHERING_HALL_INFO) GetLevel() uint32 {
-	if x != nil && x.Level != nil {
-		return *x.Level
+	if x != nil {
+		return x.Level
 	}
 	return 0
 }
@@ -1046,13 +1036,13 @@ type SCHARACTER_PARTY_FINDER_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId      *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass *string            `protobuf:"bytes,3,opt,name=characterClass" json:"characterClass,omitempty"`
-	CharacterId    *string            `protobuf:"bytes,4,opt,name=characterId" json:"characterId,omitempty"`
-	Gender         *uint32            `protobuf:"varint,5,opt,name=gender" json:"gender,omitempty"`
-	Level          *uint32            `protobuf:"varint,6,opt,name=level" json:"level,omitempty"`
-	IsPartyLeader  *uint32            `protobuf:"varint,7,opt,name=isPartyLeader" json:"isPartyLeader,omitempty"`
+	AccountId      string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass string             `protobuf:"bytes,3,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CharacterId    string             `protobuf:"bytes,4,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Gender         uint32             `protobuf:"varint,5,opt,name=gender,proto3" json:"gender,omitempty"`
+	Level          uint32             `protobuf:"varint,6,opt,name=level,proto3" json:"level,omitempty"`
+	IsPartyLeader  uint32             `protobuf:"varint,7,opt,name=isPartyLeader,proto3" json:"isPartyLeader,omitempty"`
 }
 
 func (x *SCHARACTER_PARTY_FINDER_INFO) Reset() {
@@ -1088,8 +1078,8 @@ func (*SCHARACTER_PARTY_FINDER_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_PARTY_FINDER_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -1102,36 +1092,36 @@ func (x *SCHARACTER_PARTY_FINDER_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHARACTER_PARTY_FINDER_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SCHARACTER_PARTY_FINDER_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_PARTY_FINDER_INFO) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_FINDER_INFO) GetLevel() uint32 {
-	if x != nil && x.Level != nil {
-		return *x.Level
+	if x != nil {
+		return x.Level
 	}
 	return 0
 }
 
 func (x *SCHARACTER_PARTY_FINDER_INFO) GetIsPartyLeader() uint32 {
-	if x != nil && x.IsPartyLeader != nil {
-		return *x.IsPartyLeader
+	if x != nil {
+		return x.IsPartyLeader
 	}
 	return 0
 }
@@ -1141,8 +1131,8 @@ type SCHARACTER_GATHERING_HALL_BANNED_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId       *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	AccountNickname *string `protobuf:"bytes,2,opt,name=accountNickname" json:"accountNickname,omitempty"`
+	AccountId       string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	AccountNickname string `protobuf:"bytes,2,opt,name=accountNickname,proto3" json:"accountNickname,omitempty"`
 }
 
 func (x *SCHARACTER_GATHERING_HALL_BANNED_INFO) Reset() {
@@ -1178,15 +1168,15 @@ func (*SCHARACTER_GATHERING_HALL_BANNED_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_GATHERING_HALL_BANNED_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_GATHERING_HALL_BANNED_INFO) GetAccountNickname() string {
-	if x != nil && x.AccountNickname != nil {
-		return *x.AccountNickname
+	if x != nil {
+		return x.AccountNickname
 	}
 	return ""
 }
@@ -1196,8 +1186,8 @@ type SGameStat struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StatType  *int32 `protobuf:"varint,1,opt,name=statType" json:"statType,omitempty"`
-	StatValue *int32 `protobuf:"varint,2,opt,name=statValue" json:"statValue,omitempty"`
+	StatType  int32 `protobuf:"varint,1,opt,name=statType,proto3" json:"statType,omitempty"`
+	StatValue int32 `protobuf:"varint,2,opt,name=statValue,proto3" json:"statValue,omitempty"`
 }
 
 func (x *SGameStat) Reset() {
@@ -1233,15 +1223,15 @@ func (*SGameStat) Descriptor() ([]byte, []int) {
 }
 
 func (x *SGameStat) GetStatType() int32 {
-	if x != nil && x.StatType != nil {
-		return *x.StatType
+	if x != nil {
+		return x.StatType
 	}
 	return 0
 }
 
 func (x *SGameStat) GetStatValue() int32 {
-	if x != nil && x.StatValue != nil {
-		return *x.StatValue
+	if x != nil {
+		return x.StatValue
 	}
 	return 0
 }
@@ -1251,10 +1241,10 @@ type SRankUserInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RankId       *string `protobuf:"bytes,1,opt,name=rankId" json:"rankId,omitempty"`
-	CurrentPoint *uint32 `protobuf:"varint,2,opt,name=currentPoint" json:"currentPoint,omitempty"`
-	NeedPoint    *uint32 `protobuf:"varint,3,opt,name=needPoint" json:"needPoint,omitempty"`
-	SheetId      *string `protobuf:"bytes,4,opt,name=sheetId" json:"sheetId,omitempty"`
+	RankId       string `protobuf:"bytes,1,opt,name=rankId,proto3" json:"rankId,omitempty"`
+	CurrentPoint uint32 `protobuf:"varint,2,opt,name=currentPoint,proto3" json:"currentPoint,omitempty"`
+	NeedPoint    uint32 `protobuf:"varint,3,opt,name=needPoint,proto3" json:"needPoint,omitempty"`
+	SheetId      string `protobuf:"bytes,4,opt,name=sheetId,proto3" json:"sheetId,omitempty"`
 }
 
 func (x *SRankUserInfo) Reset() {
@@ -1290,29 +1280,29 @@ func (*SRankUserInfo) Descriptor() ([]byte, []int) {
 }
 
 func (x *SRankUserInfo) GetRankId() string {
-	if x != nil && x.RankId != nil {
-		return *x.RankId
+	if x != nil {
+		return x.RankId
 	}
 	return ""
 }
 
 func (x *SRankUserInfo) GetCurrentPoint() uint32 {
-	if x != nil && x.CurrentPoint != nil {
-		return *x.CurrentPoint
+	if x != nil {
+		return x.CurrentPoint
 	}
 	return 0
 }
 
 func (x *SRankUserInfo) GetNeedPoint() uint32 {
-	if x != nil && x.NeedPoint != nil {
-		return *x.NeedPoint
+	if x != nil {
+		return x.NeedPoint
 	}
 	return 0
 }
 
 func (x *SRankUserInfo) GetSheetId() string {
-	if x != nil && x.SheetId != nil {
-		return *x.SheetId
+	if x != nil {
+		return x.SheetId
 	}
 	return ""
 }
@@ -1322,11 +1312,11 @@ type SCHARACTER_LAST_GAME_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId      *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterId    *string            `protobuf:"bytes,3,opt,name=characterId" json:"characterId,omitempty"`
-	CharacterClass *string            `protobuf:"bytes,4,opt,name=characterClass" json:"characterClass,omitempty"`
-	Gender         *int32             `protobuf:"varint,5,opt,name=gender" json:"gender,omitempty"`
+	AccountId      string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	NickName       *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterId    string             `protobuf:"bytes,3,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	CharacterClass string             `protobuf:"bytes,4,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	Gender         int32              `protobuf:"varint,5,opt,name=gender,proto3" json:"gender,omitempty"`
 }
 
 func (x *SCHARACTER_LAST_GAME_INFO) Reset() {
@@ -1362,8 +1352,8 @@ func (*SCHARACTER_LAST_GAME_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHARACTER_LAST_GAME_INFO) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -1376,22 +1366,22 @@ func (x *SCHARACTER_LAST_GAME_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHARACTER_LAST_GAME_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SCHARACTER_LAST_GAME_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SCHARACTER_LAST_GAME_INFO) GetGender() int32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
@@ -1401,12 +1391,12 @@ type SArenaUserStat struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Kill         *int32   `protobuf:"varint,1,opt,name=kill" json:"kill,omitempty"`
-	Death        *int32   `protobuf:"varint,2,opt,name=death" json:"death,omitempty"`
-	Assist       *int32   `protobuf:"varint,3,opt,name=assist" json:"assist,omitempty"`
-	Headshot     *float64 `protobuf:"fixed64,4,opt,name=headshot" json:"headshot,omitempty"`
-	TotalDamage  *int32   `protobuf:"varint,5,opt,name=totalDamage" json:"totalDamage,omitempty"`
-	TotalHealing *int32   `protobuf:"varint,6,opt,name=totalHealing" json:"totalHealing,omitempty"`
+	Kill         int32   `protobuf:"varint,1,opt,name=kill,proto3" json:"kill,omitempty"`
+	Death        int32   `protobuf:"varint,2,opt,name=death,proto3" json:"death,omitempty"`
+	Assist       int32   `protobuf:"varint,3,opt,name=assist,proto3" json:"assist,omitempty"`
+	Headshot     float64 `protobuf:"fixed64,4,opt,name=headshot,proto3" json:"headshot,omitempty"`
+	TotalDamage  int32   `protobuf:"varint,5,opt,name=totalDamage,proto3" json:"totalDamage,omitempty"`
+	TotalHealing int32   `protobuf:"varint,6,opt,name=totalHealing,proto3" json:"totalHealing,omitempty"`
 }
 
 func (x *SArenaUserStat) Reset() {
@@ -1442,43 +1432,43 @@ func (*SArenaUserStat) Descriptor() ([]byte, []int) {
 }
 
 func (x *SArenaUserStat) GetKill() int32 {
-	if x != nil && x.Kill != nil {
-		return *x.Kill
+	if x != nil {
+		return x.Kill
 	}
 	return 0
 }
 
 func (x *SArenaUserStat) GetDeath() int32 {
-	if x != nil && x.Death != nil {
-		return *x.Death
+	if x != nil {
+		return x.Death
 	}
 	return 0
 }
 
 func (x *SArenaUserStat) GetAssist() int32 {
-	if x != nil && x.Assist != nil {
-		return *x.Assist
+	if x != nil {
+		return x.Assist
 	}
 	return 0
 }
 
 func (x *SArenaUserStat) GetHeadshot() float64 {
-	if x != nil && x.Headshot != nil {
-		return *x.Headshot
+	if x != nil {
+		return x.Headshot
 	}
 	return 0
 }
 
 func (x *SArenaUserStat) GetTotalDamage() int32 {
-	if x != nil && x.TotalDamage != nil {
-		return *x.TotalDamage
+	if x != nil {
+		return x.TotalDamage
 	}
 	return 0
 }
 
 func (x *SArenaUserStat) GetTotalHealing() int32 {
-	if x != nil && x.TotalHealing != nil {
-		return *x.TotalHealing
+	if x != nil {
+		return x.TotalHealing
 	}
 	return 0
 }
@@ -1488,13 +1478,13 @@ type SArenaGameResultRecord struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	TeamType              *int32          `protobuf:"varint,1,opt,name=teamType" json:"teamType,omitempty"`
-	CharacterId           *uint64         `protobuf:"varint,2,opt,name=characterId" json:"characterId,omitempty"`
-	CharacterClass        *string         `protobuf:"bytes,3,opt,name=characterClass" json:"characterClass,omitempty"`
-	CharacterNickname     *string         `protobuf:"bytes,4,opt,name=characterNickname" json:"characterNickname,omitempty"`
-	StreamingModeNickName *string         `protobuf:"bytes,5,opt,name=streamingModeNickName" json:"streamingModeNickName,omitempty"`
-	Stat                  *SArenaUserStat `protobuf:"bytes,6,opt,name=stat" json:"stat,omitempty"`
-	IsSurrender           *int32          `protobuf:"varint,7,opt,name=isSurrender" json:"isSurrender,omitempty"`
+	TeamType              int32           `protobuf:"varint,1,opt,name=teamType,proto3" json:"teamType,omitempty"`
+	CharacterId           uint64          `protobuf:"varint,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	CharacterClass        string          `protobuf:"bytes,3,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CharacterNickname     string          `protobuf:"bytes,4,opt,name=characterNickname,proto3" json:"characterNickname,omitempty"`
+	StreamingModeNickName string          `protobuf:"bytes,5,opt,name=streamingModeNickName,proto3" json:"streamingModeNickName,omitempty"`
+	Stat                  *SArenaUserStat `protobuf:"bytes,6,opt,name=stat,proto3" json:"stat,omitempty"`
+	IsSurrender           int32           `protobuf:"varint,7,opt,name=isSurrender,proto3" json:"isSurrender,omitempty"`
 }
 
 func (x *SArenaGameResultRecord) Reset() {
@@ -1530,36 +1520,36 @@ func (*SArenaGameResultRecord) Descriptor() ([]byte, []int) {
 }
 
 func (x *SArenaGameResultRecord) GetTeamType() int32 {
-	if x != nil && x.TeamType != nil {
-		return *x.TeamType
+	if x != nil {
+		return x.TeamType
 	}
 	return 0
 }
 
 func (x *SArenaGameResultRecord) GetCharacterId() uint64 {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return 0
 }
 
 func (x *SArenaGameResultRecord) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SArenaGameResultRecord) GetCharacterNickname() string {
-	if x != nil && x.CharacterNickname != nil {
-		return *x.CharacterNickname
+	if x != nil {
+		return x.CharacterNickname
 	}
 	return ""
 }
 
 func (x *SArenaGameResultRecord) GetStreamingModeNickName() string {
-	if x != nil && x.StreamingModeNickName != nil {
-		return *x.StreamingModeNickName
+	if x != nil {
+		return x.StreamingModeNickName
 	}
 	return ""
 }
@@ -1572,8 +1562,8 @@ func (x *SArenaGameResultRecord) GetStat() *SArenaUserStat {
 }
 
 func (x *SArenaGameResultRecord) GetIsSurrender() int32 {
-	if x != nil && x.IsSurrender != nil {
-		return *x.IsSurrender
+	if x != nil {
+		return x.IsSurrender
 	}
 	return 0
 }
@@ -1876,8 +1866,11 @@ var file___Character_proto_rawDesc = []byte{
 	0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x5f, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f,
 	0x44, 0x55, 0x4e, 0x47, 0x45, 0x4f, 0x4e, 0x10, 0x02, 0x12, 0x1b, 0x0a, 0x17, 0x46, 0x72, 0x69,
 	0x65, 0x6e, 0x64, 0x5f, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x4f, 0x46, 0x46,
-	0x4c, 0x49, 0x4e, 0x45, 0x10, 0x03, 0x42, 0x17, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72,
-	0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62,
+	0x4c, 0x49, 0x4e, 0x45, 0x10, 0x03, 0x42, 0x3b, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e, 0x70, 0x61,
+	0x63, 0x6b, 0x65, 0x74, 0x73, 0x2e, 0x63, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x42,
+	0x09, 0x63, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x50, 0x00, 0x5a, 0x15, 0x64, 0x61,
+	0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
+	0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

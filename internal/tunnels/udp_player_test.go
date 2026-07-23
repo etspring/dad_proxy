@@ -31,10 +31,10 @@ func TestBindUDPPlayerFromEnterGameSetsPlayerCount(t *testing.T) {
 	m.tunnels[tunnelKey("52.1.2.3", 7777)] = gameTun
 
 	body, err := proto.Marshal(&pb.SS2C_ENTER_GAME_SERVER_NOT{
-		Ip:        ptr("52.1.2.3"),
-		Port:      ptrUint32(7777),
-		AccountId: ptr("4048673"),
-		NickName:  &pb.SACCOUNT_NICKNAME{OriginalNickName: ptr("BogKuzya")},
+		Ip:        "52.1.2.3",
+		Port:      7777,
+		AccountId: "4048673",
+		NickName:  &pb.SACCOUNT_NICKNAME{OriginalNickName: "BogKuzya"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -58,9 +58,9 @@ func TestBindUDPPlayerFromEnterGameSetsNickName(t *testing.T) {
 	m.tunnels[tunnelKey("52.1.2.3", 7777)] = gameTun
 
 	body, err := proto.Marshal(&pb.SS2C_ENTER_GAME_SERVER_NOT{
-		Ip:       ptr("52.1.2.3"),
-		Port:     ptrUint32(7777),
-		NickName: &pb.SACCOUNT_NICKNAME{OriginalNickName: ptr("BogKuzya")},
+		Ip:       "52.1.2.3",
+		Port:     7777,
+		NickName: &pb.SACCOUNT_NICKNAME{OriginalNickName: "BogKuzya"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -84,8 +84,8 @@ func TestBindUDPPlayerFromEnterGameSetsCurrentMap(t *testing.T) {
 	m.tunnels[tunnelKey("52.1.2.3", 7777)] = gameTun
 
 	selectBody, err := proto.Marshal(&pb.SC2S_LOBBY_GAME_TYPE_SELECT_REQ{
-		GameTypeIndex: ptrUint32(1),
-		DungeonIdTag:  ptr("GoblinCave"),
+		GameTypeIndex: 1,
+		DungeonIdTag:  "GoblinCave",
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -94,9 +94,9 @@ func TestBindUDPPlayerFromEnterGameSetsCurrentMap(t *testing.T) {
 	m.observeTCPFrameFromClient(nil, lobbyTun, sess, selectFrame)
 
 	enterBody, err := proto.Marshal(&pb.SS2C_ENTER_GAME_SERVER_NOT{
-		Ip:       ptr("52.1.2.3"),
-		Port:     ptrUint32(7777),
-		NickName: &pb.SACCOUNT_NICKNAME{OriginalNickName: ptr("BogKuzya")},
+		Ip:       "52.1.2.3",
+		Port:     7777,
+		NickName: &pb.SACCOUNT_NICKNAME{OriginalNickName: "BogKuzya"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -127,5 +127,3 @@ func TestUDPTunnelStatsFromInfoIncludesCurrentMap(t *testing.T) {
 		t.Fatalf("currentMap: got %q", stats.Players[0].CurrentMap)
 	}
 }
-
-func ptrUint32(v uint32) *uint32 { return &v }

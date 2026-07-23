@@ -64,16 +64,6 @@ func (x SC2S_AUTO_MATCH_REG_REQ_MODE) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SC2S_AUTO_MATCH_REG_REQ_MODE) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SC2S_AUTO_MATCH_REG_REQ_MODE(num)
-	return nil
-}
-
 // Deprecated: Use SC2S_AUTO_MATCH_REG_REQ_MODE.Descriptor instead.
 func (SC2S_AUTO_MATCH_REG_REQ_MODE) EnumDescriptor() ([]byte, []int) {
 	return file_InGame_proto_rawDescGZIP(), []int{1, 0}
@@ -222,16 +212,6 @@ func (x SS2C_AUTO_MATCH_REG_RES_RESULT) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SS2C_AUTO_MATCH_REG_RES_RESULT) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_AUTO_MATCH_REG_RES_RESULT(num)
-	return nil
-}
-
 // Deprecated: Use SS2C_AUTO_MATCH_REG_RES_RESULT.Descriptor instead.
 func (SS2C_AUTO_MATCH_REG_RES_RESULT) EnumDescriptor() ([]byte, []int) {
 	return file_InGame_proto_rawDescGZIP(), []int{2, 0}
@@ -308,16 +288,6 @@ func (x SPERF_HITCH_SAMPLE_HitchCause) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SPERF_HITCH_SAMPLE_HitchCause) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SPERF_HITCH_SAMPLE_HitchCause(num)
-	return nil
-}
-
 // Deprecated: Use SPERF_HITCH_SAMPLE_HitchCause.Descriptor instead.
 func (SPERF_HITCH_SAMPLE_HitchCause) EnumDescriptor() ([]byte, []int) {
 	return file_InGame_proto_rawDescGZIP(), []int{19, 0}
@@ -370,16 +340,6 @@ func (x SPERF_HITCH_SAMPLE_Flags) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SPERF_HITCH_SAMPLE_Flags) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SPERF_HITCH_SAMPLE_Flags(num)
-	return nil
-}
-
 // Deprecated: Use SPERF_HITCH_SAMPLE_Flags.Descriptor instead.
 func (SPERF_HITCH_SAMPLE_Flags) EnumDescriptor() ([]byte, []int) {
 	return file_InGame_proto_rawDescGZIP(), []int{19, 1}
@@ -390,14 +350,14 @@ type SS2C_ENTER_GAME_SERVER_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Port                    *uint32            `protobuf:"varint,1,opt,name=port" json:"port,omitempty"`
-	Ip                      *string            `protobuf:"bytes,2,opt,name=ip" json:"ip,omitempty"`
-	SessionId               *string            `protobuf:"bytes,3,opt,name=sessionId" json:"sessionId,omitempty"`
-	AccountId               *string            `protobuf:"bytes,4,opt,name=accountId" json:"accountId,omitempty"`
-	NickName                *SACCOUNT_NICKNAME `protobuf:"bytes,5,opt,name=nickName" json:"nickName,omitempty"`
-	ServiceUrl              *string            `protobuf:"bytes,6,opt,name=serviceUrl" json:"serviceUrl,omitempty"`
-	PerfReportStartDelaySec *int32             `protobuf:"varint,7,opt,name=perfReportStartDelaySec" json:"perfReportStartDelaySec,omitempty"`
-	PerfReportEnabled       *uint32            `protobuf:"varint,8,opt,name=perfReportEnabled" json:"perfReportEnabled,omitempty"`
+	Port                    uint32             `protobuf:"varint,1,opt,name=port,proto3" json:"port,omitempty"`
+	Ip                      string             `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
+	SessionId               string             `protobuf:"bytes,3,opt,name=sessionId,proto3" json:"sessionId,omitempty"`
+	AccountId               string             `protobuf:"bytes,4,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	NickName                *SACCOUNT_NICKNAME `protobuf:"bytes,5,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	ServiceUrl              string             `protobuf:"bytes,6,opt,name=serviceUrl,proto3" json:"serviceUrl,omitempty"`
+	PerfReportStartDelaySec int32              `protobuf:"varint,7,opt,name=perfReportStartDelaySec,proto3" json:"perfReportStartDelaySec,omitempty"`
+	PerfReportEnabled       uint32             `protobuf:"varint,8,opt,name=perfReportEnabled,proto3" json:"perfReportEnabled,omitempty"`
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) Reset() {
@@ -433,29 +393,29 @@ func (*SS2C_ENTER_GAME_SERVER_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) GetPort() uint32 {
-	if x != nil && x.Port != nil {
-		return *x.Port
+	if x != nil {
+		return x.Port
 	}
 	return 0
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) GetIp() string {
-	if x != nil && x.Ip != nil {
-		return *x.Ip
+	if x != nil {
+		return x.Ip
 	}
 	return ""
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) GetSessionId() string {
-	if x != nil && x.SessionId != nil {
-		return *x.SessionId
+	if x != nil {
+		return x.SessionId
 	}
 	return ""
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -468,22 +428,22 @@ func (x *SS2C_ENTER_GAME_SERVER_NOT) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) GetServiceUrl() string {
-	if x != nil && x.ServiceUrl != nil {
-		return *x.ServiceUrl
+	if x != nil {
+		return x.ServiceUrl
 	}
 	return ""
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) GetPerfReportStartDelaySec() int32 {
-	if x != nil && x.PerfReportStartDelaySec != nil {
-		return *x.PerfReportStartDelaySec
+	if x != nil {
+		return x.PerfReportStartDelaySec
 	}
 	return 0
 }
 
 func (x *SS2C_ENTER_GAME_SERVER_NOT) GetPerfReportEnabled() uint32 {
-	if x != nil && x.PerfReportEnabled != nil {
-		return *x.PerfReportEnabled
+	if x != nil {
+		return x.PerfReportEnabled
 	}
 	return 0
 }
@@ -493,12 +453,12 @@ type SC2S_AUTO_MATCH_REG_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Mode                *uint32 `protobuf:"varint,1,opt,name=mode" json:"mode,omitempty"`
-	Region              *uint32 `protobuf:"varint,2,opt,name=region" json:"region,omitempty"`
-	GameType            *uint32 `protobuf:"varint,3,opt,name=gameType" json:"gameType,omitempty"`
-	IsRandomMatchmaking *int32  `protobuf:"varint,4,opt,name=isRandomMatchmaking" json:"isRandomMatchmaking,omitempty"`
-	DungeonIdTag        *string `protobuf:"bytes,5,opt,name=dungeonIdTag" json:"dungeonIdTag,omitempty"`
-	GearPoolIndex       *uint32 `protobuf:"varint,6,opt,name=gearPoolIndex" json:"gearPoolIndex,omitempty"`
+	Mode                uint32 `protobuf:"varint,1,opt,name=mode,proto3" json:"mode,omitempty"`
+	Region              uint32 `protobuf:"varint,2,opt,name=region,proto3" json:"region,omitempty"`
+	GameType            uint32 `protobuf:"varint,3,opt,name=gameType,proto3" json:"gameType,omitempty"`
+	IsRandomMatchmaking int32  `protobuf:"varint,4,opt,name=isRandomMatchmaking,proto3" json:"isRandomMatchmaking,omitempty"`
+	DungeonIdTag        string `protobuf:"bytes,5,opt,name=dungeonIdTag,proto3" json:"dungeonIdTag,omitempty"`
+	GearPoolIndex       uint32 `protobuf:"varint,6,opt,name=gearPoolIndex,proto3" json:"gearPoolIndex,omitempty"`
 }
 
 func (x *SC2S_AUTO_MATCH_REG_REQ) Reset() {
@@ -534,43 +494,43 @@ func (*SC2S_AUTO_MATCH_REG_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_AUTO_MATCH_REG_REQ) GetMode() uint32 {
-	if x != nil && x.Mode != nil {
-		return *x.Mode
+	if x != nil {
+		return x.Mode
 	}
 	return 0
 }
 
 func (x *SC2S_AUTO_MATCH_REG_REQ) GetRegion() uint32 {
-	if x != nil && x.Region != nil {
-		return *x.Region
+	if x != nil {
+		return x.Region
 	}
 	return 0
 }
 
 func (x *SC2S_AUTO_MATCH_REG_REQ) GetGameType() uint32 {
-	if x != nil && x.GameType != nil {
-		return *x.GameType
+	if x != nil {
+		return x.GameType
 	}
 	return 0
 }
 
 func (x *SC2S_AUTO_MATCH_REG_REQ) GetIsRandomMatchmaking() int32 {
-	if x != nil && x.IsRandomMatchmaking != nil {
-		return *x.IsRandomMatchmaking
+	if x != nil {
+		return x.IsRandomMatchmaking
 	}
 	return 0
 }
 
 func (x *SC2S_AUTO_MATCH_REG_REQ) GetDungeonIdTag() string {
-	if x != nil && x.DungeonIdTag != nil {
-		return *x.DungeonIdTag
+	if x != nil {
+		return x.DungeonIdTag
 	}
 	return ""
 }
 
 func (x *SC2S_AUTO_MATCH_REG_REQ) GetGearPoolIndex() uint32 {
-	if x != nil && x.GearPoolIndex != nil {
-		return *x.GearPoolIndex
+	if x != nil {
+		return x.GearPoolIndex
 	}
 	return 0
 }
@@ -580,9 +540,9 @@ type SS2C_AUTO_MATCH_REG_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result        *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	RestrictionMS *uint32 `protobuf:"varint,2,opt,name=restrictionMS" json:"restrictionMS,omitempty"`
-	ContentId     *string `protobuf:"bytes,3,opt,name=contentId" json:"contentId,omitempty"`
+	Result        uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	RestrictionMS uint32 `protobuf:"varint,2,opt,name=restrictionMS,proto3" json:"restrictionMS,omitempty"`
+	ContentId     string `protobuf:"bytes,3,opt,name=contentId,proto3" json:"contentId,omitempty"`
 }
 
 func (x *SS2C_AUTO_MATCH_REG_RES) Reset() {
@@ -618,22 +578,22 @@ func (*SS2C_AUTO_MATCH_REG_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_AUTO_MATCH_REG_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_AUTO_MATCH_REG_RES) GetRestrictionMS() uint32 {
-	if x != nil && x.RestrictionMS != nil {
-		return *x.RestrictionMS
+	if x != nil {
+		return x.RestrictionMS
 	}
 	return 0
 }
 
 func (x *SS2C_AUTO_MATCH_REG_RES) GetContentId() string {
-	if x != nil && x.ContentId != nil {
-		return *x.ContentId
+	if x != nil {
+		return x.ContentId
 	}
 	return ""
 }
@@ -643,7 +603,7 @@ type SC2S_GAME_ENTER_COMPLETE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsSuccess *uint32 `protobuf:"varint,1,opt,name=isSuccess" json:"isSuccess,omitempty"`
+	IsSuccess uint32 `protobuf:"varint,1,opt,name=isSuccess,proto3" json:"isSuccess,omitempty"`
 }
 
 func (x *SC2S_GAME_ENTER_COMPLETE_NOT) Reset() {
@@ -679,8 +639,8 @@ func (*SC2S_GAME_ENTER_COMPLETE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_GAME_ENTER_COMPLETE_NOT) GetIsSuccess() uint32 {
-	if x != nil && x.IsSuccess != nil {
-		return *x.IsSuccess
+	if x != nil {
+		return x.IsSuccess
 	}
 	return 0
 }
@@ -690,8 +650,8 @@ type SS2C_AUTO_MATCH_REG_TEAM_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	Mode   *uint32 `protobuf:"varint,2,opt,name=mode" json:"mode,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Mode   uint32 `protobuf:"varint,2,opt,name=mode,proto3" json:"mode,omitempty"`
 }
 
 func (x *SS2C_AUTO_MATCH_REG_TEAM_NOT) Reset() {
@@ -727,15 +687,15 @@ func (*SS2C_AUTO_MATCH_REG_TEAM_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_AUTO_MATCH_REG_TEAM_NOT) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_AUTO_MATCH_REG_TEAM_NOT) GetMode() uint32 {
-	if x != nil && x.Mode != nil {
-		return *x.Mode
+	if x != nil {
+		return x.Mode
 	}
 	return 0
 }
@@ -745,8 +705,8 @@ type SC2S_RECONNECT_INGAME_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsRefusal *uint32            `protobuf:"varint,1,opt,name=isRefusal" json:"isRefusal,omitempty"`
-	NickName  *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
+	IsRefusal uint32             `protobuf:"varint,1,opt,name=isRefusal,proto3" json:"isRefusal,omitempty"`
+	NickName  *SACCOUNT_NICKNAME `protobuf:"bytes,2,opt,name=nickName,proto3" json:"nickName,omitempty"`
 }
 
 func (x *SC2S_RECONNECT_INGAME_REQ) Reset() {
@@ -782,8 +742,8 @@ func (*SC2S_RECONNECT_INGAME_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_RECONNECT_INGAME_REQ) GetIsRefusal() uint32 {
-	if x != nil && x.IsRefusal != nil {
-		return *x.IsRefusal
+	if x != nil {
+		return x.IsRefusal
 	}
 	return 0
 }
@@ -800,8 +760,8 @@ type SS2C_RECONNECT_INGAME_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result     *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	ServiceUrl *string `protobuf:"bytes,2,opt,name=serviceUrl" json:"serviceUrl,omitempty"`
+	Result     uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	ServiceUrl string `protobuf:"bytes,2,opt,name=serviceUrl,proto3" json:"serviceUrl,omitempty"`
 }
 
 func (x *SS2C_RECONNECT_INGAME_RES) Reset() {
@@ -837,15 +797,15 @@ func (*SS2C_RECONNECT_INGAME_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_RECONNECT_INGAME_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_RECONNECT_INGAME_RES) GetServiceUrl() string {
-	if x != nil && x.ServiceUrl != nil {
-		return *x.ServiceUrl
+	if x != nil {
+		return x.ServiceUrl
 	}
 	return ""
 }
@@ -855,10 +815,10 @@ type SGEAR_BASE_SCORE_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	GameType      *int32 `protobuf:"varint,1,opt,name=gameType" json:"gameType,omitempty"`
-	GearBaseIndex *int32 `protobuf:"varint,2,opt,name=gearBaseIndex" json:"gearBaseIndex,omitempty"`
-	BeginScore    *int32 `protobuf:"varint,3,opt,name=beginScore" json:"beginScore,omitempty"`
-	EndScore      *int32 `protobuf:"varint,4,opt,name=endScore" json:"endScore,omitempty"`
+	GameType      int32 `protobuf:"varint,1,opt,name=gameType,proto3" json:"gameType,omitempty"`
+	GearBaseIndex int32 `protobuf:"varint,2,opt,name=gearBaseIndex,proto3" json:"gearBaseIndex,omitempty"`
+	BeginScore    int32 `protobuf:"varint,3,opt,name=beginScore,proto3" json:"beginScore,omitempty"`
+	EndScore      int32 `protobuf:"varint,4,opt,name=endScore,proto3" json:"endScore,omitempty"`
 }
 
 func (x *SGEAR_BASE_SCORE_INFO) Reset() {
@@ -894,29 +854,29 @@ func (*SGEAR_BASE_SCORE_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SGEAR_BASE_SCORE_INFO) GetGameType() int32 {
-	if x != nil && x.GameType != nil {
-		return *x.GameType
+	if x != nil {
+		return x.GameType
 	}
 	return 0
 }
 
 func (x *SGEAR_BASE_SCORE_INFO) GetGearBaseIndex() int32 {
-	if x != nil && x.GearBaseIndex != nil {
-		return *x.GearBaseIndex
+	if x != nil {
+		return x.GearBaseIndex
 	}
 	return 0
 }
 
 func (x *SGEAR_BASE_SCORE_INFO) GetBeginScore() int32 {
-	if x != nil && x.BeginScore != nil {
-		return *x.BeginScore
+	if x != nil {
+		return x.BeginScore
 	}
 	return 0
 }
 
 func (x *SGEAR_BASE_SCORE_INFO) GetEndScore() int32 {
-	if x != nil && x.EndScore != nil {
-		return *x.EndScore
+	if x != nil {
+		return x.EndScore
 	}
 	return 0
 }
@@ -926,7 +886,7 @@ type SS2C_GEAR_BASE_SCORE_LIST_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Infos []*SGEAR_BASE_SCORE_INFO `protobuf:"bytes,1,rep,name=infos" json:"infos,omitempty"`
+	Infos []*SGEAR_BASE_SCORE_INFO `protobuf:"bytes,1,rep,name=infos,proto3" json:"infos,omitempty"`
 }
 
 func (x *SS2C_GEAR_BASE_SCORE_LIST_NOT) Reset() {
@@ -973,7 +933,7 @@ type SS2C_MATCH_POOL_REGISTERED_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MatchRemainTimeSec *uint32 `protobuf:"varint,1,opt,name=matchRemainTimeSec" json:"matchRemainTimeSec,omitempty"`
+	MatchRemainTimeSec uint32 `protobuf:"varint,1,opt,name=matchRemainTimeSec,proto3" json:"matchRemainTimeSec,omitempty"`
 }
 
 func (x *SS2C_MATCH_POOL_REGISTERED_NOT) Reset() {
@@ -1009,8 +969,8 @@ func (*SS2C_MATCH_POOL_REGISTERED_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_MATCH_POOL_REGISTERED_NOT) GetMatchRemainTimeSec() uint32 {
-	if x != nil && x.MatchRemainTimeSec != nil {
-		return *x.MatchRemainTimeSec
+	if x != nil {
+		return x.MatchRemainTimeSec
 	}
 	return 0
 }
@@ -1020,7 +980,7 @@ type SS2C_MATCHMAKING_FAIL_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_MATCHMAKING_FAIL_NOT) Reset() {
@@ -1056,8 +1016,8 @@ func (*SS2C_MATCHMAKING_FAIL_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_MATCHMAKING_FAIL_NOT) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1067,11 +1027,11 @@ type SC2S_INGAME_REPORT_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId         *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	Category          *uint32            `protobuf:"varint,2,opt,name=category" json:"category,omitempty"`
-	TargetAccountId   *string            `protobuf:"bytes,3,opt,name=targetAccountId" json:"targetAccountId,omitempty"`
-	TargetCharacterId *string            `protobuf:"bytes,4,opt,name=targetCharacterId" json:"targetCharacterId,omitempty"`
-	TargetNickname    *SACCOUNT_NICKNAME `protobuf:"bytes,5,opt,name=targetNickname" json:"targetNickname,omitempty"`
+	AccountId         string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	Category          uint32             `protobuf:"varint,2,opt,name=category,proto3" json:"category,omitempty"`
+	TargetAccountId   string             `protobuf:"bytes,3,opt,name=targetAccountId,proto3" json:"targetAccountId,omitempty"`
+	TargetCharacterId string             `protobuf:"bytes,4,opt,name=targetCharacterId,proto3" json:"targetCharacterId,omitempty"`
+	TargetNickname    *SACCOUNT_NICKNAME `protobuf:"bytes,5,opt,name=targetNickname,proto3" json:"targetNickname,omitempty"`
 }
 
 func (x *SC2S_INGAME_REPORT_REQ) Reset() {
@@ -1107,29 +1067,29 @@ func (*SC2S_INGAME_REPORT_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_INGAME_REPORT_REQ) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SC2S_INGAME_REPORT_REQ) GetCategory() uint32 {
-	if x != nil && x.Category != nil {
-		return *x.Category
+	if x != nil {
+		return x.Category
 	}
 	return 0
 }
 
 func (x *SC2S_INGAME_REPORT_REQ) GetTargetAccountId() string {
-	if x != nil && x.TargetAccountId != nil {
-		return *x.TargetAccountId
+	if x != nil {
+		return x.TargetAccountId
 	}
 	return ""
 }
 
 func (x *SC2S_INGAME_REPORT_REQ) GetTargetCharacterId() string {
-	if x != nil && x.TargetCharacterId != nil {
-		return *x.TargetCharacterId
+	if x != nil {
+		return x.TargetCharacterId
 	}
 	return ""
 }
@@ -1146,7 +1106,7 @@ type SS2C_INGAME_REPORT_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_INGAME_REPORT_RES) Reset() {
@@ -1182,8 +1142,8 @@ func (*SS2C_INGAME_REPORT_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_INGAME_REPORT_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1193,14 +1153,14 @@ type SPERF_HARDWARE_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Gpu             *string `protobuf:"bytes,1,opt,name=gpu" json:"gpu,omitempty"`
-	GpuDriver       *string `protobuf:"bytes,2,opt,name=gpuDriver" json:"gpuDriver,omitempty"`
-	CpuCores        *int32  `protobuf:"varint,3,opt,name=cpuCores" json:"cpuCores,omitempty"`
-	RamMB           *int32  `protobuf:"varint,4,opt,name=ramMB" json:"ramMB,omitempty"`
-	OsVersion       *string `protobuf:"bytes,5,opt,name=osVersion" json:"osVersion,omitempty"`
-	HvciState       *int32  `protobuf:"varint,6,opt,name=hvciState" json:"hvciState,omitempty"`
-	SecureBootState *int32  `protobuf:"varint,7,opt,name=secureBootState" json:"secureBootState,omitempty"`
-	TpmState        *int32  `protobuf:"varint,8,opt,name=tpmState" json:"tpmState,omitempty"`
+	Gpu             string `protobuf:"bytes,1,opt,name=gpu,proto3" json:"gpu,omitempty"`
+	GpuDriver       string `protobuf:"bytes,2,opt,name=gpuDriver,proto3" json:"gpuDriver,omitempty"`
+	CpuCores        int32  `protobuf:"varint,3,opt,name=cpuCores,proto3" json:"cpuCores,omitempty"`
+	RamMB           int32  `protobuf:"varint,4,opt,name=ramMB,proto3" json:"ramMB,omitempty"`
+	OsVersion       string `protobuf:"bytes,5,opt,name=osVersion,proto3" json:"osVersion,omitempty"`
+	HvciState       int32  `protobuf:"varint,6,opt,name=hvciState,proto3" json:"hvciState,omitempty"`
+	SecureBootState int32  `protobuf:"varint,7,opt,name=secureBootState,proto3" json:"secureBootState,omitempty"`
+	TpmState        int32  `protobuf:"varint,8,opt,name=tpmState,proto3" json:"tpmState,omitempty"`
 }
 
 func (x *SPERF_HARDWARE_INFO) Reset() {
@@ -1236,57 +1196,57 @@ func (*SPERF_HARDWARE_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPERF_HARDWARE_INFO) GetGpu() string {
-	if x != nil && x.Gpu != nil {
-		return *x.Gpu
+	if x != nil {
+		return x.Gpu
 	}
 	return ""
 }
 
 func (x *SPERF_HARDWARE_INFO) GetGpuDriver() string {
-	if x != nil && x.GpuDriver != nil {
-		return *x.GpuDriver
+	if x != nil {
+		return x.GpuDriver
 	}
 	return ""
 }
 
 func (x *SPERF_HARDWARE_INFO) GetCpuCores() int32 {
-	if x != nil && x.CpuCores != nil {
-		return *x.CpuCores
+	if x != nil {
+		return x.CpuCores
 	}
 	return 0
 }
 
 func (x *SPERF_HARDWARE_INFO) GetRamMB() int32 {
-	if x != nil && x.RamMB != nil {
-		return *x.RamMB
+	if x != nil {
+		return x.RamMB
 	}
 	return 0
 }
 
 func (x *SPERF_HARDWARE_INFO) GetOsVersion() string {
-	if x != nil && x.OsVersion != nil {
-		return *x.OsVersion
+	if x != nil {
+		return x.OsVersion
 	}
 	return ""
 }
 
 func (x *SPERF_HARDWARE_INFO) GetHvciState() int32 {
-	if x != nil && x.HvciState != nil {
-		return *x.HvciState
+	if x != nil {
+		return x.HvciState
 	}
 	return 0
 }
 
 func (x *SPERF_HARDWARE_INFO) GetSecureBootState() int32 {
-	if x != nil && x.SecureBootState != nil {
-		return *x.SecureBootState
+	if x != nil {
+		return x.SecureBootState
 	}
 	return 0
 }
 
 func (x *SPERF_HARDWARE_INFO) GetTpmState() int32 {
-	if x != nil && x.TpmState != nil {
-		return *x.TpmState
+	if x != nil {
+		return x.TpmState
 	}
 	return 0
 }
@@ -1296,11 +1256,11 @@ type SPERF_GRAPHICS_SETTINGS struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Resolution  *string `protobuf:"bytes,1,opt,name=resolution" json:"resolution,omitempty"`
-	Preset      *int32  `protobuf:"varint,2,opt,name=preset" json:"preset,omitempty"`
-	Vsync       *uint32 `protobuf:"varint,3,opt,name=vsync" json:"vsync,omitempty"`
-	Upscaler    *string `protobuf:"bytes,4,opt,name=upscaler" json:"upscaler,omitempty"`
-	RenderScale *int32  `protobuf:"varint,5,opt,name=renderScale" json:"renderScale,omitempty"`
+	Resolution  string `protobuf:"bytes,1,opt,name=resolution,proto3" json:"resolution,omitempty"`
+	Preset      int32  `protobuf:"varint,2,opt,name=preset,proto3" json:"preset,omitempty"`
+	Vsync       uint32 `protobuf:"varint,3,opt,name=vsync,proto3" json:"vsync,omitempty"`
+	Upscaler    string `protobuf:"bytes,4,opt,name=upscaler,proto3" json:"upscaler,omitempty"`
+	RenderScale int32  `protobuf:"varint,5,opt,name=renderScale,proto3" json:"renderScale,omitempty"`
 }
 
 func (x *SPERF_GRAPHICS_SETTINGS) Reset() {
@@ -1336,36 +1296,36 @@ func (*SPERF_GRAPHICS_SETTINGS) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPERF_GRAPHICS_SETTINGS) GetResolution() string {
-	if x != nil && x.Resolution != nil {
-		return *x.Resolution
+	if x != nil {
+		return x.Resolution
 	}
 	return ""
 }
 
 func (x *SPERF_GRAPHICS_SETTINGS) GetPreset() int32 {
-	if x != nil && x.Preset != nil {
-		return *x.Preset
+	if x != nil {
+		return x.Preset
 	}
 	return 0
 }
 
 func (x *SPERF_GRAPHICS_SETTINGS) GetVsync() uint32 {
-	if x != nil && x.Vsync != nil {
-		return *x.Vsync
+	if x != nil {
+		return x.Vsync
 	}
 	return 0
 }
 
 func (x *SPERF_GRAPHICS_SETTINGS) GetUpscaler() string {
-	if x != nil && x.Upscaler != nil {
-		return *x.Upscaler
+	if x != nil {
+		return x.Upscaler
 	}
 	return ""
 }
 
 func (x *SPERF_GRAPHICS_SETTINGS) GetRenderScale() int32 {
-	if x != nil && x.RenderScale != nil {
-		return *x.RenderScale
+	if x != nil {
+		return x.RenderScale
 	}
 	return 0
 }
@@ -1375,9 +1335,9 @@ type SPERF_LOADING_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MapLoadSec   *float32 `protobuf:"fixed32,1,opt,name=mapLoadSec" json:"mapLoadSec,omitempty"`
-	StreamLevels *int32   `protobuf:"varint,2,opt,name=streamLevels" json:"streamLevels,omitempty"`
-	FlushCount   *int32   `protobuf:"varint,3,opt,name=flushCount" json:"flushCount,omitempty"`
+	MapLoadSec   float32 `protobuf:"fixed32,1,opt,name=mapLoadSec,proto3" json:"mapLoadSec,omitempty"`
+	StreamLevels int32   `protobuf:"varint,2,opt,name=streamLevels,proto3" json:"streamLevels,omitempty"`
+	FlushCount   int32   `protobuf:"varint,3,opt,name=flushCount,proto3" json:"flushCount,omitempty"`
 }
 
 func (x *SPERF_LOADING_INFO) Reset() {
@@ -1413,22 +1373,22 @@ func (*SPERF_LOADING_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPERF_LOADING_INFO) GetMapLoadSec() float32 {
-	if x != nil && x.MapLoadSec != nil {
-		return *x.MapLoadSec
+	if x != nil {
+		return x.MapLoadSec
 	}
 	return 0
 }
 
 func (x *SPERF_LOADING_INFO) GetStreamLevels() int32 {
-	if x != nil && x.StreamLevels != nil {
-		return *x.StreamLevels
+	if x != nil {
+		return x.StreamLevels
 	}
 	return 0
 }
 
 func (x *SPERF_LOADING_INFO) GetFlushCount() int32 {
-	if x != nil && x.FlushCount != nil {
-		return *x.FlushCount
+	if x != nil {
+		return x.FlushCount
 	}
 	return 0
 }
@@ -1438,14 +1398,14 @@ type SPERF_NET struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InPackets      *uint64 `protobuf:"varint,1,opt,name=inPackets" json:"inPackets,omitempty"`
-	OutPackets     *uint64 `protobuf:"varint,2,opt,name=outPackets" json:"outPackets,omitempty"`
-	InBytes        *uint64 `protobuf:"varint,3,opt,name=inBytes" json:"inBytes,omitempty"`
-	OutBytes       *uint64 `protobuf:"varint,4,opt,name=outBytes" json:"outBytes,omitempty"`
-	InPacketsLost  *uint32 `protobuf:"varint,5,opt,name=inPacketsLost" json:"inPacketsLost,omitempty"`
-	OutPacketsLost *uint32 `protobuf:"varint,6,opt,name=outPacketsLost" json:"outPacketsLost,omitempty"`
-	InBunches      *uint32 `protobuf:"varint,7,opt,name=inBunches" json:"inBunches,omitempty"`
-	OutBunches     *uint32 `protobuf:"varint,8,opt,name=outBunches" json:"outBunches,omitempty"`
+	InPackets      uint64 `protobuf:"varint,1,opt,name=inPackets,proto3" json:"inPackets,omitempty"`
+	OutPackets     uint64 `protobuf:"varint,2,opt,name=outPackets,proto3" json:"outPackets,omitempty"`
+	InBytes        uint64 `protobuf:"varint,3,opt,name=inBytes,proto3" json:"inBytes,omitempty"`
+	OutBytes       uint64 `protobuf:"varint,4,opt,name=outBytes,proto3" json:"outBytes,omitempty"`
+	InPacketsLost  uint32 `protobuf:"varint,5,opt,name=inPacketsLost,proto3" json:"inPacketsLost,omitempty"`
+	OutPacketsLost uint32 `protobuf:"varint,6,opt,name=outPacketsLost,proto3" json:"outPacketsLost,omitempty"`
+	InBunches      uint32 `protobuf:"varint,7,opt,name=inBunches,proto3" json:"inBunches,omitempty"`
+	OutBunches     uint32 `protobuf:"varint,8,opt,name=outBunches,proto3" json:"outBunches,omitempty"`
 }
 
 func (x *SPERF_NET) Reset() {
@@ -1481,57 +1441,57 @@ func (*SPERF_NET) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPERF_NET) GetInPackets() uint64 {
-	if x != nil && x.InPackets != nil {
-		return *x.InPackets
+	if x != nil {
+		return x.InPackets
 	}
 	return 0
 }
 
 func (x *SPERF_NET) GetOutPackets() uint64 {
-	if x != nil && x.OutPackets != nil {
-		return *x.OutPackets
+	if x != nil {
+		return x.OutPackets
 	}
 	return 0
 }
 
 func (x *SPERF_NET) GetInBytes() uint64 {
-	if x != nil && x.InBytes != nil {
-		return *x.InBytes
+	if x != nil {
+		return x.InBytes
 	}
 	return 0
 }
 
 func (x *SPERF_NET) GetOutBytes() uint64 {
-	if x != nil && x.OutBytes != nil {
-		return *x.OutBytes
+	if x != nil {
+		return x.OutBytes
 	}
 	return 0
 }
 
 func (x *SPERF_NET) GetInPacketsLost() uint32 {
-	if x != nil && x.InPacketsLost != nil {
-		return *x.InPacketsLost
+	if x != nil {
+		return x.InPacketsLost
 	}
 	return 0
 }
 
 func (x *SPERF_NET) GetOutPacketsLost() uint32 {
-	if x != nil && x.OutPacketsLost != nil {
-		return *x.OutPacketsLost
+	if x != nil {
+		return x.OutPacketsLost
 	}
 	return 0
 }
 
 func (x *SPERF_NET) GetInBunches() uint32 {
-	if x != nil && x.InBunches != nil {
-		return *x.InBunches
+	if x != nil {
+		return x.InBunches
 	}
 	return 0
 }
 
 func (x *SPERF_NET) GetOutBunches() uint32 {
-	if x != nil && x.OutBunches != nil {
-		return *x.OutBunches
+	if x != nil {
+		return x.OutBunches
 	}
 	return 0
 }
@@ -1541,52 +1501,52 @@ type SPERF_SUMMARY struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DurationSec    *int32     `protobuf:"varint,1,opt,name=durationSec" json:"durationSec,omitempty"`
-	TotalFrames    *int32     `protobuf:"varint,2,opt,name=totalFrames" json:"totalFrames,omitempty"`
-	FtHist         []int32    `protobuf:"varint,3,rep,name=ftHist" json:"ftHist,omitempty"`
-	GtHist         []int32    `protobuf:"varint,4,rep,name=gtHist" json:"gtHist,omitempty"`
-	RtHist         []int32    `protobuf:"varint,5,rep,name=rtHist" json:"rtHist,omitempty"`
-	GpuHist        []int32    `protobuf:"varint,6,rep,name=gpuHist" json:"gpuHist,omitempty"`
-	Hitch          []int32    `protobuf:"varint,7,rep,name=hitch" json:"hitch,omitempty"`
-	HitchCause     []int32    `protobuf:"varint,8,rep,name=hitchCause" json:"hitchCause,omitempty"`
-	GcCount        *int32     `protobuf:"varint,10,opt,name=gcCount" json:"gcCount,omitempty"`
-	GcMaxMS        *float32   `protobuf:"fixed32,11,opt,name=gcMaxMS" json:"gcMaxMS,omitempty"`
-	PsoMiss        *int32     `protobuf:"varint,12,opt,name=psoMiss" json:"psoMiss,omitempty"`
-	FtVariance     *float32   `protobuf:"fixed32,13,opt,name=ftVariance" json:"ftVariance,omitempty"`
-	InputAvgMS     *float32   `protobuf:"fixed32,14,opt,name=inputAvgMS" json:"inputAvgMS,omitempty"`
-	InputMaxMS     *float32   `protobuf:"fixed32,15,opt,name=inputMaxMS" json:"inputMaxMS,omitempty"`
-	MemPeakMB      *float32   `protobuf:"fixed32,20,opt,name=memPeakMB" json:"memPeakMB,omitempty"`
-	MemFreeMinMB   *float32   `protobuf:"fixed32,21,opt,name=memFreeMinMB" json:"memFreeMinMB,omitempty"`
-	VramUsedMB     *float32   `protobuf:"fixed32,22,opt,name=vramUsedMB" json:"vramUsedMB,omitempty"`
-	VramBudgetMB   *float32   `protobuf:"fixed32,23,opt,name=vramBudgetMB" json:"vramBudgetMB,omitempty"`
-	TexOverCount   *int32     `protobuf:"varint,24,opt,name=texOverCount" json:"texOverCount,omitempty"`
-	DrawMax        *int32     `protobuf:"varint,30,opt,name=drawMax" json:"drawMax,omitempty"`
-	ActorMax       *int32     `protobuf:"varint,31,opt,name=actorMax" json:"actorMax,omitempty"`
-	PingAvgMS      *float32   `protobuf:"fixed32,40,opt,name=pingAvgMS" json:"pingAvgMS,omitempty"`
-	PingP95MS      *float32   `protobuf:"fixed32,41,opt,name=pingP95MS" json:"pingP95MS,omitempty"`
-	PingMaxMS      *float32   `protobuf:"fixed32,42,opt,name=pingMaxMS" json:"pingMaxMS,omitempty"`
-	JitterMS       *float32   `protobuf:"fixed32,43,opt,name=jitterMS" json:"jitterMS,omitempty"`
-	PktLoss        *int32     `protobuf:"varint,44,opt,name=pktLoss" json:"pktLoss,omitempty"`
-	SvGap100       *int32     `protobuf:"varint,50,opt,name=svGap100" json:"svGap100,omitempty"`
-	SvGap200       *int32     `protobuf:"varint,51,opt,name=svGap200" json:"svGap200,omitempty"`
-	SvGap500       *int32     `protobuf:"varint,52,opt,name=svGap500" json:"svGap500,omitempty"`
-	SvGapMaxMS     *int32     `protobuf:"varint,53,opt,name=svGapMaxMS" json:"svGapMaxMS,omitempty"`
-	SvBurstMax     *int32     `protobuf:"varint,54,opt,name=svBurstMax" json:"svBurstMax,omitempty"`
-	SvHitchCorr    *int32     `protobuf:"varint,55,opt,name=svHitchCorr" json:"svHitchCorr,omitempty"`
-	GtTickAvgMS    *float32   `protobuf:"fixed32,60,opt,name=gtTickAvgMS" json:"gtTickAvgMS,omitempty"`
-	GtPhysicsAvgMS *float32   `protobuf:"fixed32,61,opt,name=gtPhysicsAvgMS" json:"gtPhysicsAvgMS,omitempty"`
-	GtNetAvgMS     *float32   `protobuf:"fixed32,62,opt,name=gtNetAvgMS" json:"gtNetAvgMS,omitempty"`
-	GtUIAvgMS      *float32   `protobuf:"fixed32,63,opt,name=gtUIAvgMS" json:"gtUIAvgMS,omitempty"`
-	GtTickP95MS    *float32   `protobuf:"fixed32,64,opt,name=gtTickP95MS" json:"gtTickP95MS,omitempty"`
-	GtPhysicsP95MS *float32   `protobuf:"fixed32,65,opt,name=gtPhysicsP95MS" json:"gtPhysicsP95MS,omitempty"`
-	GtNetP95MS     *float32   `protobuf:"fixed32,66,opt,name=gtNetP95MS" json:"gtNetP95MS,omitempty"`
-	GtUIP95MS      *float32   `protobuf:"fixed32,67,opt,name=gtUIP95MS" json:"gtUIP95MS,omitempty"`
-	Net            *SPERF_NET `protobuf:"bytes,70,opt,name=net" json:"net,omitempty"`
-	PsoPrecompiled *int32     `protobuf:"varint,81,opt,name=psoPrecompiled" json:"psoPrecompiled,omitempty"`
-	SkelMeshAvg    *int32     `protobuf:"varint,82,opt,name=skelMeshAvg" json:"skelMeshAvg,omitempty"`
-	SkelMeshMax    *int32     `protobuf:"varint,83,opt,name=skelMeshMax" json:"skelMeshMax,omitempty"`
-	SkelBonesAvg   *int32     `protobuf:"varint,84,opt,name=skelBonesAvg" json:"skelBonesAvg,omitempty"`
-	SkelBonesMax   *int32     `protobuf:"varint,85,opt,name=skelBonesMax" json:"skelBonesMax,omitempty"`
+	DurationSec    int32      `protobuf:"varint,1,opt,name=durationSec,proto3" json:"durationSec,omitempty"`
+	TotalFrames    int32      `protobuf:"varint,2,opt,name=totalFrames,proto3" json:"totalFrames,omitempty"`
+	FtHist         []int32    `protobuf:"varint,3,rep,packed,name=ftHist,proto3" json:"ftHist,omitempty"`
+	GtHist         []int32    `protobuf:"varint,4,rep,packed,name=gtHist,proto3" json:"gtHist,omitempty"`
+	RtHist         []int32    `protobuf:"varint,5,rep,packed,name=rtHist,proto3" json:"rtHist,omitempty"`
+	GpuHist        []int32    `protobuf:"varint,6,rep,packed,name=gpuHist,proto3" json:"gpuHist,omitempty"`
+	Hitch          []int32    `protobuf:"varint,7,rep,packed,name=hitch,proto3" json:"hitch,omitempty"`
+	HitchCause     []int32    `protobuf:"varint,8,rep,packed,name=hitchCause,proto3" json:"hitchCause,omitempty"`
+	GcCount        int32      `protobuf:"varint,10,opt,name=gcCount,proto3" json:"gcCount,omitempty"`
+	GcMaxMS        float32    `protobuf:"fixed32,11,opt,name=gcMaxMS,proto3" json:"gcMaxMS,omitempty"`
+	PsoMiss        int32      `protobuf:"varint,12,opt,name=psoMiss,proto3" json:"psoMiss,omitempty"`
+	FtVariance     float32    `protobuf:"fixed32,13,opt,name=ftVariance,proto3" json:"ftVariance,omitempty"`
+	InputAvgMS     float32    `protobuf:"fixed32,14,opt,name=inputAvgMS,proto3" json:"inputAvgMS,omitempty"`
+	InputMaxMS     float32    `protobuf:"fixed32,15,opt,name=inputMaxMS,proto3" json:"inputMaxMS,omitempty"`
+	MemPeakMB      float32    `protobuf:"fixed32,20,opt,name=memPeakMB,proto3" json:"memPeakMB,omitempty"`
+	MemFreeMinMB   float32    `protobuf:"fixed32,21,opt,name=memFreeMinMB,proto3" json:"memFreeMinMB,omitempty"`
+	VramUsedMB     float32    `protobuf:"fixed32,22,opt,name=vramUsedMB,proto3" json:"vramUsedMB,omitempty"`
+	VramBudgetMB   float32    `protobuf:"fixed32,23,opt,name=vramBudgetMB,proto3" json:"vramBudgetMB,omitempty"`
+	TexOverCount   int32      `protobuf:"varint,24,opt,name=texOverCount,proto3" json:"texOverCount,omitempty"`
+	DrawMax        int32      `protobuf:"varint,30,opt,name=drawMax,proto3" json:"drawMax,omitempty"`
+	ActorMax       int32      `protobuf:"varint,31,opt,name=actorMax,proto3" json:"actorMax,omitempty"`
+	PingAvgMS      float32    `protobuf:"fixed32,40,opt,name=pingAvgMS,proto3" json:"pingAvgMS,omitempty"`
+	PingP95MS      float32    `protobuf:"fixed32,41,opt,name=pingP95MS,proto3" json:"pingP95MS,omitempty"`
+	PingMaxMS      float32    `protobuf:"fixed32,42,opt,name=pingMaxMS,proto3" json:"pingMaxMS,omitempty"`
+	JitterMS       float32    `protobuf:"fixed32,43,opt,name=jitterMS,proto3" json:"jitterMS,omitempty"`
+	PktLoss        int32      `protobuf:"varint,44,opt,name=pktLoss,proto3" json:"pktLoss,omitempty"`
+	SvGap100       int32      `protobuf:"varint,50,opt,name=svGap100,proto3" json:"svGap100,omitempty"`
+	SvGap200       int32      `protobuf:"varint,51,opt,name=svGap200,proto3" json:"svGap200,omitempty"`
+	SvGap500       int32      `protobuf:"varint,52,opt,name=svGap500,proto3" json:"svGap500,omitempty"`
+	SvGapMaxMS     int32      `protobuf:"varint,53,opt,name=svGapMaxMS,proto3" json:"svGapMaxMS,omitempty"`
+	SvBurstMax     int32      `protobuf:"varint,54,opt,name=svBurstMax,proto3" json:"svBurstMax,omitempty"`
+	SvHitchCorr    int32      `protobuf:"varint,55,opt,name=svHitchCorr,proto3" json:"svHitchCorr,omitempty"`
+	GtTickAvgMS    float32    `protobuf:"fixed32,60,opt,name=gtTickAvgMS,proto3" json:"gtTickAvgMS,omitempty"`
+	GtPhysicsAvgMS float32    `protobuf:"fixed32,61,opt,name=gtPhysicsAvgMS,proto3" json:"gtPhysicsAvgMS,omitempty"`
+	GtNetAvgMS     float32    `protobuf:"fixed32,62,opt,name=gtNetAvgMS,proto3" json:"gtNetAvgMS,omitempty"`
+	GtUIAvgMS      float32    `protobuf:"fixed32,63,opt,name=gtUIAvgMS,proto3" json:"gtUIAvgMS,omitempty"`
+	GtTickP95MS    float32    `protobuf:"fixed32,64,opt,name=gtTickP95MS,proto3" json:"gtTickP95MS,omitempty"`
+	GtPhysicsP95MS float32    `protobuf:"fixed32,65,opt,name=gtPhysicsP95MS,proto3" json:"gtPhysicsP95MS,omitempty"`
+	GtNetP95MS     float32    `protobuf:"fixed32,66,opt,name=gtNetP95MS,proto3" json:"gtNetP95MS,omitempty"`
+	GtUIP95MS      float32    `protobuf:"fixed32,67,opt,name=gtUIP95MS,proto3" json:"gtUIP95MS,omitempty"`
+	Net            *SPERF_NET `protobuf:"bytes,70,opt,name=net,proto3" json:"net,omitempty"`
+	PsoPrecompiled int32      `protobuf:"varint,81,opt,name=psoPrecompiled,proto3" json:"psoPrecompiled,omitempty"`
+	SkelMeshAvg    int32      `protobuf:"varint,82,opt,name=skelMeshAvg,proto3" json:"skelMeshAvg,omitempty"`
+	SkelMeshMax    int32      `protobuf:"varint,83,opt,name=skelMeshMax,proto3" json:"skelMeshMax,omitempty"`
+	SkelBonesAvg   int32      `protobuf:"varint,84,opt,name=skelBonesAvg,proto3" json:"skelBonesAvg,omitempty"`
+	SkelBonesMax   int32      `protobuf:"varint,85,opt,name=skelBonesMax,proto3" json:"skelBonesMax,omitempty"`
 }
 
 func (x *SPERF_SUMMARY) Reset() {
@@ -1622,15 +1582,15 @@ func (*SPERF_SUMMARY) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPERF_SUMMARY) GetDurationSec() int32 {
-	if x != nil && x.DurationSec != nil {
-		return *x.DurationSec
+	if x != nil {
+		return x.DurationSec
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetTotalFrames() int32 {
-	if x != nil && x.TotalFrames != nil {
-		return *x.TotalFrames
+	if x != nil {
+		return x.TotalFrames
 	}
 	return 0
 }
@@ -1678,225 +1638,225 @@ func (x *SPERF_SUMMARY) GetHitchCause() []int32 {
 }
 
 func (x *SPERF_SUMMARY) GetGcCount() int32 {
-	if x != nil && x.GcCount != nil {
-		return *x.GcCount
+	if x != nil {
+		return x.GcCount
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGcMaxMS() float32 {
-	if x != nil && x.GcMaxMS != nil {
-		return *x.GcMaxMS
+	if x != nil {
+		return x.GcMaxMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetPsoMiss() int32 {
-	if x != nil && x.PsoMiss != nil {
-		return *x.PsoMiss
+	if x != nil {
+		return x.PsoMiss
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetFtVariance() float32 {
-	if x != nil && x.FtVariance != nil {
-		return *x.FtVariance
+	if x != nil {
+		return x.FtVariance
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetInputAvgMS() float32 {
-	if x != nil && x.InputAvgMS != nil {
-		return *x.InputAvgMS
+	if x != nil {
+		return x.InputAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetInputMaxMS() float32 {
-	if x != nil && x.InputMaxMS != nil {
-		return *x.InputMaxMS
+	if x != nil {
+		return x.InputMaxMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetMemPeakMB() float32 {
-	if x != nil && x.MemPeakMB != nil {
-		return *x.MemPeakMB
+	if x != nil {
+		return x.MemPeakMB
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetMemFreeMinMB() float32 {
-	if x != nil && x.MemFreeMinMB != nil {
-		return *x.MemFreeMinMB
+	if x != nil {
+		return x.MemFreeMinMB
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetVramUsedMB() float32 {
-	if x != nil && x.VramUsedMB != nil {
-		return *x.VramUsedMB
+	if x != nil {
+		return x.VramUsedMB
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetVramBudgetMB() float32 {
-	if x != nil && x.VramBudgetMB != nil {
-		return *x.VramBudgetMB
+	if x != nil {
+		return x.VramBudgetMB
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetTexOverCount() int32 {
-	if x != nil && x.TexOverCount != nil {
-		return *x.TexOverCount
+	if x != nil {
+		return x.TexOverCount
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetDrawMax() int32 {
-	if x != nil && x.DrawMax != nil {
-		return *x.DrawMax
+	if x != nil {
+		return x.DrawMax
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetActorMax() int32 {
-	if x != nil && x.ActorMax != nil {
-		return *x.ActorMax
+	if x != nil {
+		return x.ActorMax
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetPingAvgMS() float32 {
-	if x != nil && x.PingAvgMS != nil {
-		return *x.PingAvgMS
+	if x != nil {
+		return x.PingAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetPingP95MS() float32 {
-	if x != nil && x.PingP95MS != nil {
-		return *x.PingP95MS
+	if x != nil {
+		return x.PingP95MS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetPingMaxMS() float32 {
-	if x != nil && x.PingMaxMS != nil {
-		return *x.PingMaxMS
+	if x != nil {
+		return x.PingMaxMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetJitterMS() float32 {
-	if x != nil && x.JitterMS != nil {
-		return *x.JitterMS
+	if x != nil {
+		return x.JitterMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetPktLoss() int32 {
-	if x != nil && x.PktLoss != nil {
-		return *x.PktLoss
+	if x != nil {
+		return x.PktLoss
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSvGap100() int32 {
-	if x != nil && x.SvGap100 != nil {
-		return *x.SvGap100
+	if x != nil {
+		return x.SvGap100
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSvGap200() int32 {
-	if x != nil && x.SvGap200 != nil {
-		return *x.SvGap200
+	if x != nil {
+		return x.SvGap200
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSvGap500() int32 {
-	if x != nil && x.SvGap500 != nil {
-		return *x.SvGap500
+	if x != nil {
+		return x.SvGap500
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSvGapMaxMS() int32 {
-	if x != nil && x.SvGapMaxMS != nil {
-		return *x.SvGapMaxMS
+	if x != nil {
+		return x.SvGapMaxMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSvBurstMax() int32 {
-	if x != nil && x.SvBurstMax != nil {
-		return *x.SvBurstMax
+	if x != nil {
+		return x.SvBurstMax
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSvHitchCorr() int32 {
-	if x != nil && x.SvHitchCorr != nil {
-		return *x.SvHitchCorr
+	if x != nil {
+		return x.SvHitchCorr
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtTickAvgMS() float32 {
-	if x != nil && x.GtTickAvgMS != nil {
-		return *x.GtTickAvgMS
+	if x != nil {
+		return x.GtTickAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtPhysicsAvgMS() float32 {
-	if x != nil && x.GtPhysicsAvgMS != nil {
-		return *x.GtPhysicsAvgMS
+	if x != nil {
+		return x.GtPhysicsAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtNetAvgMS() float32 {
-	if x != nil && x.GtNetAvgMS != nil {
-		return *x.GtNetAvgMS
+	if x != nil {
+		return x.GtNetAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtUIAvgMS() float32 {
-	if x != nil && x.GtUIAvgMS != nil {
-		return *x.GtUIAvgMS
+	if x != nil {
+		return x.GtUIAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtTickP95MS() float32 {
-	if x != nil && x.GtTickP95MS != nil {
-		return *x.GtTickP95MS
+	if x != nil {
+		return x.GtTickP95MS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtPhysicsP95MS() float32 {
-	if x != nil && x.GtPhysicsP95MS != nil {
-		return *x.GtPhysicsP95MS
+	if x != nil {
+		return x.GtPhysicsP95MS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtNetP95MS() float32 {
-	if x != nil && x.GtNetP95MS != nil {
-		return *x.GtNetP95MS
+	if x != nil {
+		return x.GtNetP95MS
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetGtUIP95MS() float32 {
-	if x != nil && x.GtUIP95MS != nil {
-		return *x.GtUIP95MS
+	if x != nil {
+		return x.GtUIP95MS
 	}
 	return 0
 }
@@ -1909,36 +1869,36 @@ func (x *SPERF_SUMMARY) GetNet() *SPERF_NET {
 }
 
 func (x *SPERF_SUMMARY) GetPsoPrecompiled() int32 {
-	if x != nil && x.PsoPrecompiled != nil {
-		return *x.PsoPrecompiled
+	if x != nil {
+		return x.PsoPrecompiled
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSkelMeshAvg() int32 {
-	if x != nil && x.SkelMeshAvg != nil {
-		return *x.SkelMeshAvg
+	if x != nil {
+		return x.SkelMeshAvg
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSkelMeshMax() int32 {
-	if x != nil && x.SkelMeshMax != nil {
-		return *x.SkelMeshMax
+	if x != nil {
+		return x.SkelMeshMax
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSkelBonesAvg() int32 {
-	if x != nil && x.SkelBonesAvg != nil {
-		return *x.SkelBonesAvg
+	if x != nil {
+		return x.SkelBonesAvg
 	}
 	return 0
 }
 
 func (x *SPERF_SUMMARY) GetSkelBonesMax() int32 {
-	if x != nil && x.SkelBonesMax != nil {
-		return *x.SkelBonesMax
+	if x != nil {
+		return x.SkelBonesMax
 	}
 	return 0
 }
@@ -1948,23 +1908,23 @@ type SPERF_SLOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	StartSec       *int32   `protobuf:"varint,1,opt,name=startSec" json:"startSec,omitempty"`
-	Ft             []int32  `protobuf:"varint,2,rep,name=ft" json:"ft,omitempty"`
-	Gt             []int32  `protobuf:"varint,3,rep,name=gt" json:"gt,omitempty"`
-	Hitch          []int32  `protobuf:"varint,4,rep,name=hitch" json:"hitch,omitempty"`
-	Hc             []int32  `protobuf:"varint,5,rep,name=hc" json:"hc,omitempty"`
-	VarianceMS     *float32 `protobuf:"fixed32,6,opt,name=varianceMS" json:"varianceMS,omitempty"`
-	PingAvgMS      *float32 `protobuf:"fixed32,7,opt,name=pingAvgMS" json:"pingAvgMS,omitempty"`
-	ActorAvg       *int32   `protobuf:"varint,8,opt,name=actorAvg" json:"actorAvg,omitempty"`
-	DrawAvg        *int32   `protobuf:"varint,9,opt,name=drawAvg" json:"drawAvg,omitempty"`
-	MemMB          *float32 `protobuf:"fixed32,10,opt,name=memMB" json:"memMB,omitempty"`
-	SvGap100       *int32   `protobuf:"varint,11,opt,name=svGap100" json:"svGap100,omitempty"`
-	RtHist         []int32  `protobuf:"varint,12,rep,name=rtHist" json:"rtHist,omitempty"`
-	GpuHist        []int32  `protobuf:"varint,13,rep,name=gpuHist" json:"gpuHist,omitempty"`
-	GtTickAvgMS    *float32 `protobuf:"fixed32,14,opt,name=gtTickAvgMS" json:"gtTickAvgMS,omitempty"`
-	GtPhysicsAvgMS *float32 `protobuf:"fixed32,15,opt,name=gtPhysicsAvgMS" json:"gtPhysicsAvgMS,omitempty"`
-	GtNetAvgMS     *float32 `protobuf:"fixed32,16,opt,name=gtNetAvgMS" json:"gtNetAvgMS,omitempty"`
-	GtUIAvgMS      *float32 `protobuf:"fixed32,17,opt,name=gtUIAvgMS" json:"gtUIAvgMS,omitempty"`
+	StartSec       int32   `protobuf:"varint,1,opt,name=startSec,proto3" json:"startSec,omitempty"`
+	Ft             []int32 `protobuf:"varint,2,rep,packed,name=ft,proto3" json:"ft,omitempty"`
+	Gt             []int32 `protobuf:"varint,3,rep,packed,name=gt,proto3" json:"gt,omitempty"`
+	Hitch          []int32 `protobuf:"varint,4,rep,packed,name=hitch,proto3" json:"hitch,omitempty"`
+	Hc             []int32 `protobuf:"varint,5,rep,packed,name=hc,proto3" json:"hc,omitempty"`
+	VarianceMS     float32 `protobuf:"fixed32,6,opt,name=varianceMS,proto3" json:"varianceMS,omitempty"`
+	PingAvgMS      float32 `protobuf:"fixed32,7,opt,name=pingAvgMS,proto3" json:"pingAvgMS,omitempty"`
+	ActorAvg       int32   `protobuf:"varint,8,opt,name=actorAvg,proto3" json:"actorAvg,omitempty"`
+	DrawAvg        int32   `protobuf:"varint,9,opt,name=drawAvg,proto3" json:"drawAvg,omitempty"`
+	MemMB          float32 `protobuf:"fixed32,10,opt,name=memMB,proto3" json:"memMB,omitempty"`
+	SvGap100       int32   `protobuf:"varint,11,opt,name=svGap100,proto3" json:"svGap100,omitempty"`
+	RtHist         []int32 `protobuf:"varint,12,rep,packed,name=rtHist,proto3" json:"rtHist,omitempty"`
+	GpuHist        []int32 `protobuf:"varint,13,rep,packed,name=gpuHist,proto3" json:"gpuHist,omitempty"`
+	GtTickAvgMS    float32 `protobuf:"fixed32,14,opt,name=gtTickAvgMS,proto3" json:"gtTickAvgMS,omitempty"`
+	GtPhysicsAvgMS float32 `protobuf:"fixed32,15,opt,name=gtPhysicsAvgMS,proto3" json:"gtPhysicsAvgMS,omitempty"`
+	GtNetAvgMS     float32 `protobuf:"fixed32,16,opt,name=gtNetAvgMS,proto3" json:"gtNetAvgMS,omitempty"`
+	GtUIAvgMS      float32 `protobuf:"fixed32,17,opt,name=gtUIAvgMS,proto3" json:"gtUIAvgMS,omitempty"`
 }
 
 func (x *SPERF_SLOT) Reset() {
@@ -2000,8 +1960,8 @@ func (*SPERF_SLOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPERF_SLOT) GetStartSec() int32 {
-	if x != nil && x.StartSec != nil {
-		return *x.StartSec
+	if x != nil {
+		return x.StartSec
 	}
 	return 0
 }
@@ -2035,43 +1995,43 @@ func (x *SPERF_SLOT) GetHc() []int32 {
 }
 
 func (x *SPERF_SLOT) GetVarianceMS() float32 {
-	if x != nil && x.VarianceMS != nil {
-		return *x.VarianceMS
+	if x != nil {
+		return x.VarianceMS
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetPingAvgMS() float32 {
-	if x != nil && x.PingAvgMS != nil {
-		return *x.PingAvgMS
+	if x != nil {
+		return x.PingAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetActorAvg() int32 {
-	if x != nil && x.ActorAvg != nil {
-		return *x.ActorAvg
+	if x != nil {
+		return x.ActorAvg
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetDrawAvg() int32 {
-	if x != nil && x.DrawAvg != nil {
-		return *x.DrawAvg
+	if x != nil {
+		return x.DrawAvg
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetMemMB() float32 {
-	if x != nil && x.MemMB != nil {
-		return *x.MemMB
+	if x != nil {
+		return x.MemMB
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetSvGap100() int32 {
-	if x != nil && x.SvGap100 != nil {
-		return *x.SvGap100
+	if x != nil {
+		return x.SvGap100
 	}
 	return 0
 }
@@ -2091,29 +2051,29 @@ func (x *SPERF_SLOT) GetGpuHist() []int32 {
 }
 
 func (x *SPERF_SLOT) GetGtTickAvgMS() float32 {
-	if x != nil && x.GtTickAvgMS != nil {
-		return *x.GtTickAvgMS
+	if x != nil {
+		return x.GtTickAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetGtPhysicsAvgMS() float32 {
-	if x != nil && x.GtPhysicsAvgMS != nil {
-		return *x.GtPhysicsAvgMS
+	if x != nil {
+		return x.GtPhysicsAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetGtNetAvgMS() float32 {
-	if x != nil && x.GtNetAvgMS != nil {
-		return *x.GtNetAvgMS
+	if x != nil {
+		return x.GtNetAvgMS
 	}
 	return 0
 }
 
 func (x *SPERF_SLOT) GetGtUIAvgMS() float32 {
-	if x != nil && x.GtUIAvgMS != nil {
-		return *x.GtUIAvgMS
+	if x != nil {
+		return x.GtUIAvgMS
 	}
 	return 0
 }
@@ -2123,25 +2083,25 @@ type SPERF_HITCH_SAMPLE struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	TSec        *float32 `protobuf:"fixed32,1,opt,name=tSec" json:"tSec,omitempty"`
-	FtMS        *float32 `protobuf:"fixed32,2,opt,name=ftMS" json:"ftMS,omitempty"`
-	GtMS        *float32 `protobuf:"fixed32,3,opt,name=gtMS" json:"gtMS,omitempty"`
-	RtMS        *float32 `protobuf:"fixed32,4,opt,name=rtMS" json:"rtMS,omitempty"`
-	GpuMS       *float32 `protobuf:"fixed32,5,opt,name=gpuMS" json:"gpuMS,omitempty"`
-	PresentMS   *float32 `protobuf:"fixed32,6,opt,name=presentMS" json:"presentMS,omitempty"`
-	Cause       *uint32  `protobuf:"varint,7,opt,name=cause" json:"cause,omitempty"`
-	ActorCount  *int32   `protobuf:"varint,8,opt,name=actorCount" json:"actorCount,omitempty"`
-	DrawCalls   *int32   `protobuf:"varint,9,opt,name=drawCalls" json:"drawCalls,omitempty"`
-	MemMB       *int32   `protobuf:"varint,10,opt,name=memMB" json:"memMB,omitempty"`
-	PingMS      *int32   `protobuf:"varint,11,opt,name=pingMS" json:"pingMS,omitempty"`
-	FtPrevMS    *float32 `protobuf:"fixed32,12,opt,name=ftPrevMS" json:"ftPrevMS,omitempty"`
-	ActorDelta  *int32   `protobuf:"varint,13,opt,name=actorDelta" json:"actorDelta,omitempty"`
-	MemDeltaMB  *float32 `protobuf:"fixed32,14,opt,name=memDeltaMB" json:"memDeltaMB,omitempty"`
-	Flags       *uint32  `protobuf:"varint,15,opt,name=flags" json:"flags,omitempty"`
-	GtTickMS    *float32 `protobuf:"fixed32,16,opt,name=gtTickMS" json:"gtTickMS,omitempty"`
-	GtPhysicsMS *float32 `protobuf:"fixed32,17,opt,name=gtPhysicsMS" json:"gtPhysicsMS,omitempty"`
-	GtNetMS     *float32 `protobuf:"fixed32,18,opt,name=gtNetMS" json:"gtNetMS,omitempty"`
-	GtUIMS      *float32 `protobuf:"fixed32,19,opt,name=gtUIMS" json:"gtUIMS,omitempty"`
+	TSec        float32 `protobuf:"fixed32,1,opt,name=tSec,proto3" json:"tSec,omitempty"`
+	FtMS        float32 `protobuf:"fixed32,2,opt,name=ftMS,proto3" json:"ftMS,omitempty"`
+	GtMS        float32 `protobuf:"fixed32,3,opt,name=gtMS,proto3" json:"gtMS,omitempty"`
+	RtMS        float32 `protobuf:"fixed32,4,opt,name=rtMS,proto3" json:"rtMS,omitempty"`
+	GpuMS       float32 `protobuf:"fixed32,5,opt,name=gpuMS,proto3" json:"gpuMS,omitempty"`
+	PresentMS   float32 `protobuf:"fixed32,6,opt,name=presentMS,proto3" json:"presentMS,omitempty"`
+	Cause       uint32  `protobuf:"varint,7,opt,name=cause,proto3" json:"cause,omitempty"`
+	ActorCount  int32   `protobuf:"varint,8,opt,name=actorCount,proto3" json:"actorCount,omitempty"`
+	DrawCalls   int32   `protobuf:"varint,9,opt,name=drawCalls,proto3" json:"drawCalls,omitempty"`
+	MemMB       int32   `protobuf:"varint,10,opt,name=memMB,proto3" json:"memMB,omitempty"`
+	PingMS      int32   `protobuf:"varint,11,opt,name=pingMS,proto3" json:"pingMS,omitempty"`
+	FtPrevMS    float32 `protobuf:"fixed32,12,opt,name=ftPrevMS,proto3" json:"ftPrevMS,omitempty"`
+	ActorDelta  int32   `protobuf:"varint,13,opt,name=actorDelta,proto3" json:"actorDelta,omitempty"`
+	MemDeltaMB  float32 `protobuf:"fixed32,14,opt,name=memDeltaMB,proto3" json:"memDeltaMB,omitempty"`
+	Flags       uint32  `protobuf:"varint,15,opt,name=flags,proto3" json:"flags,omitempty"`
+	GtTickMS    float32 `protobuf:"fixed32,16,opt,name=gtTickMS,proto3" json:"gtTickMS,omitempty"`
+	GtPhysicsMS float32 `protobuf:"fixed32,17,opt,name=gtPhysicsMS,proto3" json:"gtPhysicsMS,omitempty"`
+	GtNetMS     float32 `protobuf:"fixed32,18,opt,name=gtNetMS,proto3" json:"gtNetMS,omitempty"`
+	GtUIMS      float32 `protobuf:"fixed32,19,opt,name=gtUIMS,proto3" json:"gtUIMS,omitempty"`
 }
 
 func (x *SPERF_HITCH_SAMPLE) Reset() {
@@ -2177,134 +2137,134 @@ func (*SPERF_HITCH_SAMPLE) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetTSec() float32 {
-	if x != nil && x.TSec != nil {
-		return *x.TSec
+	if x != nil {
+		return x.TSec
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetFtMS() float32 {
-	if x != nil && x.FtMS != nil {
-		return *x.FtMS
+	if x != nil {
+		return x.FtMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetGtMS() float32 {
-	if x != nil && x.GtMS != nil {
-		return *x.GtMS
+	if x != nil {
+		return x.GtMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetRtMS() float32 {
-	if x != nil && x.RtMS != nil {
-		return *x.RtMS
+	if x != nil {
+		return x.RtMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetGpuMS() float32 {
-	if x != nil && x.GpuMS != nil {
-		return *x.GpuMS
+	if x != nil {
+		return x.GpuMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetPresentMS() float32 {
-	if x != nil && x.PresentMS != nil {
-		return *x.PresentMS
+	if x != nil {
+		return x.PresentMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetCause() uint32 {
-	if x != nil && x.Cause != nil {
-		return *x.Cause
+	if x != nil {
+		return x.Cause
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetActorCount() int32 {
-	if x != nil && x.ActorCount != nil {
-		return *x.ActorCount
+	if x != nil {
+		return x.ActorCount
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetDrawCalls() int32 {
-	if x != nil && x.DrawCalls != nil {
-		return *x.DrawCalls
+	if x != nil {
+		return x.DrawCalls
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetMemMB() int32 {
-	if x != nil && x.MemMB != nil {
-		return *x.MemMB
+	if x != nil {
+		return x.MemMB
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetPingMS() int32 {
-	if x != nil && x.PingMS != nil {
-		return *x.PingMS
+	if x != nil {
+		return x.PingMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetFtPrevMS() float32 {
-	if x != nil && x.FtPrevMS != nil {
-		return *x.FtPrevMS
+	if x != nil {
+		return x.FtPrevMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetActorDelta() int32 {
-	if x != nil && x.ActorDelta != nil {
-		return *x.ActorDelta
+	if x != nil {
+		return x.ActorDelta
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetMemDeltaMB() float32 {
-	if x != nil && x.MemDeltaMB != nil {
-		return *x.MemDeltaMB
+	if x != nil {
+		return x.MemDeltaMB
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetFlags() uint32 {
-	if x != nil && x.Flags != nil {
-		return *x.Flags
+	if x != nil {
+		return x.Flags
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetGtTickMS() float32 {
-	if x != nil && x.GtTickMS != nil {
-		return *x.GtTickMS
+	if x != nil {
+		return x.GtTickMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetGtPhysicsMS() float32 {
-	if x != nil && x.GtPhysicsMS != nil {
-		return *x.GtPhysicsMS
+	if x != nil {
+		return x.GtPhysicsMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetGtNetMS() float32 {
-	if x != nil && x.GtNetMS != nil {
-		return *x.GtNetMS
+	if x != nil {
+		return x.GtNetMS
 	}
 	return 0
 }
 
 func (x *SPERF_HITCH_SAMPLE) GetGtUIMS() float32 {
-	if x != nil && x.GtUIMS != nil {
-		return *x.GtUIMS
+	if x != nil {
+		return x.GtUIMS
 	}
 	return 0
 }
@@ -2314,14 +2274,14 @@ type SC2S_CLIENT_PERF_REPORT_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	BuildVersion *string                  `protobuf:"bytes,3,opt,name=buildVersion" json:"buildVersion,omitempty"`
-	ClientTimeMS *int64                   `protobuf:"varint,4,opt,name=clientTimeMS" json:"clientTimeMS,omitempty"`
-	Hw           *SPERF_HARDWARE_INFO     `protobuf:"bytes,10,opt,name=hw" json:"hw,omitempty"`
-	Gfx          *SPERF_GRAPHICS_SETTINGS `protobuf:"bytes,11,opt,name=gfx" json:"gfx,omitempty"`
-	Load         *SPERF_LOADING_INFO      `protobuf:"bytes,12,opt,name=load" json:"load,omitempty"`
-	Summary      *SPERF_SUMMARY           `protobuf:"bytes,20,opt,name=summary" json:"summary,omitempty"`
-	Timeline     []*SPERF_SLOT            `protobuf:"bytes,21,rep,name=timeline" json:"timeline,omitempty"`
-	HitchSamples []*SPERF_HITCH_SAMPLE    `protobuf:"bytes,22,rep,name=hitchSamples" json:"hitchSamples,omitempty"`
+	BuildVersion string                   `protobuf:"bytes,3,opt,name=buildVersion,proto3" json:"buildVersion,omitempty"`
+	ClientTimeMS int64                    `protobuf:"varint,4,opt,name=clientTimeMS,proto3" json:"clientTimeMS,omitempty"`
+	Hw           *SPERF_HARDWARE_INFO     `protobuf:"bytes,10,opt,name=hw,proto3" json:"hw,omitempty"`
+	Gfx          *SPERF_GRAPHICS_SETTINGS `protobuf:"bytes,11,opt,name=gfx,proto3" json:"gfx,omitempty"`
+	Load         *SPERF_LOADING_INFO      `protobuf:"bytes,12,opt,name=load,proto3" json:"load,omitempty"`
+	Summary      *SPERF_SUMMARY           `protobuf:"bytes,20,opt,name=summary,proto3" json:"summary,omitempty"`
+	Timeline     []*SPERF_SLOT            `protobuf:"bytes,21,rep,name=timeline,proto3" json:"timeline,omitempty"`
+	HitchSamples []*SPERF_HITCH_SAMPLE    `protobuf:"bytes,22,rep,name=hitchSamples,proto3" json:"hitchSamples,omitempty"`
 }
 
 func (x *SC2S_CLIENT_PERF_REPORT_REQ) Reset() {
@@ -2357,15 +2317,15 @@ func (*SC2S_CLIENT_PERF_REPORT_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_CLIENT_PERF_REPORT_REQ) GetBuildVersion() string {
-	if x != nil && x.BuildVersion != nil {
-		return *x.BuildVersion
+	if x != nil {
+		return x.BuildVersion
 	}
 	return ""
 }
 
 func (x *SC2S_CLIENT_PERF_REPORT_REQ) GetClientTimeMS() int64 {
-	if x != nil && x.ClientTimeMS != nil {
-		return *x.ClientTimeMS
+	if x != nil {
+		return x.ClientTimeMS
 	}
 	return 0
 }
@@ -2417,7 +2377,7 @@ type SS2C_CLIENT_PERF_REPORT_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_CLIENT_PERF_REPORT_RES) Reset() {
@@ -2453,8 +2413,8 @@ func (*SS2C_CLIENT_PERF_REPORT_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_CLIENT_PERF_REPORT_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -2934,8 +2894,11 @@ var file_InGame_proto_rawDesc = []byte{
 	0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x25, 0x0a,
 	0x23, 0x53, 0x53, 0x32, 0x43, 0x5f, 0x43, 0x4c, 0x49, 0x45, 0x4e, 0x54, 0x5f, 0x50, 0x45, 0x52,
 	0x46, 0x5f, 0x52, 0x45, 0x50, 0x4f, 0x52, 0x54, 0x5f, 0x52, 0x45, 0x51, 0x55, 0x45, 0x53, 0x54,
-	0x5f, 0x4e, 0x4f, 0x54, 0x42, 0x17, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78,
-	0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62,
+	0x5f, 0x4e, 0x4f, 0x54, 0x42, 0x35, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x70, 0x61, 0x63, 0x6b,
+	0x65, 0x74, 0x73, 0x2e, 0x69, 0x6e, 0x67, 0x61, 0x6d, 0x65, 0x42, 0x06, 0x69, 0x6e, 0x67, 0x61,
+	0x6d, 0x65, 0x50, 0x00, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f,
+	0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (

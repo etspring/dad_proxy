@@ -67,16 +67,6 @@ func (x SS2C_INVENTORY_INFO_RES_RESULT_INVENTORY_INFO_INFO) Number() protoreflec
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SS2C_INVENTORY_INFO_RES_RESULT_INVENTORY_INFO_INFO) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_INVENTORY_INFO_RES_RESULT_INVENTORY_INFO_INFO(num)
-	return nil
-}
-
 // Deprecated: Use SS2C_INVENTORY_INFO_RES_RESULT_INVENTORY_INFO_INFO.Descriptor instead.
 func (SS2C_INVENTORY_INFO_RES_RESULT_INVENTORY_INFO_INFO) EnumDescriptor() ([]byte, []int) {
 	return file_Inventory_proto_rawDescGZIP(), []int{3, 0}
@@ -124,16 +114,6 @@ func (SS2C_INVENTORY_ALL_UPDATE_RES_RESULT_INVENTORY_UPDATE) Type() protoreflect
 
 func (x SS2C_INVENTORY_ALL_UPDATE_RES_RESULT_INVENTORY_UPDATE) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *SS2C_INVENTORY_ALL_UPDATE_RES_RESULT_INVENTORY_UPDATE) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_INVENTORY_ALL_UPDATE_RES_RESULT_INVENTORY_UPDATE(num)
-	return nil
 }
 
 // Deprecated: Use SS2C_INVENTORY_ALL_UPDATE_RES_RESULT_INVENTORY_UPDATE.Descriptor instead.
@@ -194,16 +174,6 @@ func (x SS2C_INVENTORY_SINGLE_UPDATE_RES_RESULT_INVENTORY_SINGLE_UPDATE) Number(
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SS2C_INVENTORY_SINGLE_UPDATE_RES_RESULT_INVENTORY_SINGLE_UPDATE) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_INVENTORY_SINGLE_UPDATE_RES_RESULT_INVENTORY_SINGLE_UPDATE(num)
-	return nil
-}
-
 // Deprecated: Use SS2C_INVENTORY_SINGLE_UPDATE_RES_RESULT_INVENTORY_SINGLE_UPDATE.Descriptor instead.
 func (SS2C_INVENTORY_SINGLE_UPDATE_RES_RESULT_INVENTORY_SINGLE_UPDATE) EnumDescriptor() ([]byte, []int) {
 	return file_Inventory_proto_rawDescGZIP(), []int{23, 0}
@@ -256,16 +226,6 @@ func (x SS2C_STORAGE_INFO_RES_RESULT_STORAGE_INFO) Number() protoreflect.EnumNum
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SS2C_STORAGE_INFO_RES_RESULT_STORAGE_INFO) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_STORAGE_INFO_RES_RESULT_STORAGE_INFO(num)
-	return nil
-}
-
 // Deprecated: Use SS2C_STORAGE_INFO_RES_RESULT_STORAGE_INFO.Descriptor instead.
 func (SS2C_STORAGE_INFO_RES_RESULT_STORAGE_INFO) EnumDescriptor() ([]byte, []int) {
 	return file_Inventory_proto_rawDescGZIP(), []int{25, 0}
@@ -276,9 +236,9 @@ type SINVENTORY_REQUEST_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ItemUniqueId      *uint64 `protobuf:"varint,1,opt,name=itemUniqueId" json:"itemUniqueId,omitempty"`
-	ItemCount         *uint32 `protobuf:"varint,2,opt,name=itemCount" json:"itemCount,omitempty"`
-	ItemContentsCount *uint32 `protobuf:"varint,3,opt,name=itemContentsCount" json:"itemContentsCount,omitempty"`
+	ItemUniqueId      uint64 `protobuf:"varint,1,opt,name=itemUniqueId,proto3" json:"itemUniqueId,omitempty"`
+	ItemCount         uint32 `protobuf:"varint,2,opt,name=itemCount,proto3" json:"itemCount,omitempty"`
+	ItemContentsCount uint32 `protobuf:"varint,3,opt,name=itemContentsCount,proto3" json:"itemContentsCount,omitempty"`
 }
 
 func (x *SINVENTORY_REQUEST_INFO) Reset() {
@@ -314,22 +274,22 @@ func (*SINVENTORY_REQUEST_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SINVENTORY_REQUEST_INFO) GetItemUniqueId() uint64 {
-	if x != nil && x.ItemUniqueId != nil {
-		return *x.ItemUniqueId
+	if x != nil {
+		return x.ItemUniqueId
 	}
 	return 0
 }
 
 func (x *SINVENTORY_REQUEST_INFO) GetItemCount() uint32 {
-	if x != nil && x.ItemCount != nil {
-		return *x.ItemCount
+	if x != nil {
+		return x.ItemCount
 	}
 	return 0
 }
 
 func (x *SINVENTORY_REQUEST_INFO) GetItemContentsCount() uint32 {
-	if x != nil && x.ItemContentsCount != nil {
-		return *x.ItemContentsCount
+	if x != nil {
+		return x.ItemContentsCount
 	}
 	return 0
 }
@@ -339,9 +299,9 @@ type SINVENTORY_RESULT_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InsertItems     []*SItem `protobuf:"bytes,1,rep,name=insertItems" json:"insertItems,omitempty"`
-	UpdateItems     []*SItem `protobuf:"bytes,2,rep,name=updateItems" json:"updateItems,omitempty"`
-	DeleteUniqueIds []int64  `protobuf:"varint,3,rep,name=deleteUniqueIds" json:"deleteUniqueIds,omitempty"`
+	InsertItems     []*SItem `protobuf:"bytes,1,rep,name=insertItems,proto3" json:"insertItems,omitempty"`
+	UpdateItems     []*SItem `protobuf:"bytes,2,rep,name=updateItems,proto3" json:"updateItems,omitempty"`
+	DeleteUniqueIds []int64  `protobuf:"varint,3,rep,packed,name=deleteUniqueIds,proto3" json:"deleteUniqueIds,omitempty"`
 }
 
 func (x *SINVENTORY_RESULT_INFO) Reset() {
@@ -440,8 +400,8 @@ type SS2C_INVENTORY_INFO_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result         *uint32  `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	InventoryItems []*SItem `protobuf:"bytes,2,rep,name=inventoryItems" json:"inventoryItems,omitempty"`
+	Result         uint32   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	InventoryItems []*SItem `protobuf:"bytes,2,rep,name=inventoryItems,proto3" json:"inventoryItems,omitempty"`
 }
 
 func (x *SS2C_INVENTORY_INFO_RES) Reset() {
@@ -477,8 +437,8 @@ func (*SS2C_INVENTORY_INFO_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_INVENTORY_INFO_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -495,7 +455,7 @@ type SC2S_INVENTORY_ALL_UPDATE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InventoryItems []*SItem `protobuf:"bytes,1,rep,name=inventoryItems" json:"inventoryItems,omitempty"`
+	InventoryItems []*SItem `protobuf:"bytes,1,rep,name=inventoryItems,proto3" json:"inventoryItems,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_ALL_UPDATE_REQ) Reset() {
@@ -542,8 +502,8 @@ type SS2C_INVENTORY_ALL_UPDATE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result         *uint32  `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	InventoryItems []*SItem `protobuf:"bytes,2,rep,name=inventoryItems" json:"inventoryItems,omitempty"`
+	Result         uint32   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	InventoryItems []*SItem `protobuf:"bytes,2,rep,name=inventoryItems,proto3" json:"inventoryItems,omitempty"`
 }
 
 func (x *SS2C_INVENTORY_ALL_UPDATE_RES) Reset() {
@@ -579,8 +539,8 @@ func (*SS2C_INVENTORY_ALL_UPDATE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_INVENTORY_ALL_UPDATE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -597,9 +557,9 @@ type SINVENTORY_ITEM_REQ_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UniqueId    *uint64 `protobuf:"varint,1,opt,name=uniqueId" json:"uniqueId,omitempty"`
-	InventoryId *uint32 `protobuf:"varint,2,opt,name=inventoryId" json:"inventoryId,omitempty"`
-	SlotId      *uint32 `protobuf:"varint,3,opt,name=slotId" json:"slotId,omitempty"`
+	UniqueId    uint64 `protobuf:"varint,1,opt,name=uniqueId,proto3" json:"uniqueId,omitempty"`
+	InventoryId uint32 `protobuf:"varint,2,opt,name=inventoryId,proto3" json:"inventoryId,omitempty"`
+	SlotId      uint32 `protobuf:"varint,3,opt,name=slotId,proto3" json:"slotId,omitempty"`
 }
 
 func (x *SINVENTORY_ITEM_REQ_INFO) Reset() {
@@ -635,22 +595,22 @@ func (*SINVENTORY_ITEM_REQ_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SINVENTORY_ITEM_REQ_INFO) GetUniqueId() uint64 {
-	if x != nil && x.UniqueId != nil {
-		return *x.UniqueId
+	if x != nil {
+		return x.UniqueId
 	}
 	return 0
 }
 
 func (x *SINVENTORY_ITEM_REQ_INFO) GetInventoryId() uint32 {
-	if x != nil && x.InventoryId != nil {
-		return *x.InventoryId
+	if x != nil {
+		return x.InventoryId
 	}
 	return 0
 }
 
 func (x *SINVENTORY_ITEM_REQ_INFO) GetSlotId() uint32 {
-	if x != nil && x.SlotId != nil {
-		return *x.SlotId
+	if x != nil {
+		return x.SlotId
 	}
 	return 0
 }
@@ -660,9 +620,9 @@ type SC2S_INVENTORY_MOVE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo" json:"srcInfo,omitempty"`
-	DstInventoryId *uint32                   `protobuf:"varint,2,opt,name=dstInventoryId" json:"dstInventoryId,omitempty"`
-	DstSlotId      *uint32                   `protobuf:"varint,3,opt,name=dstSlotId" json:"dstSlotId,omitempty"`
+	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo,proto3" json:"srcInfo,omitempty"`
+	DstInventoryId uint32                    `protobuf:"varint,2,opt,name=dstInventoryId,proto3" json:"dstInventoryId,omitempty"`
+	DstSlotId      uint32                    `protobuf:"varint,3,opt,name=dstSlotId,proto3" json:"dstSlotId,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_MOVE_REQ) Reset() {
@@ -705,15 +665,15 @@ func (x *SC2S_INVENTORY_MOVE_REQ) GetSrcInfo() *SINVENTORY_ITEM_REQ_INFO {
 }
 
 func (x *SC2S_INVENTORY_MOVE_REQ) GetDstInventoryId() uint32 {
-	if x != nil && x.DstInventoryId != nil {
-		return *x.DstInventoryId
+	if x != nil {
+		return x.DstInventoryId
 	}
 	return 0
 }
 
 func (x *SC2S_INVENTORY_MOVE_REQ) GetDstSlotId() uint32 {
-	if x != nil && x.DstSlotId != nil {
-		return *x.DstSlotId
+	if x != nil {
+		return x.DstSlotId
 	}
 	return 0
 }
@@ -761,8 +721,8 @@ type SC2S_INVENTORY_MERGE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SrcInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo" json:"srcInfo,omitempty"`
-	DstInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo" json:"dstInfo,omitempty"`
+	SrcInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo,proto3" json:"srcInfo,omitempty"`
+	DstInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo,proto3" json:"dstInfo,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_MERGE_REQ) Reset() {
@@ -854,9 +814,9 @@ type INVENTORY_SWAP_DST_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DstInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=dstInfo" json:"dstInfo,omitempty"`
-	NewSlotId      *uint32                   `protobuf:"varint,2,opt,name=newSlotId" json:"newSlotId,omitempty"`
-	NewInventoryId *uint32                   `protobuf:"varint,3,opt,name=newInventoryId" json:"newInventoryId,omitempty"`
+	DstInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=dstInfo,proto3" json:"dstInfo,omitempty"`
+	NewSlotId      uint32                    `protobuf:"varint,2,opt,name=newSlotId,proto3" json:"newSlotId,omitempty"`
+	NewInventoryId uint32                    `protobuf:"varint,3,opt,name=newInventoryId,proto3" json:"newInventoryId,omitempty"`
 }
 
 func (x *INVENTORY_SWAP_DST_INFO) Reset() {
@@ -899,15 +859,15 @@ func (x *INVENTORY_SWAP_DST_INFO) GetDstInfo() *SINVENTORY_ITEM_REQ_INFO {
 }
 
 func (x *INVENTORY_SWAP_DST_INFO) GetNewSlotId() uint32 {
-	if x != nil && x.NewSlotId != nil {
-		return *x.NewSlotId
+	if x != nil {
+		return x.NewSlotId
 	}
 	return 0
 }
 
 func (x *INVENTORY_SWAP_DST_INFO) GetNewInventoryId() uint32 {
-	if x != nil && x.NewInventoryId != nil {
-		return *x.NewInventoryId
+	if x != nil {
+		return x.NewInventoryId
 	}
 	return 0
 }
@@ -917,9 +877,9 @@ type SC2S_INVENTORY_SWAP_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SrcInfo   *SINVENTORY_ITEM_REQ_INFO  `protobuf:"bytes,1,opt,name=srcInfo" json:"srcInfo,omitempty"`
-	DstInfo   *SINVENTORY_ITEM_REQ_INFO  `protobuf:"bytes,2,opt,name=dstInfo" json:"dstInfo,omitempty"`
-	SwapInfos []*INVENTORY_SWAP_DST_INFO `protobuf:"bytes,3,rep,name=swapInfos" json:"swapInfos,omitempty"`
+	SrcInfo   *SINVENTORY_ITEM_REQ_INFO  `protobuf:"bytes,1,opt,name=srcInfo,proto3" json:"srcInfo,omitempty"`
+	DstInfo   *SINVENTORY_ITEM_REQ_INFO  `protobuf:"bytes,2,opt,name=dstInfo,proto3" json:"dstInfo,omitempty"`
+	SwapInfos []*INVENTORY_SWAP_DST_INFO `protobuf:"bytes,3,rep,name=swapInfos,proto3" json:"swapInfos,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_SWAP_REQ) Reset() {
@@ -1018,10 +978,10 @@ type SC2S_INVENTORY_SPLIT_MOVE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo" json:"srcInfo,omitempty"`
-	Count          *uint32                   `protobuf:"varint,2,opt,name=count" json:"count,omitempty"`
-	DstInventoryId *uint32                   `protobuf:"varint,3,opt,name=dstInventoryId" json:"dstInventoryId,omitempty"`
-	DstSlotId      *uint32                   `protobuf:"varint,4,opt,name=dstSlotId" json:"dstSlotId,omitempty"`
+	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo,proto3" json:"srcInfo,omitempty"`
+	Count          uint32                    `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	DstInventoryId uint32                    `protobuf:"varint,3,opt,name=dstInventoryId,proto3" json:"dstInventoryId,omitempty"`
+	DstSlotId      uint32                    `protobuf:"varint,4,opt,name=dstSlotId,proto3" json:"dstSlotId,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_SPLIT_MOVE_REQ) Reset() {
@@ -1064,22 +1024,22 @@ func (x *SC2S_INVENTORY_SPLIT_MOVE_REQ) GetSrcInfo() *SINVENTORY_ITEM_REQ_INFO {
 }
 
 func (x *SC2S_INVENTORY_SPLIT_MOVE_REQ) GetCount() uint32 {
-	if x != nil && x.Count != nil {
-		return *x.Count
+	if x != nil {
+		return x.Count
 	}
 	return 0
 }
 
 func (x *SC2S_INVENTORY_SPLIT_MOVE_REQ) GetDstInventoryId() uint32 {
-	if x != nil && x.DstInventoryId != nil {
-		return *x.DstInventoryId
+	if x != nil {
+		return x.DstInventoryId
 	}
 	return 0
 }
 
 func (x *SC2S_INVENTORY_SPLIT_MOVE_REQ) GetDstSlotId() uint32 {
-	if x != nil && x.DstSlotId != nil {
-		return *x.DstSlotId
+	if x != nil {
+		return x.DstSlotId
 	}
 	return 0
 }
@@ -1089,9 +1049,9 @@ type SS2C_INVENTORY_SPLIT_MOVE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NewUniqueId    *uint64 `protobuf:"varint,1,opt,name=newUniqueId" json:"newUniqueId,omitempty"`
-	NewInventoryId *uint32 `protobuf:"varint,2,opt,name=newInventoryId" json:"newInventoryId,omitempty"`
-	NewSlotId      *uint32 `protobuf:"varint,3,opt,name=newSlotId" json:"newSlotId,omitempty"`
+	NewUniqueId    uint64 `protobuf:"varint,1,opt,name=newUniqueId,proto3" json:"newUniqueId,omitempty"`
+	NewInventoryId uint32 `protobuf:"varint,2,opt,name=newInventoryId,proto3" json:"newInventoryId,omitempty"`
+	NewSlotId      uint32 `protobuf:"varint,3,opt,name=newSlotId,proto3" json:"newSlotId,omitempty"`
 }
 
 func (x *SS2C_INVENTORY_SPLIT_MOVE_RES) Reset() {
@@ -1127,22 +1087,22 @@ func (*SS2C_INVENTORY_SPLIT_MOVE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_INVENTORY_SPLIT_MOVE_RES) GetNewUniqueId() uint64 {
-	if x != nil && x.NewUniqueId != nil {
-		return *x.NewUniqueId
+	if x != nil {
+		return x.NewUniqueId
 	}
 	return 0
 }
 
 func (x *SS2C_INVENTORY_SPLIT_MOVE_RES) GetNewInventoryId() uint32 {
-	if x != nil && x.NewInventoryId != nil {
-		return *x.NewInventoryId
+	if x != nil {
+		return x.NewInventoryId
 	}
 	return 0
 }
 
 func (x *SS2C_INVENTORY_SPLIT_MOVE_RES) GetNewSlotId() uint32 {
-	if x != nil && x.NewSlotId != nil {
-		return *x.NewSlotId
+	if x != nil {
+		return x.NewSlotId
 	}
 	return 0
 }
@@ -1152,9 +1112,9 @@ type SC2S_INVENTORY_SPLIT_MERGE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SrcInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo" json:"srcInfo,omitempty"`
-	DstInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo" json:"dstInfo,omitempty"`
-	Count   *uint32                   `protobuf:"varint,3,opt,name=count" json:"count,omitempty"`
+	SrcInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo,proto3" json:"srcInfo,omitempty"`
+	DstInfo *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo,proto3" json:"dstInfo,omitempty"`
+	Count   uint32                    `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_SPLIT_MERGE_REQ) Reset() {
@@ -1204,8 +1164,8 @@ func (x *SC2S_INVENTORY_SPLIT_MERGE_REQ) GetDstInfo() *SINVENTORY_ITEM_REQ_INFO 
 }
 
 func (x *SC2S_INVENTORY_SPLIT_MERGE_REQ) GetCount() uint32 {
-	if x != nil && x.Count != nil {
-		return *x.Count
+	if x != nil {
+		return x.Count
 	}
 	return 0
 }
@@ -1253,11 +1213,11 @@ type SC2S_INVENTORY_SPLIT_SWAP_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo" json:"srcInfo,omitempty"`
-	DstInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo" json:"dstInfo,omitempty"`
-	Count          *uint32                   `protobuf:"varint,3,opt,name=count" json:"count,omitempty"`
-	NewSlotId      *uint32                   `protobuf:"varint,4,opt,name=newSlotId" json:"newSlotId,omitempty"`
-	NewInventoryId *uint32                   `protobuf:"varint,5,opt,name=newInventoryId" json:"newInventoryId,omitempty"`
+	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo,proto3" json:"srcInfo,omitempty"`
+	DstInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo,proto3" json:"dstInfo,omitempty"`
+	Count          uint32                    `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
+	NewSlotId      uint32                    `protobuf:"varint,4,opt,name=newSlotId,proto3" json:"newSlotId,omitempty"`
+	NewInventoryId uint32                    `protobuf:"varint,5,opt,name=newInventoryId,proto3" json:"newInventoryId,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_SPLIT_SWAP_REQ) Reset() {
@@ -1307,22 +1267,22 @@ func (x *SC2S_INVENTORY_SPLIT_SWAP_REQ) GetDstInfo() *SINVENTORY_ITEM_REQ_INFO {
 }
 
 func (x *SC2S_INVENTORY_SPLIT_SWAP_REQ) GetCount() uint32 {
-	if x != nil && x.Count != nil {
-		return *x.Count
+	if x != nil {
+		return x.Count
 	}
 	return 0
 }
 
 func (x *SC2S_INVENTORY_SPLIT_SWAP_REQ) GetNewSlotId() uint32 {
-	if x != nil && x.NewSlotId != nil {
-		return *x.NewSlotId
+	if x != nil {
+		return x.NewSlotId
 	}
 	return 0
 }
 
 func (x *SC2S_INVENTORY_SPLIT_SWAP_REQ) GetNewInventoryId() uint32 {
-	if x != nil && x.NewInventoryId != nil {
-		return *x.NewInventoryId
+	if x != nil {
+		return x.NewInventoryId
 	}
 	return 0
 }
@@ -1332,9 +1292,9 @@ type SS2C_INVENTORY_SPLIT_SWAP_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NewUniqueId    *uint64 `protobuf:"varint,1,opt,name=newUniqueId" json:"newUniqueId,omitempty"`
-	NewInventoryId *uint32 `protobuf:"varint,2,opt,name=newInventoryId" json:"newInventoryId,omitempty"`
-	NewSlotId      *uint32 `protobuf:"varint,3,opt,name=newSlotId" json:"newSlotId,omitempty"`
+	NewUniqueId    uint64 `protobuf:"varint,1,opt,name=newUniqueId,proto3" json:"newUniqueId,omitempty"`
+	NewInventoryId uint32 `protobuf:"varint,2,opt,name=newInventoryId,proto3" json:"newInventoryId,omitempty"`
+	NewSlotId      uint32 `protobuf:"varint,3,opt,name=newSlotId,proto3" json:"newSlotId,omitempty"`
 }
 
 func (x *SS2C_INVENTORY_SPLIT_SWAP_RES) Reset() {
@@ -1370,22 +1330,22 @@ func (*SS2C_INVENTORY_SPLIT_SWAP_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_INVENTORY_SPLIT_SWAP_RES) GetNewUniqueId() uint64 {
-	if x != nil && x.NewUniqueId != nil {
-		return *x.NewUniqueId
+	if x != nil {
+		return x.NewUniqueId
 	}
 	return 0
 }
 
 func (x *SS2C_INVENTORY_SPLIT_SWAP_RES) GetNewInventoryId() uint32 {
-	if x != nil && x.NewInventoryId != nil {
-		return *x.NewInventoryId
+	if x != nil {
+		return x.NewInventoryId
 	}
 	return 0
 }
 
 func (x *SS2C_INVENTORY_SPLIT_SWAP_RES) GetNewSlotId() uint32 {
-	if x != nil && x.NewSlotId != nil {
-		return *x.NewSlotId
+	if x != nil {
+		return x.NewSlotId
 	}
 	return 0
 }
@@ -1395,10 +1355,10 @@ type SC2S_INVENTORY_TWO_HANDED_WEAPON_SWAP_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo" json:"srcInfo,omitempty"`
-	DstInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo" json:"dstInfo,omitempty"`
-	NewSlotId      *uint32                   `protobuf:"varint,3,opt,name=newSlotId" json:"newSlotId,omitempty"`
-	NewInventoryId *uint32                   `protobuf:"varint,4,opt,name=newInventoryId" json:"newInventoryId,omitempty"`
+	SrcInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,1,opt,name=srcInfo,proto3" json:"srcInfo,omitempty"`
+	DstInfo        *SINVENTORY_ITEM_REQ_INFO `protobuf:"bytes,2,opt,name=dstInfo,proto3" json:"dstInfo,omitempty"`
+	NewSlotId      uint32                    `protobuf:"varint,3,opt,name=newSlotId,proto3" json:"newSlotId,omitempty"`
+	NewInventoryId uint32                    `protobuf:"varint,4,opt,name=newInventoryId,proto3" json:"newInventoryId,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_TWO_HANDED_WEAPON_SWAP_REQ) Reset() {
@@ -1448,15 +1408,15 @@ func (x *SC2S_INVENTORY_TWO_HANDED_WEAPON_SWAP_REQ) GetDstInfo() *SINVENTORY_ITE
 }
 
 func (x *SC2S_INVENTORY_TWO_HANDED_WEAPON_SWAP_REQ) GetNewSlotId() uint32 {
-	if x != nil && x.NewSlotId != nil {
-		return *x.NewSlotId
+	if x != nil {
+		return x.NewSlotId
 	}
 	return 0
 }
 
 func (x *SC2S_INVENTORY_TWO_HANDED_WEAPON_SWAP_REQ) GetNewInventoryId() uint32 {
-	if x != nil && x.NewInventoryId != nil {
-		return *x.NewInventoryId
+	if x != nil {
+		return x.NewInventoryId
 	}
 	return 0
 }
@@ -1504,9 +1464,9 @@ type SC2S_INVENTORY_SINGLE_UPDATE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SingleUpdateFlag *uint32  `protobuf:"varint,1,opt,name=singleUpdateFlag" json:"singleUpdateFlag,omitempty"`
-	OldItem          []*SItem `protobuf:"bytes,2,rep,name=oldItem" json:"oldItem,omitempty"`
-	NewItem          []*SItem `protobuf:"bytes,3,rep,name=newItem" json:"newItem,omitempty"`
+	SingleUpdateFlag uint32   `protobuf:"varint,1,opt,name=singleUpdateFlag,proto3" json:"singleUpdateFlag,omitempty"`
+	OldItem          []*SItem `protobuf:"bytes,2,rep,name=oldItem,proto3" json:"oldItem,omitempty"`
+	NewItem          []*SItem `protobuf:"bytes,3,rep,name=newItem,proto3" json:"newItem,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_SINGLE_UPDATE_REQ) Reset() {
@@ -1542,8 +1502,8 @@ func (*SC2S_INVENTORY_SINGLE_UPDATE_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_INVENTORY_SINGLE_UPDATE_REQ) GetSingleUpdateFlag() uint32 {
-	if x != nil && x.SingleUpdateFlag != nil {
-		return *x.SingleUpdateFlag
+	if x != nil {
+		return x.SingleUpdateFlag
 	}
 	return 0
 }
@@ -1567,9 +1527,9 @@ type SS2C_INVENTORY_SINGLE_UPDATE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result  *uint32  `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	OldItem []*SItem `protobuf:"bytes,2,rep,name=oldItem" json:"oldItem,omitempty"`
-	NewItem []*SItem `protobuf:"bytes,3,rep,name=newItem" json:"newItem,omitempty"`
+	Result  uint32   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	OldItem []*SItem `protobuf:"bytes,2,rep,name=oldItem,proto3" json:"oldItem,omitempty"`
+	NewItem []*SItem `protobuf:"bytes,3,rep,name=newItem,proto3" json:"newItem,omitempty"`
 }
 
 func (x *SS2C_INVENTORY_SINGLE_UPDATE_RES) Reset() {
@@ -1605,8 +1565,8 @@ func (*SS2C_INVENTORY_SINGLE_UPDATE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_INVENTORY_SINGLE_UPDATE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1630,7 +1590,7 @@ type SC2S_STORAGE_INFO_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsRefresh *uint32 `protobuf:"varint,1,opt,name=isRefresh" json:"isRefresh,omitempty"`
+	IsRefresh uint32 `protobuf:"varint,1,opt,name=isRefresh,proto3" json:"isRefresh,omitempty"`
 }
 
 func (x *SC2S_STORAGE_INFO_REQ) Reset() {
@@ -1666,8 +1626,8 @@ func (*SC2S_STORAGE_INFO_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_STORAGE_INFO_REQ) GetIsRefresh() uint32 {
-	if x != nil && x.IsRefresh != nil {
-		return *x.IsRefresh
+	if x != nil {
+		return x.IsRefresh
 	}
 	return 0
 }
@@ -1677,8 +1637,8 @@ type SS2C_STORAGE_INFO_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result       *uint32  `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	StorageItems []*SItem `protobuf:"bytes,2,rep,name=storageItems" json:"storageItems,omitempty"`
+	Result       uint32   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	StorageItems []*SItem `protobuf:"bytes,2,rep,name=storageItems,proto3" json:"storageItems,omitempty"`
 }
 
 func (x *SS2C_STORAGE_INFO_RES) Reset() {
@@ -1714,8 +1674,8 @@ func (*SS2C_STORAGE_INFO_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_STORAGE_INFO_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1732,7 +1692,7 @@ type SC2S_INVENTORY_EXPAND_STORAGE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	BuyInventoryId *int32 `protobuf:"varint,1,opt,name=buyInventoryId" json:"buyInventoryId,omitempty"`
+	BuyInventoryId int32 `protobuf:"varint,1,opt,name=buyInventoryId,proto3" json:"buyInventoryId,omitempty"`
 }
 
 func (x *SC2S_INVENTORY_EXPAND_STORAGE_REQ) Reset() {
@@ -1768,8 +1728,8 @@ func (*SC2S_INVENTORY_EXPAND_STORAGE_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_INVENTORY_EXPAND_STORAGE_REQ) GetBuyInventoryId() int32 {
-	if x != nil && x.BuyInventoryId != nil {
-		return *x.BuyInventoryId
+	if x != nil {
+		return x.BuyInventoryId
 	}
 	return 0
 }
@@ -1779,7 +1739,7 @@ type SS2C_INVENTORY_EXPAND_STORAGE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_INVENTORY_EXPAND_STORAGE_RES) Reset() {
@@ -1815,8 +1775,8 @@ func (*SS2C_INVENTORY_EXPAND_STORAGE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_INVENTORY_EXPAND_STORAGE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -2061,9 +2021,11 @@ var file_Inventory_proto_rawDesc = []byte{
 	0x53, 0x32, 0x43, 0x5f, 0x49, 0x4e, 0x56, 0x45, 0x4e, 0x54, 0x4f, 0x52, 0x59, 0x5f, 0x45, 0x58,
 	0x50, 0x41, 0x4e, 0x44, 0x5f, 0x53, 0x54, 0x4f, 0x52, 0x41, 0x47, 0x45, 0x5f, 0x52, 0x45, 0x53,
 	0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d,
-	0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x42, 0x17, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f,
-	0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70,
-	0x62,
+	0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x42, 0x3b, 0x0a, 0x15, 0x63, 0x6f, 0x6d, 0x2e,
+	0x70, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x2e, 0x69, 0x6e, 0x76, 0x65, 0x6e, 0x74, 0x6f, 0x72,
+	0x79, 0x42, 0x09, 0x69, 0x6e, 0x76, 0x65, 0x6e, 0x74, 0x6f, 0x72, 0x79, 0x50, 0x00, 0x5a, 0x15,
+	0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

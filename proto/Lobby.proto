@@ -1,25 +1,30 @@
-syntax = "proto2";
+syntax = "proto3";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+option java_package = "com.packets.lobby";
+option java_outer_classname = "lobby";
+option java_multiple_files = false;
 
 import "_Character.proto";
 import "_Item.proto";
 import "Common.proto";
 import "Inventory.proto";
-package DC.Packet;
-option go_package = "dad_proxy/internal/pb";
 
 message SC2S_CHARACTER_SELECT_ENTER_REQ {
 }
 
 message SS2C_CHARACTER_SELECT_ENTER_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_LOBBY_CHARACTER_INFO_REQ {
 }
 
 message SS2C_LOBBY_CHARACTER_INFO_RES {
-  optional uint32 result = 1;
-  optional .DC.Packet.SCHARACTER_INFO characterDataBase = 2;
+  uint32 result = 1;
+  .DC.Packet.SCHARACTER_INFO characterDataBase = 2;
 }
 
 message SC2S_OPEN_LOBBY_MAP_REQ {
@@ -29,42 +34,42 @@ message SS2C_OPEN_LOBBY_MAP_RES {
 }
 
 message SC2S_LOBBY_REGION_SELECT_REQ {
-  optional uint32 region = 1;
+  uint32 region = 1;
 }
 
 message SS2C_LOBBY_REGION_SELECT_RES {
-  optional uint32 result = 1;
-  optional uint32 region = 2;
+  uint32 result = 1;
+  uint32 region = 2;
 }
 
 message SC2S_LOBBY_ENTER_FROM_GAME_REQ {
 }
 
 message SS2C_LOBBY_ENTER_FROM_GAME_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_LOBBY_GAME_TYPE_SELECT_REQ {
-  optional uint32 gameTypeIndex = 1;
-  optional string dungeonIdTag = 2;
-  optional int32 gearPoolIndex = 3;
+  uint32 gameTypeIndex = 1;
+  string dungeonIdTag = 2;
+  int32 gearPoolIndex = 3;
 }
 
 message SS2C_LOBBY_GAME_TYPE_SELECT_RES {
-  optional uint32 result = 1;
-  optional uint32 gameTypeIndex = 2;
-  optional string dungeonIdTag = 3;
-  optional int32 gearPoolIndex = 4;
+  uint32 result = 1;
+  uint32 gameTypeIndex = 2;
+  string dungeonIdTag = 3;
+  int32 gearPoolIndex = 4;
 }
 
 message SACCOUNT_CURRENCY_INFO {
-  optional uint32 currencyType = 1;
-  optional uint32 currencyValue = 2;
+  uint32 currencyType = 1;
+  uint32 currencyValue = 2;
 }
 
 message SS2C_LOBBY_ACCOUNT_CURRENCY_LIST_NOT {
   repeated .DC.Packet.SACCOUNT_CURRENCY_INFO currencyInfos = 1;
-  optional string buyRedstoneShardUrl = 2;
+  string buyRedstoneShardUrl = 2;
 }
 
 message SS2C_LOBBY_CHARACTER_LOBBY_EMOTE_NOT {
@@ -72,8 +77,8 @@ message SS2C_LOBBY_CHARACTER_LOBBY_EMOTE_NOT {
 }
 
 message SREPORT_PUNISH_INFO {
-  optional .DC.Packet.SACCOUNT_NICKNAME nickname = 1;
-  optional int32 reportBanType = 2;
+  .DC.Packet.SACCOUNT_NICKNAME nickname = 1;
+  int32 reportBanType = 2;
 }
 
 message SS2C_LOBBY_REPORT_PUNISH_LIST_NOT {
@@ -82,40 +87,41 @@ message SS2C_LOBBY_REPORT_PUNISH_LIST_NOT {
     PERMANENT_BAN = 1;
     TEMPORARY_BAN = 2;
   }
+
   repeated .DC.Packet.SREPORT_PUNISH_INFO infos = 1;
 }
 
 message SC2S_USER_CHARACTER_GAME_STAT_INFO_REQ {
-  optional string seasonId = 1;
-  optional int32 gameType = 2;
-  optional string dungeonIdTag = 3;
+  string seasonId = 1;
+  int32 gameType = 2;
+  string dungeonIdTag = 3;
 }
 
 message SS2C_USER_CHARACTER_GAME_STAT_INFO_RES {
-  optional string seasonId = 1;
-  optional int32 gameType = 2;
+  string seasonId = 1;
+  int32 gameType = 2;
   repeated .DC.Packet.SGameStat gameStats = 3;
-  optional string dungeonIdTag = 4;
+  string dungeonIdTag = 4;
 }
 
 message SC2S_KNIGHT_PROGRAM_LINK_SELECT_REQ {
 }
 
 message SS2C_KNIGHT_PROGRAM_LINK_SELECT_RES {
-  optional int32 result = 1;
-  optional string url = 2;
+  int32 result = 1;
+  string url = 2;
 }
 
 message SC2S_GM_TRADE_CHAT_BAN_REQ {
-  optional string accountId = 1;
-  optional string characterId = 2;
-  optional string nickName = 3;
-  optional string lastChatMsg = 4;
-  optional uint32 banType = 5;
+  string accountId = 1;
+  string characterId = 2;
+  string nickName = 3;
+  string lastChatMsg = 4;
+  uint32 banType = 5;
 }
 
 message SS2C_GM_TRADE_CHAT_BAN_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SS2C_FRIEND_ITEM_RECOVERED_NOT {
@@ -138,34 +144,34 @@ message SS2C_FRIEND_ITEM_RECOVERY_RECEIVE_NOT_CHECK_RES {
 }
 
 message SC2S_LOBBY_RANDOM_MATCHMAKING_REQ {
-  optional int32 isRandomMatchmaking = 1;
+  int32 isRandomMatchmaking = 1;
 }
 
 message SS2C_LOBBY_RANDOM_MATCHMAKING_RES {
-  optional int32 result = 1;
+  int32 result = 1;
 }
 
 message SS2C_DLC_LEGENDARY_STATUS_DUPLICATE_WARNING_NOT {
 }
 
 message SARENA_STAT_INFO {
-  optional int32 resultStatus = 1;
-  optional int32 resultValue = 2;
+  int32 resultStatus = 1;
+  int32 resultValue = 2;
 }
 
 message SS2C_ARENA_STAT_NOT {
   repeated .DC.Packet.SARENA_STAT_INFO arenaStats = 1;
-  optional int32 kill = 2;
-  optional int32 death = 3;
-  optional int32 assist = 4;
-  optional uint32 gameType = 5;
+  int32 kill = 2;
+  int32 death = 3;
+  int32 assist = 4;
+  uint32 gameType = 5;
 }
 
 message SLOBBY_MMR_INFO {
-  optional uint32 gameType = 1;
-  optional int32 rating = 2;
-  optional uint32 remainingPlacementCount = 3;
-  optional string rankId = 4;
+  uint32 gameType = 1;
+  int32 rating = 2;
+  uint32 remainingPlacementCount = 3;
+  string rankId = 4;
 }
 
 message SS2C_LOBBY_MMR_NOT {
@@ -176,156 +182,149 @@ message SC2S_LAST_GAME_RESULT_REQ {
 }
 
 message SS2C_LAST_GAME_RESULT_RES {
-  optional uint32 result = 1;
-  optional uint32 gameType = 2;
-  optional string seasonId = 3;
-  optional uint32 beforeRankScore = 4;
-  optional uint32 afterRankScore = 5;
-  optional string rankId = 6;
-  optional uint32 placementCount = 7;
-  optional uint32 placementGoalCount = 8;
+  uint32 result = 1;
+  uint32 gameType = 2;
+  string seasonId = 3;
+  uint32 beforeRankScore = 4;
+  uint32 afterRankScore = 5;
+  string rankId = 6;
+  uint32 placementCount = 7;
+  uint32 placementGoalCount = 8;
 }
 
 message SC2S_ARENA_RECENT_MATCH_REQ {
-  oneof _pageIndex {
-    int32 pageIndex = 1;
-  }
-  oneof _gameType {
-    uint32 gameType = 2;
-  }
+  optional int32 pageIndex = 1;
+  optional uint32 gameType = 2;
 }
 
 message SARENA_GAME_HISTORY {
-  optional int32 historyIndex = 1;
-  optional uint32 gameType = 2;
-  optional string seasonId = 3;
-  optional int32 gameResult = 4;
-  optional uint32 teamType = 5;
-  optional uint32 blueTeamWinRounds = 6;
-  optional uint32 redTeamWinRounds = 7;
-  optional .DC.Packet.SArenaUserStat gameStat = 8;
-  optional int32 beforeRankScore = 9;
-  optional int32 afterRankScore = 10;
-  optional int32 isSurrender = 11;
-  optional uint64 elapsedSecAfterMatch = 12;
-  optional int32 playTimeSec = 13;
-  optional int32 isPlacementGame = 14;
+  int32 historyIndex = 1;
+  uint32 gameType = 2;
+  string seasonId = 3;
+  int32 gameResult = 4;
+  uint32 teamType = 5;
+  uint32 blueTeamWinRounds = 6;
+  uint32 redTeamWinRounds = 7;
+  .DC.Packet.SArenaUserStat gameStat = 8;
+  int32 beforeRankScore = 9;
+  int32 afterRankScore = 10;
+  int32 isSurrender = 11;
+  uint64 elapsedSecAfterMatch = 12;
+  int32 playTimeSec = 13;
+  int32 isPlacementGame = 14;
 }
 
 message SS2C_ARENA_RECENT_MATCH_RES {
-  optional uint32 result = 1;
-  optional int32 pageIndex = 2;
-  optional int32 maxPageCount = 3;
+  uint32 result = 1;
+  int32 pageIndex = 2;
+  int32 maxPageCount = 3;
   repeated .DC.Packet.SARENA_GAME_HISTORY history = 4;
 }
 
 message SC2S_ARENA_RECENT_MATCH_DETAIL_REQ {
-  oneof _historyIndex {
-    int32 historyIndex = 1;
-  }
-  oneof _gameType {
-    uint32 gameType = 2;
-  }
+  optional int32 historyIndex = 1;
+  optional uint32 gameType = 2;
 }
 
 message SS2C_ARENA_RECENT_MATCH_DETAIL_RES {
-  optional uint32 result = 1;
-  optional int32 historyIndex = 2;
-  optional int32 winningTeamType = 3;
+  uint32 result = 1;
+  int32 historyIndex = 2;
+  int32 winningTeamType = 3;
   repeated .DC.Packet.SArenaGameResultRecord users = 4;
-  optional uint64 characterId = 5;
-  optional uint32 gameType = 6;
+  uint64 characterId = 5;
+  uint32 gameType = 6;
 }
 
 message SS2C_REPORT_ACCURACY_STAT_NOT {
-  optional int32 reportedCount = 1;
-  optional int32 cheaterBanCount = 2;
+  int32 reportedCount = 1;
+  int32 cheaterBanCount = 2;
 }
 
 message SC2S_CONTENTS_OPEN_STATUS_REQ {
-  optional uint32 toggleContentType = 1;
+  uint32 toggleContentType = 1;
 }
 
 message SS2C_CONTENTS_OPEN_STATUS_RES {
-  optional uint32 result = 1;
-  optional uint32 toggleContentType = 2;
-  optional uint32 openStatus = 3;
-  optional int64 remainTimeSec = 4;
+  uint32 result = 1;
+  uint32 toggleContentType = 2;
+  uint32 openStatus = 3;
+  int64 remainTimeSec = 4;
 }
 
 message SC2S_OUTGAME_REPORT_REQ {
-  optional string accountId = 1;
-  optional uint32 category = 2;
-  optional string targetAccountId = 3;
-  optional string targetCharacterId = 4;
-  optional .DC.Packet.SACCOUNT_NICKNAME targetNickname = 5;
-  optional uint32 reportLocation = 6;
+  string accountId = 1;
+  uint32 category = 2;
+  string targetAccountId = 3;
+  string targetCharacterId = 4;
+  .DC.Packet.SACCOUNT_NICKNAME targetNickname = 5;
+  uint32 reportLocation = 6;
 }
 
 message SS2C_OUTGAME_REPORT_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_LAST_GAME_ADVENTURE_RESULT_REQ {
 }
 
 message SS2C_LAST_GAME_ADVENTURE_RESULT_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.GameExitAdvPoint advPoints = 2;
-  optional uint32 lootedItemSellBackPrice = 3;
-  optional .DC.Packet.SRankGameUserInfo prevRankInfo = 4;
-  optional .DC.Packet.SRankGameUserInfo postRankInfo = 5;
-  optional uint32 isEscape = 6;
-  optional uint32 escapeFailApPointOnOff = 7;
-  optional string seasonId = 8;
-  optional uint32 isSeason = 9;
-  optional uint32 gameType = 10;
-  optional string characterClass = 11;
-  optional uint32 gender = 12;
+  uint32 lootedItemSellBackPrice = 3;
+  .DC.Packet.SRankGameUserInfo prevRankInfo = 4;
+  .DC.Packet.SRankGameUserInfo postRankInfo = 5;
+  uint32 isEscape = 6;
+  uint32 escapeFailApPointOnOff = 7;
+  string seasonId = 8;
+  uint32 isSeason = 9;
+  uint32 gameType = 10;
+  string characterClass = 11;
+  uint32 gender = 12;
   repeated .DC.Packet.AttackInfo attackInfos = 13;
-  optional string dungeonIdTag = 14;
-  optional uint32 rankPointRatio = 15;
+  string dungeonIdTag = 14;
+  uint32 rankPointRatio = 15;
 }
 
 message SS2C_DUNGEON_CARD_INFO_NOT {
   repeated string unlockDungeonCardIds = 1;
-  optional string highestRankId = 2;
-  optional uint32 rankPoint = 3;
-  optional uint32 needPoint = 4;
-  optional string characterClassId = 5;
-  optional string rankSeasonId = 6;
+  string highestRankId = 2;
+  uint32 rankPoint = 3;
+  uint32 needPoint = 4;
+  string characterClassId = 5;
+  string rankSeasonId = 6;
 }
 
 message SC2S_DUNGEON_CARD_UNLOCK_FEE_REQ {
-  optional string dungeonCardId = 1;
+  string dungeonCardId = 1;
 }
 
 message SS2C_DUNGEON_CARD_UNLOCK_FEE_RES {
-  optional uint32 result = 1;
-  optional string dungeonCardId = 2;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO dungeonCardResult = 3;
+  uint32 result = 1;
+  string dungeonCardId = 2;
+  .DC.Packet.SINVENTORY_RESULT_INFO dungeonCardResult = 3;
 }
 
 message SS2C_SQUIRE_ROYALE_STAT_NOT {
-  optional int32 survival = 1;
-  optional int32 kill = 2;
+  int32 survival = 1;
+  int32 kill = 2;
 }
 
 message SC2S_ITEM_QUICK_READY_REQ {
-  optional string itemQuickReadyPackId = 1;
-  optional int32 count = 2;
+  string itemQuickReadyPackId = 1;
+  int32 count = 2;
 }
 
 message SS2C_ITEM_QUICK_READY_RES {
-  optional int32 result = 1;
+  int32 result = 1;
 }
 
 message SITEM_QUICK_READY_INFO {
-  optional uint64 stockBuyUniqueId = 1;
-  optional uint32 finalPrice = 2;
+  uint64 stockBuyUniqueId = 1;
+  uint32 finalPrice = 2;
 }
 
 message SS2C_ITEM_QUICK_READY_INFO_NOT {
-  optional string packId = 1;
+  string packId = 1;
   repeated .DC.Packet.SITEM_QUICK_READY_INFO infos = 2;
 }
+

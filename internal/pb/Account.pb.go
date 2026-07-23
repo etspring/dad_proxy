@@ -103,16 +103,6 @@ func (x SS2C_ACCOUNT_LOGIN_RES_RESULT) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SS2C_ACCOUNT_LOGIN_RES_RESULT) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_ACCOUNT_LOGIN_RES_RESULT(num)
-	return nil
-}
-
 // Deprecated: Use SS2C_ACCOUNT_LOGIN_RES_RESULT.Descriptor instead.
 func (SS2C_ACCOUNT_LOGIN_RES_RESULT) EnumDescriptor() ([]byte, []int) {
 	return file_Account_proto_rawDescGZIP(), []int{4, 0}
@@ -160,16 +150,6 @@ func (SS2C_ACCOUNT_LOGIN_RES_EulaAgreementStatus) Type() protoreflect.EnumType {
 
 func (x SS2C_ACCOUNT_LOGIN_RES_EulaAgreementStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *SS2C_ACCOUNT_LOGIN_RES_EulaAgreementStatus) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_ACCOUNT_LOGIN_RES_EulaAgreementStatus(num)
-	return nil
 }
 
 // Deprecated: Use SS2C_ACCOUNT_LOGIN_RES_EulaAgreementStatus.Descriptor instead.
@@ -221,16 +201,6 @@ func (x SS2C_ACCOUNT_LOGIN_RES_SecurityStatus) Number() protoreflect.EnumNumber 
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *SS2C_ACCOUNT_LOGIN_RES_SecurityStatus) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = SS2C_ACCOUNT_LOGIN_RES_SecurityStatus(num)
-	return nil
-}
-
 // Deprecated: Use SS2C_ACCOUNT_LOGIN_RES_SecurityStatus.Descriptor instead.
 func (SS2C_ACCOUNT_LOGIN_RES_SecurityStatus) EnumDescriptor() ([]byte, []int) {
 	return file_Account_proto_rawDescGZIP(), []int{4, 2}
@@ -241,7 +211,7 @@ type SLOGIN_ACCOUNT_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountID *string `protobuf:"bytes,1,opt,name=AccountID" json:"AccountID,omitempty"`
+	AccountID string `protobuf:"bytes,1,opt,name=AccountID,proto3" json:"AccountID,omitempty"`
 }
 
 func (x *SLOGIN_ACCOUNT_INFO) Reset() {
@@ -277,8 +247,8 @@ func (*SLOGIN_ACCOUNT_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SLOGIN_ACCOUNT_INFO) GetAccountID() string {
-	if x != nil && x.AccountID != nil {
-		return *x.AccountID
+	if x != nil {
+		return x.AccountID
 	}
 	return ""
 }
@@ -288,20 +258,20 @@ type SLOGIN_CHARACTER_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OrderIndex             *int32             `protobuf:"varint,1,opt,name=orderIndex" json:"orderIndex,omitempty"`
-	CharacterId            *string            `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	NickName               *SACCOUNT_NICKNAME `protobuf:"bytes,3,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass         *string            `protobuf:"bytes,4,opt,name=characterClass" json:"characterClass,omitempty"`
-	CreateAt               *uint64            `protobuf:"varint,5,opt,name=createAt" json:"createAt,omitempty"`
-	Gender                 *uint32            `protobuf:"varint,6,opt,name=gender" json:"gender,omitempty"`
-	Level                  *uint32            `protobuf:"varint,7,opt,name=level" json:"level,omitempty"`
-	LastloginDate          *uint64            `protobuf:"varint,8,opt,name=lastloginDate" json:"lastloginDate,omitempty"`
-	EquipItemList          []*SItem           `protobuf:"bytes,9,rep,name=equipItemList" json:"equipItemList,omitempty"`
-	EquipCharacterSkinList []string           `protobuf:"bytes,10,rep,name=equipCharacterSkinList" json:"equipCharacterSkinList,omitempty"`
-	EquipItemSkinList      []string           `protobuf:"bytes,11,rep,name=equipItemSkinList" json:"equipItemSkinList,omitempty"`
-	EquipArmorSkinList     []string           `protobuf:"bytes,12,rep,name=equipArmorSkinList" json:"equipArmorSkinList,omitempty"`
-	IsLock                 *uint32            `protobuf:"varint,13,opt,name=isLock" json:"isLock,omitempty"`
-	OrderId                *uint32            `protobuf:"varint,14,opt,name=orderId" json:"orderId,omitempty"`
+	OrderIndex             int32              `protobuf:"varint,1,opt,name=orderIndex,proto3" json:"orderIndex,omitempty"`
+	CharacterId            string             `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	NickName               *SACCOUNT_NICKNAME `protobuf:"bytes,3,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass         string             `protobuf:"bytes,4,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	CreateAt               uint64             `protobuf:"varint,5,opt,name=createAt,proto3" json:"createAt,omitempty"`
+	Gender                 uint32             `protobuf:"varint,6,opt,name=gender,proto3" json:"gender,omitempty"`
+	Level                  uint32             `protobuf:"varint,7,opt,name=level,proto3" json:"level,omitempty"`
+	LastloginDate          uint64             `protobuf:"varint,8,opt,name=lastloginDate,proto3" json:"lastloginDate,omitempty"`
+	EquipItemList          []*SItem           `protobuf:"bytes,9,rep,name=equipItemList,proto3" json:"equipItemList,omitempty"`
+	EquipCharacterSkinList []string           `protobuf:"bytes,10,rep,name=equipCharacterSkinList,proto3" json:"equipCharacterSkinList,omitempty"`
+	EquipItemSkinList      []string           `protobuf:"bytes,11,rep,name=equipItemSkinList,proto3" json:"equipItemSkinList,omitempty"`
+	EquipArmorSkinList     []string           `protobuf:"bytes,12,rep,name=equipArmorSkinList,proto3" json:"equipArmorSkinList,omitempty"`
+	IsLock                 uint32             `protobuf:"varint,13,opt,name=isLock,proto3" json:"isLock,omitempty"`
+	OrderId                uint32             `protobuf:"varint,14,opt,name=orderId,proto3" json:"orderId,omitempty"`
 }
 
 func (x *SLOGIN_CHARACTER_INFO) Reset() {
@@ -337,15 +307,15 @@ func (*SLOGIN_CHARACTER_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetOrderIndex() int32 {
-	if x != nil && x.OrderIndex != nil {
-		return *x.OrderIndex
+	if x != nil {
+		return x.OrderIndex
 	}
 	return 0
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -358,36 +328,36 @@ func (x *SLOGIN_CHARACTER_INFO) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetCreateAt() uint64 {
-	if x != nil && x.CreateAt != nil {
-		return *x.CreateAt
+	if x != nil {
+		return x.CreateAt
 	}
 	return 0
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetLevel() uint32 {
-	if x != nil && x.Level != nil {
-		return *x.Level
+	if x != nil {
+		return x.Level
 	}
 	return 0
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetLastloginDate() uint64 {
-	if x != nil && x.LastloginDate != nil {
-		return *x.LastloginDate
+	if x != nil {
+		return x.LastloginDate
 	}
 	return 0
 }
@@ -421,15 +391,15 @@ func (x *SLOGIN_CHARACTER_INFO) GetEquipArmorSkinList() []string {
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetIsLock() uint32 {
-	if x != nil && x.IsLock != nil {
-		return *x.IsLock
+	if x != nil {
+		return x.IsLock
 	}
 	return 0
 }
 
 func (x *SLOGIN_CHARACTER_INFO) GetOrderId() uint32 {
-	if x != nil && x.OrderId != nil {
-		return *x.OrderId
+	if x != nil {
+		return x.OrderId
 	}
 	return 0
 }
@@ -439,14 +409,14 @@ type SFINGER_PRINT_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClientIp  *string `protobuf:"bytes,1,opt,name=clientIp" json:"clientIp,omitempty"`
-	ScreenW   *uint32 `protobuf:"varint,2,opt,name=screenW" json:"screenW,omitempty"`
-	ScreenH   *uint32 `protobuf:"varint,3,opt,name=screenH" json:"screenH,omitempty"`
-	OsVersion *string `protobuf:"bytes,4,opt,name=osVersion" json:"osVersion,omitempty"`
-	Language  *string `protobuf:"bytes,5,opt,name=language" json:"language,omitempty"`
-	Region    *string `protobuf:"bytes,6,opt,name=region" json:"region,omitempty"`
-	CoreCount *uint32 `protobuf:"varint,7,opt,name=coreCount" json:"coreCount,omitempty"`
-	GpuModel  *string `protobuf:"bytes,8,opt,name=gpuModel" json:"gpuModel,omitempty"`
+	ClientIp  string `protobuf:"bytes,1,opt,name=clientIp,proto3" json:"clientIp,omitempty"`
+	ScreenW   uint32 `protobuf:"varint,2,opt,name=screenW,proto3" json:"screenW,omitempty"`
+	ScreenH   uint32 `protobuf:"varint,3,opt,name=screenH,proto3" json:"screenH,omitempty"`
+	OsVersion string `protobuf:"bytes,4,opt,name=osVersion,proto3" json:"osVersion,omitempty"`
+	Language  string `protobuf:"bytes,5,opt,name=language,proto3" json:"language,omitempty"`
+	Region    string `protobuf:"bytes,6,opt,name=region,proto3" json:"region,omitempty"`
+	CoreCount uint32 `protobuf:"varint,7,opt,name=coreCount,proto3" json:"coreCount,omitempty"`
+	GpuModel  string `protobuf:"bytes,8,opt,name=gpuModel,proto3" json:"gpuModel,omitempty"`
 }
 
 func (x *SFINGER_PRINT_INFO) Reset() {
@@ -482,57 +452,57 @@ func (*SFINGER_PRINT_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SFINGER_PRINT_INFO) GetClientIp() string {
-	if x != nil && x.ClientIp != nil {
-		return *x.ClientIp
+	if x != nil {
+		return x.ClientIp
 	}
 	return ""
 }
 
 func (x *SFINGER_PRINT_INFO) GetScreenW() uint32 {
-	if x != nil && x.ScreenW != nil {
-		return *x.ScreenW
+	if x != nil {
+		return x.ScreenW
 	}
 	return 0
 }
 
 func (x *SFINGER_PRINT_INFO) GetScreenH() uint32 {
-	if x != nil && x.ScreenH != nil {
-		return *x.ScreenH
+	if x != nil {
+		return x.ScreenH
 	}
 	return 0
 }
 
 func (x *SFINGER_PRINT_INFO) GetOsVersion() string {
-	if x != nil && x.OsVersion != nil {
-		return *x.OsVersion
+	if x != nil {
+		return x.OsVersion
 	}
 	return ""
 }
 
 func (x *SFINGER_PRINT_INFO) GetLanguage() string {
-	if x != nil && x.Language != nil {
-		return *x.Language
+	if x != nil {
+		return x.Language
 	}
 	return ""
 }
 
 func (x *SFINGER_PRINT_INFO) GetRegion() string {
-	if x != nil && x.Region != nil {
-		return *x.Region
+	if x != nil {
+		return x.Region
 	}
 	return ""
 }
 
 func (x *SFINGER_PRINT_INFO) GetCoreCount() uint32 {
-	if x != nil && x.CoreCount != nil {
-		return *x.CoreCount
+	if x != nil {
+		return x.CoreCount
 	}
 	return 0
 }
 
 func (x *SFINGER_PRINT_INFO) GetGpuModel() string {
-	if x != nil && x.GpuModel != nil {
-		return *x.GpuModel
+	if x != nil {
+		return x.GpuModel
 	}
 	return ""
 }
@@ -542,17 +512,17 @@ type SC2S_ACCOUNT_LOGIN_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LoginId         *string             `protobuf:"bytes,1,opt,name=loginId" json:"loginId,omitempty"`
-	Password        *string             `protobuf:"bytes,2,opt,name=password" json:"password,omitempty"`
-	IpAddress       *string             `protobuf:"bytes,3,opt,name=ipAddress" json:"ipAddress,omitempty"`
-	SteamBuildId    *uint32             `protobuf:"varint,4,opt,name=steamBuildId" json:"steamBuildId,omitempty"`
-	HwIds           []string            `protobuf:"bytes,5,rep,name=hwIds" json:"hwIds,omitempty"`
-	MacAddress      *string             `protobuf:"bytes,6,opt,name=macAddress" json:"macAddress,omitempty"`
-	PlatformId      *uint32             `protobuf:"varint,7,opt,name=platformId" json:"platformId,omitempty"`
-	BuildVersion    *string             `protobuf:"bytes,8,opt,name=buildVersion" json:"buildVersion,omitempty"`
-	EulaHash        *string             `protobuf:"bytes,9,opt,name=eulaHash" json:"eulaHash,omitempty"`
-	FingerPrint     *SFINGER_PRINT_INFO `protobuf:"bytes,10,opt,name=fingerPrint" json:"fingerPrint,omitempty"`
-	SecurityEnabled *uint32             `protobuf:"varint,11,opt,name=securityEnabled" json:"securityEnabled,omitempty"`
+	LoginId         string              `protobuf:"bytes,1,opt,name=loginId,proto3" json:"loginId,omitempty"`
+	Password        string              `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	IpAddress       string              `protobuf:"bytes,3,opt,name=ipAddress,proto3" json:"ipAddress,omitempty"`
+	SteamBuildId    uint32              `protobuf:"varint,4,opt,name=steamBuildId,proto3" json:"steamBuildId,omitempty"`
+	HwIds           []string            `protobuf:"bytes,5,rep,name=hwIds,proto3" json:"hwIds,omitempty"`
+	MacAddress      string              `protobuf:"bytes,6,opt,name=macAddress,proto3" json:"macAddress,omitempty"`
+	PlatformId      uint32              `protobuf:"varint,7,opt,name=platformId,proto3" json:"platformId,omitempty"`
+	BuildVersion    string              `protobuf:"bytes,8,opt,name=buildVersion,proto3" json:"buildVersion,omitempty"`
+	EulaHash        string              `protobuf:"bytes,9,opt,name=eulaHash,proto3" json:"eulaHash,omitempty"`
+	FingerPrint     *SFINGER_PRINT_INFO `protobuf:"bytes,10,opt,name=fingerPrint,proto3" json:"fingerPrint,omitempty"`
+	SecurityEnabled uint32              `protobuf:"varint,11,opt,name=securityEnabled,proto3" json:"securityEnabled,omitempty"`
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) Reset() {
@@ -588,29 +558,29 @@ func (*SC2S_ACCOUNT_LOGIN_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetLoginId() string {
-	if x != nil && x.LoginId != nil {
-		return *x.LoginId
+	if x != nil {
+		return x.LoginId
 	}
 	return ""
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetPassword() string {
-	if x != nil && x.Password != nil {
-		return *x.Password
+	if x != nil {
+		return x.Password
 	}
 	return ""
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetIpAddress() string {
-	if x != nil && x.IpAddress != nil {
-		return *x.IpAddress
+	if x != nil {
+		return x.IpAddress
 	}
 	return ""
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetSteamBuildId() uint32 {
-	if x != nil && x.SteamBuildId != nil {
-		return *x.SteamBuildId
+	if x != nil {
+		return x.SteamBuildId
 	}
 	return 0
 }
@@ -623,29 +593,29 @@ func (x *SC2S_ACCOUNT_LOGIN_REQ) GetHwIds() []string {
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetMacAddress() string {
-	if x != nil && x.MacAddress != nil {
-		return *x.MacAddress
+	if x != nil {
+		return x.MacAddress
 	}
 	return ""
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetPlatformId() uint32 {
-	if x != nil && x.PlatformId != nil {
-		return *x.PlatformId
+	if x != nil {
+		return x.PlatformId
 	}
 	return 0
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetBuildVersion() string {
-	if x != nil && x.BuildVersion != nil {
-		return *x.BuildVersion
+	if x != nil {
+		return x.BuildVersion
 	}
 	return ""
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetEulaHash() string {
-	if x != nil && x.EulaHash != nil {
-		return *x.EulaHash
+	if x != nil {
+		return x.EulaHash
 	}
 	return ""
 }
@@ -658,8 +628,8 @@ func (x *SC2S_ACCOUNT_LOGIN_REQ) GetFingerPrint() *SFINGER_PRINT_INFO {
 }
 
 func (x *SC2S_ACCOUNT_LOGIN_REQ) GetSecurityEnabled() uint32 {
-	if x != nil && x.SecurityEnabled != nil {
-		return *x.SecurityEnabled
+	if x != nil {
+		return x.SecurityEnabled
 	}
 	return 0
 }
@@ -669,31 +639,31 @@ type SS2C_ACCOUNT_LOGIN_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result                 *uint32                      `protobuf:"varint,1,opt,name=Result" json:"Result,omitempty"`
-	AccountInfo            *SLOGIN_ACCOUNT_INFO         `protobuf:"bytes,2,opt,name=AccountInfo" json:"AccountInfo,omitempty"`
-	IsReconnect            *uint32                      `protobuf:"varint,3,opt,name=isReconnect" json:"isReconnect,omitempty"`
-	Address                *string                      `protobuf:"bytes,4,opt,name=address" json:"address,omitempty"`
-	SessionId              *string                      `protobuf:"bytes,5,opt,name=sessionId" json:"sessionId,omitempty"`
-	AccountId              *string                      `protobuf:"bytes,6,opt,name=accountId" json:"accountId,omitempty"`
-	ServerLocation         *uint32                      `protobuf:"varint,7,opt,name=serverLocation" json:"serverLocation,omitempty"`
-	SecretToken            *string                      `protobuf:"bytes,8,opt,name=secretToken" json:"secretToken,omitempty"`
-	BanTimeBeginMs         *uint64                      `protobuf:"varint,9,opt,name=banTime_begin_ms,json=banTimeBeginMs" json:"banTime_begin_ms,omitempty"`
-	BanTimeEndMs           *uint64                      `protobuf:"varint,10,opt,name=banTime_end_ms,json=banTimeEndMs" json:"banTime_end_ms,omitempty"`
-	UpgradeDate            *string                      `protobuf:"bytes,11,opt,name=upgradeDate" json:"upgradeDate,omitempty"`
-	UpgradeTime            *string                      `protobuf:"bytes,12,opt,name=upgradeTime" json:"upgradeTime,omitempty"`
-	BanReason              *string                      `protobuf:"bytes,13,opt,name=banReason" json:"banReason,omitempty"`
-	LatencyToken           *string                      `protobuf:"bytes,14,opt,name=latencyToken" json:"latencyToken,omitempty"`
-	TotalPlaytime          *uint64                      `protobuf:"varint,15,opt,name=totalPlaytime" json:"totalPlaytime,omitempty"`
-	UserLoginInfo          *int32                       `protobuf:"varint,16,opt,name=userLoginInfo" json:"userLoginInfo,omitempty"`
-	UsePlatformLink        *int32                       `protobuf:"varint,17,opt,name=usePlatformLink" json:"usePlatformLink,omitempty"`
-	RedirectionInfo        *ACCOUNT_REDIRECTION_INFO    `protobuf:"bytes,18,opt,name=redirectionInfo" json:"redirectionInfo,omitempty"`
-	GameType               *int32                       `protobuf:"varint,19,opt,name=gameType" json:"gameType,omitempty"`
-	LinkPlatformLinkStatus *int32                       `protobuf:"varint,20,opt,name=linkPlatformLinkStatus" json:"linkPlatformLinkStatus,omitempty"`
-	IsLockBanAppeal        *int32                       `protobuf:"varint,21,opt,name=isLockBanAppeal" json:"isLockBanAppeal,omitempty"`
-	BanPeriodType          *int32                       `protobuf:"varint,22,opt,name=banPeriodType" json:"banPeriodType,omitempty"`
-	EulaAgreementStatus    *int32                       `protobuf:"varint,23,opt,name=eulaAgreementStatus" json:"eulaAgreementStatus,omitempty"`
-	Permission             *int32                       `protobuf:"varint,24,opt,name=permission" json:"permission,omitempty"`
-	DlcInstallInfos        []*SACCOUNT_DLC_INSTALL_INFO `protobuf:"bytes,25,rep,name=dlcInstallInfos" json:"dlcInstallInfos,omitempty"`
+	Result                 uint32                       `protobuf:"varint,1,opt,name=Result,proto3" json:"Result,omitempty"`
+	AccountInfo            *SLOGIN_ACCOUNT_INFO         `protobuf:"bytes,2,opt,name=AccountInfo,proto3" json:"AccountInfo,omitempty"`
+	IsReconnect            uint32                       `protobuf:"varint,3,opt,name=isReconnect,proto3" json:"isReconnect,omitempty"`
+	Address                string                       `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
+	SessionId              string                       `protobuf:"bytes,5,opt,name=sessionId,proto3" json:"sessionId,omitempty"`
+	AccountId              string                       `protobuf:"bytes,6,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	ServerLocation         uint32                       `protobuf:"varint,7,opt,name=serverLocation,proto3" json:"serverLocation,omitempty"`
+	SecretToken            string                       `protobuf:"bytes,8,opt,name=secretToken,proto3" json:"secretToken,omitempty"`
+	BanTimeBeginMs         uint64                       `protobuf:"varint,9,opt,name=banTime_begin_ms,json=banTimeBeginMs,proto3" json:"banTime_begin_ms,omitempty"`
+	BanTimeEndMs           uint64                       `protobuf:"varint,10,opt,name=banTime_end_ms,json=banTimeEndMs,proto3" json:"banTime_end_ms,omitempty"`
+	UpgradeDate            string                       `protobuf:"bytes,11,opt,name=upgradeDate,proto3" json:"upgradeDate,omitempty"`
+	UpgradeTime            string                       `protobuf:"bytes,12,opt,name=upgradeTime,proto3" json:"upgradeTime,omitempty"`
+	BanReason              string                       `protobuf:"bytes,13,opt,name=banReason,proto3" json:"banReason,omitempty"`
+	LatencyToken           string                       `protobuf:"bytes,14,opt,name=latencyToken,proto3" json:"latencyToken,omitempty"`
+	TotalPlaytime          uint64                       `protobuf:"varint,15,opt,name=totalPlaytime,proto3" json:"totalPlaytime,omitempty"`
+	UserLoginInfo          int32                        `protobuf:"varint,16,opt,name=userLoginInfo,proto3" json:"userLoginInfo,omitempty"`
+	UsePlatformLink        int32                        `protobuf:"varint,17,opt,name=usePlatformLink,proto3" json:"usePlatformLink,omitempty"`
+	RedirectionInfo        *ACCOUNT_REDIRECTION_INFO    `protobuf:"bytes,18,opt,name=redirectionInfo,proto3" json:"redirectionInfo,omitempty"`
+	GameType               int32                        `protobuf:"varint,19,opt,name=gameType,proto3" json:"gameType,omitempty"`
+	LinkPlatformLinkStatus int32                        `protobuf:"varint,20,opt,name=linkPlatformLinkStatus,proto3" json:"linkPlatformLinkStatus,omitempty"`
+	IsLockBanAppeal        int32                        `protobuf:"varint,21,opt,name=isLockBanAppeal,proto3" json:"isLockBanAppeal,omitempty"`
+	BanPeriodType          int32                        `protobuf:"varint,22,opt,name=banPeriodType,proto3" json:"banPeriodType,omitempty"`
+	EulaAgreementStatus    int32                        `protobuf:"varint,23,opt,name=eulaAgreementStatus,proto3" json:"eulaAgreementStatus,omitempty"`
+	Permission             int32                        `protobuf:"varint,24,opt,name=permission,proto3" json:"permission,omitempty"`
+	DlcInstallInfos        []*SACCOUNT_DLC_INSTALL_INFO `protobuf:"bytes,25,rep,name=dlcInstallInfos,proto3" json:"dlcInstallInfos,omitempty"`
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) Reset() {
@@ -729,8 +699,8 @@ func (*SS2C_ACCOUNT_LOGIN_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -743,106 +713,106 @@ func (x *SS2C_ACCOUNT_LOGIN_RES) GetAccountInfo() *SLOGIN_ACCOUNT_INFO {
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetIsReconnect() uint32 {
-	if x != nil && x.IsReconnect != nil {
-		return *x.IsReconnect
+	if x != nil {
+		return x.IsReconnect
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetAddress() string {
-	if x != nil && x.Address != nil {
-		return *x.Address
+	if x != nil {
+		return x.Address
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetSessionId() string {
-	if x != nil && x.SessionId != nil {
-		return *x.SessionId
+	if x != nil {
+		return x.SessionId
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetServerLocation() uint32 {
-	if x != nil && x.ServerLocation != nil {
-		return *x.ServerLocation
+	if x != nil {
+		return x.ServerLocation
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetSecretToken() string {
-	if x != nil && x.SecretToken != nil {
-		return *x.SecretToken
+	if x != nil {
+		return x.SecretToken
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetBanTimeBeginMs() uint64 {
-	if x != nil && x.BanTimeBeginMs != nil {
-		return *x.BanTimeBeginMs
+	if x != nil {
+		return x.BanTimeBeginMs
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetBanTimeEndMs() uint64 {
-	if x != nil && x.BanTimeEndMs != nil {
-		return *x.BanTimeEndMs
+	if x != nil {
+		return x.BanTimeEndMs
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetUpgradeDate() string {
-	if x != nil && x.UpgradeDate != nil {
-		return *x.UpgradeDate
+	if x != nil {
+		return x.UpgradeDate
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetUpgradeTime() string {
-	if x != nil && x.UpgradeTime != nil {
-		return *x.UpgradeTime
+	if x != nil {
+		return x.UpgradeTime
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetBanReason() string {
-	if x != nil && x.BanReason != nil {
-		return *x.BanReason
+	if x != nil {
+		return x.BanReason
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetLatencyToken() string {
-	if x != nil && x.LatencyToken != nil {
-		return *x.LatencyToken
+	if x != nil {
+		return x.LatencyToken
 	}
 	return ""
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetTotalPlaytime() uint64 {
-	if x != nil && x.TotalPlaytime != nil {
-		return *x.TotalPlaytime
+	if x != nil {
+		return x.TotalPlaytime
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetUserLoginInfo() int32 {
-	if x != nil && x.UserLoginInfo != nil {
-		return *x.UserLoginInfo
+	if x != nil {
+		return x.UserLoginInfo
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetUsePlatformLink() int32 {
-	if x != nil && x.UsePlatformLink != nil {
-		return *x.UsePlatformLink
+	if x != nil {
+		return x.UsePlatformLink
 	}
 	return 0
 }
@@ -855,43 +825,43 @@ func (x *SS2C_ACCOUNT_LOGIN_RES) GetRedirectionInfo() *ACCOUNT_REDIRECTION_INFO 
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetGameType() int32 {
-	if x != nil && x.GameType != nil {
-		return *x.GameType
+	if x != nil {
+		return x.GameType
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetLinkPlatformLinkStatus() int32 {
-	if x != nil && x.LinkPlatformLinkStatus != nil {
-		return *x.LinkPlatformLinkStatus
+	if x != nil {
+		return x.LinkPlatformLinkStatus
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetIsLockBanAppeal() int32 {
-	if x != nil && x.IsLockBanAppeal != nil {
-		return *x.IsLockBanAppeal
+	if x != nil {
+		return x.IsLockBanAppeal
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetBanPeriodType() int32 {
-	if x != nil && x.BanPeriodType != nil {
-		return *x.BanPeriodType
+	if x != nil {
+		return x.BanPeriodType
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetEulaAgreementStatus() int32 {
-	if x != nil && x.EulaAgreementStatus != nil {
-		return *x.EulaAgreementStatus
+	if x != nil {
+		return x.EulaAgreementStatus
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_LOGIN_RES) GetPermission() int32 {
-	if x != nil && x.Permission != nil {
-		return *x.Permission
+	if x != nil {
+		return x.Permission
 	}
 	return 0
 }
@@ -908,9 +878,9 @@ type SC2S_ACCOUNT_CHARACTER_CREATE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NickName       *string `protobuf:"bytes,1,opt,name=nickName" json:"nickName,omitempty"`
-	CharacterClass *string `protobuf:"bytes,2,opt,name=characterClass" json:"characterClass,omitempty"`
-	Gender         *uint32 `protobuf:"varint,3,opt,name=gender" json:"gender,omitempty"`
+	NickName       string `protobuf:"bytes,1,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	CharacterClass string `protobuf:"bytes,2,opt,name=characterClass,proto3" json:"characterClass,omitempty"`
+	Gender         uint32 `protobuf:"varint,3,opt,name=gender,proto3" json:"gender,omitempty"`
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_CREATE_REQ) Reset() {
@@ -946,22 +916,22 @@ func (*SC2S_ACCOUNT_CHARACTER_CREATE_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_CREATE_REQ) GetNickName() string {
-	if x != nil && x.NickName != nil {
-		return *x.NickName
+	if x != nil {
+		return x.NickName
 	}
 	return ""
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_CREATE_REQ) GetCharacterClass() string {
-	if x != nil && x.CharacterClass != nil {
-		return *x.CharacterClass
+	if x != nil {
+		return x.CharacterClass
 	}
 	return ""
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_CREATE_REQ) GetGender() uint32 {
-	if x != nil && x.Gender != nil {
-		return *x.Gender
+	if x != nil {
+		return x.Gender
 	}
 	return 0
 }
@@ -971,7 +941,7 @@ type SS2C_ACCOUNT_CHARACTER_CREATE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_CREATE_RES) Reset() {
@@ -1007,8 +977,8 @@ func (*SS2C_ACCOUNT_CHARACTER_CREATE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_CREATE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1018,8 +988,8 @@ type SC2S_ACCOUNT_CHARACTER_LIST_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PageIndex    *uint32 `protobuf:"varint,1,opt,name=pageIndex" json:"pageIndex,omitempty"`
-	PageCapacity *uint32 `protobuf:"varint,2,opt,name=pageCapacity" json:"pageCapacity,omitempty"`
+	PageIndex    uint32 `protobuf:"varint,1,opt,name=pageIndex,proto3" json:"pageIndex,omitempty"`
+	PageCapacity uint32 `protobuf:"varint,2,opt,name=pageCapacity,proto3" json:"pageCapacity,omitempty"`
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_LIST_REQ) Reset() {
@@ -1055,15 +1025,15 @@ func (*SC2S_ACCOUNT_CHARACTER_LIST_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_LIST_REQ) GetPageIndex() uint32 {
-	if x != nil && x.PageIndex != nil {
-		return *x.PageIndex
+	if x != nil {
+		return x.PageIndex
 	}
 	return 0
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_LIST_REQ) GetPageCapacity() uint32 {
-	if x != nil && x.PageCapacity != nil {
-		return *x.PageCapacity
+	if x != nil {
+		return x.PageCapacity
 	}
 	return 0
 }
@@ -1073,10 +1043,10 @@ type SACCOUNT_CHARACTER_SLOT_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OrderIndex    *int32  `protobuf:"varint,1,opt,name=orderIndex" json:"orderIndex,omitempty"`
-	SlotType      *uint32 `protobuf:"varint,2,opt,name=slotType" json:"slotType,omitempty"`
-	SlotStatus    *uint32 `protobuf:"varint,3,opt,name=slotStatus" json:"slotStatus,omitempty"`
-	ExpireTimeSec *uint32 `protobuf:"varint,4,opt,name=expireTimeSec" json:"expireTimeSec,omitempty"`
+	OrderIndex    int32  `protobuf:"varint,1,opt,name=orderIndex,proto3" json:"orderIndex,omitempty"`
+	SlotType      uint32 `protobuf:"varint,2,opt,name=slotType,proto3" json:"slotType,omitempty"`
+	SlotStatus    uint32 `protobuf:"varint,3,opt,name=slotStatus,proto3" json:"slotStatus,omitempty"`
+	ExpireTimeSec uint32 `protobuf:"varint,4,opt,name=expireTimeSec,proto3" json:"expireTimeSec,omitempty"`
 }
 
 func (x *SACCOUNT_CHARACTER_SLOT_INFO) Reset() {
@@ -1112,29 +1082,29 @@ func (*SACCOUNT_CHARACTER_SLOT_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SACCOUNT_CHARACTER_SLOT_INFO) GetOrderIndex() int32 {
-	if x != nil && x.OrderIndex != nil {
-		return *x.OrderIndex
+	if x != nil {
+		return x.OrderIndex
 	}
 	return 0
 }
 
 func (x *SACCOUNT_CHARACTER_SLOT_INFO) GetSlotType() uint32 {
-	if x != nil && x.SlotType != nil {
-		return *x.SlotType
+	if x != nil {
+		return x.SlotType
 	}
 	return 0
 }
 
 func (x *SACCOUNT_CHARACTER_SLOT_INFO) GetSlotStatus() uint32 {
-	if x != nil && x.SlotStatus != nil {
-		return *x.SlotStatus
+	if x != nil {
+		return x.SlotStatus
 	}
 	return 0
 }
 
 func (x *SACCOUNT_CHARACTER_SLOT_INFO) GetExpireTimeSec() uint32 {
-	if x != nil && x.ExpireTimeSec != nil {
-		return *x.ExpireTimeSec
+	if x != nil {
+		return x.ExpireTimeSec
 	}
 	return 0
 }
@@ -1144,12 +1114,12 @@ type SS2C_ACCOUNT_CHARACTER_LIST_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	TotalCharacterCount *uint32                         `protobuf:"varint,1,opt,name=totalCharacterCount" json:"totalCharacterCount,omitempty"`
-	PageIndex           *uint32                         `protobuf:"varint,2,opt,name=pageIndex" json:"pageIndex,omitempty"`
-	CharacterList       []*SLOGIN_CHARACTER_INFO        `protobuf:"bytes,3,rep,name=characterList" json:"characterList,omitempty"`
-	SlotInfos           []*SACCOUNT_CHARACTER_SLOT_INFO `protobuf:"bytes,4,rep,name=slotInfos" json:"slotInfos,omitempty"`
-	AvailableSlotCount  *uint32                         `protobuf:"varint,5,opt,name=availableSlotCount" json:"availableSlotCount,omitempty"`
-	WipeRemainTimeMs    *uint64                         `protobuf:"varint,6,opt,name=wipeRemainTimeMs" json:"wipeRemainTimeMs,omitempty"`
+	TotalCharacterCount uint32                          `protobuf:"varint,1,opt,name=totalCharacterCount,proto3" json:"totalCharacterCount,omitempty"`
+	PageIndex           uint32                          `protobuf:"varint,2,opt,name=pageIndex,proto3" json:"pageIndex,omitempty"`
+	CharacterList       []*SLOGIN_CHARACTER_INFO        `protobuf:"bytes,3,rep,name=characterList,proto3" json:"characterList,omitempty"`
+	SlotInfos           []*SACCOUNT_CHARACTER_SLOT_INFO `protobuf:"bytes,4,rep,name=slotInfos,proto3" json:"slotInfos,omitempty"`
+	AvailableSlotCount  uint32                          `protobuf:"varint,5,opt,name=availableSlotCount,proto3" json:"availableSlotCount,omitempty"`
+	WipeRemainTimeMs    uint64                          `protobuf:"varint,6,opt,name=wipeRemainTimeMs,proto3" json:"wipeRemainTimeMs,omitempty"`
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_LIST_RES) Reset() {
@@ -1185,15 +1155,15 @@ func (*SS2C_ACCOUNT_CHARACTER_LIST_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_LIST_RES) GetTotalCharacterCount() uint32 {
-	if x != nil && x.TotalCharacterCount != nil {
-		return *x.TotalCharacterCount
+	if x != nil {
+		return x.TotalCharacterCount
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_LIST_RES) GetPageIndex() uint32 {
-	if x != nil && x.PageIndex != nil {
-		return *x.PageIndex
+	if x != nil {
+		return x.PageIndex
 	}
 	return 0
 }
@@ -1213,15 +1183,15 @@ func (x *SS2C_ACCOUNT_CHARACTER_LIST_RES) GetSlotInfos() []*SACCOUNT_CHARACTER_S
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_LIST_RES) GetAvailableSlotCount() uint32 {
-	if x != nil && x.AvailableSlotCount != nil {
-		return *x.AvailableSlotCount
+	if x != nil {
+		return x.AvailableSlotCount
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_LIST_RES) GetWipeRemainTimeMs() uint64 {
-	if x != nil && x.WipeRemainTimeMs != nil {
-		return *x.WipeRemainTimeMs
+	if x != nil {
+		return x.WipeRemainTimeMs
 	}
 	return 0
 }
@@ -1231,7 +1201,7 @@ type SC2S_ACCOUNT_CHARACTER_DELETE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CharacterId *string `protobuf:"bytes,1,opt,name=characterId" json:"characterId,omitempty"`
+	CharacterId string `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_DELETE_REQ) Reset() {
@@ -1267,8 +1237,8 @@ func (*SC2S_ACCOUNT_CHARACTER_DELETE_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_ACCOUNT_CHARACTER_DELETE_REQ) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -1278,8 +1248,8 @@ type SS2C_ACCOUNT_CHARACTER_DELETE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result          *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	UsePlatformLink *uint32 `protobuf:"varint,2,opt,name=usePlatformLink" json:"usePlatformLink,omitempty"`
+	Result          uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	UsePlatformLink uint32 `protobuf:"varint,2,opt,name=usePlatformLink,proto3" json:"usePlatformLink,omitempty"`
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_DELETE_RES) Reset() {
@@ -1315,15 +1285,15 @@ func (*SS2C_ACCOUNT_CHARACTER_DELETE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_DELETE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_DELETE_RES) GetUsePlatformLink() uint32 {
-	if x != nil && x.UsePlatformLink != nil {
-		return *x.UsePlatformLink
+	if x != nil {
+		return x.UsePlatformLink
 	}
 	return 0
 }
@@ -1333,7 +1303,7 @@ type SC2S_LOBBY_ENTER_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CharacterId *string `protobuf:"bytes,1,opt,name=characterId" json:"characterId,omitempty"`
+	CharacterId string `protobuf:"bytes,1,opt,name=characterId,proto3" json:"characterId,omitempty"`
 }
 
 func (x *SC2S_LOBBY_ENTER_REQ) Reset() {
@@ -1369,8 +1339,8 @@ func (*SC2S_LOBBY_ENTER_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_LOBBY_ENTER_REQ) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -1380,8 +1350,8 @@ type SS2C_LOBBY_ENTER_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result    *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	AccountId *string `protobuf:"bytes,2,opt,name=accountId" json:"accountId,omitempty"`
+	Result    uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	AccountId string `protobuf:"bytes,2,opt,name=accountId,proto3" json:"accountId,omitempty"`
 }
 
 func (x *SS2C_LOBBY_ENTER_RES) Reset() {
@@ -1417,15 +1387,15 @@ func (*SS2C_LOBBY_ENTER_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_LOBBY_ENTER_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_LOBBY_ENTER_RES) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
@@ -1435,8 +1405,8 @@ type SC2S_ACCOUNT_AGREE_ANSWER_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsAgree  *uint32 `protobuf:"varint,1,opt,name=isAgree" json:"isAgree,omitempty"`
-	EulaHash *string `protobuf:"bytes,2,opt,name=eulaHash" json:"eulaHash,omitempty"`
+	IsAgree  uint32 `protobuf:"varint,1,opt,name=isAgree,proto3" json:"isAgree,omitempty"`
+	EulaHash string `protobuf:"bytes,2,opt,name=eulaHash,proto3" json:"eulaHash,omitempty"`
 }
 
 func (x *SC2S_ACCOUNT_AGREE_ANSWER_REQ) Reset() {
@@ -1472,15 +1442,15 @@ func (*SC2S_ACCOUNT_AGREE_ANSWER_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_ACCOUNT_AGREE_ANSWER_REQ) GetIsAgree() uint32 {
-	if x != nil && x.IsAgree != nil {
-		return *x.IsAgree
+	if x != nil {
+		return x.IsAgree
 	}
 	return 0
 }
 
 func (x *SC2S_ACCOUNT_AGREE_ANSWER_REQ) GetEulaHash() string {
-	if x != nil && x.EulaHash != nil {
-		return *x.EulaHash
+	if x != nil {
+		return x.EulaHash
 	}
 	return ""
 }
@@ -1490,7 +1460,7 @@ type SS2C_ACCOUNT_AGREE_ANSWER_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_ACCOUNT_AGREE_ANSWER_RES) Reset() {
@@ -1526,8 +1496,8 @@ func (*SS2C_ACCOUNT_AGREE_ANSWER_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_ACCOUNT_AGREE_ANSWER_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1537,9 +1507,9 @@ type SACCOUNT_CHARACTER_CLASS_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CharacterClassId *string `protobuf:"bytes,1,opt,name=characterClassId" json:"characterClassId,omitempty"`
-	ShopId           *string `protobuf:"bytes,2,opt,name=shopId" json:"shopId,omitempty"`
-	IsOwned          *uint32 `protobuf:"varint,3,opt,name=isOwned" json:"isOwned,omitempty"`
+	CharacterClassId string `protobuf:"bytes,1,opt,name=characterClassId,proto3" json:"characterClassId,omitempty"`
+	ShopId           string `protobuf:"bytes,2,opt,name=shopId,proto3" json:"shopId,omitempty"`
+	IsOwned          uint32 `protobuf:"varint,3,opt,name=isOwned,proto3" json:"isOwned,omitempty"`
 }
 
 func (x *SACCOUNT_CHARACTER_CLASS_INFO) Reset() {
@@ -1575,22 +1545,22 @@ func (*SACCOUNT_CHARACTER_CLASS_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SACCOUNT_CHARACTER_CLASS_INFO) GetCharacterClassId() string {
-	if x != nil && x.CharacterClassId != nil {
-		return *x.CharacterClassId
+	if x != nil {
+		return x.CharacterClassId
 	}
 	return ""
 }
 
 func (x *SACCOUNT_CHARACTER_CLASS_INFO) GetShopId() string {
-	if x != nil && x.ShopId != nil {
-		return *x.ShopId
+	if x != nil {
+		return x.ShopId
 	}
 	return ""
 }
 
 func (x *SACCOUNT_CHARACTER_CLASS_INFO) GetIsOwned() uint32 {
-	if x != nil && x.IsOwned != nil {
-		return *x.IsOwned
+	if x != nil {
+		return x.IsOwned
 	}
 	return 0
 }
@@ -1600,7 +1570,7 @@ type SS2C_ACCOUNT_CHARACTER_CLASS_LIST_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CharacterClassList []*SACCOUNT_CHARACTER_CLASS_INFO `protobuf:"bytes,1,rep,name=characterClassList" json:"characterClassList,omitempty"`
+	CharacterClassList []*SACCOUNT_CHARACTER_CLASS_INFO `protobuf:"bytes,1,rep,name=characterClassList,proto3" json:"characterClassList,omitempty"`
 }
 
 func (x *SS2C_ACCOUNT_CHARACTER_CLASS_LIST_NOT) Reset() {
@@ -1647,14 +1617,14 @@ type SC2S_USER_HW_INFO_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Os         *string `protobuf:"bytes,1,opt,name=os" json:"os,omitempty"`
-	Cpu        *string `protobuf:"bytes,2,opt,name=cpu" json:"cpu,omitempty"`
-	Gpu        *string `protobuf:"bytes,3,opt,name=gpu" json:"gpu,omitempty"`
-	GpuVersion *string `protobuf:"bytes,4,opt,name=gpuVersion" json:"gpuVersion,omitempty"`
-	Memory     *string `protobuf:"bytes,5,opt,name=memory" json:"memory,omitempty"`
-	Storage    *string `protobuf:"bytes,6,opt,name=storage" json:"storage,omitempty"`
-	DirectX    *string `protobuf:"bytes,7,opt,name=directX" json:"directX,omitempty"`
-	OsVersion  *string `protobuf:"bytes,8,opt,name=osVersion" json:"osVersion,omitempty"`
+	Os         string `protobuf:"bytes,1,opt,name=os,proto3" json:"os,omitempty"`
+	Cpu        string `protobuf:"bytes,2,opt,name=cpu,proto3" json:"cpu,omitempty"`
+	Gpu        string `protobuf:"bytes,3,opt,name=gpu,proto3" json:"gpu,omitempty"`
+	GpuVersion string `protobuf:"bytes,4,opt,name=gpuVersion,proto3" json:"gpuVersion,omitempty"`
+	Memory     string `protobuf:"bytes,5,opt,name=memory,proto3" json:"memory,omitempty"`
+	Storage    string `protobuf:"bytes,6,opt,name=storage,proto3" json:"storage,omitempty"`
+	DirectX    string `protobuf:"bytes,7,opt,name=directX,proto3" json:"directX,omitempty"`
+	OsVersion  string `protobuf:"bytes,8,opt,name=osVersion,proto3" json:"osVersion,omitempty"`
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) Reset() {
@@ -1690,57 +1660,57 @@ func (*SC2S_USER_HW_INFO_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetOs() string {
-	if x != nil && x.Os != nil {
-		return *x.Os
+	if x != nil {
+		return x.Os
 	}
 	return ""
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetCpu() string {
-	if x != nil && x.Cpu != nil {
-		return *x.Cpu
+	if x != nil {
+		return x.Cpu
 	}
 	return ""
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetGpu() string {
-	if x != nil && x.Gpu != nil {
-		return *x.Gpu
+	if x != nil {
+		return x.Gpu
 	}
 	return ""
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetGpuVersion() string {
-	if x != nil && x.GpuVersion != nil {
-		return *x.GpuVersion
+	if x != nil {
+		return x.GpuVersion
 	}
 	return ""
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetMemory() string {
-	if x != nil && x.Memory != nil {
-		return *x.Memory
+	if x != nil {
+		return x.Memory
 	}
 	return ""
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetStorage() string {
-	if x != nil && x.Storage != nil {
-		return *x.Storage
+	if x != nil {
+		return x.Storage
 	}
 	return ""
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetDirectX() string {
-	if x != nil && x.DirectX != nil {
-		return *x.DirectX
+	if x != nil {
+		return x.DirectX
 	}
 	return ""
 }
 
 func (x *SC2S_USER_HW_INFO_REQ) GetOsVersion() string {
-	if x != nil && x.OsVersion != nil {
-		return *x.OsVersion
+	if x != nil {
+		return x.OsVersion
 	}
 	return ""
 }
@@ -1788,17 +1758,17 @@ type ACCOUNT_REDIRECTION_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	GeneralReportUrl       *string `protobuf:"bytes,1,opt,name=generalReportUrl" json:"generalReportUrl,omitempty"`
-	BanAppealUrl           *string `protobuf:"bytes,2,opt,name=banAppealUrl" json:"banAppealUrl,omitempty"`
-	KnightLinkUrl          *string `protobuf:"bytes,3,opt,name=knightLinkUrl" json:"knightLinkUrl,omitempty"`
-	SupportFaqUrl          *string `protobuf:"bytes,4,opt,name=supportFaqUrl" json:"supportFaqUrl,omitempty"`
-	HomeUrl                *string `protobuf:"bytes,5,opt,name=homeUrl" json:"homeUrl,omitempty"`
-	NewsUrl                *string `protobuf:"bytes,6,opt,name=newsUrl" json:"newsUrl,omitempty"`
-	SuggestionUrl          *string `protobuf:"bytes,7,opt,name=suggestionUrl" json:"suggestionUrl,omitempty"`
-	OfficialDiscordUrl     *string `protobuf:"bytes,8,opt,name=officialDiscordUrl" json:"officialDiscordUrl,omitempty"`
-	BugReportUrl           *string `protobuf:"bytes,9,opt,name=bugReportUrl" json:"bugReportUrl,omitempty"`
-	ReportPlayerUrl        *string `protobuf:"bytes,10,opt,name=reportPlayerUrl" json:"reportPlayerUrl,omitempty"`
-	SecuritySettingsFaqUrl *string `protobuf:"bytes,11,opt,name=securitySettingsFaqUrl" json:"securitySettingsFaqUrl,omitempty"`
+	GeneralReportUrl       string `protobuf:"bytes,1,opt,name=generalReportUrl,proto3" json:"generalReportUrl,omitempty"`
+	BanAppealUrl           string `protobuf:"bytes,2,opt,name=banAppealUrl,proto3" json:"banAppealUrl,omitempty"`
+	KnightLinkUrl          string `protobuf:"bytes,3,opt,name=knightLinkUrl,proto3" json:"knightLinkUrl,omitempty"`
+	SupportFaqUrl          string `protobuf:"bytes,4,opt,name=supportFaqUrl,proto3" json:"supportFaqUrl,omitempty"`
+	HomeUrl                string `protobuf:"bytes,5,opt,name=homeUrl,proto3" json:"homeUrl,omitempty"`
+	NewsUrl                string `protobuf:"bytes,6,opt,name=newsUrl,proto3" json:"newsUrl,omitempty"`
+	SuggestionUrl          string `protobuf:"bytes,7,opt,name=suggestionUrl,proto3" json:"suggestionUrl,omitempty"`
+	OfficialDiscordUrl     string `protobuf:"bytes,8,opt,name=officialDiscordUrl,proto3" json:"officialDiscordUrl,omitempty"`
+	BugReportUrl           string `protobuf:"bytes,9,opt,name=bugReportUrl,proto3" json:"bugReportUrl,omitempty"`
+	ReportPlayerUrl        string `protobuf:"bytes,10,opt,name=reportPlayerUrl,proto3" json:"reportPlayerUrl,omitempty"`
+	SecuritySettingsFaqUrl string `protobuf:"bytes,11,opt,name=securitySettingsFaqUrl,proto3" json:"securitySettingsFaqUrl,omitempty"`
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) Reset() {
@@ -1834,78 +1804,78 @@ func (*ACCOUNT_REDIRECTION_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetGeneralReportUrl() string {
-	if x != nil && x.GeneralReportUrl != nil {
-		return *x.GeneralReportUrl
+	if x != nil {
+		return x.GeneralReportUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetBanAppealUrl() string {
-	if x != nil && x.BanAppealUrl != nil {
-		return *x.BanAppealUrl
+	if x != nil {
+		return x.BanAppealUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetKnightLinkUrl() string {
-	if x != nil && x.KnightLinkUrl != nil {
-		return *x.KnightLinkUrl
+	if x != nil {
+		return x.KnightLinkUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetSupportFaqUrl() string {
-	if x != nil && x.SupportFaqUrl != nil {
-		return *x.SupportFaqUrl
+	if x != nil {
+		return x.SupportFaqUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetHomeUrl() string {
-	if x != nil && x.HomeUrl != nil {
-		return *x.HomeUrl
+	if x != nil {
+		return x.HomeUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetNewsUrl() string {
-	if x != nil && x.NewsUrl != nil {
-		return *x.NewsUrl
+	if x != nil {
+		return x.NewsUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetSuggestionUrl() string {
-	if x != nil && x.SuggestionUrl != nil {
-		return *x.SuggestionUrl
+	if x != nil {
+		return x.SuggestionUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetOfficialDiscordUrl() string {
-	if x != nil && x.OfficialDiscordUrl != nil {
-		return *x.OfficialDiscordUrl
+	if x != nil {
+		return x.OfficialDiscordUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetBugReportUrl() string {
-	if x != nil && x.BugReportUrl != nil {
-		return *x.BugReportUrl
+	if x != nil {
+		return x.BugReportUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetReportPlayerUrl() string {
-	if x != nil && x.ReportPlayerUrl != nil {
-		return *x.ReportPlayerUrl
+	if x != nil {
+		return x.ReportPlayerUrl
 	}
 	return ""
 }
 
 func (x *ACCOUNT_REDIRECTION_INFO) GetSecuritySettingsFaqUrl() string {
-	if x != nil && x.SecuritySettingsFaqUrl != nil {
-		return *x.SecuritySettingsFaqUrl
+	if x != nil {
+		return x.SecuritySettingsFaqUrl
 	}
 	return ""
 }
@@ -1915,7 +1885,7 @@ type SC2S_ACCOUNT_SELECT_PLATFORM_LINK_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SelectPlatformId *int32 `protobuf:"varint,1,opt,name=selectPlatformId" json:"selectPlatformId,omitempty"`
+	SelectPlatformId int32 `protobuf:"varint,1,opt,name=selectPlatformId,proto3" json:"selectPlatformId,omitempty"`
 }
 
 func (x *SC2S_ACCOUNT_SELECT_PLATFORM_LINK_REQ) Reset() {
@@ -1951,8 +1921,8 @@ func (*SC2S_ACCOUNT_SELECT_PLATFORM_LINK_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_ACCOUNT_SELECT_PLATFORM_LINK_REQ) GetSelectPlatformId() int32 {
-	if x != nil && x.SelectPlatformId != nil {
-		return *x.SelectPlatformId
+	if x != nil {
+		return x.SelectPlatformId
 	}
 	return 0
 }
@@ -1962,7 +1932,7 @@ type SS2C_ACCOUNT_SELECT_PLATFORM_LINK_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_ACCOUNT_SELECT_PLATFORM_LINK_RES) Reset() {
@@ -1998,8 +1968,8 @@ func (*SS2C_ACCOUNT_SELECT_PLATFORM_LINK_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_ACCOUNT_SELECT_PLATFORM_LINK_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -2047,11 +2017,11 @@ type SS2C_PING_INFO_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result     *uint32  `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	Urls       []string `protobuf:"bytes,2,rep,name=urls" json:"urls,omitempty"`
-	AuthToken  *string  `protobuf:"bytes,3,opt,name=authToken" json:"authToken,omitempty"`
-	ExpiredMs  *uint64  `protobuf:"varint,4,opt,name=expiredMs" json:"expiredMs,omitempty"`
-	TryPingCnt *uint32  `protobuf:"varint,5,opt,name=tryPingCnt" json:"tryPingCnt,omitempty"`
+	Result     uint32   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Urls       []string `protobuf:"bytes,2,rep,name=urls,proto3" json:"urls,omitempty"`
+	AuthToken  string   `protobuf:"bytes,3,opt,name=authToken,proto3" json:"authToken,omitempty"`
+	ExpiredMs  uint64   `protobuf:"varint,4,opt,name=expiredMs,proto3" json:"expiredMs,omitempty"`
+	TryPingCnt uint32   `protobuf:"varint,5,opt,name=tryPingCnt,proto3" json:"tryPingCnt,omitempty"`
 }
 
 func (x *SS2C_PING_INFO_RES) Reset() {
@@ -2087,8 +2057,8 @@ func (*SS2C_PING_INFO_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PING_INFO_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -2101,22 +2071,22 @@ func (x *SS2C_PING_INFO_RES) GetUrls() []string {
 }
 
 func (x *SS2C_PING_INFO_RES) GetAuthToken() string {
-	if x != nil && x.AuthToken != nil {
-		return *x.AuthToken
+	if x != nil {
+		return x.AuthToken
 	}
 	return ""
 }
 
 func (x *SS2C_PING_INFO_RES) GetExpiredMs() uint64 {
-	if x != nil && x.ExpiredMs != nil {
-		return *x.ExpiredMs
+	if x != nil {
+		return x.ExpiredMs
 	}
 	return 0
 }
 
 func (x *SS2C_PING_INFO_RES) GetTryPingCnt() uint32 {
-	if x != nil && x.TryPingCnt != nil {
-		return *x.TryPingCnt
+	if x != nil {
+		return x.TryPingCnt
 	}
 	return 0
 }
@@ -2126,7 +2096,7 @@ type SS2C_PING_INFO_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PING_INFO_NOT) Reset() {
@@ -2162,8 +2132,8 @@ func (*SS2C_PING_INFO_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PING_INFO_NOT) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -2173,7 +2143,7 @@ type SS2C_PING_CHECKING_NETWORK_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PING_CHECKING_NETWORK_NOT) Reset() {
@@ -2209,8 +2179,8 @@ func (*SS2C_PING_CHECKING_NETWORK_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PING_CHECKING_NETWORK_NOT) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -2220,8 +2190,8 @@ type SS2C_PING_REGION_SELECT_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	Region *uint32 `protobuf:"varint,2,opt,name=region" json:"region,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Region uint32 `protobuf:"varint,2,opt,name=region,proto3" json:"region,omitempty"`
 }
 
 func (x *SS2C_PING_REGION_SELECT_NOT) Reset() {
@@ -2257,15 +2227,15 @@ func (*SS2C_PING_REGION_SELECT_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PING_REGION_SELECT_NOT) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_PING_REGION_SELECT_NOT) GetRegion() uint32 {
-	if x != nil && x.Region != nil {
-		return *x.Region
+	if x != nil {
+		return x.Region
 	}
 	return 0
 }
@@ -2275,12 +2245,12 @@ type SS2C_TRUSTED_ACCOUNT_INFO_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result              *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	EnforcerRatingId    *string `protobuf:"bytes,2,opt,name=enforcerRatingId" json:"enforcerRatingId,omitempty"`
-	GuiltyReportCount   *int32  `protobuf:"varint,3,opt,name=guiltyReportCount" json:"guiltyReportCount,omitempty"`
-	JudgedReportCount   *int32  `protobuf:"varint,4,opt,name=judgedReportCount" json:"judgedReportCount,omitempty"`
-	OutlawReleaseTimeMs *uint64 `protobuf:"varint,5,opt,name=outlawReleaseTimeMs" json:"outlawReleaseTimeMs,omitempty"`
-	BadgeId             *string `protobuf:"bytes,6,opt,name=badgeId" json:"badgeId,omitempty"`
+	Result              uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	EnforcerRatingId    string `protobuf:"bytes,2,opt,name=enforcerRatingId,proto3" json:"enforcerRatingId,omitempty"`
+	GuiltyReportCount   int32  `protobuf:"varint,3,opt,name=guiltyReportCount,proto3" json:"guiltyReportCount,omitempty"`
+	JudgedReportCount   int32  `protobuf:"varint,4,opt,name=judgedReportCount,proto3" json:"judgedReportCount,omitempty"`
+	OutlawReleaseTimeMs uint64 `protobuf:"varint,5,opt,name=outlawReleaseTimeMs,proto3" json:"outlawReleaseTimeMs,omitempty"`
+	BadgeId             string `protobuf:"bytes,6,opt,name=badgeId,proto3" json:"badgeId,omitempty"`
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_NOT) Reset() {
@@ -2316,43 +2286,43 @@ func (*SS2C_TRUSTED_ACCOUNT_INFO_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_NOT) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_NOT) GetEnforcerRatingId() string {
-	if x != nil && x.EnforcerRatingId != nil {
-		return *x.EnforcerRatingId
+	if x != nil {
+		return x.EnforcerRatingId
 	}
 	return ""
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_NOT) GetGuiltyReportCount() int32 {
-	if x != nil && x.GuiltyReportCount != nil {
-		return *x.GuiltyReportCount
+	if x != nil {
+		return x.GuiltyReportCount
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_NOT) GetJudgedReportCount() int32 {
-	if x != nil && x.JudgedReportCount != nil {
-		return *x.JudgedReportCount
+	if x != nil {
+		return x.JudgedReportCount
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_NOT) GetOutlawReleaseTimeMs() uint64 {
-	if x != nil && x.OutlawReleaseTimeMs != nil {
-		return *x.OutlawReleaseTimeMs
+	if x != nil {
+		return x.OutlawReleaseTimeMs
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_NOT) GetBadgeId() string {
-	if x != nil && x.BadgeId != nil {
-		return *x.BadgeId
+	if x != nil {
+		return x.BadgeId
 	}
 	return ""
 }
@@ -2400,12 +2370,12 @@ type SS2C_TRUSTED_ACCOUNT_INFO_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result              *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	EnforcerRatingId    *string `protobuf:"bytes,2,opt,name=enforcerRatingId" json:"enforcerRatingId,omitempty"`
-	GuiltyReportCount   *int32  `protobuf:"varint,3,opt,name=guiltyReportCount" json:"guiltyReportCount,omitempty"`
-	JudgedReportCount   *int32  `protobuf:"varint,4,opt,name=judgedReportCount" json:"judgedReportCount,omitempty"`
-	OutlawReleaseTimeMs *uint64 `protobuf:"varint,5,opt,name=outlawReleaseTimeMs" json:"outlawReleaseTimeMs,omitempty"`
-	BadgeId             *string `protobuf:"bytes,6,opt,name=badgeId" json:"badgeId,omitempty"`
+	Result              uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	EnforcerRatingId    string `protobuf:"bytes,2,opt,name=enforcerRatingId,proto3" json:"enforcerRatingId,omitempty"`
+	GuiltyReportCount   int32  `protobuf:"varint,3,opt,name=guiltyReportCount,proto3" json:"guiltyReportCount,omitempty"`
+	JudgedReportCount   int32  `protobuf:"varint,4,opt,name=judgedReportCount,proto3" json:"judgedReportCount,omitempty"`
+	OutlawReleaseTimeMs uint64 `protobuf:"varint,5,opt,name=outlawReleaseTimeMs,proto3" json:"outlawReleaseTimeMs,omitempty"`
+	BadgeId             string `protobuf:"bytes,6,opt,name=badgeId,proto3" json:"badgeId,omitempty"`
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_RES) Reset() {
@@ -2441,43 +2411,43 @@ func (*SS2C_TRUSTED_ACCOUNT_INFO_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_RES) GetEnforcerRatingId() string {
-	if x != nil && x.EnforcerRatingId != nil {
-		return *x.EnforcerRatingId
+	if x != nil {
+		return x.EnforcerRatingId
 	}
 	return ""
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_RES) GetGuiltyReportCount() int32 {
-	if x != nil && x.GuiltyReportCount != nil {
-		return *x.GuiltyReportCount
+	if x != nil {
+		return x.GuiltyReportCount
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_RES) GetJudgedReportCount() int32 {
-	if x != nil && x.JudgedReportCount != nil {
-		return *x.JudgedReportCount
+	if x != nil {
+		return x.JudgedReportCount
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_RES) GetOutlawReleaseTimeMs() uint64 {
-	if x != nil && x.OutlawReleaseTimeMs != nil {
-		return *x.OutlawReleaseTimeMs
+	if x != nil {
+		return x.OutlawReleaseTimeMs
 	}
 	return 0
 }
 
 func (x *SS2C_TRUSTED_ACCOUNT_INFO_RES) GetBadgeId() string {
-	if x != nil && x.BadgeId != nil {
-		return *x.BadgeId
+	if x != nil {
+		return x.BadgeId
 	}
 	return ""
 }
@@ -2525,10 +2495,10 @@ type SS2C_NEWS_ENDPOINT_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result     *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	AllUrl     *string `protobuf:"bytes,2,opt,name=allUrl" json:"allUrl,omitempty"`
-	RecentUrl  *string `protobuf:"bytes,3,opt,name=recentUrl" json:"recentUrl,omitempty"`
-	ArticleUrl *string `protobuf:"bytes,4,opt,name=articleUrl" json:"articleUrl,omitempty"`
+	Result     uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	AllUrl     string `protobuf:"bytes,2,opt,name=allUrl,proto3" json:"allUrl,omitempty"`
+	RecentUrl  string `protobuf:"bytes,3,opt,name=recentUrl,proto3" json:"recentUrl,omitempty"`
+	ArticleUrl string `protobuf:"bytes,4,opt,name=articleUrl,proto3" json:"articleUrl,omitempty"`
 }
 
 func (x *SS2C_NEWS_ENDPOINT_RES) Reset() {
@@ -2564,29 +2534,29 @@ func (*SS2C_NEWS_ENDPOINT_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_NEWS_ENDPOINT_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_NEWS_ENDPOINT_RES) GetAllUrl() string {
-	if x != nil && x.AllUrl != nil {
-		return *x.AllUrl
+	if x != nil {
+		return x.AllUrl
 	}
 	return ""
 }
 
 func (x *SS2C_NEWS_ENDPOINT_RES) GetRecentUrl() string {
-	if x != nil && x.RecentUrl != nil {
-		return *x.RecentUrl
+	if x != nil {
+		return x.RecentUrl
 	}
 	return ""
 }
 
 func (x *SS2C_NEWS_ENDPOINT_RES) GetArticleUrl() string {
-	if x != nil && x.ArticleUrl != nil {
-		return *x.ArticleUrl
+	if x != nil {
+		return x.ArticleUrl
 	}
 	return ""
 }
@@ -2634,7 +2604,7 @@ type SC2S_NEWS_READ_ARTICLE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LatestArticleId *uint64 `protobuf:"varint,1,opt,name=latestArticleId" json:"latestArticleId,omitempty"`
+	LatestArticleId uint64 `protobuf:"varint,1,opt,name=latestArticleId,proto3" json:"latestArticleId,omitempty"`
 }
 
 func (x *SC2S_NEWS_READ_ARTICLE_REQ) Reset() {
@@ -2670,8 +2640,8 @@ func (*SC2S_NEWS_READ_ARTICLE_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_NEWS_READ_ARTICLE_REQ) GetLatestArticleId() uint64 {
-	if x != nil && x.LatestArticleId != nil {
-		return *x.LatestArticleId
+	if x != nil {
+		return x.LatestArticleId
 	}
 	return 0
 }
@@ -2681,7 +2651,7 @@ type SS2C_NEWS_READ_ARTICLE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_NEWS_READ_ARTICLE_RES) Reset() {
@@ -2717,8 +2687,8 @@ func (*SS2C_NEWS_READ_ARTICLE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_NEWS_READ_ARTICLE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -3134,8 +3104,11 @@ var file_Account_proto_rawDesc = []byte{
 	0x34, 0x0a, 0x1a, 0x53, 0x53, 0x32, 0x43, 0x5f, 0x4e, 0x45, 0x57, 0x53, 0x5f, 0x52, 0x45, 0x41,
 	0x44, 0x5f, 0x41, 0x52, 0x54, 0x49, 0x43, 0x4c, 0x45, 0x5f, 0x52, 0x45, 0x53, 0x12, 0x16, 0x0a,
 	0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x06, 0x72,
-	0x65, 0x73, 0x75, 0x6c, 0x74, 0x42, 0x17, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f,
-	0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x42, 0x37, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x70, 0x61, 0x63,
+	0x6b, 0x65, 0x74, 0x73, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x07, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x50, 0x00, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f,
+	0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

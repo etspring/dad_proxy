@@ -1,15 +1,20 @@
-syntax = "proto2";
+syntax = "proto3";
 
-import "_Item.proto";
-import "_Character.proto";
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.characterClass";
+option java_outer_classname = "characterClass";
+option java_multiple_files = false;
+
+import "_Item.proto";
+import "_Character.proto";
+
 message STRAINING_REWARD_INFO {
-  optional int32 uniqueId = 1;
-  optional string rewardType = 2;
-  optional string rewardId = 3;
-  optional int32 rewardCount = 4;
+  int32 uniqueId = 1;
+  string rewardType = 2;
+  string rewardId = 3;
+  int32 rewardCount = 4;
 }
 
 message SCLASS_TRAINING_INFO {
@@ -18,104 +23,105 @@ message SCLASS_TRAINING_INFO {
     CLASS_ABILITY = 1;
     REWARD = 2;
   }
-  optional int32 state = 1;
+
+  int32 state = 1;
   repeated string classAbilityChoices = 2;
   repeated .DC.Packet.STRAINING_REWARD_INFO rewardChoices = 3;
-  optional string characterClass = 4;
-  optional int32 isMaster = 5;
+  string characterClass = 4;
+  int32 isMaster = 5;
 }
 
 message STRAINING_CHARACTER_INFO {
-  optional string characterId = 1;
-  optional .DC.Packet.SACCOUNT_NICKNAME nickname = 2;
-  optional string characterClass = 3;
-  optional int32 gender = 4;
-  optional int32 level = 5;
-  optional int32 isMaster = 6;
-  optional int32 hasLearn = 7;
+  string characterId = 1;
+  .DC.Packet.SACCOUNT_NICKNAME nickname = 2;
+  string characterClass = 3;
+  int32 gender = 4;
+  int32 level = 5;
+  int32 isMaster = 6;
+  int32 hasLearn = 7;
 }
 
 message SC2S_TRAINING_INFO_REQ {
 }
 
 message SS2C_TRAINING_INFO_RES {
-  optional .DC.Packet.SCLASS_TRAINING_INFO info = 1;
+  .DC.Packet.SCLASS_TRAINING_INFO info = 1;
   repeated .DC.Packet.STRAINING_CHARACTER_INFO characters = 2;
 }
 
 message SC2S_TRAINING_REDEEM_LEARNING_TOKEN_REQ {
-  optional string masterCharacterId = 1;
-  optional string masterCharacterClass = 2;
+  string masterCharacterId = 1;
+  string masterCharacterClass = 2;
 }
 
 message SS2C_TRAINING_REDEEM_LEARNING_TOKEN_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated string classAbilityIds = 2;
-  optional string masterCharacterClass = 3;
+  string masterCharacterClass = 3;
 }
 
 message SC2S_TRAINING_RECEIVE_CLASS_ABILITY_REQ {
-  optional string classAbilityId = 1;
+  string classAbilityId = 1;
 }
 
 message SS2C_TRAINING_RECEIVE_CLASS_ABILITY_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_TRAINING_REDEEM_REWARD_TOKEN_REQ {
 }
 
 message SS2C_TRAINING_REDEEM_REWARD_TOKEN_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.STRAINING_REWARD_INFO rewards = 2;
 }
 
 message STRAINING_ITEM_SLOT_INFO {
-  optional uint32 inventoryId = 1;
-  optional uint32 slotId = 2;
-  optional string itemId = 3;
-  optional uint64 itemUniqueId = 4;
-  optional uint32 itemCount = 5;
-  optional uint32 itemContentsCount = 6;
+  uint32 inventoryId = 1;
+  uint32 slotId = 2;
+  string itemId = 3;
+  uint64 itemUniqueId = 4;
+  uint32 itemCount = 5;
+  uint32 itemContentsCount = 6;
 }
 
 message SC2S_TRAINING_RECEIVE_REWARD_REQ {
-  optional int32 uniqueId = 1;
+  int32 uniqueId = 1;
   repeated .DC.Packet.STRAINING_ITEM_SLOT_INFO slotInfos = 2;
 }
 
 message SS2C_TRAINING_RECEIVE_REWARD_RES {
-  optional int32 result = 1;
+  int32 result = 1;
 }
 
 message SCLASS_EQUIP_INFO {
-  optional uint32 index = 1;
-  optional uint32 isAvailableSlot = 2;
-  optional uint32 requiredLevel = 3;
-  optional uint32 type = 4;
-  optional string equipId = 5;
+  uint32 index = 1;
+  uint32 isAvailableSlot = 2;
+  uint32 requiredLevel = 3;
+  uint32 type = 4;
+  string equipId = 5;
 }
 
 message SCLASS_MOVE_INFO {
-  optional uint32 index = 1;
-  optional uint32 type = 2;
-  optional string moveId = 3;
-  optional uint32 move = 4;
+  uint32 index = 1;
+  uint32 type = 2;
+  string moveId = 3;
+  uint32 move = 4;
 }
 
 message SC2S_CLASS_LEVEL_INFO_REQ {
 }
 
 message SS2C_CLASS_LEVEL_INFO_RES {
-  optional uint32 level = 1;
-  optional uint32 exp = 2;
-  optional uint32 expBegin = 3;
-  optional uint32 expLimit = 4;
-  optional uint32 rewardPoint = 5;
-  optional uint32 nextRewardLevel = 6;
-  optional uint32 learningPoint = 7;
-  optional uint32 nextLearningLevel = 8;
-  optional uint32 fame = 9;
+  uint32 level = 1;
+  uint32 exp = 2;
+  uint32 expBegin = 3;
+  uint32 expLimit = 4;
+  uint32 rewardPoint = 5;
+  uint32 nextRewardLevel = 6;
+  uint32 learningPoint = 7;
+  uint32 nextLearningLevel = 8;
+  uint32 fame = 9;
 }
 
 message SC2S_CLASS_EQUIP_INFO_REQ {
@@ -140,7 +146,7 @@ message SS2C_CLASS_SKILL_LIST_RES {
 }
 
 message SC2S_CLASS_SPELL_LIST_REQ {
-  optional uint32 maxSpellMemory = 1;
+  uint32 maxSpellMemory = 1;
 }
 
 message SS2C_CLASS_SPELL_LIST_RES {
@@ -162,72 +168,73 @@ message SS2C_CLASS_SHAPESHIFT_LIST_RES {
 }
 
 message SC2S_CLASS_SPELL_SLOT_MOVE_REQ {
-  optional string spellId = 1;
-  optional int32 dstSlotIndex = 2;
+  string spellId = 1;
+  int32 dstSlotIndex = 2;
 }
 
 message SS2C_CLASS_SPELL_SLOT_MOVE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SSpell equipSpellList = 2;
 }
 
 message SC2S_CLASS_SPELL_SEQUENCE_CHANGE_REQ {
-  optional string spellId = 1;
-  optional uint32 dstSequenceIndex = 2;
+  string spellId = 1;
+  uint32 dstSequenceIndex = 2;
 }
 
 message SS2C_CLASS_SPELL_SEQUENCE_CHANGE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SSpell equipSpellList = 2;
 }
 
 message SC2S_CLASS_ITEM_MOVE_REQ {
-  optional .DC.Packet.SCLASS_MOVE_INFO oldMove = 1;
-  optional .DC.Packet.SCLASS_MOVE_INFO newMove = 2;
+  .DC.Packet.SCLASS_MOVE_INFO oldMove = 1;
+  .DC.Packet.SCLASS_MOVE_INFO newMove = 2;
 }
 
 message SS2C_CLASS_ITEM_MOVE_RES {
-  optional uint32 result = 1;
-  optional .DC.Packet.SCLASS_MOVE_INFO oldMove = 2;
-  optional .DC.Packet.SCLASS_MOVE_INFO newMove = 3;
+  uint32 result = 1;
+  .DC.Packet.SCLASS_MOVE_INFO oldMove = 2;
+  .DC.Packet.SCLASS_MOVE_INFO newMove = 3;
 }
 
 message SC2S_CLASS_MUSIC_SLOT_MOVE_REQ {
-  optional string musicId = 1;
-  optional int32 dstSlotIndex = 2;
+  string musicId = 1;
+  int32 dstSlotIndex = 2;
 }
 
 message SS2C_CLASS_MUSIC_SLOT_MOVE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SMusic equipMusicList = 2;
 }
 
 message SC2S_CLASS_MUSIC_SEQUENCE_CHANGE_REQ {
-  optional string musicId = 1;
-  optional uint32 dstSequenceIndex = 2;
+  string musicId = 1;
+  uint32 dstSequenceIndex = 2;
 }
 
 message SS2C_CLASS_MUSIC_SEQUENCE_CHANGE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SMusic equipMusicList = 2;
 }
 
 message SC2S_CLASS_SHAPESHIFT_SLOT_MOVE_REQ {
-  optional string shapeShiftId = 1;
-  optional int32 dstSlotIndex = 2;
+  string shapeShiftId = 1;
+  int32 dstSlotIndex = 2;
 }
 
 message SS2C_CLASS_SHAPESHIFT_SLOT_MOVE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SShapeShift equipShapeShiftList = 2;
 }
 
 message SC2S_CLASS_SHAPESHIFT_SEQUENCE_CHANGE_REQ {
-  optional string shapeShiftId = 1;
-  optional uint32 dstSequenceIndex = 2;
+  string shapeShiftId = 1;
+  uint32 dstSequenceIndex = 2;
 }
 
 message SS2C_CLASS_SHAPESHIFT_SEQUENCE_CHANGE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SShapeShift equipShapeShiftList = 2;
 }
+

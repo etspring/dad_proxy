@@ -22,8 +22,9 @@ for f in "${PROTO_DIR}"/*.proto; do
   grep -q go_package "$f" || sed -i '/^package /a option go_package = "dad_proxy/internal/pb";' "$f"
 done
 
-# Shop.proto отсутствует в exe - Merchant.proto пропускаем
+# Shop.proto есть в свежем дампе exe - при необходимости можно добавить Merchant.proto
 protoc -I "${PROTO_DIR}" \
+  --experimental_allow_proto3_optional \
   --go_out="${OUT_DIR}" --go_opt=paths=source_relative \
   "${PROTO_DIR}/Common.proto" \
   "${PROTO_DIR}/_PacketCommand.proto" \
@@ -39,7 +40,8 @@ protoc -I "${PROTO_DIR}" \
 
 for f in "${OUT_DIR}"/_*.go; do
   [ -f "$f" ] || continue
-  mv "$f" "${OUT_DIR}/$(basename "${f#_}")"
+  base="$(basename "$f")"
+  mv "$f" "${OUT_DIR}/${base#_}"
 done
 
 echo "Generated Go protobuf code in ${OUT_DIR}"

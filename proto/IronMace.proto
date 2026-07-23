@@ -1,11 +1,15 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.ironMace";
+option java_outer_classname = "IronMace";
+option java_multiple_files = false;
+
 message IronMace_Login {
-  optional string loginId = 1;
-  optional string password = 2;
+  string loginId = 1;
+  string password = 2;
 }
 
 message IronMace_Login_Res {
@@ -15,15 +19,17 @@ message IronMace_Login_Res {
     FAIL_NOT_FOUND_ACCOUNT = 100;
     FAIL_WRONG_PASSWORD = 101;
   }
-  optional uint32 result = 1;
-  optional string errorMessage = 2;
+
+  uint32 result = 1;
+  string errorMessage = 2;
 }
 
 message IronMace_Token {
-  optional string loginId = 1;
-  optional string password = 2;
+  string loginId = 1;
+  string password = 2;
 }
 
 message IronMace_Token_Res {
-  optional string token = 2;
+  string token = 2;
 }
+

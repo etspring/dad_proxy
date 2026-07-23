@@ -25,8 +25,8 @@ type SCHATDATA_PIECE_ITEM_PROPERTY struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Pid *string `protobuf:"bytes,1,opt,name=pid" json:"pid,omitempty"`
-	Pv  *int32  `protobuf:"varint,2,opt,name=pv" json:"pv,omitempty"`
+	Pid string `protobuf:"bytes,1,opt,name=pid,proto3" json:"pid,omitempty"`
+	Pv  int32  `protobuf:"varint,2,opt,name=pv,proto3" json:"pv,omitempty"`
 }
 
 func (x *SCHATDATA_PIECE_ITEM_PROPERTY) Reset() {
@@ -62,15 +62,15 @@ func (*SCHATDATA_PIECE_ITEM_PROPERTY) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHATDATA_PIECE_ITEM_PROPERTY) GetPid() string {
-	if x != nil && x.Pid != nil {
-		return *x.Pid
+	if x != nil {
+		return x.Pid
 	}
 	return ""
 }
 
 func (x *SCHATDATA_PIECE_ITEM_PROPERTY) GetPv() int32 {
-	if x != nil && x.Pv != nil {
-		return *x.Pv
+	if x != nil {
+		return x.Pv
 	}
 	return 0
 }
@@ -80,8 +80,8 @@ type SCHATDATA_PIECE_ITEM_ENCHANT_INFO struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Pidx *uint32 `protobuf:"varint,1,opt,name=pidx" json:"pidx,omitempty"`
-	Miid *string `protobuf:"bytes,2,opt,name=miid" json:"miid,omitempty"`
+	Pidx uint32 `protobuf:"varint,1,opt,name=pidx,proto3" json:"pidx,omitempty"`
+	Miid string `protobuf:"bytes,2,opt,name=miid,proto3" json:"miid,omitempty"`
 }
 
 func (x *SCHATDATA_PIECE_ITEM_ENCHANT_INFO) Reset() {
@@ -117,15 +117,15 @@ func (*SCHATDATA_PIECE_ITEM_ENCHANT_INFO) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHATDATA_PIECE_ITEM_ENCHANT_INFO) GetPidx() uint32 {
-	if x != nil && x.Pidx != nil {
-		return *x.Pidx
+	if x != nil {
+		return x.Pidx
 	}
 	return 0
 }
 
 func (x *SCHATDATA_PIECE_ITEM_ENCHANT_INFO) GetMiid() string {
-	if x != nil && x.Miid != nil {
-		return *x.Miid
+	if x != nil {
+		return x.Miid
 	}
 	return ""
 }
@@ -135,11 +135,11 @@ type SCHATDATA_PIECE_ITEM struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Uid *uint64                              `protobuf:"varint,1,opt,name=uid" json:"uid,omitempty"`
-	Iid *string                              `protobuf:"bytes,2,opt,name=iid" json:"iid,omitempty"`
-	Pp  []*SCHATDATA_PIECE_ITEM_PROPERTY     `protobuf:"bytes,3,rep,name=pp" json:"pp,omitempty"`
-	Sp  []*SCHATDATA_PIECE_ITEM_PROPERTY     `protobuf:"bytes,4,rep,name=sp" json:"sp,omitempty"`
-	Se  []*SCHATDATA_PIECE_ITEM_ENCHANT_INFO `protobuf:"bytes,5,rep,name=se" json:"se,omitempty"`
+	Uid uint64                               `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Iid string                               `protobuf:"bytes,2,opt,name=iid,proto3" json:"iid,omitempty"`
+	Pp  []*SCHATDATA_PIECE_ITEM_PROPERTY     `protobuf:"bytes,3,rep,name=pp,proto3" json:"pp,omitempty"`
+	Sp  []*SCHATDATA_PIECE_ITEM_PROPERTY     `protobuf:"bytes,4,rep,name=sp,proto3" json:"sp,omitempty"`
+	Se  []*SCHATDATA_PIECE_ITEM_ENCHANT_INFO `protobuf:"bytes,5,rep,name=se,proto3" json:"se,omitempty"`
 }
 
 func (x *SCHATDATA_PIECE_ITEM) Reset() {
@@ -175,15 +175,15 @@ func (*SCHATDATA_PIECE_ITEM) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHATDATA_PIECE_ITEM) GetUid() uint64 {
-	if x != nil && x.Uid != nil {
-		return *x.Uid
+	if x != nil {
+		return x.Uid
 	}
 	return 0
 }
 
 func (x *SCHATDATA_PIECE_ITEM) GetIid() string {
-	if x != nil && x.Iid != nil {
-		return *x.Iid
+	if x != nil {
+		return x.Iid
 	}
 	return ""
 }
@@ -214,8 +214,8 @@ type SCHATDATA_PIECE struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ChatStr           *string               `protobuf:"bytes,1,opt,name=chatStr" json:"chatStr,omitempty"`
-	ChatDataPieceItem *SCHATDATA_PIECE_ITEM `protobuf:"bytes,2,opt,name=chatDataPieceItem" json:"chatDataPieceItem,omitempty"`
+	ChatStr           string                `protobuf:"bytes,1,opt,name=chatStr,proto3" json:"chatStr,omitempty"`
+	ChatDataPieceItem *SCHATDATA_PIECE_ITEM `protobuf:"bytes,2,opt,name=chatDataPieceItem,proto3" json:"chatDataPieceItem,omitempty"`
 }
 
 func (x *SCHATDATA_PIECE) Reset() {
@@ -251,8 +251,8 @@ func (*SCHATDATA_PIECE) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHATDATA_PIECE) GetChatStr() string {
-	if x != nil && x.ChatStr != nil {
-		return *x.ChatStr
+	if x != nil {
+		return x.ChatStr
 	}
 	return ""
 }
@@ -269,11 +269,11 @@ type SCHATDATA struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId          *string            `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId        *string            `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	Nickname           *SACCOUNT_NICKNAME `protobuf:"bytes,3,opt,name=nickname" json:"nickname,omitempty"`
-	PartyId            *string            `protobuf:"bytes,4,opt,name=partyId" json:"partyId,omitempty"`
-	ChatDataPieceArray []*SCHATDATA_PIECE `protobuf:"bytes,5,rep,name=chatDataPieceArray" json:"chatDataPieceArray,omitempty"`
+	AccountId          string             `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId        string             `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	Nickname           *SACCOUNT_NICKNAME `protobuf:"bytes,3,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	PartyId            string             `protobuf:"bytes,4,opt,name=partyId,proto3" json:"partyId,omitempty"`
+	ChatDataPieceArray []*SCHATDATA_PIECE `protobuf:"bytes,5,rep,name=chatDataPieceArray,proto3" json:"chatDataPieceArray,omitempty"`
 }
 
 func (x *SCHATDATA) Reset() {
@@ -309,15 +309,15 @@ func (*SCHATDATA) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCHATDATA) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SCHATDATA) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -330,8 +330,8 @@ func (x *SCHATDATA) GetNickname() *SACCOUNT_NICKNAME {
 }
 
 func (x *SCHATDATA) GetPartyId() string {
-	if x != nil && x.PartyId != nil {
-		return *x.PartyId
+	if x != nil {
+		return x.PartyId
 	}
 	return ""
 }
@@ -348,8 +348,8 @@ type SPIECE_ITEM_BODY struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Idx    *uint32               `protobuf:"varint,1,opt,name=idx" json:"idx,omitempty"`
-	Pieces *SCHATDATA_PIECE_ITEM `protobuf:"bytes,2,opt,name=pieces" json:"pieces,omitempty"`
+	Idx    uint32                `protobuf:"varint,1,opt,name=idx,proto3" json:"idx,omitempty"`
+	Pieces *SCHATDATA_PIECE_ITEM `protobuf:"bytes,2,opt,name=pieces,proto3" json:"pieces,omitempty"`
 }
 
 func (x *SPIECE_ITEM_BODY) Reset() {
@@ -385,8 +385,8 @@ func (*SPIECE_ITEM_BODY) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPIECE_ITEM_BODY) GetIdx() uint32 {
-	if x != nil && x.Idx != nil {
-		return *x.Idx
+	if x != nil {
+		return x.Idx
 	}
 	return 0
 }
@@ -403,7 +403,7 @@ type SPIECE_ITEM_ARRAY struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Links []*SPIECE_ITEM_BODY `protobuf:"bytes,1,rep,name=links" json:"links,omitempty"`
+	Links []*SPIECE_ITEM_BODY `protobuf:"bytes,1,rep,name=links,proto3" json:"links,omitempty"`
 }
 
 func (x *SPIECE_ITEM_ARRAY) Reset() {
@@ -507,9 +507,11 @@ var file___Chat_proto_rawDesc = []byte{
 	0x4d, 0x5f, 0x41, 0x52, 0x52, 0x41, 0x59, 0x12, 0x31, 0x0a, 0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73,
 	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x44, 0x43, 0x2e, 0x50, 0x61, 0x63, 0x6b,
 	0x65, 0x74, 0x2e, 0x53, 0x50, 0x49, 0x45, 0x43, 0x45, 0x5f, 0x49, 0x54, 0x45, 0x4d, 0x5f, 0x42,
-	0x4f, 0x44, 0x59, 0x52, 0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x42, 0x17, 0x5a, 0x15, 0x64, 0x61,
-	0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
-	0x2f, 0x70, 0x62,
+	0x4f, 0x44, 0x59, 0x52, 0x05, 0x6c, 0x69, 0x6e, 0x6b, 0x73, 0x42, 0x31, 0x0a, 0x10, 0x63, 0x6f,
+	0x6d, 0x2e, 0x70, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x2e, 0x63, 0x68, 0x61, 0x74, 0x42, 0x04,
+	0x63, 0x68, 0x61, 0x74, 0x50, 0x00, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78,
+	0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

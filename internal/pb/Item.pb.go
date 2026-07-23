@@ -25,12 +25,12 @@ type SItemMeta struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SoulHeart_AccountId         *string `protobuf:"bytes,1,opt,name=SoulHeart_AccountId,json=SoulHeartAccountId" json:"SoulHeart_AccountId,omitempty"`
-	SoulHeart_PartyId           *string `protobuf:"bytes,2,opt,name=SoulHeart_PartyId,json=SoulHeartPartyId" json:"SoulHeart_PartyId,omitempty"`
-	SoulHeart_NickNameOrigin    *string `protobuf:"bytes,3,opt,name=SoulHeart_NickName_origin,json=SoulHeartNickNameOrigin" json:"SoulHeart_NickName_origin,omitempty"`
-	SoulHeart_NickNameStreaming *string `protobuf:"bytes,4,opt,name=SoulHeart_NickName_streaming,json=SoulHeartNickNameStreaming" json:"SoulHeart_NickName_streaming,omitempty"`
-	SoulHeart_ItemSkinId        *string `protobuf:"bytes,5,opt,name=SoulHeart_ItemSkinId,json=SoulHeartItemSkinId" json:"SoulHeart_ItemSkinId,omitempty"`
-	AvailableValue              *uint32 `protobuf:"varint,6,opt,name=AvailableValue" json:"AvailableValue,omitempty"`
+	SoulHeart_AccountId         string `protobuf:"bytes,1,opt,name=SoulHeart_AccountId,json=SoulHeartAccountId,proto3" json:"SoulHeart_AccountId,omitempty"`
+	SoulHeart_PartyId           string `protobuf:"bytes,2,opt,name=SoulHeart_PartyId,json=SoulHeartPartyId,proto3" json:"SoulHeart_PartyId,omitempty"`
+	SoulHeart_NickNameOrigin    string `protobuf:"bytes,3,opt,name=SoulHeart_NickName_origin,json=SoulHeartNickNameOrigin,proto3" json:"SoulHeart_NickName_origin,omitempty"`
+	SoulHeart_NickNameStreaming string `protobuf:"bytes,4,opt,name=SoulHeart_NickName_streaming,json=SoulHeartNickNameStreaming,proto3" json:"SoulHeart_NickName_streaming,omitempty"`
+	SoulHeart_ItemSkinId        string `protobuf:"bytes,5,opt,name=SoulHeart_ItemSkinId,json=SoulHeartItemSkinId,proto3" json:"SoulHeart_ItemSkinId,omitempty"`
+	AvailableValue              uint32 `protobuf:"varint,6,opt,name=AvailableValue,proto3" json:"AvailableValue,omitempty"`
 }
 
 func (x *SItemMeta) Reset() {
@@ -66,43 +66,43 @@ func (*SItemMeta) Descriptor() ([]byte, []int) {
 }
 
 func (x *SItemMeta) GetSoulHeart_AccountId() string {
-	if x != nil && x.SoulHeart_AccountId != nil {
-		return *x.SoulHeart_AccountId
+	if x != nil {
+		return x.SoulHeart_AccountId
 	}
 	return ""
 }
 
 func (x *SItemMeta) GetSoulHeart_PartyId() string {
-	if x != nil && x.SoulHeart_PartyId != nil {
-		return *x.SoulHeart_PartyId
+	if x != nil {
+		return x.SoulHeart_PartyId
 	}
 	return ""
 }
 
 func (x *SItemMeta) GetSoulHeart_NickNameOrigin() string {
-	if x != nil && x.SoulHeart_NickNameOrigin != nil {
-		return *x.SoulHeart_NickNameOrigin
+	if x != nil {
+		return x.SoulHeart_NickNameOrigin
 	}
 	return ""
 }
 
 func (x *SItemMeta) GetSoulHeart_NickNameStreaming() string {
-	if x != nil && x.SoulHeart_NickNameStreaming != nil {
-		return *x.SoulHeart_NickNameStreaming
+	if x != nil {
+		return x.SoulHeart_NickNameStreaming
 	}
 	return ""
 }
 
 func (x *SItemMeta) GetSoulHeart_ItemSkinId() string {
-	if x != nil && x.SoulHeart_ItemSkinId != nil {
-		return *x.SoulHeart_ItemSkinId
+	if x != nil {
+		return x.SoulHeart_ItemSkinId
 	}
 	return ""
 }
 
 func (x *SItemMeta) GetAvailableValue() uint32 {
-	if x != nil && x.AvailableValue != nil {
-		return *x.AvailableValue
+	if x != nil {
+		return x.AvailableValue
 	}
 	return 0
 }
@@ -112,22 +112,22 @@ type SItem struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ItemUniqueId               *uint64             `protobuf:"varint,1,opt,name=itemUniqueId" json:"itemUniqueId,omitempty"`
-	ItemId                     *string             `protobuf:"bytes,2,opt,name=itemId" json:"itemId,omitempty"`
-	ItemCount                  *uint32             `protobuf:"varint,3,opt,name=itemCount" json:"itemCount,omitempty"`
-	InventoryId                *uint32             `protobuf:"varint,4,opt,name=inventoryId" json:"inventoryId,omitempty"`
-	SlotId                     *uint32             `protobuf:"varint,5,opt,name=slotId" json:"slotId,omitempty"`
-	ItemAmmoCount              *uint32             `protobuf:"varint,7,opt,name=itemAmmoCount" json:"itemAmmoCount,omitempty"`
-	ItemContentsCount          *uint32             `protobuf:"varint,8,opt,name=itemContentsCount" json:"itemContentsCount,omitempty"`
-	PrimaryPropertyArray       []*SItemProperty    `protobuf:"bytes,9,rep,name=primaryPropertyArray" json:"primaryPropertyArray,omitempty"`
-	SecondaryPropertyArray     []*SItemProperty    `protobuf:"bytes,10,rep,name=secondaryPropertyArray" json:"secondaryPropertyArray,omitempty"`
-	LootState                  *int32              `protobuf:"varint,11,opt,name=lootState" json:"lootState,omitempty"`
-	OriginType                 *int32              `protobuf:"varint,12,opt,name=originType" json:"originType,omitempty"`
-	OriginNickName             *string             `protobuf:"bytes,13,opt,name=originNickName" json:"originNickName,omitempty"`
-	OriginSteamingModeNickName *string             `protobuf:"bytes,14,opt,name=originSteamingModeNickName" json:"originSteamingModeNickName,omitempty"`
-	SecondaryEnchantArray      []*SItemEnchantInfo `protobuf:"bytes,15,rep,name=secondaryEnchantArray" json:"secondaryEnchantArray,omitempty"`
-	Tradable                   *int32              `protobuf:"varint,16,opt,name=tradable" json:"tradable,omitempty"`
-	PermittedAreaArray         []*SItemPermitted   `protobuf:"bytes,17,rep,name=permittedAreaArray" json:"permittedAreaArray,omitempty"`
+	ItemUniqueId               uint64              `protobuf:"varint,1,opt,name=itemUniqueId,proto3" json:"itemUniqueId,omitempty"`
+	ItemId                     string              `protobuf:"bytes,2,opt,name=itemId,proto3" json:"itemId,omitempty"`
+	ItemCount                  uint32              `protobuf:"varint,3,opt,name=itemCount,proto3" json:"itemCount,omitempty"`
+	InventoryId                uint32              `protobuf:"varint,4,opt,name=inventoryId,proto3" json:"inventoryId,omitempty"`
+	SlotId                     uint32              `protobuf:"varint,5,opt,name=slotId,proto3" json:"slotId,omitempty"`
+	ItemAmmoCount              uint32              `protobuf:"varint,7,opt,name=itemAmmoCount,proto3" json:"itemAmmoCount,omitempty"`
+	ItemContentsCount          uint32              `protobuf:"varint,8,opt,name=itemContentsCount,proto3" json:"itemContentsCount,omitempty"`
+	PrimaryPropertyArray       []*SItemProperty    `protobuf:"bytes,9,rep,name=primaryPropertyArray,proto3" json:"primaryPropertyArray,omitempty"`
+	SecondaryPropertyArray     []*SItemProperty    `protobuf:"bytes,10,rep,name=secondaryPropertyArray,proto3" json:"secondaryPropertyArray,omitempty"`
+	LootState                  int32               `protobuf:"varint,11,opt,name=lootState,proto3" json:"lootState,omitempty"`
+	OriginType                 int32               `protobuf:"varint,12,opt,name=originType,proto3" json:"originType,omitempty"`
+	OriginNickName             string              `protobuf:"bytes,13,opt,name=originNickName,proto3" json:"originNickName,omitempty"`
+	OriginSteamingModeNickName string              `protobuf:"bytes,14,opt,name=originSteamingModeNickName,proto3" json:"originSteamingModeNickName,omitempty"`
+	SecondaryEnchantArray      []*SItemEnchantInfo `protobuf:"bytes,15,rep,name=secondaryEnchantArray,proto3" json:"secondaryEnchantArray,omitempty"`
+	Tradable                   int32               `protobuf:"varint,16,opt,name=tradable,proto3" json:"tradable,omitempty"`
+	PermittedAreaArray         []*SItemPermitted   `protobuf:"bytes,17,rep,name=permittedAreaArray,proto3" json:"permittedAreaArray,omitempty"`
 }
 
 func (x *SItem) Reset() {
@@ -163,50 +163,50 @@ func (*SItem) Descriptor() ([]byte, []int) {
 }
 
 func (x *SItem) GetItemUniqueId() uint64 {
-	if x != nil && x.ItemUniqueId != nil {
-		return *x.ItemUniqueId
+	if x != nil {
+		return x.ItemUniqueId
 	}
 	return 0
 }
 
 func (x *SItem) GetItemId() string {
-	if x != nil && x.ItemId != nil {
-		return *x.ItemId
+	if x != nil {
+		return x.ItemId
 	}
 	return ""
 }
 
 func (x *SItem) GetItemCount() uint32 {
-	if x != nil && x.ItemCount != nil {
-		return *x.ItemCount
+	if x != nil {
+		return x.ItemCount
 	}
 	return 0
 }
 
 func (x *SItem) GetInventoryId() uint32 {
-	if x != nil && x.InventoryId != nil {
-		return *x.InventoryId
+	if x != nil {
+		return x.InventoryId
 	}
 	return 0
 }
 
 func (x *SItem) GetSlotId() uint32 {
-	if x != nil && x.SlotId != nil {
-		return *x.SlotId
+	if x != nil {
+		return x.SlotId
 	}
 	return 0
 }
 
 func (x *SItem) GetItemAmmoCount() uint32 {
-	if x != nil && x.ItemAmmoCount != nil {
-		return *x.ItemAmmoCount
+	if x != nil {
+		return x.ItemAmmoCount
 	}
 	return 0
 }
 
 func (x *SItem) GetItemContentsCount() uint32 {
-	if x != nil && x.ItemContentsCount != nil {
-		return *x.ItemContentsCount
+	if x != nil {
+		return x.ItemContentsCount
 	}
 	return 0
 }
@@ -226,29 +226,29 @@ func (x *SItem) GetSecondaryPropertyArray() []*SItemProperty {
 }
 
 func (x *SItem) GetLootState() int32 {
-	if x != nil && x.LootState != nil {
-		return *x.LootState
+	if x != nil {
+		return x.LootState
 	}
 	return 0
 }
 
 func (x *SItem) GetOriginType() int32 {
-	if x != nil && x.OriginType != nil {
-		return *x.OriginType
+	if x != nil {
+		return x.OriginType
 	}
 	return 0
 }
 
 func (x *SItem) GetOriginNickName() string {
-	if x != nil && x.OriginNickName != nil {
-		return *x.OriginNickName
+	if x != nil {
+		return x.OriginNickName
 	}
 	return ""
 }
 
 func (x *SItem) GetOriginSteamingModeNickName() string {
-	if x != nil && x.OriginSteamingModeNickName != nil {
-		return *x.OriginSteamingModeNickName
+	if x != nil {
+		return x.OriginSteamingModeNickName
 	}
 	return ""
 }
@@ -261,8 +261,8 @@ func (x *SItem) GetSecondaryEnchantArray() []*SItemEnchantInfo {
 }
 
 func (x *SItem) GetTradable() int32 {
-	if x != nil && x.Tradable != nil {
-		return *x.Tradable
+	if x != nil {
+		return x.Tradable
 	}
 	return 0
 }
@@ -279,7 +279,7 @@ type SItemProperties struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Properties []*SItemProperty `protobuf:"bytes,1,rep,name=properties" json:"properties,omitempty"`
+	Properties []*SItemProperty `protobuf:"bytes,1,rep,name=properties,proto3" json:"properties,omitempty"`
 }
 
 func (x *SItemProperties) Reset() {
@@ -326,8 +326,8 @@ type SItemProperty struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PropertyTypeId *string `protobuf:"bytes,1,opt,name=propertyTypeId" json:"propertyTypeId,omitempty"`
-	PropertyValue  *int32  `protobuf:"varint,2,opt,name=propertyValue" json:"propertyValue,omitempty"`
+	PropertyTypeId string `protobuf:"bytes,1,opt,name=propertyTypeId,proto3" json:"propertyTypeId,omitempty"`
+	PropertyValue  int32  `protobuf:"varint,2,opt,name=propertyValue,proto3" json:"propertyValue,omitempty"`
 }
 
 func (x *SItemProperty) Reset() {
@@ -363,15 +363,15 @@ func (*SItemProperty) Descriptor() ([]byte, []int) {
 }
 
 func (x *SItemProperty) GetPropertyTypeId() string {
-	if x != nil && x.PropertyTypeId != nil {
-		return *x.PropertyTypeId
+	if x != nil {
+		return x.PropertyTypeId
 	}
 	return ""
 }
 
 func (x *SItemProperty) GetPropertyValue() int32 {
-	if x != nil && x.PropertyValue != nil {
-		return *x.PropertyValue
+	if x != nil {
+		return x.PropertyValue
 	}
 	return 0
 }
@@ -381,8 +381,8 @@ type SItemEnchantInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PropertyIndex  *uint32 `protobuf:"varint,1,opt,name=propertyIndex" json:"propertyIndex,omitempty"`
-	MaterialItemId *string `protobuf:"bytes,2,opt,name=materialItemId" json:"materialItemId,omitempty"`
+	PropertyIndex  uint32 `protobuf:"varint,1,opt,name=propertyIndex,proto3" json:"propertyIndex,omitempty"`
+	MaterialItemId string `protobuf:"bytes,2,opt,name=materialItemId,proto3" json:"materialItemId,omitempty"`
 }
 
 func (x *SItemEnchantInfo) Reset() {
@@ -418,15 +418,15 @@ func (*SItemEnchantInfo) Descriptor() ([]byte, []int) {
 }
 
 func (x *SItemEnchantInfo) GetPropertyIndex() uint32 {
-	if x != nil && x.PropertyIndex != nil {
-		return *x.PropertyIndex
+	if x != nil {
+		return x.PropertyIndex
 	}
 	return 0
 }
 
 func (x *SItemEnchantInfo) GetMaterialItemId() string {
-	if x != nil && x.MaterialItemId != nil {
-		return *x.MaterialItemId
+	if x != nil {
+		return x.MaterialItemId
 	}
 	return ""
 }
@@ -436,7 +436,7 @@ type SItemEnchantInfos struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	EnchantInfos []*SItemEnchantInfo `protobuf:"bytes,1,rep,name=enchantInfos" json:"enchantInfos,omitempty"`
+	EnchantInfos []*SItemEnchantInfo `protobuf:"bytes,1,rep,name=enchantInfos,proto3" json:"enchantInfos,omitempty"`
 }
 
 func (x *SItemEnchantInfos) Reset() {
@@ -483,7 +483,7 @@ type SItemPermittedInfos struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PermittedList []*SItemPermitted `protobuf:"bytes,1,rep,name=permittedList" json:"permittedList,omitempty"`
+	PermittedList []*SItemPermitted `protobuf:"bytes,1,rep,name=permittedList,proto3" json:"permittedList,omitempty"`
 }
 
 func (x *SItemPermittedInfos) Reset() {
@@ -530,7 +530,7 @@ type SItemPermitted struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type *int32 `protobuf:"varint,1,opt,name=type" json:"type,omitempty"`
+	Type int32 `protobuf:"varint,1,opt,name=type,proto3" json:"type,omitempty"`
 }
 
 func (x *SItemPermitted) Reset() {
@@ -566,8 +566,8 @@ func (*SItemPermitted) Descriptor() ([]byte, []int) {
 }
 
 func (x *SItemPermitted) GetType() int32 {
-	if x != nil && x.Type != nil {
-		return *x.Type
+	if x != nil {
+		return x.Type
 	}
 	return 0
 }
@@ -577,7 +577,7 @@ type SItems struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Item []*SItem `protobuf:"bytes,1,rep,name=item" json:"item,omitempty"`
+	Item []*SItem `protobuf:"bytes,1,rep,name=item,proto3" json:"item,omitempty"`
 }
 
 func (x *SItems) Reset() {
@@ -624,8 +624,8 @@ type SPerk struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Index  *uint32 `protobuf:"varint,1,opt,name=index" json:"index,omitempty"`
-	PerkId *string `protobuf:"bytes,2,opt,name=perkId" json:"perkId,omitempty"`
+	Index  uint32 `protobuf:"varint,1,opt,name=index,proto3" json:"index,omitempty"`
+	PerkId string `protobuf:"bytes,2,opt,name=perkId,proto3" json:"perkId,omitempty"`
 }
 
 func (x *SPerk) Reset() {
@@ -661,15 +661,15 @@ func (*SPerk) Descriptor() ([]byte, []int) {
 }
 
 func (x *SPerk) GetIndex() uint32 {
-	if x != nil && x.Index != nil {
-		return *x.Index
+	if x != nil {
+		return x.Index
 	}
 	return 0
 }
 
 func (x *SPerk) GetPerkId() string {
-	if x != nil && x.PerkId != nil {
-		return *x.PerkId
+	if x != nil {
+		return x.PerkId
 	}
 	return ""
 }
@@ -679,8 +679,8 @@ type SSkill struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Index   *uint32 `protobuf:"varint,1,opt,name=index" json:"index,omitempty"`
-	SkillId *string `protobuf:"bytes,2,opt,name=skillId" json:"skillId,omitempty"`
+	Index   uint32 `protobuf:"varint,1,opt,name=index,proto3" json:"index,omitempty"`
+	SkillId string `protobuf:"bytes,2,opt,name=skillId,proto3" json:"skillId,omitempty"`
 }
 
 func (x *SSkill) Reset() {
@@ -716,15 +716,15 @@ func (*SSkill) Descriptor() ([]byte, []int) {
 }
 
 func (x *SSkill) GetIndex() uint32 {
-	if x != nil && x.Index != nil {
-		return *x.Index
+	if x != nil {
+		return x.Index
 	}
 	return 0
 }
 
 func (x *SSkill) GetSkillId() string {
-	if x != nil && x.SkillId != nil {
-		return *x.SkillId
+	if x != nil {
+		return x.SkillId
 	}
 	return ""
 }
@@ -734,9 +734,9 @@ type SSpell struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SlotIndex     *uint32 `protobuf:"varint,1,opt,name=slotIndex" json:"slotIndex,omitempty"`
-	SequenceIndex *uint32 `protobuf:"varint,2,opt,name=sequenceIndex" json:"sequenceIndex,omitempty"`
-	SpellId       *string `protobuf:"bytes,3,opt,name=spellId" json:"spellId,omitempty"`
+	SlotIndex     uint32 `protobuf:"varint,1,opt,name=slotIndex,proto3" json:"slotIndex,omitempty"`
+	SequenceIndex uint32 `protobuf:"varint,2,opt,name=sequenceIndex,proto3" json:"sequenceIndex,omitempty"`
+	SpellId       string `protobuf:"bytes,3,opt,name=spellId,proto3" json:"spellId,omitempty"`
 }
 
 func (x *SSpell) Reset() {
@@ -772,22 +772,22 @@ func (*SSpell) Descriptor() ([]byte, []int) {
 }
 
 func (x *SSpell) GetSlotIndex() uint32 {
-	if x != nil && x.SlotIndex != nil {
-		return *x.SlotIndex
+	if x != nil {
+		return x.SlotIndex
 	}
 	return 0
 }
 
 func (x *SSpell) GetSequenceIndex() uint32 {
-	if x != nil && x.SequenceIndex != nil {
-		return *x.SequenceIndex
+	if x != nil {
+		return x.SequenceIndex
 	}
 	return 0
 }
 
 func (x *SSpell) GetSpellId() string {
-	if x != nil && x.SpellId != nil {
-		return *x.SpellId
+	if x != nil {
+		return x.SpellId
 	}
 	return ""
 }
@@ -797,9 +797,9 @@ type SMusic struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MusicId       *string `protobuf:"bytes,1,opt,name=musicId" json:"musicId,omitempty"`
-	SlotIndex     *uint32 `protobuf:"varint,2,opt,name=slotIndex" json:"slotIndex,omitempty"`
-	SequenceIndex *uint32 `protobuf:"varint,3,opt,name=sequenceIndex" json:"sequenceIndex,omitempty"`
+	MusicId       string `protobuf:"bytes,1,opt,name=musicId,proto3" json:"musicId,omitempty"`
+	SlotIndex     uint32 `protobuf:"varint,2,opt,name=slotIndex,proto3" json:"slotIndex,omitempty"`
+	SequenceIndex uint32 `protobuf:"varint,3,opt,name=sequenceIndex,proto3" json:"sequenceIndex,omitempty"`
 }
 
 func (x *SMusic) Reset() {
@@ -835,22 +835,22 @@ func (*SMusic) Descriptor() ([]byte, []int) {
 }
 
 func (x *SMusic) GetMusicId() string {
-	if x != nil && x.MusicId != nil {
-		return *x.MusicId
+	if x != nil {
+		return x.MusicId
 	}
 	return ""
 }
 
 func (x *SMusic) GetSlotIndex() uint32 {
-	if x != nil && x.SlotIndex != nil {
-		return *x.SlotIndex
+	if x != nil {
+		return x.SlotIndex
 	}
 	return 0
 }
 
 func (x *SMusic) GetSequenceIndex() uint32 {
-	if x != nil && x.SequenceIndex != nil {
-		return *x.SequenceIndex
+	if x != nil {
+		return x.SequenceIndex
 	}
 	return 0
 }
@@ -860,9 +860,9 @@ type SShapeShift struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ShapeShiftId  *string `protobuf:"bytes,1,opt,name=shapeShiftId" json:"shapeShiftId,omitempty"`
-	SlotIndex     *uint32 `protobuf:"varint,2,opt,name=slotIndex" json:"slotIndex,omitempty"`
-	SequenceIndex *uint32 `protobuf:"varint,3,opt,name=sequenceIndex" json:"sequenceIndex,omitempty"`
+	ShapeShiftId  string `protobuf:"bytes,1,opt,name=shapeShiftId,proto3" json:"shapeShiftId,omitempty"`
+	SlotIndex     uint32 `protobuf:"varint,2,opt,name=slotIndex,proto3" json:"slotIndex,omitempty"`
+	SequenceIndex uint32 `protobuf:"varint,3,opt,name=sequenceIndex,proto3" json:"sequenceIndex,omitempty"`
 }
 
 func (x *SShapeShift) Reset() {
@@ -898,22 +898,22 @@ func (*SShapeShift) Descriptor() ([]byte, []int) {
 }
 
 func (x *SShapeShift) GetShapeShiftId() string {
-	if x != nil && x.ShapeShiftId != nil {
-		return *x.ShapeShiftId
+	if x != nil {
+		return x.ShapeShiftId
 	}
 	return ""
 }
 
 func (x *SShapeShift) GetSlotIndex() uint32 {
-	if x != nil && x.SlotIndex != nil {
-		return *x.SlotIndex
+	if x != nil {
+		return x.SlotIndex
 	}
 	return 0
 }
 
 func (x *SShapeShift) GetSequenceIndex() uint32 {
-	if x != nil && x.SequenceIndex != nil {
-		return *x.SequenceIndex
+	if x != nil {
+		return x.SequenceIndex
 	}
 	return 0
 }
@@ -923,9 +923,9 @@ type SCUSTOMIZE_CHARACTER struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CustomizeCharacterId *string `protobuf:"bytes,1,opt,name=customizeCharacterId" json:"customizeCharacterId,omitempty"`
-	IsEquip              *int32  `protobuf:"varint,2,opt,name=isEquip" json:"isEquip,omitempty"`
-	IsNew                *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	CustomizeCharacterId string `protobuf:"bytes,1,opt,name=customizeCharacterId,proto3" json:"customizeCharacterId,omitempty"`
+	IsEquip              int32  `protobuf:"varint,2,opt,name=isEquip,proto3" json:"isEquip,omitempty"`
+	IsNew                int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SCUSTOMIZE_CHARACTER) Reset() {
@@ -961,22 +961,22 @@ func (*SCUSTOMIZE_CHARACTER) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCUSTOMIZE_CHARACTER) GetCustomizeCharacterId() string {
-	if x != nil && x.CustomizeCharacterId != nil {
-		return *x.CustomizeCharacterId
+	if x != nil {
+		return x.CustomizeCharacterId
 	}
 	return ""
 }
 
 func (x *SCUSTOMIZE_CHARACTER) GetIsEquip() int32 {
-	if x != nil && x.IsEquip != nil {
-		return *x.IsEquip
+	if x != nil {
+		return x.IsEquip
 	}
 	return 0
 }
 
 func (x *SCUSTOMIZE_CHARACTER) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -986,9 +986,9 @@ type SCUSTOMIZE_ITEM struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CustomizeItemId *string `protobuf:"bytes,1,opt,name=customizeItemId" json:"customizeItemId,omitempty"`
-	IsEquip         *int32  `protobuf:"varint,2,opt,name=isEquip" json:"isEquip,omitempty"`
-	IsNew           *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	CustomizeItemId string `protobuf:"bytes,1,opt,name=customizeItemId,proto3" json:"customizeItemId,omitempty"`
+	IsEquip         int32  `protobuf:"varint,2,opt,name=isEquip,proto3" json:"isEquip,omitempty"`
+	IsNew           int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SCUSTOMIZE_ITEM) Reset() {
@@ -1024,22 +1024,22 @@ func (*SCUSTOMIZE_ITEM) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCUSTOMIZE_ITEM) GetCustomizeItemId() string {
-	if x != nil && x.CustomizeItemId != nil {
-		return *x.CustomizeItemId
+	if x != nil {
+		return x.CustomizeItemId
 	}
 	return ""
 }
 
 func (x *SCUSTOMIZE_ITEM) GetIsEquip() int32 {
-	if x != nil && x.IsEquip != nil {
-		return *x.IsEquip
+	if x != nil {
+		return x.IsEquip
 	}
 	return 0
 }
 
 func (x *SCUSTOMIZE_ITEM) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -1049,9 +1049,9 @@ type SCUSTOMIZE_ARMOR_SKIN struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CustomizeArmorSkinId *string `protobuf:"bytes,1,opt,name=customizeArmorSkinId" json:"customizeArmorSkinId,omitempty"`
-	IsEquip              *int32  `protobuf:"varint,2,opt,name=isEquip" json:"isEquip,omitempty"`
-	IsNew                *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	CustomizeArmorSkinId string `protobuf:"bytes,1,opt,name=customizeArmorSkinId,proto3" json:"customizeArmorSkinId,omitempty"`
+	IsEquip              int32  `protobuf:"varint,2,opt,name=isEquip,proto3" json:"isEquip,omitempty"`
+	IsNew                int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SCUSTOMIZE_ARMOR_SKIN) Reset() {
@@ -1087,22 +1087,22 @@ func (*SCUSTOMIZE_ARMOR_SKIN) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCUSTOMIZE_ARMOR_SKIN) GetCustomizeArmorSkinId() string {
-	if x != nil && x.CustomizeArmorSkinId != nil {
-		return *x.CustomizeArmorSkinId
+	if x != nil {
+		return x.CustomizeArmorSkinId
 	}
 	return ""
 }
 
 func (x *SCUSTOMIZE_ARMOR_SKIN) GetIsEquip() int32 {
-	if x != nil && x.IsEquip != nil {
-		return *x.IsEquip
+	if x != nil {
+		return x.IsEquip
 	}
 	return 0
 }
 
 func (x *SCUSTOMIZE_ARMOR_SKIN) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -1112,9 +1112,9 @@ type SEMOTE struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	EmoteId        *string `protobuf:"bytes,1,opt,name=emoteId" json:"emoteId,omitempty"`
-	EquipSlotIndex *int32  `protobuf:"varint,2,opt,name=equipSlotIndex" json:"equipSlotIndex,omitempty"`
-	IsNew          *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	EmoteId        string `protobuf:"bytes,1,opt,name=emoteId,proto3" json:"emoteId,omitempty"`
+	EquipSlotIndex int32  `protobuf:"varint,2,opt,name=equipSlotIndex,proto3" json:"equipSlotIndex,omitempty"`
+	IsNew          int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SEMOTE) Reset() {
@@ -1150,22 +1150,22 @@ func (*SEMOTE) Descriptor() ([]byte, []int) {
 }
 
 func (x *SEMOTE) GetEmoteId() string {
-	if x != nil && x.EmoteId != nil {
-		return *x.EmoteId
+	if x != nil {
+		return x.EmoteId
 	}
 	return ""
 }
 
 func (x *SEMOTE) GetEquipSlotIndex() int32 {
-	if x != nil && x.EquipSlotIndex != nil {
-		return *x.EquipSlotIndex
+	if x != nil {
+		return x.EquipSlotIndex
 	}
 	return 0
 }
 
 func (x *SEMOTE) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -1175,9 +1175,9 @@ type SCUSTOMIZE_ACTION struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CustomizeActionId *string `protobuf:"bytes,1,opt,name=customizeActionId" json:"customizeActionId,omitempty"`
-	IsEquip           *int32  `protobuf:"varint,2,opt,name=isEquip" json:"isEquip,omitempty"`
-	IsNew             *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	CustomizeActionId string `protobuf:"bytes,1,opt,name=customizeActionId,proto3" json:"customizeActionId,omitempty"`
+	IsEquip           int32  `protobuf:"varint,2,opt,name=isEquip,proto3" json:"isEquip,omitempty"`
+	IsNew             int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SCUSTOMIZE_ACTION) Reset() {
@@ -1213,22 +1213,22 @@ func (*SCUSTOMIZE_ACTION) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCUSTOMIZE_ACTION) GetCustomizeActionId() string {
-	if x != nil && x.CustomizeActionId != nil {
-		return *x.CustomizeActionId
+	if x != nil {
+		return x.CustomizeActionId
 	}
 	return ""
 }
 
 func (x *SCUSTOMIZE_ACTION) GetIsEquip() int32 {
-	if x != nil && x.IsEquip != nil {
-		return *x.IsEquip
+	if x != nil {
+		return x.IsEquip
 	}
 	return 0
 }
 
 func (x *SCUSTOMIZE_ACTION) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -1238,9 +1238,9 @@ type SCUSTOMIZE_LOBBY_EMOTE struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LobbyEmoteId   *string `protobuf:"bytes,1,opt,name=lobbyEmoteId" json:"lobbyEmoteId,omitempty"`
-	EquipSlotIndex *int32  `protobuf:"varint,2,opt,name=equipSlotIndex" json:"equipSlotIndex,omitempty"`
-	IsNew          *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	LobbyEmoteId   string `protobuf:"bytes,1,opt,name=lobbyEmoteId,proto3" json:"lobbyEmoteId,omitempty"`
+	EquipSlotIndex int32  `protobuf:"varint,2,opt,name=equipSlotIndex,proto3" json:"equipSlotIndex,omitempty"`
+	IsNew          int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SCUSTOMIZE_LOBBY_EMOTE) Reset() {
@@ -1276,22 +1276,22 @@ func (*SCUSTOMIZE_LOBBY_EMOTE) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCUSTOMIZE_LOBBY_EMOTE) GetLobbyEmoteId() string {
-	if x != nil && x.LobbyEmoteId != nil {
-		return *x.LobbyEmoteId
+	if x != nil {
+		return x.LobbyEmoteId
 	}
 	return ""
 }
 
 func (x *SCUSTOMIZE_LOBBY_EMOTE) GetEquipSlotIndex() int32 {
-	if x != nil && x.EquipSlotIndex != nil {
-		return *x.EquipSlotIndex
+	if x != nil {
+		return x.EquipSlotIndex
 	}
 	return 0
 }
 
 func (x *SCUSTOMIZE_LOBBY_EMOTE) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -1301,9 +1301,9 @@ type SCUSTOMIZE_LOBBY_SKIN struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LobbySkinId *string `protobuf:"bytes,1,opt,name=lobbySkinId" json:"lobbySkinId,omitempty"`
-	IsEquip     *int32  `protobuf:"varint,2,opt,name=isEquip" json:"isEquip,omitempty"`
-	IsNew       *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	LobbySkinId string `protobuf:"bytes,1,opt,name=lobbySkinId,proto3" json:"lobbySkinId,omitempty"`
+	IsEquip     int32  `protobuf:"varint,2,opt,name=isEquip,proto3" json:"isEquip,omitempty"`
+	IsNew       int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SCUSTOMIZE_LOBBY_SKIN) Reset() {
@@ -1339,22 +1339,22 @@ func (*SCUSTOMIZE_LOBBY_SKIN) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCUSTOMIZE_LOBBY_SKIN) GetLobbySkinId() string {
-	if x != nil && x.LobbySkinId != nil {
-		return *x.LobbySkinId
+	if x != nil {
+		return x.LobbySkinId
 	}
 	return ""
 }
 
 func (x *SCUSTOMIZE_LOBBY_SKIN) GetIsEquip() int32 {
-	if x != nil && x.IsEquip != nil {
-		return *x.IsEquip
+	if x != nil {
+		return x.IsEquip
 	}
 	return 0
 }
 
 func (x *SCUSTOMIZE_LOBBY_SKIN) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -1364,9 +1364,9 @@ type SCUSTOMIZE_NAMEPLATE struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NameplateSkinId *string `protobuf:"bytes,1,opt,name=nameplateSkinId" json:"nameplateSkinId,omitempty"`
-	IsEquip         *int32  `protobuf:"varint,2,opt,name=isEquip" json:"isEquip,omitempty"`
-	IsNew           *int32  `protobuf:"varint,3,opt,name=isNew" json:"isNew,omitempty"`
+	NameplateSkinId string `protobuf:"bytes,1,opt,name=nameplateSkinId,proto3" json:"nameplateSkinId,omitempty"`
+	IsEquip         int32  `protobuf:"varint,2,opt,name=isEquip,proto3" json:"isEquip,omitempty"`
+	IsNew           int32  `protobuf:"varint,3,opt,name=isNew,proto3" json:"isNew,omitempty"`
 }
 
 func (x *SCUSTOMIZE_NAMEPLATE) Reset() {
@@ -1402,22 +1402,22 @@ func (*SCUSTOMIZE_NAMEPLATE) Descriptor() ([]byte, []int) {
 }
 
 func (x *SCUSTOMIZE_NAMEPLATE) GetNameplateSkinId() string {
-	if x != nil && x.NameplateSkinId != nil {
-		return *x.NameplateSkinId
+	if x != nil {
+		return x.NameplateSkinId
 	}
 	return ""
 }
 
 func (x *SCUSTOMIZE_NAMEPLATE) GetIsEquip() int32 {
-	if x != nil && x.IsEquip != nil {
-		return *x.IsEquip
+	if x != nil {
+		return x.IsEquip
 	}
 	return 0
 }
 
 func (x *SCUSTOMIZE_NAMEPLATE) GetIsNew() int32 {
-	if x != nil && x.IsNew != nil {
-		return *x.IsNew
+	if x != nil {
+		return x.IsNew
 	}
 	return 0
 }
@@ -1427,9 +1427,9 @@ type SFriendItemRecoveryInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FriendAccountId   *string  `protobuf:"bytes,1,opt,name=friendAccountId" json:"friendAccountId,omitempty"`
-	FriendCharacterId *string  `protobuf:"bytes,2,opt,name=friendCharacterId" json:"friendCharacterId,omitempty"`
-	RecoveryItemList  []*SItem `protobuf:"bytes,3,rep,name=recoveryItemList" json:"recoveryItemList,omitempty"`
+	FriendAccountId   string   `protobuf:"bytes,1,opt,name=friendAccountId,proto3" json:"friendAccountId,omitempty"`
+	FriendCharacterId string   `protobuf:"bytes,2,opt,name=friendCharacterId,proto3" json:"friendCharacterId,omitempty"`
+	RecoveryItemList  []*SItem `protobuf:"bytes,3,rep,name=recoveryItemList,proto3" json:"recoveryItemList,omitempty"`
 }
 
 func (x *SFriendItemRecoveryInfo) Reset() {
@@ -1465,15 +1465,15 @@ func (*SFriendItemRecoveryInfo) Descriptor() ([]byte, []int) {
 }
 
 func (x *SFriendItemRecoveryInfo) GetFriendAccountId() string {
-	if x != nil && x.FriendAccountId != nil {
-		return *x.FriendAccountId
+	if x != nil {
+		return x.FriendAccountId
 	}
 	return ""
 }
 
 func (x *SFriendItemRecoveryInfo) GetFriendCharacterId() string {
-	if x != nil && x.FriendCharacterId != nil {
-		return *x.FriendCharacterId
+	if x != nil {
+		return x.FriendCharacterId
 	}
 	return ""
 }
@@ -1490,14 +1490,14 @@ type SGatheringHallItem struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Origin     *SItem   `protobuf:"bytes,1,opt,name=origin" json:"origin,omitempty"`
-	PosX       *float32 `protobuf:"fixed32,2,opt,name=posX" json:"posX,omitempty"`
-	PosY       *float32 `protobuf:"fixed32,3,opt,name=posY" json:"posY,omitempty"`
-	PosZ       *float32 `protobuf:"fixed32,4,opt,name=posZ" json:"posZ,omitempty"`
-	RotPitch   *float32 `protobuf:"fixed32,5,opt,name=rotPitch" json:"rotPitch,omitempty"`
-	RotYaw     *float32 `protobuf:"fixed32,6,opt,name=rotYaw" json:"rotYaw,omitempty"`
-	RotRoll    *float32 `protobuf:"fixed32,7,opt,name=rotRoll" json:"rotRoll,omitempty"`
-	HallStatus *int32   `protobuf:"varint,8,opt,name=hallStatus" json:"hallStatus,omitempty"`
+	Origin     *SItem  `protobuf:"bytes,1,opt,name=origin,proto3" json:"origin,omitempty"`
+	PosX       float32 `protobuf:"fixed32,2,opt,name=posX,proto3" json:"posX,omitempty"`
+	PosY       float32 `protobuf:"fixed32,3,opt,name=posY,proto3" json:"posY,omitempty"`
+	PosZ       float32 `protobuf:"fixed32,4,opt,name=posZ,proto3" json:"posZ,omitempty"`
+	RotPitch   float32 `protobuf:"fixed32,5,opt,name=rotPitch,proto3" json:"rotPitch,omitempty"`
+	RotYaw     float32 `protobuf:"fixed32,6,opt,name=rotYaw,proto3" json:"rotYaw,omitempty"`
+	RotRoll    float32 `protobuf:"fixed32,7,opt,name=rotRoll,proto3" json:"rotRoll,omitempty"`
+	HallStatus int32   `protobuf:"varint,8,opt,name=hallStatus,proto3" json:"hallStatus,omitempty"`
 }
 
 func (x *SGatheringHallItem) Reset() {
@@ -1540,50 +1540,50 @@ func (x *SGatheringHallItem) GetOrigin() *SItem {
 }
 
 func (x *SGatheringHallItem) GetPosX() float32 {
-	if x != nil && x.PosX != nil {
-		return *x.PosX
+	if x != nil {
+		return x.PosX
 	}
 	return 0
 }
 
 func (x *SGatheringHallItem) GetPosY() float32 {
-	if x != nil && x.PosY != nil {
-		return *x.PosY
+	if x != nil {
+		return x.PosY
 	}
 	return 0
 }
 
 func (x *SGatheringHallItem) GetPosZ() float32 {
-	if x != nil && x.PosZ != nil {
-		return *x.PosZ
+	if x != nil {
+		return x.PosZ
 	}
 	return 0
 }
 
 func (x *SGatheringHallItem) GetRotPitch() float32 {
-	if x != nil && x.RotPitch != nil {
-		return *x.RotPitch
+	if x != nil {
+		return x.RotPitch
 	}
 	return 0
 }
 
 func (x *SGatheringHallItem) GetRotYaw() float32 {
-	if x != nil && x.RotYaw != nil {
-		return *x.RotYaw
+	if x != nil {
+		return x.RotYaw
 	}
 	return 0
 }
 
 func (x *SGatheringHallItem) GetRotRoll() float32 {
-	if x != nil && x.RotRoll != nil {
-		return *x.RotRoll
+	if x != nil {
+		return x.RotRoll
 	}
 	return 0
 }
 
 func (x *SGatheringHallItem) GetHallStatus() int32 {
-	if x != nil && x.HallStatus != nil {
-		return *x.HallStatus
+	if x != nil {
+		return x.HallStatus
 	}
 	return 0
 }
@@ -1803,9 +1803,11 @@ var file___Item_proto_rawDesc = []byte{
 	0x12, 0x18, 0x0a, 0x07, 0x72, 0x6f, 0x74, 0x52, 0x6f, 0x6c, 0x6c, 0x18, 0x07, 0x20, 0x01, 0x28,
 	0x02, 0x52, 0x07, 0x72, 0x6f, 0x74, 0x52, 0x6f, 0x6c, 0x6c, 0x12, 0x1e, 0x0a, 0x0a, 0x68, 0x61,
 	0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x08, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a,
-	0x68, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x17, 0x5a, 0x15, 0x64, 0x61,
-	0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
-	0x2f, 0x70, 0x62,
+	0x68, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x31, 0x0a, 0x10, 0x63, 0x6f,
+	0x6d, 0x2e, 0x70, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x2e, 0x69, 0x74, 0x65, 0x6d, 0x42, 0x04,
+	0x69, 0x74, 0x65, 0x6d, 0x50, 0x00, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78,
+	0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

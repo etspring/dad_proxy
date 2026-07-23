@@ -1,7 +1,42 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
+
+option java_package = "com.packets";
+option java_outer_classname = "packets";
+option java_multiple_files = false;
+
+message SC2S_ALIVE_REQ {
+}
+
+message SS2C_ALIVE_RES {
+}
+
+message SC2S_RECONNECT_REQ {
+}
+
+message SS2C_RECONNECT_RES {
+  uint32 result = 1;
+}
+
+message SS2C_CONNECT_SERVICE_INFO_JSON {
+  string ipAddress = 1;
+  uint32 port = 2;
+  string remote = 3;
+  uint32 underMaintenance = 4;
+  uint64 maintenanceRemainTimeSec = 5;
+  string maintenanceNewsURL = 6;
+}
+
+message SS2C_ALIVE_REVERSE_NOT {
+}
+
+message SC2S_ALIVE_REVERSE_REQ {
+}
+
+message SS2C_ALIVE_REVERSE_RES {
+}
 
 enum PacketCommand {
   PACKET_NONE = 0;
@@ -250,6 +285,7 @@ enum PacketCommand {
   S2C_MERCHANT_RECOVERY_ITEM_CHECK_NOT = 1375;
   C2S_MERCHANT_RECOVERY_CHECK_REQ = 1376;
   S2C_MERCHANT_RECOVERY_CHECK_RES = 1377;
+  S2C_MERCHANT_RECOVERY_RATIO_NOT = 1378;
   C2S_MERCHANT_EXPRESS_LIST_REQ = 1380;
   S2C_MERCHANT_EXPRESS_LIST_RES = 1381;
   C2S_MERCHANT_EXPRESS_BUY_REQ = 1382;
@@ -638,6 +674,7 @@ enum PacketCommand {
   MAX_GATHERING_HALL_DEDICATED_PACKET = 30800;
   MAX_DEDICATED_PACKET = 40000;
 }
+
 enum PacketResult {
   RESULT_NONE = 0;
   SUCCESS = 1;
@@ -988,33 +1025,4 @@ enum PacketResult {
   FAIL_MERCHANT_SELL_BACK_SIZE_OVER_FAILED = 1613;
   FAIL_SECURITY_SETTING_REQUIRED_FAILED = 1700;
 }
-message SC2S_ALIVE_REQ {
-}
 
-message SS2C_ALIVE_RES {
-}
-
-message SC2S_RECONNECT_REQ {
-}
-
-message SS2C_RECONNECT_RES {
-  optional uint32 result = 1;
-}
-
-message SS2C_CONNECT_SERVICE_INFO_JSON {
-  optional string ipAddress = 1;
-  optional uint32 port = 2;
-  optional string remote = 3;
-  optional uint32 underMaintenance = 4;
-  optional uint64 maintenanceRemainTimeSec = 5;
-  optional string maintenanceNewsURL = 6;
-}
-
-message SS2C_ALIVE_REVERSE_NOT {
-}
-
-message SC2S_ALIVE_REVERSE_REQ {
-}
-
-message SS2C_ALIVE_REVERSE_RES {
-}

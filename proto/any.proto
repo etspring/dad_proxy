@@ -1,9 +1,0 @@
-syntax = "proto2";
-
-package google.protobuf;
-option go_package = "dad_proxy/internal/pb";
-
-message Any {
-  optional string type_url = 1;
-  optional bytes value = 2;
-}

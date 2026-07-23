@@ -64,16 +64,6 @@ func (x PARTY_INVITE_ANSWER) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *PARTY_INVITE_ANSWER) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = PARTY_INVITE_ANSWER(num)
-	return nil
-}
-
 // Deprecated: Use PARTY_INVITE_ANSWER.Descriptor instead.
 func (PARTY_INVITE_ANSWER) EnumDescriptor() ([]byte, []int) {
 	return file_Party_proto_rawDescGZIP(), []int{0}
@@ -84,9 +74,9 @@ type SC2S_PARTY_INVITE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FindNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=findNickName" json:"findNickName,omitempty"`
-	FindAccountId   *string            `protobuf:"bytes,2,opt,name=findAccountId" json:"findAccountId,omitempty"`
-	FindCharacterId *string            `protobuf:"bytes,3,opt,name=findCharacterId" json:"findCharacterId,omitempty"`
+	FindNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=findNickName,proto3" json:"findNickName,omitempty"`
+	FindAccountId   string             `protobuf:"bytes,2,opt,name=findAccountId,proto3" json:"findAccountId,omitempty"`
+	FindCharacterId string             `protobuf:"bytes,3,opt,name=findCharacterId,proto3" json:"findCharacterId,omitempty"`
 }
 
 func (x *SC2S_PARTY_INVITE_REQ) Reset() {
@@ -129,15 +119,15 @@ func (x *SC2S_PARTY_INVITE_REQ) GetFindNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SC2S_PARTY_INVITE_REQ) GetFindAccountId() string {
-	if x != nil && x.FindAccountId != nil {
-		return *x.FindAccountId
+	if x != nil {
+		return x.FindAccountId
 	}
 	return ""
 }
 
 func (x *SC2S_PARTY_INVITE_REQ) GetFindCharacterId() string {
-	if x != nil && x.FindCharacterId != nil {
-		return *x.FindCharacterId
+	if x != nil {
+		return x.FindCharacterId
 	}
 	return ""
 }
@@ -147,7 +137,7 @@ type SS2C_PARTY_INVITE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PARTY_INVITE_RES) Reset() {
@@ -183,8 +173,8 @@ func (*SS2C_PARTY_INVITE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_INVITE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -194,9 +184,9 @@ type SS2C_PARTY_INVITE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InviteeNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=InviteeNickName" json:"InviteeNickName,omitempty"`
-	InviteeAccountId   *string            `protobuf:"bytes,2,opt,name=InviteeAccountId" json:"InviteeAccountId,omitempty"`
-	InviteeCharacterId *string            `protobuf:"bytes,3,opt,name=InviteeCharacterId" json:"InviteeCharacterId,omitempty"`
+	InviteeNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=InviteeNickName,proto3" json:"InviteeNickName,omitempty"`
+	InviteeAccountId   string             `protobuf:"bytes,2,opt,name=InviteeAccountId,proto3" json:"InviteeAccountId,omitempty"`
+	InviteeCharacterId string             `protobuf:"bytes,3,opt,name=InviteeCharacterId,proto3" json:"InviteeCharacterId,omitempty"`
 }
 
 func (x *SS2C_PARTY_INVITE_NOT) Reset() {
@@ -239,15 +229,15 @@ func (x *SS2C_PARTY_INVITE_NOT) GetInviteeNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SS2C_PARTY_INVITE_NOT) GetInviteeAccountId() string {
-	if x != nil && x.InviteeAccountId != nil {
-		return *x.InviteeAccountId
+	if x != nil {
+		return x.InviteeAccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_INVITE_NOT) GetInviteeCharacterId() string {
-	if x != nil && x.InviteeCharacterId != nil {
-		return *x.InviteeCharacterId
+	if x != nil {
+		return x.InviteeCharacterId
 	}
 	return ""
 }
@@ -257,8 +247,8 @@ type SC2S_PARTY_INVITE_ANSWER_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	InviteResult    *uint32 `protobuf:"varint,1,opt,name=inviteResult" json:"inviteResult,omitempty"`
-	ReturnAccountId *string `protobuf:"bytes,2,opt,name=returnAccountId" json:"returnAccountId,omitempty"`
+	InviteResult    uint32 `protobuf:"varint,1,opt,name=inviteResult,proto3" json:"inviteResult,omitempty"`
+	ReturnAccountId string `protobuf:"bytes,2,opt,name=returnAccountId,proto3" json:"returnAccountId,omitempty"`
 }
 
 func (x *SC2S_PARTY_INVITE_ANSWER_REQ) Reset() {
@@ -294,15 +284,15 @@ func (*SC2S_PARTY_INVITE_ANSWER_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_PARTY_INVITE_ANSWER_REQ) GetInviteResult() uint32 {
-	if x != nil && x.InviteResult != nil {
-		return *x.InviteResult
+	if x != nil {
+		return x.InviteResult
 	}
 	return 0
 }
 
 func (x *SC2S_PARTY_INVITE_ANSWER_REQ) GetReturnAccountId() string {
-	if x != nil && x.ReturnAccountId != nil {
-		return *x.ReturnAccountId
+	if x != nil {
+		return x.ReturnAccountId
 	}
 	return ""
 }
@@ -312,7 +302,7 @@ type SS2C_PARTY_INVITE_ANSWER_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PARTY_INVITE_ANSWER_RES) Reset() {
@@ -348,8 +338,8 @@ func (*SS2C_PARTY_INVITE_ANSWER_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_INVITE_ANSWER_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -359,8 +349,8 @@ type SS2C_PARTY_INVITE_ANSWER_RESULT_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NickName     *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=nickName" json:"nickName,omitempty"`
-	InviteResult *uint32            `protobuf:"varint,2,opt,name=inviteResult" json:"inviteResult,omitempty"`
+	NickName     *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=nickName,proto3" json:"nickName,omitempty"`
+	InviteResult uint32             `protobuf:"varint,2,opt,name=inviteResult,proto3" json:"inviteResult,omitempty"`
 }
 
 func (x *SS2C_PARTY_INVITE_ANSWER_RESULT_NOT) Reset() {
@@ -403,8 +393,8 @@ func (x *SS2C_PARTY_INVITE_ANSWER_RESULT_NOT) GetNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SS2C_PARTY_INVITE_ANSWER_RESULT_NOT) GetInviteResult() uint32 {
-	if x != nil && x.InviteResult != nil {
-		return *x.InviteResult
+	if x != nil {
+		return x.InviteResult
 	}
 	return 0
 }
@@ -452,7 +442,7 @@ type SS2C_PARTY_EXIT_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PARTY_EXIT_RES) Reset() {
@@ -488,8 +478,8 @@ func (*SS2C_PARTY_EXIT_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_EXIT_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -499,7 +489,7 @@ type SS2C_PARTY_MEMBER_INFO_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PlayPartyUserInfoData []*SCHARACTER_PARTY_INFO `protobuf:"bytes,1,rep,name=playPartyUserInfoData" json:"playPartyUserInfoData,omitempty"`
+	PlayPartyUserInfoData []*SCHARACTER_PARTY_INFO `protobuf:"bytes,1,rep,name=playPartyUserInfoData,proto3" json:"playPartyUserInfoData,omitempty"`
 }
 
 func (x *SS2C_PARTY_MEMBER_INFO_NOT) Reset() {
@@ -546,7 +536,7 @@ type SC2S_PARTY_READY_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsReady *uint32 `protobuf:"varint,1,opt,name=isReady" json:"isReady,omitempty"`
+	IsReady uint32 `protobuf:"varint,1,opt,name=isReady,proto3" json:"isReady,omitempty"`
 }
 
 func (x *SC2S_PARTY_READY_REQ) Reset() {
@@ -582,8 +572,8 @@ func (*SC2S_PARTY_READY_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_PARTY_READY_REQ) GetIsReady() uint32 {
-	if x != nil && x.IsReady != nil {
-		return *x.IsReady
+	if x != nil {
+		return x.IsReady
 	}
 	return 0
 }
@@ -593,9 +583,9 @@ type SS2C_PARTY_READY_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result        *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	RestrictionMS *uint32 `protobuf:"varint,2,opt,name=restrictionMS" json:"restrictionMS,omitempty"`
-	ContentId     *string `protobuf:"bytes,3,opt,name=contentId" json:"contentId,omitempty"`
+	Result        uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	RestrictionMS uint32 `protobuf:"varint,2,opt,name=restrictionMS,proto3" json:"restrictionMS,omitempty"`
+	ContentId     string `protobuf:"bytes,3,opt,name=contentId,proto3" json:"contentId,omitempty"`
 }
 
 func (x *SS2C_PARTY_READY_RES) Reset() {
@@ -631,22 +621,22 @@ func (*SS2C_PARTY_READY_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_READY_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_PARTY_READY_RES) GetRestrictionMS() uint32 {
-	if x != nil && x.RestrictionMS != nil {
-		return *x.RestrictionMS
+	if x != nil {
+		return x.RestrictionMS
 	}
 	return 0
 }
 
 func (x *SS2C_PARTY_READY_RES) GetContentId() string {
-	if x != nil && x.ContentId != nil {
-		return *x.ContentId
+	if x != nil {
+		return x.ContentId
 	}
 	return ""
 }
@@ -656,10 +646,10 @@ type SS2C_PARTY_EQUIP_ITEM_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId   *string  `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId *string  `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	OldItems    []*SItem `protobuf:"bytes,3,rep,name=oldItems" json:"oldItems,omitempty"`
-	NewItems    []*SItem `protobuf:"bytes,4,rep,name=newItems" json:"newItems,omitempty"`
+	AccountId   string   `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId string   `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	OldItems    []*SItem `protobuf:"bytes,3,rep,name=oldItems,proto3" json:"oldItems,omitempty"`
+	NewItems    []*SItem `protobuf:"bytes,4,rep,name=newItems,proto3" json:"newItems,omitempty"`
 }
 
 func (x *SS2C_PARTY_EQUIP_ITEM_CHANGE_NOT) Reset() {
@@ -695,15 +685,15 @@ func (*SS2C_PARTY_EQUIP_ITEM_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_EQUIP_ITEM_CHANGE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_EQUIP_ITEM_CHANGE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -727,7 +717,7 @@ type SS2C_PARTY_REGION_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Region *uint32 `protobuf:"varint,1,opt,name=region" json:"region,omitempty"`
+	Region uint32 `protobuf:"varint,1,opt,name=region,proto3" json:"region,omitempty"`
 }
 
 func (x *SS2C_PARTY_REGION_CHANGE_NOT) Reset() {
@@ -763,8 +753,8 @@ func (*SS2C_PARTY_REGION_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_REGION_CHANGE_NOT) GetRegion() uint32 {
-	if x != nil && x.Region != nil {
-		return *x.Region
+	if x != nil {
+		return x.Region
 	}
 	return 0
 }
@@ -774,9 +764,9 @@ type SS2C_PARTY_LOCATION_UPDATE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId      *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId    *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	UpdateLocation *uint32 `protobuf:"varint,3,opt,name=updateLocation" json:"updateLocation,omitempty"`
+	AccountId      string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId    string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	UpdateLocation uint32 `protobuf:"varint,3,opt,name=updateLocation,proto3" json:"updateLocation,omitempty"`
 }
 
 func (x *SS2C_PARTY_LOCATION_UPDATE_NOT) Reset() {
@@ -812,22 +802,22 @@ func (*SS2C_PARTY_LOCATION_UPDATE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_LOCATION_UPDATE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_LOCATION_UPDATE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_LOCATION_UPDATE_NOT) GetUpdateLocation() uint32 {
-	if x != nil && x.UpdateLocation != nil {
-		return *x.UpdateLocation
+	if x != nil {
+		return x.UpdateLocation
 	}
 	return 0
 }
@@ -837,9 +827,9 @@ type SS2C_PARTY_CHARACTER_SKIN_LIST_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId           *string  `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId         *string  `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	CharacterSkinIdList []string `protobuf:"bytes,3,rep,name=characterSkinIdList" json:"characterSkinIdList,omitempty"`
+	AccountId           string   `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId         string   `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	CharacterSkinIdList []string `protobuf:"bytes,3,rep,name=characterSkinIdList,proto3" json:"characterSkinIdList,omitempty"`
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_LIST_NOT) Reset() {
@@ -875,15 +865,15 @@ func (*SS2C_PARTY_CHARACTER_SKIN_LIST_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_LIST_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_LIST_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -900,10 +890,10 @@ type SS2C_PARTY_CHARACTER_SKIN_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId          *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId        *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	OldCharacterSkinId *string `protobuf:"bytes,3,opt,name=oldCharacterSkinId" json:"oldCharacterSkinId,omitempty"`
-	NewCharacterSkinId *string `protobuf:"bytes,4,opt,name=newCharacterSkinId" json:"newCharacterSkinId,omitempty"`
+	AccountId          string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId        string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	OldCharacterSkinId string `protobuf:"bytes,3,opt,name=oldCharacterSkinId,proto3" json:"oldCharacterSkinId,omitempty"`
+	NewCharacterSkinId string `protobuf:"bytes,4,opt,name=newCharacterSkinId,proto3" json:"newCharacterSkinId,omitempty"`
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_CHANGE_NOT) Reset() {
@@ -939,29 +929,29 @@ func (*SS2C_PARTY_CHARACTER_SKIN_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_CHANGE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_CHANGE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_CHANGE_NOT) GetOldCharacterSkinId() string {
-	if x != nil && x.OldCharacterSkinId != nil {
-		return *x.OldCharacterSkinId
+	if x != nil {
+		return x.OldCharacterSkinId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_CHARACTER_SKIN_CHANGE_NOT) GetNewCharacterSkinId() string {
-	if x != nil && x.NewCharacterSkinId != nil {
-		return *x.NewCharacterSkinId
+	if x != nil {
+		return x.NewCharacterSkinId
 	}
 	return ""
 }
@@ -971,9 +961,9 @@ type SS2C_PARTY_ITEM_SKIN_LIST_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId      *string  `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId    *string  `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	ItemSkinIdList []string `protobuf:"bytes,3,rep,name=itemSkinIdList" json:"itemSkinIdList,omitempty"`
+	AccountId      string   `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId    string   `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	ItemSkinIdList []string `protobuf:"bytes,3,rep,name=itemSkinIdList,proto3" json:"itemSkinIdList,omitempty"`
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_LIST_NOT) Reset() {
@@ -1009,15 +999,15 @@ func (*SS2C_PARTY_ITEM_SKIN_LIST_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_LIST_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_LIST_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -1034,10 +1024,10 @@ type SS2C_PARTY_ITEM_SKIN_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId     *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId   *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	OldItemSkinId *string `protobuf:"bytes,3,opt,name=oldItemSkinId" json:"oldItemSkinId,omitempty"`
-	NewItemSkinId *string `protobuf:"bytes,4,opt,name=newItemSkinId" json:"newItemSkinId,omitempty"`
+	AccountId     string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId   string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	OldItemSkinId string `protobuf:"bytes,3,opt,name=oldItemSkinId,proto3" json:"oldItemSkinId,omitempty"`
+	NewItemSkinId string `protobuf:"bytes,4,opt,name=newItemSkinId,proto3" json:"newItemSkinId,omitempty"`
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_CHANGE_NOT) Reset() {
@@ -1073,29 +1063,29 @@ func (*SS2C_PARTY_ITEM_SKIN_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_CHANGE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_CHANGE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_CHANGE_NOT) GetOldItemSkinId() string {
-	if x != nil && x.OldItemSkinId != nil {
-		return *x.OldItemSkinId
+	if x != nil {
+		return x.OldItemSkinId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ITEM_SKIN_CHANGE_NOT) GetNewItemSkinId() string {
-	if x != nil && x.NewItemSkinId != nil {
-		return *x.NewItemSkinId
+	if x != nil {
+		return x.NewItemSkinId
 	}
 	return ""
 }
@@ -1105,9 +1095,9 @@ type SS2C_PARTY_ARMOR_SKIN_LIST_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId       *string  `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId     *string  `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	ArmorSkinIdList []string `protobuf:"bytes,3,rep,name=armorSkinIdList" json:"armorSkinIdList,omitempty"`
+	AccountId       string   `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId     string   `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	ArmorSkinIdList []string `protobuf:"bytes,3,rep,name=armorSkinIdList,proto3" json:"armorSkinIdList,omitempty"`
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_LIST_NOT) Reset() {
@@ -1143,15 +1133,15 @@ func (*SS2C_PARTY_ARMOR_SKIN_LIST_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_LIST_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_LIST_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -1168,10 +1158,10 @@ type SS2C_PARTY_ARMOR_SKIN_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId     *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId   *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	OldItemSkinId *string `protobuf:"bytes,3,opt,name=oldItemSkinId" json:"oldItemSkinId,omitempty"`
-	NewItemSkinId *string `protobuf:"bytes,4,opt,name=newItemSkinId" json:"newItemSkinId,omitempty"`
+	AccountId     string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId   string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	OldItemSkinId string `protobuf:"bytes,3,opt,name=oldItemSkinId,proto3" json:"oldItemSkinId,omitempty"`
+	NewItemSkinId string `protobuf:"bytes,4,opt,name=newItemSkinId,proto3" json:"newItemSkinId,omitempty"`
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_CHANGE_NOT) Reset() {
@@ -1207,29 +1197,29 @@ func (*SS2C_PARTY_ARMOR_SKIN_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_CHANGE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_CHANGE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_CHANGE_NOT) GetOldItemSkinId() string {
-	if x != nil && x.OldItemSkinId != nil {
-		return *x.OldItemSkinId
+	if x != nil {
+		return x.OldItemSkinId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_ARMOR_SKIN_CHANGE_NOT) GetNewItemSkinId() string {
-	if x != nil && x.NewItemSkinId != nil {
-		return *x.NewItemSkinId
+	if x != nil {
+		return x.NewItemSkinId
 	}
 	return ""
 }
@@ -1239,9 +1229,9 @@ type SS2C_PARTY_GAME_TYPE_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	GameTypeIndex *uint32 `protobuf:"varint,1,opt,name=gameTypeIndex" json:"gameTypeIndex,omitempty"`
-	DungeonIdTag  *string `protobuf:"bytes,2,opt,name=dungeonIdTag" json:"dungeonIdTag,omitempty"`
-	GearPoolIndex *int32  `protobuf:"varint,3,opt,name=gearPoolIndex" json:"gearPoolIndex,omitempty"`
+	GameTypeIndex uint32 `protobuf:"varint,1,opt,name=gameTypeIndex,proto3" json:"gameTypeIndex,omitempty"`
+	DungeonIdTag  string `protobuf:"bytes,2,opt,name=dungeonIdTag,proto3" json:"dungeonIdTag,omitempty"`
+	GearPoolIndex int32  `protobuf:"varint,3,opt,name=gearPoolIndex,proto3" json:"gearPoolIndex,omitempty"`
 }
 
 func (x *SS2C_PARTY_GAME_TYPE_CHANGE_NOT) Reset() {
@@ -1277,22 +1267,22 @@ func (*SS2C_PARTY_GAME_TYPE_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_GAME_TYPE_CHANGE_NOT) GetGameTypeIndex() uint32 {
-	if x != nil && x.GameTypeIndex != nil {
-		return *x.GameTypeIndex
+	if x != nil {
+		return x.GameTypeIndex
 	}
 	return 0
 }
 
 func (x *SS2C_PARTY_GAME_TYPE_CHANGE_NOT) GetDungeonIdTag() string {
-	if x != nil && x.DungeonIdTag != nil {
-		return *x.DungeonIdTag
+	if x != nil {
+		return x.DungeonIdTag
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_GAME_TYPE_CHANGE_NOT) GetGearPoolIndex() int32 {
-	if x != nil && x.GearPoolIndex != nil {
-		return *x.GearPoolIndex
+	if x != nil {
+		return x.GearPoolIndex
 	}
 	return 0
 }
@@ -1302,8 +1292,8 @@ type SC2S_PARTY_MEMBER_KICK_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId   *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
+	AccountId   string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
 }
 
 func (x *SC2S_PARTY_MEMBER_KICK_REQ) Reset() {
@@ -1339,15 +1329,15 @@ func (*SC2S_PARTY_MEMBER_KICK_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_PARTY_MEMBER_KICK_REQ) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SC2S_PARTY_MEMBER_KICK_REQ) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -1357,7 +1347,7 @@ type SS2C_PARTY_MEMBER_KICK_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PARTY_MEMBER_KICK_RES) Reset() {
@@ -1393,8 +1383,8 @@ func (*SS2C_PARTY_MEMBER_KICK_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_MEMBER_KICK_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1404,7 +1394,7 @@ type SC2S_PARTY_CHAT_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ChatData *SCHATDATA `protobuf:"bytes,1,opt,name=chatData" json:"chatData,omitempty"`
+	ChatData *SCHATDATA `protobuf:"bytes,1,opt,name=chatData,proto3" json:"chatData,omitempty"`
 }
 
 func (x *SC2S_PARTY_CHAT_REQ) Reset() {
@@ -1451,8 +1441,8 @@ type SS2C_PARTY_CHAT_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result         *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
-	BanDurationMin *int32  `protobuf:"varint,2,opt,name=banDurationMin" json:"banDurationMin,omitempty"`
+	Result         uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	BanDurationMin int32  `protobuf:"varint,2,opt,name=banDurationMin,proto3" json:"banDurationMin,omitempty"`
 }
 
 func (x *SS2C_PARTY_CHAT_RES) Reset() {
@@ -1488,15 +1478,15 @@ func (*SS2C_PARTY_CHAT_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_CHAT_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
 
 func (x *SS2C_PARTY_CHAT_RES) GetBanDurationMin() int32 {
-	if x != nil && x.BanDurationMin != nil {
-		return *x.BanDurationMin
+	if x != nil {
+		return x.BanDurationMin
 	}
 	return 0
 }
@@ -1506,9 +1496,9 @@ type SS2C_PARTY_CHAT_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ChatData *SCHATDATA `protobuf:"bytes,1,opt,name=chatData" json:"chatData,omitempty"`
-	Time     *uint64    `protobuf:"varint,2,opt,name=time" json:"time,omitempty"`
-	ChatIdx  *uint64    `protobuf:"varint,3,opt,name=chatIdx" json:"chatIdx,omitempty"`
+	ChatData *SCHATDATA `protobuf:"bytes,1,opt,name=chatData,proto3" json:"chatData,omitempty"`
+	Time     uint64     `protobuf:"varint,2,opt,name=time,proto3" json:"time,omitempty"`
+	ChatIdx  uint64     `protobuf:"varint,3,opt,name=chatIdx,proto3" json:"chatIdx,omitempty"`
 }
 
 func (x *SS2C_PARTY_CHAT_NOT) Reset() {
@@ -1551,15 +1541,15 @@ func (x *SS2C_PARTY_CHAT_NOT) GetChatData() *SCHATDATA {
 }
 
 func (x *SS2C_PARTY_CHAT_NOT) GetTime() uint64 {
-	if x != nil && x.Time != nil {
-		return *x.Time
+	if x != nil {
+		return x.Time
 	}
 	return 0
 }
 
 func (x *SS2C_PARTY_CHAT_NOT) GetChatIdx() uint64 {
-	if x != nil && x.ChatIdx != nil {
-		return *x.ChatIdx
+	if x != nil {
+		return x.ChatIdx
 	}
 	return 0
 }
@@ -1569,9 +1559,9 @@ type SS2C_PARTY_READY_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId   *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	IsReady     *uint32 `protobuf:"varint,3,opt,name=isReady" json:"isReady,omitempty"`
+	AccountId   string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	IsReady     uint32 `protobuf:"varint,3,opt,name=isReady,proto3" json:"isReady,omitempty"`
 }
 
 func (x *SS2C_PARTY_READY_CHANGE_NOT) Reset() {
@@ -1607,22 +1597,22 @@ func (*SS2C_PARTY_READY_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_READY_CHANGE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_READY_CHANGE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_READY_CHANGE_NOT) GetIsReady() uint32 {
-	if x != nil && x.IsReady != nil {
-		return *x.IsReady
+	if x != nil {
+		return x.IsReady
 	}
 	return 0
 }
@@ -1670,9 +1660,9 @@ type SS2C_PARTY_MEMBER_LOBBY_EMOTE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId        *string  `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId      *string  `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	LobbyEmoteIdList []string `protobuf:"bytes,3,rep,name=lobbyEmoteIdList" json:"lobbyEmoteIdList,omitempty"`
+	AccountId        string   `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId      string   `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	LobbyEmoteIdList []string `protobuf:"bytes,3,rep,name=lobbyEmoteIdList,proto3" json:"lobbyEmoteIdList,omitempty"`
 }
 
 func (x *SS2C_PARTY_MEMBER_LOBBY_EMOTE_NOT) Reset() {
@@ -1708,15 +1698,15 @@ func (*SS2C_PARTY_MEMBER_LOBBY_EMOTE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_MEMBER_LOBBY_EMOTE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_MEMBER_LOBBY_EMOTE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -1733,7 +1723,7 @@ type SC2S_PARTY_START_LOBBY_EMOTE_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LobbyEmoteId *string `protobuf:"bytes,1,opt,name=lobbyEmoteId" json:"lobbyEmoteId,omitempty"`
+	LobbyEmoteId string `protobuf:"bytes,1,opt,name=lobbyEmoteId,proto3" json:"lobbyEmoteId,omitempty"`
 }
 
 func (x *SC2S_PARTY_START_LOBBY_EMOTE_REQ) Reset() {
@@ -1769,8 +1759,8 @@ func (*SC2S_PARTY_START_LOBBY_EMOTE_REQ) Descriptor() ([]byte, []int) {
 }
 
 func (x *SC2S_PARTY_START_LOBBY_EMOTE_REQ) GetLobbyEmoteId() string {
-	if x != nil && x.LobbyEmoteId != nil {
-		return *x.LobbyEmoteId
+	if x != nil {
+		return x.LobbyEmoteId
 	}
 	return ""
 }
@@ -1780,7 +1770,7 @@ type SS2C_PARTY_START_LOBBY_EMOTE_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PARTY_START_LOBBY_EMOTE_RES) Reset() {
@@ -1816,8 +1806,8 @@ func (*SS2C_PARTY_START_LOBBY_EMOTE_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_START_LOBBY_EMOTE_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -1827,9 +1817,9 @@ type SS2C_PARTY_START_LOBBY_EMOTE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId    *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId  *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	LobbyEmoteId *string `protobuf:"bytes,3,opt,name=lobbyEmoteId" json:"lobbyEmoteId,omitempty"`
+	AccountId    string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId  string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	LobbyEmoteId string `protobuf:"bytes,3,opt,name=lobbyEmoteId,proto3" json:"lobbyEmoteId,omitempty"`
 }
 
 func (x *SS2C_PARTY_START_LOBBY_EMOTE_NOT) Reset() {
@@ -1865,22 +1855,22 @@ func (*SS2C_PARTY_START_LOBBY_EMOTE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_START_LOBBY_EMOTE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_START_LOBBY_EMOTE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_START_LOBBY_EMOTE_NOT) GetLobbyEmoteId() string {
-	if x != nil && x.LobbyEmoteId != nil {
-		return *x.LobbyEmoteId
+	if x != nil {
+		return x.LobbyEmoteId
 	}
 	return ""
 }
@@ -1890,9 +1880,9 @@ type SS2C_PARTY_GEAR_SCORE_CHANGE_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccountId   *string `protobuf:"bytes,1,opt,name=accountId" json:"accountId,omitempty"`
-	CharacterId *string `protobuf:"bytes,2,opt,name=characterId" json:"characterId,omitempty"`
-	GearScore   *uint32 `protobuf:"varint,3,opt,name=gearScore" json:"gearScore,omitempty"`
+	AccountId   string `protobuf:"bytes,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
+	CharacterId string `protobuf:"bytes,2,opt,name=characterId,proto3" json:"characterId,omitempty"`
+	GearScore   uint32 `protobuf:"varint,3,opt,name=gearScore,proto3" json:"gearScore,omitempty"`
 }
 
 func (x *SS2C_PARTY_GEAR_SCORE_CHANGE_NOT) Reset() {
@@ -1928,22 +1918,22 @@ func (*SS2C_PARTY_GEAR_SCORE_CHANGE_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_GEAR_SCORE_CHANGE_NOT) GetAccountId() string {
-	if x != nil && x.AccountId != nil {
-		return *x.AccountId
+	if x != nil {
+		return x.AccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_GEAR_SCORE_CHANGE_NOT) GetCharacterId() string {
-	if x != nil && x.CharacterId != nil {
-		return *x.CharacterId
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_GEAR_SCORE_CHANGE_NOT) GetGearScore() uint32 {
-	if x != nil && x.GearScore != nil {
-		return *x.GearScore
+	if x != nil {
+		return x.GearScore
 	}
 	return 0
 }
@@ -1953,7 +1943,7 @@ type SS2C_PARTY_RANDOM_MATCHMAKING_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsRandomMatchmaking *int32 `protobuf:"varint,1,opt,name=isRandomMatchmaking" json:"isRandomMatchmaking,omitempty"`
+	IsRandomMatchmaking int32 `protobuf:"varint,1,opt,name=isRandomMatchmaking,proto3" json:"isRandomMatchmaking,omitempty"`
 }
 
 func (x *SS2C_PARTY_RANDOM_MATCHMAKING_NOT) Reset() {
@@ -1989,8 +1979,8 @@ func (*SS2C_PARTY_RANDOM_MATCHMAKING_NOT) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_RANDOM_MATCHMAKING_NOT) GetIsRandomMatchmaking() int32 {
-	if x != nil && x.IsRandomMatchmaking != nil {
-		return *x.IsRandomMatchmaking
+	if x != nil {
+		return x.IsRandomMatchmaking
 	}
 	return 0
 }
@@ -2000,7 +1990,7 @@ type SS2C_PARTY_LAST_GAME_MEMBER_INFO_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Infos []*SCHARACTER_LAST_GAME_INFO `protobuf:"bytes,1,rep,name=infos" json:"infos,omitempty"`
+	Infos []*SCHARACTER_LAST_GAME_INFO `protobuf:"bytes,1,rep,name=infos,proto3" json:"infos,omitempty"`
 }
 
 func (x *SS2C_PARTY_LAST_GAME_MEMBER_INFO_NOT) Reset() {
@@ -2047,9 +2037,9 @@ type SC2S_PARTY_REQUEST_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	FindNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=findNickName" json:"findNickName,omitempty"`
-	FindAccountId   *string            `protobuf:"bytes,2,opt,name=findAccountId" json:"findAccountId,omitempty"`
-	FindCharacterId *string            `protobuf:"bytes,3,opt,name=findCharacterId" json:"findCharacterId,omitempty"`
+	FindNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=findNickName,proto3" json:"findNickName,omitempty"`
+	FindAccountId   string             `protobuf:"bytes,2,opt,name=findAccountId,proto3" json:"findAccountId,omitempty"`
+	FindCharacterId string             `protobuf:"bytes,3,opt,name=findCharacterId,proto3" json:"findCharacterId,omitempty"`
 }
 
 func (x *SC2S_PARTY_REQUEST_REQ) Reset() {
@@ -2092,15 +2082,15 @@ func (x *SC2S_PARTY_REQUEST_REQ) GetFindNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SC2S_PARTY_REQUEST_REQ) GetFindAccountId() string {
-	if x != nil && x.FindAccountId != nil {
-		return *x.FindAccountId
+	if x != nil {
+		return x.FindAccountId
 	}
 	return ""
 }
 
 func (x *SC2S_PARTY_REQUEST_REQ) GetFindCharacterId() string {
-	if x != nil && x.FindCharacterId != nil {
-		return *x.FindCharacterId
+	if x != nil {
+		return x.FindCharacterId
 	}
 	return ""
 }
@@ -2110,7 +2100,7 @@ type SS2C_PARTY_REQUEST_RES struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result *uint32 `protobuf:"varint,1,opt,name=result" json:"result,omitempty"`
+	Result uint32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 }
 
 func (x *SS2C_PARTY_REQUEST_RES) Reset() {
@@ -2146,8 +2136,8 @@ func (*SS2C_PARTY_REQUEST_RES) Descriptor() ([]byte, []int) {
 }
 
 func (x *SS2C_PARTY_REQUEST_RES) GetResult() uint32 {
-	if x != nil && x.Result != nil {
-		return *x.Result
+	if x != nil {
+		return x.Result
 	}
 	return 0
 }
@@ -2157,9 +2147,9 @@ type SS2C_PARTY_REQUEST_NOT struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RequestNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=requestNickName" json:"requestNickName,omitempty"`
-	RequestAccountId   *string            `protobuf:"bytes,2,opt,name=requestAccountId" json:"requestAccountId,omitempty"`
-	RequestCharacterId *string            `protobuf:"bytes,3,opt,name=requestCharacterId" json:"requestCharacterId,omitempty"`
+	RequestNickName    *SACCOUNT_NICKNAME `protobuf:"bytes,1,opt,name=requestNickName,proto3" json:"requestNickName,omitempty"`
+	RequestAccountId   string             `protobuf:"bytes,2,opt,name=requestAccountId,proto3" json:"requestAccountId,omitempty"`
+	RequestCharacterId string             `protobuf:"bytes,3,opt,name=requestCharacterId,proto3" json:"requestCharacterId,omitempty"`
 }
 
 func (x *SS2C_PARTY_REQUEST_NOT) Reset() {
@@ -2202,15 +2192,15 @@ func (x *SS2C_PARTY_REQUEST_NOT) GetRequestNickName() *SACCOUNT_NICKNAME {
 }
 
 func (x *SS2C_PARTY_REQUEST_NOT) GetRequestAccountId() string {
-	if x != nil && x.RequestAccountId != nil {
-		return *x.RequestAccountId
+	if x != nil {
+		return x.RequestAccountId
 	}
 	return ""
 }
 
 func (x *SS2C_PARTY_REQUEST_NOT) GetRequestCharacterId() string {
-	if x != nil && x.RequestCharacterId != nil {
-		return *x.RequestCharacterId
+	if x != nil {
+		return x.RequestCharacterId
 	}
 	return ""
 }
@@ -2220,8 +2210,8 @@ type SC2S_PARTY_DUNGEON_CHAT_REQ struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ChatData *SCHATDATA `protobuf:"bytes,1,opt,name=chatData" json:"chatData,omitempty"`
-	ChatIdx  *uint64    `protobuf:"varint,2,opt,name=chatIdx" json:"chatIdx,omitempty"`
+	ChatData *SCHATDATA `protobuf:"bytes,1,opt,name=chatData,proto3" json:"chatData,omitempty"`
+	ChatIdx  uint64     `protobuf:"varint,2,opt,name=chatIdx,proto3" json:"chatIdx,omitempty"`
 }
 
 func (x *SC2S_PARTY_DUNGEON_CHAT_REQ) Reset() {
@@ -2264,8 +2254,8 @@ func (x *SC2S_PARTY_DUNGEON_CHAT_REQ) GetChatData() *SCHATDATA {
 }
 
 func (x *SC2S_PARTY_DUNGEON_CHAT_REQ) GetChatIdx() uint64 {
-	if x != nil && x.ChatIdx != nil {
-		return *x.ChatIdx
+	if x != nil {
+		return x.ChatIdx
 	}
 	return 0
 }
@@ -2599,9 +2589,11 @@ var file_Party_proto_rawDesc = []byte{
 	0x4e, 0x45, 0x10, 0x00, 0x12, 0x18, 0x0a, 0x14, 0x49, 0x4e, 0x56, 0x49, 0x54, 0x45, 0x5f, 0x41,
 	0x4e, 0x53, 0x57, 0x45, 0x52, 0x5f, 0x41, 0x43, 0x45, 0x45, 0x50, 0x54, 0x10, 0x01, 0x12, 0x18,
 	0x0a, 0x14, 0x49, 0x4e, 0x56, 0x49, 0x54, 0x45, 0x5f, 0x41, 0x4e, 0x53, 0x57, 0x45, 0x52, 0x5f,
-	0x43, 0x41, 0x4e, 0x43, 0x45, 0x4c, 0x10, 0x02, 0x42, 0x17, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f,
-	0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70,
-	0x62,
+	0x43, 0x41, 0x4e, 0x43, 0x45, 0x4c, 0x10, 0x02, 0x42, 0x33, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x2e,
+	0x70, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x2e, 0x70, 0x61, 0x72, 0x74, 0x79, 0x42, 0x05, 0x70,
+	0x61, 0x72, 0x74, 0x79, 0x50, 0x00, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78,
+	0x79, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

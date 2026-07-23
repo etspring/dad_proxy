@@ -1,43 +1,48 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.achievement";
+option java_outer_classname = "achievement";
+option java_multiple_files = false;
+
 message SCOMPLETED_ACHIEVEMENT_INFO {
-  optional string achievementID = 1;
-  optional uint64 completedTime = 2;
+  string achievementID = 1;
+  uint64 completedTime = 2;
 }
 
 message SACHIEVEMENT_OBJECTIVE_INFO {
-  optional string objectiveId = 1;
-  optional uint32 value = 2;
+  string objectiveId = 1;
+  uint32 value = 2;
 }
 
 message SUNCOMPLETED_ACHIEVEMENT_INFO {
-  optional string achievementID = 1;
+  string achievementID = 1;
   repeated .DC.Packet.SACHIEVEMENT_OBJECTIVE_INFO objectives = 3;
 }
 
 message SACHIEVEMENT_PROGRESS_INFO {
-  optional int32 all = 1;
-  optional int32 completed = 2;
+  int32 all = 1;
+  int32 completed = 2;
 }
 
 message SS2C_ACHIEVEMENTS_NOT {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SCOMPLETED_ACHIEVEMENT_INFO completedAchievements = 2;
   repeated .DC.Packet.SUNCOMPLETED_ACHIEVEMENT_INFO uncompletedUpdatedAchievements = 3;
 }
 
 message SC2S_ACHIEVEMENTS_LIST_REQ {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated string achievementIds = 2;
 }
 
 message SS2C_ACHIEVEMENTS_LIST_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.SCOMPLETED_ACHIEVEMENT_INFO completedAchievements = 2;
   repeated .DC.Packet.SUNCOMPLETED_ACHIEVEMENT_INFO uncompletedUpdatedAchievements = 3;
   repeated string invalidAchievementIds = 4;
-  optional .DC.Packet.SACHIEVEMENT_PROGRESS_INFO progressInfo = 5;
+  .DC.Packet.SACHIEVEMENT_PROGRESS_INFO progressInfo = 5;
 }
+

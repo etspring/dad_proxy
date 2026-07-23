@@ -1,10 +1,15 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
+
+option java_package = "com.packets.gm";
+option java_outer_classname = "gm";
+option java_multiple_files = false;
 
 message SC2S_GM_PARTY_ALL_RANDOM_REQ {
 }
 
 message SS2C_GM_PARTY_ALL_RANDOM_RES {
 }
+

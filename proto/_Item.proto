@@ -1,33 +1,37 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.item";
+option java_outer_classname = "item";
+option java_multiple_files = false;
+
 message SItemMeta {
-  optional string SoulHeart_AccountId = 1;
-  optional string SoulHeart_PartyId = 2;
-  optional string SoulHeart_NickName_origin = 3;
-  optional string SoulHeart_NickName_streaming = 4;
-  optional string SoulHeart_ItemSkinId = 5;
-  optional uint32 AvailableValue = 6;
+  string SoulHeart_AccountId = 1;
+  string SoulHeart_PartyId = 2;
+  string SoulHeart_NickName_origin = 3;
+  string SoulHeart_NickName_streaming = 4;
+  string SoulHeart_ItemSkinId = 5;
+  uint32 AvailableValue = 6;
 }
 
 message SItem {
-  optional uint64 itemUniqueId = 1;
-  optional string itemId = 2;
-  optional uint32 itemCount = 3;
-  optional uint32 inventoryId = 4;
-  optional uint32 slotId = 5;
-  optional uint32 itemAmmoCount = 7;
-  optional uint32 itemContentsCount = 8;
+  uint64 itemUniqueId = 1;
+  string itemId = 2;
+  uint32 itemCount = 3;
+  uint32 inventoryId = 4;
+  uint32 slotId = 5;
+  uint32 itemAmmoCount = 7;
+  uint32 itemContentsCount = 8;
   repeated .DC.Packet.SItemProperty primaryPropertyArray = 9;
   repeated .DC.Packet.SItemProperty secondaryPropertyArray = 10;
-  optional int32 lootState = 11;
-  optional int32 originType = 12;
-  optional string originNickName = 13;
-  optional string originSteamingModeNickName = 14;
+  int32 lootState = 11;
+  int32 originType = 12;
+  string originNickName = 13;
+  string originSteamingModeNickName = 14;
   repeated .DC.Packet.SItemEnchantInfo secondaryEnchantArray = 15;
-  optional int32 tradable = 16;
+  int32 tradable = 16;
   repeated .DC.Packet.SItemPermitted permittedAreaArray = 17;
 }
 
@@ -36,13 +40,13 @@ message SItemProperties {
 }
 
 message SItemProperty {
-  optional string propertyTypeId = 1;
-  optional int32 propertyValue = 2;
+  string propertyTypeId = 1;
+  int32 propertyValue = 2;
 }
 
 message SItemEnchantInfo {
-  optional uint32 propertyIndex = 1;
-  optional string materialItemId = 2;
+  uint32 propertyIndex = 1;
+  string materialItemId = 2;
 }
 
 message SItemEnchantInfos {
@@ -54,7 +58,7 @@ message SItemPermittedInfos {
 }
 
 message SItemPermitted {
-  optional int32 type = 1;
+  int32 type = 1;
 }
 
 message SItems {
@@ -62,94 +66,95 @@ message SItems {
 }
 
 message SPerk {
-  optional uint32 index = 1;
-  optional string perkId = 2;
+  uint32 index = 1;
+  string perkId = 2;
 }
 
 message SSkill {
-  optional uint32 index = 1;
-  optional string skillId = 2;
+  uint32 index = 1;
+  string skillId = 2;
 }
 
 message SSpell {
-  optional uint32 slotIndex = 1;
-  optional uint32 sequenceIndex = 2;
-  optional string spellId = 3;
+  uint32 slotIndex = 1;
+  uint32 sequenceIndex = 2;
+  string spellId = 3;
 }
 
 message SMusic {
-  optional string musicId = 1;
-  optional uint32 slotIndex = 2;
-  optional uint32 sequenceIndex = 3;
+  string musicId = 1;
+  uint32 slotIndex = 2;
+  uint32 sequenceIndex = 3;
 }
 
 message SShapeShift {
-  optional string shapeShiftId = 1;
-  optional uint32 slotIndex = 2;
-  optional uint32 sequenceIndex = 3;
+  string shapeShiftId = 1;
+  uint32 slotIndex = 2;
+  uint32 sequenceIndex = 3;
 }
 
 message SCUSTOMIZE_CHARACTER {
-  optional string customizeCharacterId = 1;
-  optional int32 isEquip = 2;
-  optional int32 isNew = 3;
+  string customizeCharacterId = 1;
+  int32 isEquip = 2;
+  int32 isNew = 3;
 }
 
 message SCUSTOMIZE_ITEM {
-  optional string customizeItemId = 1;
-  optional int32 isEquip = 2;
-  optional int32 isNew = 3;
+  string customizeItemId = 1;
+  int32 isEquip = 2;
+  int32 isNew = 3;
 }
 
 message SCUSTOMIZE_ARMOR_SKIN {
-  optional string customizeArmorSkinId = 1;
-  optional int32 isEquip = 2;
-  optional int32 isNew = 3;
+  string customizeArmorSkinId = 1;
+  int32 isEquip = 2;
+  int32 isNew = 3;
 }
 
 message SEMOTE {
-  optional string emoteId = 1;
-  optional int32 equipSlotIndex = 2;
-  optional int32 isNew = 3;
+  string emoteId = 1;
+  int32 equipSlotIndex = 2;
+  int32 isNew = 3;
 }
 
 message SCUSTOMIZE_ACTION {
-  optional string customizeActionId = 1;
-  optional int32 isEquip = 2;
-  optional int32 isNew = 3;
+  string customizeActionId = 1;
+  int32 isEquip = 2;
+  int32 isNew = 3;
 }
 
 message SCUSTOMIZE_LOBBY_EMOTE {
-  optional string lobbyEmoteId = 1;
-  optional int32 equipSlotIndex = 2;
-  optional int32 isNew = 3;
+  string lobbyEmoteId = 1;
+  int32 equipSlotIndex = 2;
+  int32 isNew = 3;
 }
 
 message SCUSTOMIZE_LOBBY_SKIN {
-  optional string lobbySkinId = 1;
-  optional int32 isEquip = 2;
-  optional int32 isNew = 3;
+  string lobbySkinId = 1;
+  int32 isEquip = 2;
+  int32 isNew = 3;
 }
 
 message SCUSTOMIZE_NAMEPLATE {
-  optional string nameplateSkinId = 1;
-  optional int32 isEquip = 2;
-  optional int32 isNew = 3;
+  string nameplateSkinId = 1;
+  int32 isEquip = 2;
+  int32 isNew = 3;
 }
 
 message SFriendItemRecoveryInfo {
-  optional string friendAccountId = 1;
-  optional string friendCharacterId = 2;
+  string friendAccountId = 1;
+  string friendCharacterId = 2;
   repeated .DC.Packet.SItem recoveryItemList = 3;
 }
 
 message SGatheringHallItem {
-  optional .DC.Packet.SItem origin = 1;
-  optional float posX = 2;
-  optional float posY = 3;
-  optional float posZ = 4;
-  optional float rotPitch = 5;
-  optional float rotYaw = 6;
-  optional float rotRoll = 7;
-  optional int32 hallStatus = 8;
+  .DC.Packet.SItem origin = 1;
+  float posX = 2;
+  float posY = 3;
+  float posZ = 4;
+  float rotPitch = 5;
+  float rotYaw = 6;
+  float rotRoll = 7;
+  int32 hallStatus = 8;
 }
+

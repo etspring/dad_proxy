@@ -1,53 +1,58 @@
-syntax = "proto2";
+syntax = "proto3";
 
-import "_Character.proto";
-import "_Item.proto";
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.s_session";
+option java_outer_classname = "s_gathering_hall";
+option java_multiple_files = false;
+
+import "_Character.proto";
+import "_Item.proto";
+
 message SGATHERING_HALL_INIT_INFO {
-  optional string restUrl = 1;
+  string restUrl = 1;
 }
 
 message SS2D_GATHERING_HALL_INIT_NOT {
-  optional .DC.Packet.SGATHERING_HALL_INIT_INFO info = 1;
+  .DC.Packet.SGATHERING_HALL_INIT_INFO info = 1;
 }
 
 message SGATHERING_HALL_JOIN_PARTY_INFO {
-  optional string accountId = 1;
-  optional .DC.Packet.SACCOUNT_NICKNAME nickname = 2;
-  optional int32 karmaRating = 3;
-  optional string characterClass = 4;
+  string accountId = 1;
+  .DC.Packet.SACCOUNT_NICKNAME nickname = 2;
+  int32 karmaRating = 3;
+  string characterClass = 4;
 }
 
 message SGATHERING_HALL_JOIN_USER_INFO {
-  optional string restUrl = 1;
-  optional string accountId = 2;
-  optional string characterId = 3;
-  optional .DC.Packet.SACCOUNT_NICKNAME nickname = 4;
-  optional string characterClass = 5;
-  optional uint32 gender = 6;
-  optional uint32 level = 7;
-  optional string partyId = 8;
-  optional int32 karmaRating = 9;
+  string restUrl = 1;
+  string accountId = 2;
+  string characterId = 3;
+  .DC.Packet.SACCOUNT_NICKNAME nickname = 4;
+  string characterClass = 5;
+  uint32 gender = 6;
+  uint32 level = 7;
+  string partyId = 8;
+  int32 karmaRating = 9;
   repeated .DC.Packet.SGATHERING_HALL_JOIN_PARTY_INFO reservedPartyMember = 10;
 }
 
 message SD2S_GATHERING_HALL_ACTIVE_REQ {
-  optional uint64 sessionId = 1;
+  uint64 sessionId = 1;
 }
 
 message SS2D_GATHERING_HALL_ACTIVE_RES {
-  optional int32 result = 1;
+  int32 result = 1;
 }
 
 message SD2S_GATHERING_HALL_USER_JOIN_REQ {
-  optional string userTempSession = 1;
+  string userTempSession = 1;
 }
 
 message SS2D_GATHERING_HALL_USER_JOIN_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SGATHERING_HALL_JOIN_USER_INFO userInfo = 2;
+  int32 result = 1;
+  .DC.Packet.SGATHERING_HALL_JOIN_USER_INFO userInfo = 2;
 }
 
 message SD2S_GATHERING_HALL_ITEM_SYNC_REQ {
@@ -58,5 +63,6 @@ message SD2S_GATHERING_HALL_ITEM_SYNC_REQ {
 }
 
 message SS2D_GATHERING_HALL_ITEM_SYNC_RES {
-  optional int32 result = 1;
+  int32 result = 1;
 }
+

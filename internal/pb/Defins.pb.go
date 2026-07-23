@@ -67,16 +67,6 @@ func (x CharacterGenderType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *CharacterGenderType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = CharacterGenderType(num)
-	return nil
-}
-
 // Deprecated: Use CharacterGenderType.Descriptor instead.
 func (CharacterGenderType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{0}
@@ -126,16 +116,6 @@ func (x Define_Account_LengthText) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Account_LengthText) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Account_LengthText(num)
-	return nil
-}
-
 // Deprecated: Use Define_Account_LengthText.Descriptor instead.
 func (Define_Account_LengthText) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{0, 0}
@@ -183,16 +163,6 @@ func (Define_Account_CurrencyType) Type() protoreflect.EnumType {
 
 func (x Define_Account_CurrencyType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Account_CurrencyType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Account_CurrencyType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Account_CurrencyType.Descriptor instead.
@@ -253,16 +223,6 @@ func (x Define_Account_LoginType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Account_LoginType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Account_LoginType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Account_LoginType.Descriptor instead.
 func (Define_Account_LoginType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{0, 2}
@@ -310,16 +270,6 @@ func (Define_Account_AccountStatus) Type() protoreflect.EnumType {
 
 func (x Define_Account_AccountStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Account_AccountStatus) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Account_AccountStatus(num)
-	return nil
 }
 
 // Deprecated: Use Define_Account_AccountStatus.Descriptor instead.
@@ -374,16 +324,6 @@ func (x Define_Account_LinkPlatformStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Account_LinkPlatformStatus) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Account_LinkPlatformStatus(num)
-	return nil
-}
-
 // Deprecated: Use Define_Account_LinkPlatformStatus.Descriptor instead.
 func (Define_Account_LinkPlatformStatus) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{0, 4}
@@ -433,16 +373,6 @@ func (x Define_Character_LengthNickName) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Character_LengthNickName) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Character_LengthNickName(num)
-	return nil
-}
-
 // Deprecated: Use Define_Character_LengthNickName.Descriptor instead.
 func (Define_Character_LengthNickName) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{1, 0}
@@ -487,16 +417,6 @@ func (Define_Character_Limit) Type() protoreflect.EnumType {
 
 func (x Define_Character_Limit) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Character_Limit) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Character_Limit(num)
-	return nil
 }
 
 // Deprecated: Use Define_Character_Limit.Descriptor instead.
@@ -548,16 +468,6 @@ func (x Define_Character_RankIconType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Character_RankIconType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Character_RankIconType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Character_RankIconType.Descriptor instead.
 func (Define_Character_RankIconType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{1, 2}
@@ -605,16 +515,6 @@ func (Define_Dlc_DlcType) Type() protoreflect.EnumType {
 
 func (x Define_Dlc_DlcType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Dlc_DlcType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Dlc_DlcType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Dlc_DlcType.Descriptor instead.
@@ -669,16 +569,6 @@ func (x Define_Dlc_SlotType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Dlc_SlotType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Dlc_SlotType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Dlc_SlotType.Descriptor instead.
 func (Define_Dlc_SlotType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{2, 1}
@@ -729,16 +619,6 @@ func (Define_Dlc_SlotStatus) Type() protoreflect.EnumType {
 
 func (x Define_Dlc_SlotStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Dlc_SlotStatus) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Dlc_SlotStatus(num)
-	return nil
 }
 
 // Deprecated: Use Define_Dlc_SlotStatus.Descriptor instead.
@@ -793,16 +673,6 @@ func (x Define_Dlc_SaleStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Dlc_SaleStatus) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Dlc_SaleStatus(num)
-	return nil
-}
-
 // Deprecated: Use Define_Dlc_SaleStatus.Descriptor instead.
 func (Define_Dlc_SaleStatus) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{2, 3}
@@ -850,16 +720,6 @@ func (Define_Party_MemberCountLimit) Type() protoreflect.EnumType {
 
 func (x Define_Party_MemberCountLimit) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Party_MemberCountLimit) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Party_MemberCountLimit(num)
-	return nil
 }
 
 // Deprecated: Use Define_Party_MemberCountLimit.Descriptor instead.
@@ -983,16 +843,6 @@ func (x Define_Item_InventoryId) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Item_InventoryId) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Item_InventoryId(num)
-	return nil
-}
-
 // Deprecated: Use Define_Item_InventoryId.Descriptor instead.
 func (Define_Item_InventoryId) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{4, 0}
@@ -1060,16 +910,6 @@ func (x Define_ItemRarityType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_ItemRarityType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_ItemRarityType(num)
-	return nil
-}
-
 // Deprecated: Use Define_ItemRarityType.Descriptor instead.
 func (Define_ItemRarityType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{4, 1}
@@ -1128,16 +968,6 @@ func (x Define_Item_LootState) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Item_LootState) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Item_LootState(num)
-	return nil
-}
-
 // Deprecated: Use Define_Item_LootState.Descriptor instead.
 func (Define_Item_LootState) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{4, 2}
@@ -1185,16 +1015,6 @@ func (Define_Item_OriginType) Type() protoreflect.EnumType {
 
 func (x Define_Item_OriginType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Item_OriginType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Item_OriginType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Item_OriginType.Descriptor instead.
@@ -1247,16 +1067,6 @@ func (Define_Item_PermittedAreaType) Type() protoreflect.EnumType {
 
 func (x Define_Item_PermittedAreaType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Item_PermittedAreaType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Item_PermittedAreaType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Item_PermittedAreaType.Descriptor instead.
@@ -1371,16 +1181,6 @@ func (x Define_Equipment_SlotId) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Equipment_SlotId) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Equipment_SlotId(num)
-	return nil
-}
-
 // Deprecated: Use Define_Equipment_SlotId.Descriptor instead.
 func (Define_Equipment_SlotId) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{5, 0}
@@ -1431,16 +1231,6 @@ func (Define_Message_LoopFlag) Type() protoreflect.EnumType {
 
 func (x Define_Message_LoopFlag) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Message_LoopFlag) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Message_LoopFlag(num)
-	return nil
 }
 
 // Deprecated: Use Define_Message_LoopFlag.Descriptor instead.
@@ -1495,16 +1285,6 @@ func (x Define_Message_UpdateFlag) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Message_UpdateFlag) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Message_UpdateFlag(num)
-	return nil
-}
-
 // Deprecated: Use Define_Message_UpdateFlag.Descriptor instead.
 func (Define_Message_UpdateFlag) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{6, 1}
@@ -1552,16 +1332,6 @@ func (Define_Message_SelectFlag) Type() protoreflect.EnumType {
 
 func (x Define_Message_SelectFlag) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Message_SelectFlag) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Message_SelectFlag(num)
-	return nil
 }
 
 // Deprecated: Use Define_Message_SelectFlag.Descriptor instead.
@@ -1629,16 +1399,6 @@ func (Define_Match_Match_Region) Type() protoreflect.EnumType {
 
 func (x Define_Match_Match_Region) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Match_Match_Region) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Match_Match_Region(num)
-	return nil
 }
 
 // Deprecated: Use Define_Match_Match_Region.Descriptor instead.
@@ -1741,16 +1501,6 @@ func (x Define_Stat_StatType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Stat_StatType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Stat_StatType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Stat_StatType.Descriptor instead.
 func (Define_Stat_StatType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{8, 0}
@@ -1846,16 +1596,6 @@ func (Define_Game_AdvPointType) Type() protoreflect.EnumType {
 
 func (x Define_Game_AdvPointType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Game_AdvPointType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Game_AdvPointType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Game_AdvPointType.Descriptor instead.
@@ -1967,16 +1707,6 @@ func (x Define_Game_GameType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Game_GameType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Game_GameType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Game_GameType.Descriptor instead.
 func (Define_Game_GameType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{9, 1}
@@ -2027,16 +1757,6 @@ func (Define_Game_Floor) Type() protoreflect.EnumType {
 
 func (x Define_Game_Floor) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Game_Floor) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Game_Floor(num)
-	return nil
 }
 
 // Deprecated: Use Define_Game_Floor.Descriptor instead.
@@ -2094,16 +1814,6 @@ func (x Define_Game_GameResult) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Game_GameResult) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Game_GameResult(num)
-	return nil
-}
-
 // Deprecated: Use Define_Game_GameResult.Descriptor instead.
 func (Define_Game_GameResult) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{9, 3}
@@ -2151,16 +1861,6 @@ func (Define_Game_ArenaTeamType) Type() protoreflect.EnumType {
 
 func (x Define_Game_ArenaTeamType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Game_ArenaTeamType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Game_ArenaTeamType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Game_ArenaTeamType.Descriptor instead.
@@ -2245,16 +1945,6 @@ func (x Define_Common_MetaLocation) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Common_MetaLocation) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Common_MetaLocation(num)
-	return nil
-}
-
 // Deprecated: Use Define_Common_MetaLocation.Descriptor instead.
 func (Define_Common_MetaLocation) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{10, 0}
@@ -2316,16 +2006,6 @@ func (x Define_Common_ServerLocation) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Common_ServerLocation) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Common_ServerLocation(num)
-	return nil
-}
-
 // Deprecated: Use Define_Common_ServerLocation.Descriptor instead.
 func (Define_Common_ServerLocation) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{10, 1}
@@ -2384,16 +2064,6 @@ func (x Define_Class_Type) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Class_Type) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Class_Type(num)
-	return nil
-}
-
 // Deprecated: Use Define_Class_Type.Descriptor instead.
 func (Define_Class_Type) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{11, 0}
@@ -2441,16 +2111,6 @@ func (Define_Class_Move) Type() protoreflect.EnumType {
 
 func (x Define_Class_Move) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Class_Move) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Class_Move(num)
-	return nil
 }
 
 // Deprecated: Use Define_Class_Move.Descriptor instead.
@@ -2511,16 +2171,6 @@ func (x Define_Chat_Type) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Chat_Type) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Chat_Type(num)
-	return nil
-}
-
 // Deprecated: Use Define_Chat_Type.Descriptor instead.
 func (Define_Chat_Type) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{12, 0}
@@ -2571,16 +2221,6 @@ func (Define_Chat_RoomType) Type() protoreflect.EnumType {
 
 func (x Define_Chat_RoomType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Chat_RoomType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Chat_RoomType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Chat_RoomType.Descriptor instead.
@@ -2639,16 +2279,6 @@ func (Define_Trade_Requirement_Type) Type() protoreflect.EnumType {
 
 func (x Define_Trade_Requirement_Type) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Trade_Requirement_Type) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Trade_Requirement_Type(num)
-	return nil
 }
 
 // Deprecated: Use Define_Trade_Requirement_Type.Descriptor instead.
@@ -2904,16 +2534,6 @@ func (x Operate_Policy) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Operate_Policy) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Operate_Policy(num)
-	return nil
-}
-
 // Deprecated: Use Operate_Policy.Descriptor instead.
 func (Operate_Policy) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{14, 0}
@@ -2964,16 +2584,6 @@ func (Define_Hack_Policy) Type() protoreflect.EnumType {
 
 func (x Define_Hack_Policy) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Hack_Policy) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Hack_Policy(num)
-	return nil
 }
 
 // Deprecated: Use Define_Hack_Policy.Descriptor instead.
@@ -3028,16 +2638,6 @@ func (x Define_Hack_BanPeriodType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Hack_BanPeriodType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Hack_BanPeriodType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Hack_BanPeriodType.Descriptor instead.
 func (Define_Hack_BanPeriodType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{15, 1}
@@ -3085,16 +2685,6 @@ func (Define_Hack_EasyPool) Type() protoreflect.EnumType {
 
 func (x Define_Hack_EasyPool) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Hack_EasyPool) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Hack_EasyPool(num)
-	return nil
 }
 
 // Deprecated: Use Define_Hack_EasyPool.Descriptor instead.
@@ -3150,16 +2740,6 @@ func (Define_Report_Category) Type() protoreflect.EnumType {
 
 func (x Define_Report_Category) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Report_Category) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Report_Category(num)
-	return nil
 }
 
 // Deprecated: Use Define_Report_Category.Descriptor instead.
@@ -3226,16 +2806,6 @@ func (x Define_Log_Level) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Log_Level) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Log_Level(num)
-	return nil
-}
-
 // Deprecated: Use Define_Log_Level.Descriptor instead.
 func (Define_Log_Level) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{17, 0}
@@ -3291,16 +2861,6 @@ func (x Define_Karma_Action) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Karma_Action) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Karma_Action(num)
-	return nil
-}
-
 // Deprecated: Use Define_Karma_Action.Descriptor instead.
 func (Define_Karma_Action) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{18, 0}
@@ -3350,16 +2910,6 @@ func (x Define_Karma_Status) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Karma_Status) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Karma_Status(num)
-	return nil
-}
-
 // Deprecated: Use Define_Karma_Status.Descriptor instead.
 func (Define_Karma_Status) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{18, 1}
@@ -3404,16 +2954,6 @@ func (Define_Coupon_Type) Type() protoreflect.EnumType {
 
 func (x Define_Coupon_Type) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Coupon_Type) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Coupon_Type(num)
-	return nil
 }
 
 // Deprecated: Use Define_Coupon_Type.Descriptor instead.
@@ -3489,16 +3029,6 @@ func (x Define_Shop_Type) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Shop_Type) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Shop_Type(num)
-	return nil
-}
-
 // Deprecated: Use Define_Shop_Type.Descriptor instead.
 func (Define_Shop_Type) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{20, 0}
@@ -3546,16 +3076,6 @@ func (Define_Shop_PaymentMethod) Type() protoreflect.EnumType {
 
 func (x Define_Shop_PaymentMethod) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Shop_PaymentMethod) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Shop_PaymentMethod(num)
-	return nil
 }
 
 // Deprecated: Use Define_Shop_PaymentMethod.Descriptor instead.
@@ -3607,16 +3127,6 @@ func (x Define_Shop_SalesChannelType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Shop_SalesChannelType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Shop_SalesChannelType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Shop_SalesChannelType.Descriptor instead.
 func (Define_Shop_SalesChannelType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{20, 2}
@@ -3658,16 +3168,6 @@ func (Define_Shop_ChangeNickNameType) Type() protoreflect.EnumType {
 
 func (x Define_Shop_ChangeNickNameType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Shop_ChangeNickNameType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Shop_ChangeNickNameType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Shop_ChangeNickNameType.Descriptor instead.
@@ -3779,16 +3279,6 @@ func (x Define_Reward_RewardType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Do not use.
-func (x *Define_Reward_RewardType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Reward_RewardType(num)
-	return nil
-}
-
 // Deprecated: Use Define_Reward_RewardType.Descriptor instead.
 func (Define_Reward_RewardType) EnumDescriptor() ([]byte, []int) {
 	return file___Defins_proto_rawDescGZIP(), []int{21, 0}
@@ -3842,16 +3332,6 @@ func (Define_Contents_ToggleContentType) Type() protoreflect.EnumType {
 
 func (x Define_Contents_ToggleContentType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *Define_Contents_ToggleContentType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = Define_Contents_ToggleContentType(num)
-	return nil
 }
 
 // Deprecated: Use Define_Contents_ToggleContentType.Descriptor instead.
@@ -5360,8 +4840,11 @@ var file___Defins_proto_rawDesc = []byte{
 	0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x4e, 0x4f, 0x4e, 0x45, 0x10, 0x00,
 	0x12, 0x07, 0x0a, 0x03, 0x4d, 0x41, 0x4e, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x57, 0x4f, 0x4d,
 	0x41, 0x4e, 0x10, 0x02, 0x12, 0x0a, 0x0a, 0x06, 0x55, 0x4e, 0x49, 0x53, 0x45, 0x58, 0x10, 0x03,
-	0x42, 0x17, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e,
-	0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62,
+	0x42, 0x37, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x70, 0x61, 0x63, 0x6b, 0x65, 0x74, 0x73, 0x2e,
+	0x64, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x73, 0x42, 0x07, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x65, 0x73,
+	0x50, 0x00, 0x5a, 0x15, 0x64, 0x61, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x78, 0x79, 0x2f, 0x69, 0x6e,
+	0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (

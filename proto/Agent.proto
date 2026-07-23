@@ -1,11 +1,16 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.agent";
+option java_outer_classname = "agent";
+option java_multiple_files = false;
+
 message Agent_ServiceList {
-  optional string ipAddress = 1;
-  optional uint32 port = 2;
-  optional uint32 processId = 3;
-  optional uint32 userCount = 4;
+  string ipAddress = 1;
+  uint32 port = 2;
+  uint32 processId = 3;
+  uint32 userCount = 4;
 }
+

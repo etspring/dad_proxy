@@ -9,7 +9,7 @@ import (
 )
 
 func TestObserveLobbyEnterReqSetsCharacterID(t *testing.T) {
-	body, err := proto.Marshal(&pb.SC2S_LOBBY_ENTER_REQ{CharacterId: ptr("char-42")})
+	body, err := proto.Marshal(&pb.SC2S_LOBBY_ENTER_REQ{CharacterId: "char-42"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -29,7 +29,7 @@ func TestObserveLobbyEnterReqSetsCharacterID(t *testing.T) {
 }
 
 func TestObserveLobbyEnterReqSetsNickName(t *testing.T) {
-	body, err := proto.Marshal(&pb.SC2S_LOBBY_ENTER_REQ{CharacterId: ptr("char-42")})
+	body, err := proto.Marshal(&pb.SC2S_LOBBY_ENTER_REQ{CharacterId: "char-42"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -50,5 +50,3 @@ func TestObserveLobbyEnterReqSetsNickName(t *testing.T) {
 		t.Fatalf("nick: got %q", snap.NickName)
 	}
 }
-
-func ptr(s string) *string { return &s }

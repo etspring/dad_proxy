@@ -1,48 +1,52 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.customize";
+option java_outer_classname = "customize";
+option java_multiple_files = false;
+
 message SCUSTOMIZE_BASE_INFO {
-  optional uint32 customizeType = 1;
-  optional string customizeId = 2;
-  optional uint32 isEquip = 3;
-  optional int32 equipSlotIndex = 4;
+  uint32 customizeType = 1;
+  string customizeId = 2;
+  uint32 isEquip = 3;
+  int32 equipSlotIndex = 4;
 }
 
 message SC2S_CUSTOMIZE_INFO_REQ {
 }
 
 message SS2C_CUSTOMIZE_INFO_RES {
-  optional uint32 loopFlag = 1;
+  uint32 loopFlag = 1;
   repeated .DC.Packet.SCUSTOMIZE_BASE_INFO infos = 2;
 }
 
 message SC2S_CUSTOMIZE_MOUNT_REQ {
-  optional uint32 customizeType = 1;
-  optional string customizeId = 2;
-  optional uint32 equipSlotIndex = 3;
+  uint32 customizeType = 1;
+  string customizeId = 2;
+  uint32 equipSlotIndex = 3;
 }
 
 message SS2C_CUSTOMIZE_MOUNT_RES {
-  optional uint32 result = 1;
-  optional uint32 customizeType = 2;
+  uint32 result = 1;
+  uint32 customizeType = 2;
   repeated .DC.Packet.SCUSTOMIZE_BASE_INFO infos = 3;
 }
 
 message SC2S_CUSTOMIZE_UNMOUNT_REQ {
-  optional uint32 customizeType = 1;
-  optional string customizeId = 2;
+  uint32 customizeType = 1;
+  string customizeId = 2;
 }
 
 message SS2C_CUSTOMIZE_UNMOUNT_RES {
-  optional uint32 result = 1;
-  optional uint32 customizeType = 2;
+  uint32 result = 1;
+  uint32 customizeType = 2;
   repeated .DC.Packet.SCUSTOMIZE_BASE_INFO infos = 3;
 }
 
 message SC2S_CUSTOMIZE_NEW_ITEM_CHECK_REQ {
-  optional string itemId = 1;
+  string itemId = 1;
 }
 
 message SS2C_CUSTOMIZE_NEW_ITEM_CHECK_RES {
@@ -52,11 +56,11 @@ message SS2C_CUSTOMIZE_NEW_ITEM_ALERT_NOT {
 }
 
 message SC2S_CUSTOMIZE_UPDATE_SKIN_ICON_TYPE_REQ {
-  optional uint32 skinIconType = 1;
+  uint32 skinIconType = 1;
 }
 
 message SS2C_CUSTOMIZE_UPDATE_SKIN_ICON_TYPE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_CUSTOMIZE_ARENA_RANK_CONTENT_TOGGLE_REQ {
@@ -65,12 +69,14 @@ message SC2S_CUSTOMIZE_ARENA_RANK_CONTENT_TOGGLE_REQ {
     PORTRAIT = 1;
     NAMEPLATE_FRAME = 2;
   }
-  optional uint32 contentType = 1;
-  optional uint32 toggleStatus = 2;
+
+  uint32 contentType = 1;
+  uint32 toggleStatus = 2;
 }
 
 message SS2C_CUSTOMIZE_ARENA_RANK_CONTENT_TOGGLE_RES {
-  optional uint32 result = 1;
-  optional uint32 contentType = 2;
-  optional uint32 toggleStatus = 3;
+  uint32 result = 1;
+  uint32 contentType = 2;
+  uint32 toggleStatus = 3;
 }
+

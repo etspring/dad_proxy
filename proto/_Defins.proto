@@ -1,25 +1,25 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package DC.Packet.Defines;
 option go_package = "dad_proxy/internal/pb";
 
-enum CharacterGenderType {
-  NONE = 0;
-  MAN = 1;
-  WOMAN = 2;
-  UNISEX = 3;
-}
+option java_package = "com.packets.defines";
+option java_outer_classname = "Defines";
+option java_multiple_files = false;
+
 message Define_Account {
   enum LengthText {
     NONE = 0;
     MIN = 2;
     MAX = 20;
   }
+
   enum CurrencyType {
     CURRENCY_NONE = 0;
     BLUE_STONE_SHARD = 1;
     RED_STONE_SHARD = 2;
   }
+
   enum LoginType {
     LOGIN_TYPE_NONE = 0;
     STEAM = 1;
@@ -28,17 +28,20 @@ message Define_Account {
     CHAF = 4;
     MICROSOFT = 5;
   }
+
   enum AccountStatus {
     ACCOUNT_STATUS_NONE = 0;
     ACCOUNT_STATUS_SQUIRE = 1;
     ACCOUNT_STATUS_LEGEND = 2;
   }
+
   enum LinkPlatformStatus {
     LINK_PLATFORM_STATUS_NONE = 0;
     LINK_PLATFORM_STATUS_SELECT_REQUIRED = 1;
     LINK_PLATFORM_STATUS_READY_TO_LINK = 2;
     LINK_PLATFORM_STATUS_EPIC_MIGRATION = 3;
   }
+
 }
 
 message Define_Character {
@@ -47,15 +50,18 @@ message Define_Character {
     MIN = 2;
     MAX = 20;
   }
+
   enum Limit {
     NONE_Limit = 0;
     MAX_COUNT = 8;
   }
+
   enum RankIconType {
     RANK_ICON_TYPE_NONE = 0;
     ADVENTURE = 1;
     ARENA = 2;
   }
+
 }
 
 message Define_Dlc {
@@ -64,24 +70,28 @@ message Define_Dlc {
     DLC_LEGENDARY = 1;
     DLC_SEASONAL = 3;
   }
+
   enum SlotType {
     NONE_SLOT_TYPE = 0;
     SLOT_DEFAULT = 1;
     SLOT_LEGENDARY = 2;
     SLOT_SEASONAL = 3;
   }
+
   enum SlotStatus {
     NONE_SLOT_STATUS = 0;
     AVAILABLE = 1;
     LOCKED = 2;
     EXPIRED = 3;
   }
+
   enum SaleStatus {
     NONE_SALE_STATUS = 0;
     NOT_YET_ON_SALE = 1;
     ON_SALE = 2;
     SAVE_EXPIRED = 3;
   }
+
 }
 
 message Define_Party {
@@ -90,6 +100,7 @@ message Define_Party {
     MAX = 3;
     MIN = 1;
   }
+
 }
 
 message Define_Item {
@@ -122,6 +133,7 @@ message Define_Item {
     REWARD_SHARED_STORAGE_4 = 224;
     MAX = 300;
   }
+
   enum rarityType {
     NONE_RARITY_TYPE = 0;
     POOR = 1;
@@ -133,6 +145,7 @@ message Define_Item {
     UNIQUE = 7;
     ARTIFACT = 8;
   }
+
   enum LootState {
     NONE_SOURCE = 0;
     SUPPLIED = 1;
@@ -141,17 +154,20 @@ message Define_Item {
     CRAFT = 4;
     ALLY = 5;
   }
+
   enum OriginType {
     NONE_ORIGIN = 0;
     FOUND_BY = 1;
     CRAFTED_BY = 2;
   }
+
   enum PermittedAreaType {
     NONE_PERMITTED_AREA_TYPE = 0;
     ALL = 1;
     DUNGEON_ONLY = 2;
     TAVERN_ONLY = 3;
   }
+
 }
 
 message Define_Equipment {
@@ -181,6 +197,7 @@ message Define_Equipment {
     BACK = 22;
     SASH = 23;
   }
+
 }
 
 message Define_Message {
@@ -190,17 +207,20 @@ message Define_Message {
     PROGRESS = 2;
     END = 3;
   }
+
   enum UpdateFlag {
     NONE_UPDATE_FLAG = 0;
     INSERT = 1;
     UPDATE = 2;
     DELETE = 3;
   }
+
   enum SelectFlag {
     NONE_SELECT_FLAG = 0;
     OK = 1;
     CANCEL = 2;
   }
+
 }
 
 message Define_Match {
@@ -215,6 +235,7 @@ message Define_Match {
     SAOPAULO = 7;
     TOKYO = 8;
   }
+
 }
 
 message Define_Stat {
@@ -240,6 +261,7 @@ message Define_Stat {
     SUBBOSS_KILL_ASSIST = 18;
     BOSS_KILL_ASSIST = 19;
   }
+
 }
 
 message Define_Game {
@@ -264,6 +286,7 @@ message Define_Game {
     BossKillAssist = 17;
     DeathPenalty = 18;
   }
+
   enum GameType {
     NONE_MODE = 0;
     DUNGEON_TRIO_NORMAL = 1;
@@ -289,12 +312,14 @@ message Define_Game {
     DUNGEON_TRIO_SQUIRE_ROYALE = 21;
     ARENA_SOLO_DUO = 22;
   }
+
   enum Floor {
     NONE_FLOOR = 0;
     FLOOR_1F = 1;
     FLOOR_2F = 2;
     FLOOR_3F = 3;
   }
+
   enum GameResult {
     GAME_RESULT_NONE = 0;
     WIN = 1;
@@ -302,11 +327,13 @@ message Define_Game {
     DRAW = 3;
     CANCELED = 4;
   }
+
   enum ArenaTeamType {
     NONE_TEAM = 0;
     RED = 1;
     BLUE = 2;
   }
+
 }
 
 message Define_Common {
@@ -326,6 +353,7 @@ message Define_Common {
     RECRUIT = 12;
     RELIGION = 13;
   }
+
   enum ServerLocation {
     NONE_LOCATION = 0;
     LOCAL = 1;
@@ -335,6 +363,7 @@ message Define_Common {
     DEV1 = 5;
     DEV2 = 6;
   }
+
 }
 
 message Define_Class {
@@ -346,11 +375,13 @@ message Define_Class {
     MUSIC = 4;
     SHAPE_SHIFT = 5;
   }
+
   enum Move {
     NONE_MOVE = 0;
     EQUIP = 1;
     UN_EQUIP = 2;
   }
+
 }
 
 message Define_Chat {
@@ -362,12 +393,14 @@ message Define_Chat {
     TRADE = 4;
     GATHERING_HALL = 5;
   }
+
   enum RoomType {
     ROOM_TYPE_WEAPON = 0;
     ROOM_TYPE_ARMOR = 1;
     ROOM_TYPE_UTILITY = 2;
     ROOM_TYPE_ETC = 3;
   }
+
 }
 
 message Define_Trade {
@@ -379,6 +412,7 @@ message Define_Trade {
     MONTHLY_DUES = 4;
     COST_PER_TRADE = 5;
   }
+
 }
 
 message Operate {
@@ -455,6 +489,7 @@ message Operate {
     POLICY_ACCOUNT_NICKNAME_CHANGE_PACK_PRICE = 80;
     POLICY_CLIENT_PERF_REPORT_ON_OFF = 81;
   }
+
 }
 
 message Define_Hack {
@@ -464,17 +499,20 @@ message Define_Hack {
     GAME_HACK_POLICY_BLOCK = 2;
     GAME_HACK_POLICY_KICK_AND_BLOCK = 3;
   }
+
   enum BanPeriodType {
     NONE_BAN_PERIOD_TYPE = 0;
     PERMANENT = 1;
     SEASONAL = 2;
     TEMPORARY = 3;
   }
+
   enum EasyPool {
     NONE_EasyPool = 0;
     Normal = 1;
     Easy = 2;
   }
+
 }
 
 message Define_Report {
@@ -485,6 +523,7 @@ message Define_Report {
     STREAM_SNIPING = 3;
     DIRTY_CHATTING = 4;
   }
+
 }
 
 message Define_Log {
@@ -498,6 +537,7 @@ message Define_Log {
     VERBOSE = 6;
     VERY_VERBOSE = 7;
   }
+
 }
 
 message Define_Karma {
@@ -508,11 +548,13 @@ message Define_Karma {
     FORGIVE = 3;
     PUNISH_TEAM_KILLER = 4;
   }
+
   enum Status {
     NONE_KARMA_STATUS = 0;
     NORMAL = 1;
     TEAM_KILLER = 2;
   }
+
 }
 
 message Define_Coupon {
@@ -520,6 +562,7 @@ message Define_Coupon {
     NONE_TYPE = 0;
     MADRINAS = 1;
   }
+
 }
 
 message Define_Shop {
@@ -536,19 +579,23 @@ message Define_Shop {
     NAMEPLATE = 9;
     BUNDLE = 10;
   }
+
   enum PaymentMethod {
     PAYMENT_NONE = 0;
     BLUE_STONE_SHARD = 1;
     RED_STONE_SHARD = 2;
   }
+
   enum SalesChannelType {
     CHANNEL_NONE = 0;
     CHANNEL_SHOP = 1;
     CHANNEL_FOUNDERS_PACK = 2;
   }
+
   enum ChangeNickNameType {
     ACCOUNT_NAME = 0;
   }
+
 }
 
 message Define_Reward {
@@ -577,6 +624,7 @@ message Define_Reward {
     BlueStoneShard = 21;
     RedStoneShard = 22;
   }
+
 }
 
 message Define_Contents {
@@ -587,4 +635,13 @@ message Define_Contents {
     TRADING_POST = 3;
     WORKSHOP = 4;
   }
+
 }
+
+enum CharacterGenderType {
+  NONE = 0;
+  MAN = 1;
+  WOMAN = 2;
+  UNISEX = 3;
+}
+

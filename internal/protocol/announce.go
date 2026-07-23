@@ -22,10 +22,10 @@ func BuildOperateAnnounceBody(req AnnounceRequest) ([]byte, error) {
 
 	item := &pb.SANNOUNCE_MESSAGE{}
 	if req.DesignDataID != "" {
-		item.DesignDataId = proto.String(req.DesignDataID)
+		item.DesignDataId = req.DesignDataID
 	}
 	if req.Message != "" {
-		item.AnnounceMessage = proto.String(req.Message)
+		item.AnnounceMessage = req.Message
 	}
 	if len(req.Params) > 0 {
 		item.Params = append(item.Params, req.Params...)

@@ -1,81 +1,86 @@
-syntax = "proto2";
+syntax = "proto3";
+
+package DC.Packet;
+option go_package = "dad_proxy/internal/pb";
+
+option java_package = "com.packets.trade";
+option java_outer_classname = "trade";
+option java_multiple_files = false;
 
 import "_Item.proto";
 import "_Character.proto";
 import "_Chat.proto";
-package DC.Packet;
-option go_package = "dad_proxy/internal/pb";
 
 message STRADE_CHANNEL {
-  optional uint32 index = 1;
-  optional string channelName = 2;
-  optional uint32 memberCount = 3;
-  optional uint32 roomType = 4;
-  optional uint32 groupIndex = 5;
+  uint32 index = 1;
+  string channelName = 2;
+  uint32 memberCount = 3;
+  uint32 roomType = 4;
+  uint32 groupIndex = 5;
 }
 
 message STRADE_CHAT_C2S {
-  optional uint32 chatType = 1;
-  optional string targetAccountId = 2;
-  optional string targetCharacterId = 3;
-  optional .DC.Packet.SCHATDATA chatData = 4;
+  uint32 chatType = 1;
+  string targetAccountId = 2;
+  string targetCharacterId = 3;
+  .DC.Packet.SCHATDATA chatData = 4;
 }
 
 message STRADE_CHAT_S2C {
-  optional uint64 index = 1;
-  optional uint32 chatType = 2;
-  optional uint64 time = 3;
-  optional .DC.Packet.SCHATDATA chatData = 4;
+  uint64 index = 1;
+  uint32 chatType = 2;
+  uint64 time = 3;
+  .DC.Packet.SCHATDATA chatData = 4;
 }
 
 message STRADE_MEMBERSHIP_REQUIREMENT {
-  optional uint32 memberShipType = 1;
-  optional uint32 memberShipValue = 2;
+  uint32 memberShipType = 1;
+  uint32 memberShipValue = 2;
 }
 
 message STRADING_USER_INFO {
-  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 1;
-  optional string accountId = 2;
+  .DC.Packet.SACCOUNT_NICKNAME nickName = 1;
+  string accountId = 2;
 }
 
 message STRADING_CONFIRM_ITEM {
-  optional .DC.Packet.STRADING_USER_INFO info = 1;
+  .DC.Packet.STRADING_USER_INFO info = 1;
   repeated .DC.Packet.SItem items = 2;
 }
 
 message STRADE_CHANNEL_USER_UPDATE_INFO {
-  optional uint32 updateFlag = 1;
-  optional .DC.Packet.SCHARACTER_TRADE_INFO trader = 2;
+  uint32 updateFlag = 1;
+  .DC.Packet.SCHARACTER_TRADE_INFO trader = 2;
 }
 
 message SC2S_TRADE_CHANNEL_LIST_REQ {
 }
 
 message SS2C_TRADE_CHANNEL_LIST_RES {
-  optional uint32 isTrader = 1;
+  uint32 isTrader = 1;
   repeated .DC.Packet.STRADE_CHANNEL channels = 2;
 }
 
 message SC2S_TRADE_CHANNEL_SELECT_REQ {
-  optional uint32 index = 1;
+  uint32 index = 1;
 }
 
 message SS2C_TRADE_CHANNEL_SELECT_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_TRADE_CHANNEL_EXIT_REQ {
 }
 
 message SS2C_TRADE_CHANNEL_EXIT_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_TRADE_CHANNEL_USER_LIST_REQ {
 }
 
 message SS2C_TRADE_CHANNEL_USER_LIST_RES {
-  optional uint32 loopFlag = 1;
+  uint32 loopFlag = 1;
   repeated .DC.Packet.SCHARACTER_TRADE_INFO traders = 2;
 }
 
@@ -84,18 +89,18 @@ message SS2C_TRADE_CHANNEL_USER_UPDATE_NOT {
 }
 
 message SC2S_TRADE_CHANNEL_CHAT_REQ {
-  optional .DC.Packet.STRADE_CHAT_C2S chat = 1;
+  .DC.Packet.STRADE_CHAT_C2S chat = 1;
 }
 
 message SS2C_TRADE_CHANNEL_CHAT_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
   repeated .DC.Packet.STRADE_CHAT_S2C chats = 2;
-  optional int32 banDurationMin = 3;
-  optional uint64 chatIdx = 4;
+  int32 banDurationMin = 3;
+  uint64 chatIdx = 4;
 }
 
 message SC2S_TRADE_CHANNEL_CHAT_TEXT_RANGE_REQ {
-  optional uint32 beginIndex = 1;
+  uint32 beginIndex = 1;
 }
 
 message SS2C_TRADE_CHANNEL_CHAT_TEXT_RANGE_RES {
@@ -110,119 +115,120 @@ message SS2C_TRADE_MEMBERSHIP_REQUIREMENT_RES {
 }
 
 message SC2S_TRADE_MEMBERSHIP_REQ {
-  optional uint32 becomeTraderFlag = 1;
+  uint32 becomeTraderFlag = 1;
 }
 
 message SS2C_TRADE_MEMBERSHIP_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_TRADE_REQUEST_REQ {
-  optional string accountId = 1;
-  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
-  optional string characterId = 3;
+  string accountId = 1;
+  .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
+  string characterId = 3;
 }
 
 message SS2C_TRADE_REQUEST_RES {
-  optional uint32 result = 1;
-  optional .DC.Packet.SACCOUNT_NICKNAME requestNickName = 2;
+  uint32 result = 1;
+  .DC.Packet.SACCOUNT_NICKNAME requestNickName = 2;
 }
 
 message SS2C_TRADE_REQUEST_NOT {
-  optional string accountId = 1;
-  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
+  string accountId = 1;
+  .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
 }
 
 message SC2S_TRADE_ANSWER_REQ {
-  optional string accountId = 1;
-  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
-  optional uint32 selectFlag = 3;
+  string accountId = 1;
+  .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
+  uint32 selectFlag = 3;
 }
 
 message SS2C_TRADE_ANSWER_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SS2C_TRADE_ANSWER_REFUSAL_NOT {
-  optional string accountId = 1;
-  optional .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
+  string accountId = 1;
+  .DC.Packet.SACCOUNT_NICKNAME nickName = 2;
 }
 
 message SS2C_TRADING_BEGIN_NOT {
-  optional .DC.Packet.STRADING_USER_INFO target = 1;
-  optional .DC.Packet.STRADING_USER_INFO mine = 2;
-  optional uint32 tradeFee = 4;
-  optional uint32 moveResetTimeSec = 5;
+  .DC.Packet.STRADING_USER_INFO target = 1;
+  .DC.Packet.STRADING_USER_INFO mine = 2;
+  uint32 tradeFee = 4;
+  uint32 moveResetTimeSec = 5;
 }
 
 message SC2S_TRADING_CLOSE_REQ {
 }
 
 message SS2C_TRADING_CLOSE_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SC2S_TRADING_CHAT_REQ {
-  optional .DC.Packet.STRADE_CHAT_C2S chat = 1;
+  .DC.Packet.STRADE_CHAT_C2S chat = 1;
 }
 
 message SS2C_TRADING_CHAT_RES {
-  optional uint32 result = 1;
-  optional .DC.Packet.STRADE_CHAT_S2C chat = 2;
-  optional int32 banDurationMin = 3;
+  uint32 result = 1;
+  .DC.Packet.STRADE_CHAT_S2C chat = 2;
+  int32 banDurationMin = 3;
 }
 
 message SC2S_TRADING_ITEM_UPDATE_REQ {
-  optional uint32 updateFlag = 1;
-  optional uint64 uniqueId = 2;
-  optional uint32 slotId = 3;
+  uint32 updateFlag = 1;
+  uint64 uniqueId = 2;
+  uint32 slotId = 3;
 }
 
 message SS2C_TRADING_ITEM_UPDATE_RES {
-  optional uint32 result = 1;
-  optional .DC.Packet.STRADING_USER_INFO updateUserInfo = 2;
-  optional uint32 updateFlag = 3;
-  optional .DC.Packet.SItem updateItem = 4;
+  uint32 result = 1;
+  .DC.Packet.STRADING_USER_INFO updateUserInfo = 2;
+  uint32 updateFlag = 3;
+  .DC.Packet.SItem updateItem = 4;
 }
 
 message SC2S_TRADING_READY_REQ {
-  optional uint32 isReady = 1;
+  uint32 isReady = 1;
 }
 
 message SS2C_TRADING_READY_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SS2C_TRADING_READY_NOT {
-  optional .DC.Packet.STRADING_USER_INFO readyUserInfo = 1;
-  optional uint32 isReady = 2;
+  .DC.Packet.STRADING_USER_INFO readyUserInfo = 1;
+  uint32 isReady = 2;
 }
 
 message SS2C_TRADING_CONFIRM_NOT {
-  optional .DC.Packet.STRADING_CONFIRM_ITEM target = 1;
-  optional .DC.Packet.STRADING_CONFIRM_ITEM mine = 2;
+  .DC.Packet.STRADING_CONFIRM_ITEM target = 1;
+  .DC.Packet.STRADING_CONFIRM_ITEM mine = 2;
 }
 
 message SC2S_TRADING_CONFIRM_READY_REQ {
-  optional uint32 isReady = 1;
+  uint32 isReady = 1;
 }
 
 message SS2C_TRADING_CONFIRM_READY_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SS2C_TRADING_CONFIRM_READY_NOT {
-  optional .DC.Packet.STRADING_USER_INFO readyUserInfo = 1;
-  optional uint32 isReady = 2;
+  .DC.Packet.STRADING_USER_INFO readyUserInfo = 1;
+  uint32 isReady = 2;
 }
 
 message SC2S_TRADING_CONFIRM_CANCEL_REQ {
 }
 
 message SS2C_TRADING_CONFIRM_CANCEL_RES {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
 
 message SS2C_TRADING_RESULT_NOT {
-  optional uint32 result = 1;
+  uint32 result = 1;
 }
+

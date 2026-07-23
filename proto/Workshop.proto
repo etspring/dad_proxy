@@ -1,31 +1,36 @@
-syntax = "proto2";
+syntax = "proto3";
 
-import "_Item.proto";
-import "Inventory.proto";
 package DC.Packet;
 option go_package = "dad_proxy/internal/pb";
 
+option java_package = "com.packets.workshop";
+option java_outer_classname = "workshop";
+option java_multiple_files = false;
+
+import "_Item.proto";
+import "Inventory.proto";
+
 message SWORKSHOP_UPGRADE_REQUIREMENT_INFO {
-  optional int32 targetLevel = 1;
-  optional string requirementId = 2;
-  optional int32 progress = 3;
-  optional int32 maxProgress = 4;
+  int32 targetLevel = 1;
+  string requirementId = 2;
+  int32 progress = 3;
+  int32 maxProgress = 4;
 }
 
 message SWORKSHOP_INFO {
-  optional string workshopId = 1;
-  optional int32 workshopLevel = 2;
-  optional int32 needUnlock = 3;
+  string workshopId = 1;
+  int32 workshopLevel = 2;
+  int32 needUnlock = 3;
   repeated .DC.Packet.SWORKSHOP_UPGRADE_REQUIREMENT_INFO requirementInfos = 4;
 }
 
 message SWORKSHOP_REWARD_INFO {
-  optional string rewardId = 1;
-  optional .DC.Packet.SItem item = 2;
+  string rewardId = 1;
+  .DC.Packet.SItem item = 2;
 }
 
 message SWORKSHOP_UPGRADE_STACK_REQUEST_INFO {
-  optional string requirementId = 1;
+  string requirementId = 1;
   repeated .DC.Packet.SINVENTORY_REQUEST_INFO itemInfos = 2;
 }
 
@@ -34,102 +39,103 @@ message SS2C_WORKSHOP_INFO_NOT {
 }
 
 message SC2S_WORKSHOP_UNLOCK_REQ {
-  optional string workshopId = 1;
+  string workshopId = 1;
 }
 
 message SS2C_WORKSHOP_UNLOCK_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SWORKSHOP_INFO workshopInfo = 2;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 3;
+  int32 result = 1;
+  .DC.Packet.SWORKSHOP_INFO workshopInfo = 2;
+  .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 3;
 }
 
 message SC2S_WORKSHOP_UPGRADE_REQ {
-  optional string workshopId = 1;
+  string workshopId = 1;
 }
 
 message SS2C_WORKSHOP_UPGRADE_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SWORKSHOP_INFO workshopInfo = 2;
+  int32 result = 1;
+  .DC.Packet.SWORKSHOP_INFO workshopInfo = 2;
 }
 
 message SC2S_WORKSHOP_UPGRADE_REQUIREMENT_STACK_REQ {
-  optional string workshopId = 1;
+  string workshopId = 1;
   repeated .DC.Packet.SWORKSHOP_UPGRADE_STACK_REQUEST_INFO requestInfos = 2;
 }
 
 message SS2C_WORKSHOP_UPGRADE_REQUIREMENT_STACK_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SWORKSHOP_INFO workshopInfo = 2;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 3;
+  int32 result = 1;
+  .DC.Packet.SWORKSHOP_INFO workshopInfo = 2;
+  .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 3;
 }
 
 message SS2C_WORKSHOP_UPGRADE_REQUIREMENT_VALUE_NOT {
-  optional string workshopId = 1;
-  optional .DC.Packet.SWORKSHOP_UPGRADE_REQUIREMENT_INFO changeInfo = 2;
+  string workshopId = 1;
+  .DC.Packet.SWORKSHOP_UPGRADE_REQUIREMENT_INFO changeInfo = 2;
 }
 
 message SC2S_WORKSHOP_ENHANCE_SERVICE_REQ {
-  optional string workshopId = 1;
-  optional int64 targetItemUniqueId = 2;
+  string workshopId = 1;
+  int64 targetItemUniqueId = 2;
   repeated .DC.Packet.SINVENTORY_REQUEST_INFO materialInfos = 3;
 }
 
 message SS2C_WORKSHOP_ENHANCE_SERVICE_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
+  int32 result = 1;
+  .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
 }
 
 message SC2S_WORKSHOP_REBUILD_SERVICE_REQ {
-  optional string workshopId = 1;
-  optional int64 targetItemUniqueId = 2;
+  string workshopId = 1;
+  int64 targetItemUniqueId = 2;
   repeated .DC.Packet.SINVENTORY_REQUEST_INFO materialInfos = 3;
 }
 
 message SS2C_WORKSHOP_REBUILD_SERVICE_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
+  int32 result = 1;
+  .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
 }
 
 message SC2S_WORKSHOP_SCRAP_SERVICE_REQ {
-  optional string workshopId = 1;
+  string workshopId = 1;
   repeated .DC.Packet.SINVENTORY_REQUEST_INFO targetInfos = 2;
   repeated .DC.Packet.SINVENTORY_REQUEST_INFO materialInfos = 3;
 }
 
 message SS2C_WORKSHOP_SCRAP_SERVICE_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
+  int32 result = 1;
+  .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
 }
 
 message SC2S_WORKSHOP_CRAFT_SERVICE_REQ {
-  optional string workshopId = 1;
-  optional string craftId = 2;
+  string workshopId = 1;
+  string craftId = 2;
   repeated .DC.Packet.SINVENTORY_REQUEST_INFO materialInfos = 3;
 }
 
 message SS2C_WORKSHOP_CRAFT_SERVICE_RES {
-  optional int32 result = 1;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
+  int32 result = 1;
+  .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 2;
 }
 
 message SC2S_WORKSHOP_REWARD_SERVICE_ITEM_LIST_REQ {
-  optional string workshopId = 1;
+  string workshopId = 1;
 }
 
 message SS2C_WORKSHOP_REWARD_SERVICE_ITEM_LIST_RES {
-  optional int32 result = 1;
-  optional string workshopId = 2;
+  int32 result = 1;
+  string workshopId = 2;
   repeated .DC.Packet.SWORKSHOP_REWARD_INFO rewards = 3;
 }
 
 message SC2S_WORKSHOP_REWARD_SERVICE_RECEIVE_ITEM_LIST_REQ {
-  optional string workshopId = 1;
+  string workshopId = 1;
   repeated string rewardIds = 2;
 }
 
 message SS2C_WORKSHOP_REWARD_SERVICE_RECEIVE_ITEM_LIST_RES {
-  optional int32 result = 1;
-  optional string workshopId = 2;
-  optional .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 3;
+  int32 result = 1;
+  string workshopId = 2;
+  .DC.Packet.SINVENTORY_RESULT_INFO itemResult = 3;
   repeated .DC.Packet.SWORKSHOP_REWARD_INFO remainRewards = 4;
 }
+
